@@ -1,0 +1,164 @@
+/*==================================================
+			Bootstrap 3 Media Queries         
+==================================================*/
+
+
+/* Large Devices (Desktops & Laptops) */
+
+@media (min-width: 1200px) {
+    /* OK */
+}
+
+
+/* Medium Devices (Landscape Tablets & Medium Desktops) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* Mobile menu */
+    .navbar {
+        background: rgba(0, 0, 0, .7);
+        padding: 0;
+    }
+    .navbar-nav {
+        float: left;
+    }
+    .vesco-nav-wrapper {
+        padding: 0;
+    }
+}
+
+
+/* Small Devices (Portrait Tablets & Small Desktops) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Mobile menu */
+    .navbar {
+        background: rgba(0, 0, 0, .7);
+        padding: 0;
+    }
+    .navbar-nav {
+        float: left;
+    }
+    .vesco-nav-wrapper {
+        padding: 0;
+    }
+    /* About - remove diagonal border */
+    #about-bg-diagonal {
+        border-left: 0;
+        border-top: 0;
+        width: 100%;
+        height: 350px;
+    }
+    #about-content-box {
+        width: 100%;
+        height: 350px;
+    }
+    /* Stats */
+    .stats-item {
+        padding: 20px 0;
+    }
+    /* Footer */
+    #footer-copyrights {
+        text-align: center;
+    }
+}
+
+
+/* Extra Small Devices (Landscape Phones & Portrait Tablets) */
+
+@media (max-width: 767px) {
+    /* Mobile menu */
+    .navbar {
+        background: rgba(0, 0, 0, .7);
+        padding: 0;
+    }
+    .navbar-nav {
+        float: left;
+    }
+    .vesco-nav-wrapper {
+        padding: 0;
+    }
+    /* Home */
+    #home-heading h3 {
+        font-size: 24px;
+    }
+    /* Buttons */
+    .btn-general {
+        padding: 6px 22px 6px 22px;
+        font-size: 14px;
+    }
+    /* About - remove diagonal border */
+    #about-bg-diagonal {
+        border-left: 0;
+        border-top: 0;
+        width: 100%;
+        height: 350px;
+    }
+    #about-content-box {
+        width: 100%;
+        height: 350px;
+    }
+    /* Work */
+    .img-wrapper img {
+        min-width: 100%;
+    }
+    /* Testimonials */
+    .testimonial blockquote {
+        padding: 6px 50px;
+    }
+    .testimonial blockquote:before {
+        left: 10px;
+    }
+    .testimonial blockquote:after {
+        right: 10px;
+    }
+    .testimonial blockquote p {
+        font-size: 14px;
+    }
+    /* Stats */
+    .stats-item {
+        padding: 20px 0;
+    }
+    /* Footer */
+    #footer-copyrights {
+        text-align: center;
+    }
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller devices) */
+
+@media (max-width: 480px) {
+    /* OK */
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller devices) */
+
+@media (max-width: 320px) {
+    /* Services */
+    .service-item-icon i {
+        width: 58px;
+        height: 58px;
+        padding: 7px;
+    }
+    .service-item-title h3 {
+        font-size: 17px;
+    }
+    /* About */
+    #about-content-box {
+        margin-top: 40px;
+    }
+    /* Testimonials */
+    .testimonial img {
+        max-width: 80px;
+    }
+    .testimonial blockquote {
+        padding: 6px 30px;
+    }
+    .testimonial blockquote:before {
+        left: 7px;
+    }
+    .testimonial blockquote:after {
+        right: 7px;
+    }
+}
