@@ -199,12 +199,19 @@
             <div class="container-fluid">
 
                 <div class="row no-gutters wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <div class="col-md-3 col-sm-4">
+
                         {% if clubs %}
                             {% for club in clubs %}
-                                {{ club.club_name }}
-                                <img src="{{ club.club_image.url }}">
-                            {% endfor %}
+                    <div class="col-md-3 col-sm-4 card_logo">
+                        <div class="img-wrapper">
+                                <img src="{{ club.club_image.url }}" class="img-responsive">
+                                <div class="overlay">
+                                    <h4>{{ club.club_name }}</h4>
+                                    <a href="#" class="info">more...</a>
+                                </div>
+                        </div>
+                    </div>
+                      {% endfor %}
                         {% else %}
                             <h1>No clubs to display.</h1>
 

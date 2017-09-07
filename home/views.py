@@ -4,9 +4,9 @@ from .models import Contact,Club
 # Create your views here.
 
 def index(request):
+	
 	clubs = Club.objects.all()
-
-	return render(request, 'home/index.html', {clubs:'clubs'})
+	return render(request, 'home/index.html', {'clubs':clubs})
 
 
 def contactSubmit(request):
