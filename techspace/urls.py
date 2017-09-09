@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^turingai/', include('turingai.urls')),
     url(r'^', include('home.urls')),
     url(r'^accounts/', include('log.urls')),
+    url(r'^blog/', include('blog.urls')),
+    url(r'^event/', include('event.urls')),
 ]
 
 
