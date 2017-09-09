@@ -1,9 +1,343 @@
-{% extends './base.html' %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>E-Cell</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'droidclub/css/main.css' %}" />
+	</head>
+	<body>
+
+	<style>
+		.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
+	    .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+        .MultiCarousel .MultiCarousel-inner .item { float: left;}
+        .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
+	    .MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
+	    .MultiCarousel .leftLst { left:0; }
+	    .MultiCarousel .rightLst { right:0; }
+    
+        .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+	</style>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="#">E-Cell <span>- Techspace</span></a></div>
+				<a href="#menu"><span>Menu</span></a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="#">Home</a></li>
+					<li><a href="#one">About</a></li>
+					<li><a href="#two">Blogs</a></li>
+					<li><a href="#three">Our Team</a></li>
+					<li><a href="#four">Events</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+		<!--
+			Note: To show a background image, set the "data-bg" attribute below
+			to the full filename of your image. This is used in each section to set
+			the background image.
+		-->
+			<section id="banner" class="bg-img" data-bg="{% static 'ecell/images/banner.jpg' %}">
+				<div class="inner">
+					<header>
+						<h1>E-Cell</h1>
+					</header>
+				</div>
+				<a href="#one" class="more">Learn More</a>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper post bg-img" data-bg="{% static 'ecell/images/banner2.jpg' %}">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>About</h2>
+						</header>
+						<div class="content">
+							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.
+							Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
+						</div>
+						
+					</article>
+				</div>
+				<a href="#two" class="more">Learn More</a>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper post bg-img" data-bg="{% static 'ecell/images/banner3.jpg' %}">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Blogs</h2>
+						</header>
+						<div class="content">
+							<h3>Click the link below to read our blogs.</h3>
+						</div>
+						<footer>
+							<a href="{% url 'ecell:post' %}" class="button alt">Blogs</a>
+						</footer>
+					</article>
+				</div>
+				<a href="#three" class="more">Learn More</a>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper post bg-img" data-bg="{% static 'ecell/images/banner4.jpg' %}">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Our Team</h2>
+						</header>
+						<div class="content">
+								<div class="row">
+								<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+						            <div class="MultiCarousel-inner">
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						                <div class="item">
+						                    <div class="pad15">
+						                        <p class="lead">Multi Item Carousel</p>
+						                        <p>₹ 1</p>
+						                        <p>₹ 6000</p>
+						                        <p>50% off</p>
+						                    </div>
+						                </div>
+						            </div>
+						            <button class="btn btn-primary leftLst"><</button>
+						            <button class="btn btn-primary rightLst">></button>
+						        </div>
+							</div>
+							
+						</div>
+					</article>
+				</div>
+				<a href="#four" class="more">Learn More</a>
+			</section>
+
+		<!-- Four -->
+			<section id="four" class="wrapper post bg-img" data-bg="{% static 'ecell/images/banner5.jpg' %}">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Events</h2>
+						</header>
+						<div class="content">
+							<img class="event" src="http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx">
+						</div>
+						<footer>
+							<a href="{% url 'ecell:events' %}" class="button alt">All Events</a>
+						</footer>
+					</article>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h2>Contact Us</h2>
+
+					<form action="#" method="post">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+					<ul class="icons">
+						<li><a href="#" class="icon round fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+
+					<div class="copyright">
+						&copy; TechSpace (USICT)
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'ecell/js/jquery.min.js' %}"></script>
+			<script src="{% static 'ecell/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'ecell/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'ecell/js/skel.min.js' %}"></script>
+			<script src="{% static 'ecell/js/util.js' %}"></script>
+			<script src="{% static 'ecell/js/main.js' %}"></script>
+			<script>
+				
+				$(document).ready(function () {
+				    var itemsMainDiv = ('.MultiCarousel');
+				    var itemsDiv = ('.MultiCarousel-inner');
+				    var itemWidth = "";
+
+				    $('.leftLst, .rightLst').click(function () {
+				        var condition = $(this).hasClass("leftLst");
+				        if (condition)
+				            click(0, this);
+				        else
+				            click(1, this)
+				    });
+
+				    ResCarouselSize();
 
 
-{% block title %}| Home{% endblock %}
 
 
-{% block content %}
-<h1>E-Cell</h1>
-{% endblock %}
+				    $(window).resize(function () {
+				        ResCarouselSize();
+				    });
+
+				    //this function define the size of the items
+				    function ResCarouselSize() {
+				        var incno = 0;
+				        var dataItems = ("data-items");
+				        var itemClass = ('.item');
+				        var id = 0;
+				        var btnParentSb = '';
+				        var itemsSplit = '';
+				        var sampwidth = $(itemsMainDiv).width();
+				        var bodyWidth = $('body').width();
+				        $(itemsDiv).each(function () {
+				            id = id + 1;
+				            var itemNumbers = $(this).find(itemClass).length;
+				            btnParentSb = $(this).parent().attr(dataItems);
+				            itemsSplit = btnParentSb.split(',');
+				            $(this).parent().attr("id", "MultiCarousel" + id);
+
+
+				            if (bodyWidth >= 1200) {
+				                incno = itemsSplit[3];
+				                itemWidth = sampwidth / incno;
+				            }
+				            else if (bodyWidth >= 992) {
+				                incno = itemsSplit[2];
+				                itemWidth = sampwidth / incno;
+				            }
+				            else if (bodyWidth >= 768) {
+				                incno = itemsSplit[1];
+				                itemWidth = sampwidth / incno;
+				            }
+				            else {
+				                incno = itemsSplit[0];
+				                itemWidth = sampwidth / incno;
+				            }
+				            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+				            $(this).find(itemClass).each(function () {
+				                $(this).outerWidth(itemWidth);
+				            });
+
+				            $(".leftLst").addClass("over");
+				            $(".rightLst").removeClass("over");
+
+				        });
+				    }
+
+
+				    //this function used to move the items
+				    function ResCarousel(e, el, s) {
+				        var leftBtn = ('.leftLst');
+				        var rightBtn = ('.rightLst');
+				        var translateXval = '';
+				        var divStyle = $(el + ' ' + itemsDiv).css('transform');
+				        var values = divStyle.match(/-?[\d\.]+/g);
+				        var xds = Math.abs(values[4]);
+				        if (e == 0) {
+				            translateXval = parseInt(xds) - parseInt(itemWidth * s);
+				            $(el + ' ' + rightBtn).removeClass("over");
+
+				            if (translateXval <= itemWidth / 2) {
+				                translateXval = 0;
+				                $(el + ' ' + leftBtn).addClass("over");
+				            }
+				        }
+				        else if (e == 1) {
+				            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+				            translateXval = parseInt(xds) + parseInt(itemWidth * s);
+				            $(el + ' ' + leftBtn).removeClass("over");
+
+				            if (translateXval >= itemsCondition - itemWidth / 2) {
+				                translateXval = itemsCondition;
+				                $(el + ' ' + rightBtn).addClass("over");
+				            }
+				        }
+				        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+				    }
+
+				    //It is used to get some elements from btn
+				    function click(ell, ee) {
+				        var Parent = "#" + $(ee).parent().attr("id");
+				        var slide = $(Parent).attr("data-slide");
+				        ResCarousel(ell, Parent, slide);
+				    }
+
+				});
+
+			</script>
+
+	</body>
+</html>
