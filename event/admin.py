@@ -3,4 +3,4 @@ from .models import Events
 # Register your models here.
 
 
-admin.site.register(Events, list_display=["title", "date", "venue"])
+admin.site.register(Events)

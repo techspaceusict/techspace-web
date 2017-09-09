@@ -1,0 +1,61 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+{% if user.is_authenticated %}
+
+<h4>hey, {{ user.username }}</h4>
+
+
+<div class="">
+<table class="table table-bordered" id="table">
+<thead>
+	<tr>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Message</th>
+	</tr>
+</thead>
+
+
+{% for contact in contacts reversed %}
+
+	<tbody>
+	<tr>
+	<td>{{ contact.name }}</td>
+	<td>{{ contact.email }}</td>
+	<td>{{ contact.content }}</td>
+	</tr>
+	</tbody>
+
+{% endfor %}
+
+
+
+</table>
+
+</div>
+
+
+
+
+{% else %}
+<h1>You need to <a href="{% url 'log:login' %}">login</a> first.</h1>
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+</div>
+{% endblock %}

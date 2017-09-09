@@ -1,0 +1,63 @@
+body{
+	background: #b3c6ff;
+}
+
+.container-fluid{
+	margin:0;
+	padding: 0;
+}
+.navbar-brand{
+	font-size: 2em;
+	padding: .8em;
+}
+.navbar{
+	height: 5em;
+	background: #00004d;
+	margin-bottom: 0;
+}
+.nav{
+	padding:.8em;
+}
+.login_card{
+	width: 30em;
+	height: 25em;
+	background:#f3f3f3 ;
+	top: 35%;
+	margin-top: -3em;
+	position: fixed;
+	margin-bottom: 35%;
+	     box-shadow: 10px 10px 5px #888888;
+}
+/*.login_card{
+	width: 30em;
+	margin-top: 15%;
+	margin-left: 35%;
+	margin-right: 35%;
+	height: 20em;
+	border: .1em solid #fff;
+	background: #fff;
+	position:fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -10em; 
+    margin-left: -15em;
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+} */
+.inner_card{
+	margin-top: 20%;
+	margin-left: 10%;
+
+
+}
+.form-control{
+	color: black!important;
+	width: 24em;
+	height: 2.5em;
+	background: rgb(215,215,215)!important;
+}
+
+.btn-primary{
+	width: 24em;
+	height: 3em;
+}

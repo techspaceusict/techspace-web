@@ -1,12 +1,32 @@
-{% extends '../home/base.html' %}
+{% extends '../log/base.html' %}
 
 {% block title %} - Login{% endblock %}
 
 {% block content %}
-<form action="." method="POST">
+
+
+<div class="container-fluid">
+
+<div class="col-sm-offset-4 col-sm-4">
+<div class="login_card container-fluid">
+
+<div class="inner_card col-centered">
+
+<form action="{% url 'log:login' %}" method="POST">
 	{% csrf_token %}
-	{{ form.as_p }}
-	<button>Login</button>	
+	<input class="form-control" type="text" name="username" placeholder="username"><br>
+	<input class="form-control" type="password" name="password" placeholder="password"><br>
+
+	<button class="btn btn-block btn-primary">Login</button>	
 </form>
+<h5>Not registered? Create an <a href="{% url 'log:register' %}">account</a> </h5>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
 {% endblock %}
 

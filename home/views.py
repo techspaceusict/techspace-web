@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponse
+from django.contrib.auth.decorators import login_required
+
 from .models import Contact,Club, Association
+
 
 # Create your views here.
 
@@ -26,6 +29,5 @@ def contactSubmit(request):
 			content = content
 			)
 	return HttpResponse('')
-
 
 

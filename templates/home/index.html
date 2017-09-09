@@ -41,8 +41,12 @@
                             <!-- <li><a class="smooth-scroll" href="#pricing">Pricing</a></li> -->
                             <li><a class="smooth-scroll" href="#stats">Stats</a></li>
                             <li><a class="smooth-scroll" href="#clients">Association</a></li>
-                            <li><a class="smooth-scroll" href="#contact">Contact</a></li>
+                            <li><a class="smooth-scroll" href="#contact">Contact</a></li>           
+
                         </ul>
+
+                        
+
                     </div>
 
                 </div>
@@ -605,7 +609,14 @@
                                 <li><a class="smooth-scroll" href="#team">Team</a>/</li>
                                 <li><a class="smooth-scroll" href="#testimonials">Testimonials</a>/</li>
                                 <!-- <li><a class="smooth-scroll" href="#pricing">Pricing</a>/</li> -->
-                                <li><a class="smooth-scroll" href="#stats">Stats</a></li>
+                                <li><a class="smooth-scroll" href="#stats">Stats</a>/</li>
+
+                                {% if user.is_authenticated %}
+                                <li><a  href="{% url 'log:logout' %}"> Logout</li>
+                                {% else %}
+                                <li><a href="{% url 'log:login' %}">Login</a></li>
+                                {% endif %}
+                                
                             </ul>
                         </div>
                     </div>

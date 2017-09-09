@@ -1,0 +1,12 @@
+.navbar-brand{
+	font-size: 2em;
+	padding: .8em;
+}
+.navbar{
+	height: 5em;
+	background: #00004d;
+	margin-bottom: 0;
+}
+.nav{
+	padding:.8em;
+}

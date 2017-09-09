@@ -1,8 +1,41 @@
-{% extends '../home/base.html' %}
+{% extends '../log/base.html' %}
 
 {% block title %} - Register{% endblock %}
 
 {% block content %}
+
+
+
+<div class="container-fluid">
+
+<div class="col-sm-offset-4 col-sm-4">
+<div class="login_card container-fluid">
+
+<div class="inner_card col-centered">
+
+<form action="{% url 'log:register' %}" method="POST">
+	{% csrf_token %}
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 	{% if registered %}
 		<h3>Thanks for registering with us.</h3>
 	{% else %}
@@ -13,4 +46,4 @@
 		<input type="submit" value="Submit">
 	</form>
 	{% endif %}
-{% endblock %}
+ -->{% endblock %}
