@@ -201,16 +201,22 @@
                 <div class="row no-gutters wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
 
                         {% if clubs %}
-                            {% for club in clubs %}
+                            {% for club,app_url in clubs %}
+                   <a href="{% url app_url %}">
                     <div class="col-md-3 col-sm-4 card_logo">
+                       
                         <div class="img-wrapper">
                                 <img src="{{ club.club_image.url }}" class="img-responsive">
                                 <div class="overlay">
                                     <h4>{{ club.club_name }}</h4>
-                                    <a href="#" class="info">more...</a>
+                                    <div class="center">
+                                    <a href="{% url app_url %}" class="info">more...</a>
+                                    </div>
                                 </div>
                         </div>
                     </div>
+                       </a> 
+
                       {% endfor %}
                         {% else %}
                             <h1>No clubs to display.</h1>
@@ -427,96 +433,7 @@
         </div>
     </section>
 
-    <!-- Pricing -->
-   <!--  <section id="pricing">
-
-        <div class="content-box">
-            <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                <h3> Our Pricing </h3>
-                <div class="content-title-underline"></div>
-            </div>
-
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-4 wow animated zoomIn" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="pricing-box text-center">
-
-                            <h4 class="pricing-title">Basic</h4>
-                            <h3 class="pricing-value">49<sup>$</sup></h3>
-                            <ul class="pricing-spec">
-                                <li>
-                                    <p>500 EMAILS</p>
-                                </li>
-                                <li>
-                                    <p>5GB Disk Space</p>
-                                </li>
-                                <li>
-                                    <p>5GB BANDWIDTH</p>
-                                </li>
-                                <li>
-                                    <p>UNLIMITED DOMAINS</p>
-                                </li>
-                            </ul>
-                            <div class="pricing-btn">
-                                <a class="btn btn-lg btn-general btn-blue" href="#" role="button">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow animated bounceInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="pricing-box pricing-box-lg text-center">
-
-                            <h4 class="pricing-title">Enterprise</h4>
-                            <h3 class="pricing-value">89<sup>$</sup></h3>
-                            <ul class="pricing-spec">
-                                <li>
-                                    <p>2000 EMAILS</p>
-                                </li>
-                                <li>
-                                    <p>25GB Disk Space</p>
-                                </li>
-                                <li>
-                                    <p>25GB BANDWIDTH</p>
-                                </li>
-                                <li>
-                                    <p>UNLIMITED DOMAINS</p>
-                                </li>
-                            </ul>
-                            <div class="pricing-btn">
-                                <a class="btn btn-lg btn-general btn-white" href="#" role="button">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow animated zoomIn" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="pricing-box text-center">
-
-                            <h4 class="pricing-title">Standard</h4>
-                            <h3 class="pricing-value">69<sup>$</sup></h3>
-                            <ul class="pricing-spec">
-                                <li>
-                                    <p>1500 EMAILS</p>
-                                </li>
-                                <li>
-                                    <p>15GB Disk Space</p>
-                                </li>
-                                <li>
-                                    <p>15GB BANDWIDTH</p>
-                                </li>
-                                <li>
-                                    <p>UNLIMITED DOMAINS</p>
-                                </li>
-                            </ul>
-                            <div class="pricing-btn">
-                                <a class="btn btn-lg btn-general btn-blue" href="#" role="button">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div> -->
-        <!-- End Content Box -->
+    
     </section>
 
     <!-- Stats -->
@@ -583,41 +500,23 @@
 
                 <div class="row wow animated bounceInLeft" data-wow-duration="1s" data-wow-delay=".5s">
                     <div class="col-md-12">
-
+                        {% if assocs %}
                         <div id="clients-list" class="owl-carousel owl-theme">
-                            <div class="client">
-                                <img src="{% static 'img/client/logos/google.png' %}" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-2.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-3.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-4.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-5.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-6.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-7.jpg" class="img-responsive" alt="client">
-                            </div>
-                            <div class="client">
-                                <img src="img/client/logos/logo-8.jpg" class="img-responsive" alt="client">
-                            </div>
 
+                            {% for assoc in assocs %}
+                                <div class="client col-md-8">
+                              <!--   {{ assoc.company }} -->
+                                <img src="{{ assoc.company_img.url }}">
+                                </div>
+                            {% endfor %}
                         </div>
 
-                    </div>
 
-                </div>
+                        {% else %}
+                        <h1>Nothing to display</h1>
+                        {% endif %}
 
-            </div>
-        </div>
+                       
         <!-- End Content Box -->
     </section>
 
@@ -731,7 +630,7 @@
     <script src="{% static 'js/wow/wow.min.js' %}"></script>
 
     <!-- magnific-popup JS -->
-    <script src="{% static 'js/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <!-- <script src="{% static 'js/magnific-popup/jquery.magnific-popup.min.js' %}"></script> -->
 
     <!-- owl carousel JS -->
     <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
@@ -749,7 +648,7 @@
 </body>
 
 
-{% endblock %}
+
 
 
 <script type="text/javascript">
@@ -781,3 +680,4 @@
     }
 
 </script>
+{% endblock %}

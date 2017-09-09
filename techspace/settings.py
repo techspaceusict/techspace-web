@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'oslc',
     'renderedusict',
     'turingai',
+    'log',
+    'blog',
+    'event',
 ]
 
 MIDDLEWARE = [

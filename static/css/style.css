@@ -62,9 +62,15 @@ h3 {
 
 #home-heading h3 {
     color: #fff;
-    font-size: 55px;
-    font-weight: 700;
+    font-size: 4em;
+    font-weight: 400;
+    letter-spacing: .05em;
+    line-height: 1.4em;
+    word-spacing: .09em;
     margin: 20px 0 20px 0;
+    font-family: 'Alfa Slab One', cursive;
+
+
 }
 
 
@@ -325,6 +331,7 @@ color:#fff;
 text-align:center;
 position:relative;
 font-size:20px;
+top:6em;
 background:rgba(0,0,0,0.6);
 -webkit-transform:translatey(-100px);
 -ms-transform:translatey(-100px);
@@ -339,6 +346,9 @@ padding:5px;
     font-size: 15px;
 }
 
+.overlay .center{
+    margin-left: 38%;
+}
 .card_logo a.info {
 text-decoration:none;
 display:inline-block;

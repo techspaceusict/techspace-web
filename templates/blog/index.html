@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+	{% if blog_post %}
+		{% for post in blog_post %}
+			<h2> {{ post.title }} </h2>
+			<h5> {{ post.author }} </h5>
+			<h5> {{ post.date }} </h5>
+			<p> {{ post.content }} </p>
+			<a href="{% url 'codeschool:detail' post.id %}">more...</a>
+		{% endfor %}
+
+
+	{% else %}
+		<h1>NO BLOG TO SHOW.</h1>
+
+	{% endif %}
+
+
+{% endblock %}

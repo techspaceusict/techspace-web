@@ -21,7 +21,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^codeschool/', include('codeschool.urls')),
+    url(r'^cogitans/', include('cogitans.urls')),
+    url(r'^droidclub/', include('droidclub.urls')),
+    url(r'^ecell/', include('ecell.urls')),
+    url(r'^electrotech/', include('electrotech.urls')),
+    url(r'^oslc/', include('oslc.urls')),
+    url(r'^renderedusict/', include('renderedusict.urls')),
+    url(r'^turingai/', include('turingai.urls')),
     url(r'^', include('home.urls')),
+    url(r'^accounts/', include('log.urls')),
 ]
 
 

@@ -1,12 +1,17 @@
 from django.shortcuts import render,HttpResponse
-from .models import Contact,Club
+from .models import Contact,Club, Association
 
 # Create your views here.
 
 def index(request):
-	
-	clubs = Club.objects.all()
-	return render(request, 'home/index.html', {'clubs':clubs})
+	#clubs
+	club_objects = Club.objects.all()
+	app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']
+	clubs = zip(club_objects,app_urls)
+	#associations
+	assocs = Association.objects.all()
+
+	return render(request, 'home/index.html', {'clubs':clubs, 'assocs':assocs})
 
 
 def contactSubmit(request):
@@ -21,4 +26,6 @@ def contactSubmit(request):
 			content = content
 			)
 	return HttpResponse('')
+
+
 

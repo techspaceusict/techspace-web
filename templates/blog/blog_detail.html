@@ -1,0 +1,18 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<h1>Blog Detail</h1>
+	{% if blog_detail %}
+		<h1>{{ blog_detail.title }}</h1>
+		<h4>{{ blog_detail.author }}</h4>
+		<h4> {{ blog_detail.date }} </h4>
+		<p> {{ blog_detail.content }} </p>
+
+	{% else %}
+		<h1>how come you came here if there is no blog.</h1>
+
+	{% endif %}
+
+
+{% endblock %}

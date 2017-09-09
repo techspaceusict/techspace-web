@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Contact(models.Model):
 	name = models.CharField(max_length=255)
-	app_name = models.CharField(max_length=255)
+	#app_name = models.CharField(max_length=255)
 	email = models.EmailField(max_length=255)
 	content = models.TextField()
 
@@ -18,5 +18,11 @@ class Club(models.Model):
 	def __str__(self):
 		return self.club_name
 
+class Association(models.Model):
+	company = models.CharField(max_length=255)
+	company_img = models.ImageField(upload_to='associations')
+
+	def __str__(self):
+		return self.company
 
 
