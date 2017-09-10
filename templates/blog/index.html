@@ -2,13 +2,27 @@
 
 {% block content %}
 
+
+
 	{% if club_blogs %}
-		{% for post in club_blogs %}
-			<h2> {{ post.title }} </h2>
-			<h5> {{ post.author }} </h5>
-			<h5> {{ post.date }} </h5>
-			<p> {{ post.content }} </p>
-			<a href="{% url 'blog:detail' post.id %}">more...</a>
+
+
+
+		{% for post in club_blogs reversed %}
+		<div class="blog_content">
+			<h2 class="center"> {{ post.title }} </h2>
+			
+			<h5 class="center"> {{ post.author }} </h5>
+			<h5 class="center"> {{ post.date }} </h5>
+			<div class="underline"></div>
+
+
+			<p> {{ post.content|linebreaks|truncatewords:100 }} </p>
+			<a href="{% url 'blog:detail' post.id %}">(more...)</a>
+
+		</div>
+
+		<div class="end_line"></div>
 		{% endfor %}
 
 

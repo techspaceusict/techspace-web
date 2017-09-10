@@ -14,8 +14,16 @@
 
 <form action="{% url 'log:login' %}" method="POST">
 	{% csrf_token %}
-	<input class="form-control" type="text" name="username" placeholder="username"><br>
-	<input class="form-control" type="password" name="password" placeholder="password"><br>
+
+	{{ errors }}
+	<input class="form-control" type="text" name="username" placeholder="username" required><br>
+	<input class="form-control" type="password" name="password" placeholder="password" required><br>
+	{% if error %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match. 
+                        Please try again.
+                    </p>
+    {% endif %}
 
 	<button class="btn btn-block btn-primary">Login</button>	
 </form>

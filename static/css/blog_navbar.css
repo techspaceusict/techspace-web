@@ -1,0 +1,18 @@
+.container-fluid{
+	margin:0;
+	padding: 0;
+}
+.navbar-brand{
+	font-size: 2em;
+	padding: .8em;
+}
+.navbar{
+	height: 5em;
+	background: #4d0000;
+	margin-bottom: 0;
+		border-radius: 0;
+
+}
+.nav{
+	padding:.8em;
+}

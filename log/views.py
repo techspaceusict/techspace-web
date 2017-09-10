@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 
 
 from home.models import Contact
@@ -41,11 +42,11 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect(reverse('log:dashboard'))
 			else:
-				return HttpResponse('account not active')
+				raise ValidationError('account not active')
 		else:
 			print("someone tried to login with wrong credentials")
 
-			return HttpResponse("invalid credentials")
+			raise ValidationError("invalid credentials")
 	else:
 		return render(request, 'registration/login.html', {})
 

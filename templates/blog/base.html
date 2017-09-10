@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Blog</title>
+	<title>Blog {% block title %}{% endblock %} </title>
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oxygen|Raleway|Source+Sans+Pro|Ubuntu" rel="stylesheet"> 
+
+<link href="https://fonts.googleapis.com/css?family=Bitter|Libre+Baskerville|Merriweather" rel="stylesheet">
+
+
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/blog_navbar.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
 </head>
 <body>
+{% include './blog_navbar.html' %}
+<div class="container-fluid">
 {% block content %}
 {% endblock %}
-
+</div>
 
 </body>
 </html>
