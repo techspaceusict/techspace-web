@@ -22,9 +22,11 @@ def contactSubmit(request):
 		name = request.POST['name']
 		email = request.POST['email']
 		content = request.POST['content']
+		app_name = request.POST['app_name']
 
 		Contact.objects.create(
 			name = name,
+			app_name = app_name,
 			email = email,
 			content = content
 			)

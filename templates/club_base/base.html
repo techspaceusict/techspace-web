@@ -5,6 +5,15 @@
 	<title>{% block title %}{% endblock %}</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script src="{% static 'js/clubs/jquery.min.js' %}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="{% static 'js/clubs/jquery.scrolly.min.js' %}"></script>
+	<script src="{% static 'js/clubs/jquery.scrollex.min.js' %}"></script>
+	<script src="{% static 'js/clubs/skel.min.js' %}"></script>
+	<script src="{% static 'js/clubs/util.js' %}"></script>
+	<script src="{% static 'js/clubs/main.js' %}"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="{% static 'css/clubs/main.css' %}" />
 
 	<style>
@@ -28,12 +37,6 @@
 </body>
 
 	<!-- Scripts -->
-			<script src="{% static 'js/clubs/jquery.min.js' %}"></script>
-			<script src="{% static 'js/clubs/jquery.scrolly.min.js' %}"></script>
-			<script src="{% static 'js/clubs/jquery.scrollex.min.js' %}"></script>
-			<script src="{% static 'js/clubs/skel.min.js' %}"></script>
-			<script src="{% static 'js/clubs/util.js' %}"></script>
-			<script src="{% static 'js/clubs/main.js' %}"></script>
 			<script>
 				
 				$(document).ready(function () {
@@ -141,6 +144,26 @@
 				        ResCarousel(ell, Parent, slide);
 				    }
 
+				});
+
+
+				$('#myCarousel').carousel({
+				  interval: 10000
+				})
+
+				$('.carousel .item').each(function(){
+				  var next = $(this).next();
+				  if (!next.length) {
+				    next = $(this).siblings(':first');
+				  }
+				  next.children(':first-child').clone().appendTo($(this));
+				  
+				  if (next.next().length>0) {
+				    next.next().children(':first-child').clone().appendTo($(this));
+				  }
+				  else {
+				  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+				  }
 				});
 
 			</script>

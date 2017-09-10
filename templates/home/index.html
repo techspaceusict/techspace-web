@@ -570,9 +570,9 @@
                             <form id="contact_form">
                             {% csrf_token %}
 
-                                <input type="text" id="name" name="full-name" placeholder="Full Name" class="form-control" required>
+                                <input type="text" id="name" name="name" placeholder="Full Name" class="form-control" required>
                                 <input type="text" id="email" name="email" placeholder="Email Address" class="form-control" required>
-                                <textarea rows="5" id="content" name="message" placeholder="Message..." class="form-control" required></textarea>
+                                <textarea rows="5" id="content" name="content" placeholder="Message..." class="form-control" required></textarea>
 
                                 <button class="btn btn-lg btn-general">Submit</button>
                                 
@@ -667,16 +667,14 @@
     $(document).on('submit', '#contact_form', function(e){
         e.preventDefault();
 
+        var formData = $('#contact_form').serializeArray();
+        formData.push({ name: "app_name", value: "techspace" });
+        
+
         $.ajax({
             type: 'POST',
             url: '/contact/submit/',
-            data:{
-                name:'prafful',
-                email:'ja@c.com',
-                content:'adads',
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-
-            },
+            data: formData,
             success:function(){
                 clearMsg();
             }
