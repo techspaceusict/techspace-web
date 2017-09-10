@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="margin: 2%;">
+
+{% if user.is_authenticated %}
+
+<h4>hey, {{ user.username }}</h4>
+<h4>{{ user.club }}</h4>
+
+{% if events %}
+<ul>
+	
+	{% for event in events %}
+	<li>
+		<p>{{ event.title }}</p>
+		<p>{{ event.author }}</p>
+	</li>
+	{% endfor %}
+
+</ul>
+
+{% else %}
+
+<h4>No events To show</h4>
+
+{% endif %}
+
+
+{% else %}
+
+<h1>You need to login first!</h1>
+
+{% endif %}
+
+</div>
+
+{% endblock %}
+
+

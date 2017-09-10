@@ -8,14 +8,14 @@ class Events(models.Model):
 	venue = models.CharField(max_length=1024)
 	content = models.TextField()
 
-	codeschool = 'cs'
-	cogitans = 'ct'
-	droidclub = 'dc'
-	ecell = 'ec'
-	electrotech = 'et'
-	oslc = 'os'
-	renderedusict = 'ru'
-	turingai = 'ta'
+	codeschool = 'codeschool'
+	cogitans = 'cogitans'
+	droidclub = 'droidclub'
+	ecell = 'ecell'
+	electrotech = 'electrotech'
+	oslc = 'oslc'
+	renderedusict = 'renderedusict'
+	turingai = 'turingai'
 
 	club_choices = (
 			(codeschool, 'Codeschool'),
