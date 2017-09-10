@@ -16,6 +16,7 @@
 <form action="{% url 'log:register' %}" method="POST">
 	{% csrf_token %}
 	{{ user_form.as_p }}
+	{{ profile_form.as_p }}
 	<button class="btn btn-block btn-primary">Submit</button>
 
 </form>
