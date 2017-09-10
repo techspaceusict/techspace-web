@@ -8,6 +8,9 @@ from django.core.exceptions import ValidationError
 
 
 from home.models import Contact
+from blog.models import BlogPost
+from event.models import Events
+from .models import UserProfile
 
 # Create your views here.
 
@@ -72,7 +75,34 @@ def dashboard(request):
 
 @login_required
 def messages(request):
+	user = UserProfile.objects.get(user=request.user)
 	
-	contacts = Contact.objects.all()
+	contacts = Contact.objects.filter(app_name=user.club)
 
 	return render(request, 'log/contact_dashboard.html', {'contacts': contacts})
+
+
+@login_required
+def blogs(request):
+	user = UserProfile.objects.get(user=request.user)
+
+	if user.club == 'techspace':
+		blogs = BlogPost.objects.all()
+
+	else:
+		blogs = BlogPost.objects.filter(club=user.club)
+
+	return render(request, 'log/blog_dashboard.html', {'blogs': blogs})
+
+
+@login_required
+def events(request):
+	user = UserProfile.objects.get(user=request.user)
+
+	if user.club == 'techspace':
+		events = Events.objects.all()
+
+	else:
+		events = Events.objects.filter(club=user.club)
+
+	return render(request, 'log/event_dashboard.html', {'events': events})

@@ -11,14 +11,14 @@ class BlogPost(models.Model):
 	image = models.ImageField(upload_to='blog', default='blog/thumbnail-default.jpg')
 	content = models.TextField()
 
-	codeschool = 'cs'
-	cogitans = 'ct'
-	droidclub = 'dc'
-	ecell = 'ec'
-	electrotech = 'et'
-	oslc = 'os'
-	renderedusict = 'ru'
-	turingai = 'ta'
+	codeschool = 'codeschool'
+	cogitans = 'cogitans'
+	droidclub = 'droidclub'
+	ecell = 'ecell'
+	electrotech = 'electrotech'
+	oslc = 'oslc'
+	renderedusict = 'renderedusict'
+	turingai = 'turingai'
 
 	club_choices = (
 			(codeschool, 'Codeschool'),
