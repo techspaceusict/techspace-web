@@ -9,6 +9,7 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 
 	club_choice = (
+		('nothing', 'nothing'),
 		('codeschool', 'codeschool'),
 		('cogitans', 'cogitans'),
 		('ecell', 'ecell'),
@@ -19,7 +20,7 @@ class UserProfile(models.Model):
 		('techspace', 'techspace')
 	)
 
-	club = models.CharField(max_length=255, choices=club_choice)
+	club = models.CharField(max_length=255, choices=club_choice, default='nothing')
 
 	def __str__(self):
 		return self.user.username

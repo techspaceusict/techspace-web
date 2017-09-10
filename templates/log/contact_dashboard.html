@@ -10,9 +10,31 @@
 
 
 <div class="">
-<a href="{% url 'log:messages' %}">Contact forms</a>
-<a href="#">Blogs</a>
+<table class="table table-bordered" id="table">
+<thead>
+	<tr>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Message</th>
+	</tr>
+</thead>
 
+
+{% for contact in contacts reversed %}
+
+	<tbody>
+	<tr>
+	<td>{{ contact.name }}</td>
+	<td>{{ contact.email }}</td>
+	<td>{{ contact.content }}</td>
+	</tr>
+	</tbody>
+
+{% endfor %}
+
+
+
+</table>
 
 </div>
 

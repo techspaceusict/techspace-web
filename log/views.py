@@ -27,9 +27,11 @@ def register(request):
 			profile.user = user
 			profile.save()
 
+
 			registered = True
+			return HttpResponseRedirect(reverse('log:login'))
 		else:
-			print(user_form.errors, profile.errors)
+			print(user_form.errors, profile_form.errors)
 	else:
 		user_form = UserForm()
 		profile_form = UserProfileForm()
@@ -64,8 +66,12 @@ def user_logout(request):
 
 
 
-@login_required
 def dashboard(request):
+	return render(request, 'log/dashboard.html')
+
+@login_required
+def messages(request):
+	
 	contacts = Contact.objects.all()
 
-	return render(request, 'log/dashboard.html', {'contacts': contacts})
+	return render(request, 'log/contact_dashboard.html', {'contacts': contacts})
