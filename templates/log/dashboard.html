@@ -7,11 +7,12 @@
 {% if user.is_authenticated %}
 
 <h4>hey, {{ user.username }}</h4>
+<h4>{{ user.club }}</h4>
 
 
 <div class="">
-<a href="{% url 'log:messages' %}">Contact forms</a>
-<a href="#">Blogs</a>
+<a href="{% url 'log:messages' %}"><h4>Contact forms</h4></a><br>
+<a href="#"><h4>Blogs</h4></a>
 
 
 </div>
