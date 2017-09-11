@@ -173,18 +173,22 @@ def event_new(request):
 
 @login_required
 def event_edit(request, pk):
+	user = UserProfile.objects.get(user=request.user)
 	event = get_object_or_404(Events, pk=pk)
-	if request.method == 'POST':
-		form = EventAddForm(request.POST, instance=event)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			event = form.save(commit=False)
-			event.club = user.club
-			event.save()
-			return redirect('log:event-detail', pk=event.pk)
+	if user.club == event.club:
+		if request.method == 'POST':
+			form = EventAddForm(request.POST, instance=event)
+			if form.is_valid():
+				event = form.save(commit=False)
+				event.club = user.club
+				event.save()
+				return redirect('log:event-detail', pk=event.pk)
 
-	form = EventAddForm(instance=event)
-	return render(request, 'log/eventedit_form.html', {'form': form})
+		form = EventAddForm(instance=event)
+		return render(request, 'log/eventedit_form.html', {'form': form})
+
+	else:
+		return redirect('home:index')
 
 
 class EventDelete(LoginRequiredMixin, DeleteView):
@@ -212,20 +216,25 @@ def post_new(request):
 
 @login_required
 def post_edit(request, pk):
+	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, pk=pk)
-	if request.method == "POST":
-		form = BlogAddForm(request.POST, instance=post)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = str(user)
-			post.club = str(user.club)
-			post.date = timezone.now()
-			post.save()
-			return redirect('log:detail', pk=post.pk)
+	if user.club == post.club:
+		if request.method == "POST":
+			form = BlogAddForm(request.POST, instance=post)
+		
+			if form.is_valid():
+				post = form.save(commit=False)
+				post.author = str(user)
+				post.club = str(user.club)
+				post.date = timezone.now()
+				post.save()
+				return redirect('log:detail', pk=post.pk)
 
-	form = BlogAddForm(instance=post)
-	return render(request, 'log/blogedit_form.html', {'form': form})
+		form = BlogAddForm(instance=post)
+		return render(request, 'log/blogedit_form.html', {'form': form})
+
+	else:
+		return redirect('home:index')
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
@@ -251,19 +260,24 @@ def info_new(request):
 
 @login_required
 def info_edit(request, pk):
+	user = UserProfile.objects.get(user=request.user)
 	info = get_object_or_404(Info, pk=pk)
-	if request.method == 'POST':
-		form = InfoAddForm(request.POST, instance=info)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			info = form.save(commit=False)
-			info.author = str(user)
-			info.club = user.club
-			info.save()
-			return redirect('log:info-detail', pk=info.pk)
+	if info.club == user.club:
+		if request.method == 'POST':
+			form = InfoAddForm(request.POST, instance=info)
+		
+			if form.is_valid():
+				info = form.save(commit=False)
+				info.author = str(user)
+				info.club = user.club
+				info.save()
+				return redirect('log:info-detail', pk=info.pk)
 
-	form = InfoAddForm(instance=info)
-	return render(request, 'log/infoedit_form.html', {'form': form})
+		form = InfoAddForm(instance=info)
+		return render(request, 'log/infoedit_form.html', {'form': form})
+
+	else:
+		return redirect('home:index')
 
 
 class InfoDelete(LoginRequiredMixin, DeleteView):
@@ -288,18 +302,23 @@ def team_new(request):
 
 @login_required
 def team_edit(request, pk):
+	user = UserProfile.objects.get(user=request.user)
 	team = get_object_or_404(Team, pk=pk)
-	if request.method == 'POST':
-		form = InfoAddForm(request.POST, instance=team)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			team = form.save(commit=False)
-			team.club = user.club
-			team.save()
-			return redirect('log:team-detail', pk=team.pk)
+	if user.club == team.club:
+		if request.method == 'POST':
+			form = InfoAddForm(request.POST, instance=team)
+		
+			if form.is_valid():
+				team = form.save(commit=False)
+				team.club = user.club
+				team.save()
+				return redirect('log:team-detail', pk=team.pk)
 
-	form = InfoAddForm(instance=team)
-	return render(request, 'log/teamedit_form.html', {'form': form})
+		form = InfoAddForm(instance=team)
+		return render(request, 'log/teamedit_form.html', {'form': form})
+
+	else:
+		return redirect('home:index')
 
 
 class TeamDelete(LoginRequiredMixin, DeleteView):
