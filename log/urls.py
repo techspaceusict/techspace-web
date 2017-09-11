@@ -15,12 +15,12 @@ urlpatterns = [
 	url(r'^dashboard/messages/$', messages, name='messages'),
 	url(r'^dashboard/blogs/$', blogs, name='blogs'),
 
-	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/$', BlogDetailView.as_view(), name='detail'),
+	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/$', BlogDetailView.as_view(), name='blog-detail'),
 
 	url(r'^dashboard/events/$', events, name='events'),
 	url(r'^dashboard/blogs/add/$', post_new, name='blog-add'),
-	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/edit$', post_edit , name='edit'),
-	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/delete$', BlogDelete.as_view() , name='delete'),
+	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/edit$', post_edit , name='blog-edit'),
+	url(r'^dashboard/blogs/(?P<pk>[0-9]+)/delete$', BlogDelete.as_view() , name='blog-delete'),
 
 
 

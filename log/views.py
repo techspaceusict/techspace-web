@@ -119,6 +119,7 @@ def events(request):
 	return render(request, 'log/event_dashboard.html', {'events': events})
 
 
+
 # class BlogCreate(CreateView):
 # 	model = BlogPost
 # 	fields = ['author', 'title', 'image', 'content', 'club']
@@ -130,7 +131,7 @@ def events(request):
 # 	def get_initial(self):
 # 		return {'author': self.request.user.username}
 
-
+@login_required
 def post_new(request):
 	if request.method == "POST":
 		form = BlogAddForm(request.POST)
@@ -140,14 +141,14 @@ def post_new(request):
 			post.author = user
 			post.club = user.club
 			post.save()
-			return redirect('log:detail', pk=post.pk)
+			return redirect('log:blog-detail', pk=post.pk)
 
 	else:
 		form = BlogAddForm()
 
 	return render(request, 'log/blogadd_form.html', {'form':form})
 
-
+@login_required
 def post_edit(request, pk):
 	post = get_object_or_404(BlogPost, pk=pk)
 	if request.method == "POST":
@@ -159,19 +160,15 @@ def post_edit(request, pk):
 			post.club = str(user.club)
 			post.date = timezone.now()
 			post.save()
-			return redirect('log:detail', pk=post.pk)
+			return redirect('log:blog-detail', pk=post.pk)
 	else:
 		form = BlogAddForm(instance=post)
 	return render(request, 'log/blogedit_form.html', {'form': form})
 
 
-class BlogDelete(DeleteView):
+class BlogDelete(LoginRequiredMixin ,DeleteView):
 	model = BlogPost
 	success_url = reverse_lazy('log:blogs')
-
-
-
-
 
 
 
