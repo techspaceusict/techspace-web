@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 
 from blog.models import BlogPost
+from home.models import Info, Team
+from event.models import Events
 
 
 class UserForm(forms.ModelForm):
@@ -24,6 +26,27 @@ class BlogAddForm(forms.ModelForm):
 	class Meta:
 		model = BlogPost
 		fields = ['title', 'content']
+
+
+class InfoAddForm(forms.ModelForm):
+
+	class Meta:
+		model = Info
+		fields = ['title', 'content']
+
+
+class TeamAddForm(forms.ModelForm):
+
+	class Meta:
+		model = Team
+		fields = ['name', 'image', 'designation', 'facebook', 'github', 'twitter']
+
+
+class EventAddForm(forms.ModelForm):
+
+	class Meta:
+		model = Events
+		fields = ['title', 'date', 'venue', 'content']
 
 
 

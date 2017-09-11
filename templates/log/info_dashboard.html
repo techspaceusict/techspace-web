@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<h4>hey, {{ user.username }}</h4>
+<h4>{{ user.club }}</h4>
+
+
+
+<h2><a href=" {% url 'log:info-add' %} ">Add info</a></h2>
+
+
+
+{% if info %}
+<ul>
+	
+	{% for i in info %}
+	<li>
+		<p><a href="{% url 'log:info-detail' i.id %}"> {{ i.title }}</a></p>
+		<p>{{ i.author }}</p>
+	</li>
+	{% endfor %}
+
+</ul>
+
+{% else %}
+
+<h4>No info To show</h4>
+
+{% endif %}
+
+
+{% else %}
+
+<h1>You need to login first!</h1>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+

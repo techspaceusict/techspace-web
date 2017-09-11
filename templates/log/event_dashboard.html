@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<h4>hey, {{ user.username }}</h4>
+<h4>{{ user.club }}</h4>
+
+
+
+<h2><a href=" {% url 'log:event-add' %} ">Add Event</a></h2>
+
+
+
+{% if events %}
+<ul>
+	
+	{% for event in events %}
+	<li>
+		<p><a href="{% url 'log:event-detail' event.id %}"> {{ event.title }}</a></p>
+		<p>{{ event.date }}</p>
+	</li>
+	{% endfor %}
+
+</ul>
+
+{% else %}
+
+<h4>No events To show</h4>
+
+{% endif %}
+
+
+{% else %}
+
+<h1>You need to login first!</h1>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+

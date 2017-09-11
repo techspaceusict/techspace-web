@@ -1,0 +1,48 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<h4>hey, {{ user.username }}</h4>
+<h4>{{ user.club }}</h4>
+
+
+
+<h2><a href=" {% url 'log:team-add' %} ">Add team member</a></h2>
+
+
+
+{% if team %}
+<ul>
+	
+	{% for member in team %}
+	<li>
+		<p><a href="{% url 'log:team-detail' member.id %}"> {{ member.name }}</a></p>
+		<img src="{{ member.image.url }}">
+		<p>{{ member.designation }}</p>
+	</li>
+	{% endfor %}
+
+</ul>
+
+{% else %}
+
+<h4>No Member To show</h4>
+
+{% endif %}
+
+
+{% else %}
+
+<h1>You need to login first!</h1>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
