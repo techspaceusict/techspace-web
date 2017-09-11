@@ -4,11 +4,14 @@ from blog.models import BlogPost
 from blog.views import BlogListView
 from event.models import Events 
 from event.views import EventView 
+from home.models import Info, Team
 
 # Create your views here.
 
 def index(request):
-	return render(request,'droidclub/index.html')
+	info = Info.objects.filter(club=Info.droidclub)
+	team = Team.objects.filter(club=Team.droidclub)
+	return render(request,'droidclub/index.html', {'info':info, 'team': team})
 
 
 class BlogPostView(BlogListView):

@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+	{% if info_detail %}
+	<div class="blog_content">
+
+	<div class="stack">
+		<form action="{% url 'log:info-edit' info_detail.pk %}" method="get">
+			<button>Edit</button>
+		</form>
+		<form action="{% url 'log:info-delete' info_detail.pk %}" method="post" >
+			{% csrf_token %}
+			<button>Delete</button>
+		</form>
+	</div>
+		
+
+		<h1 class="center">{{ info_detail.title }}</h1>
+		<h4 class="center">{{ info_detail.author }} </h4>
+		<p>{{ info_detail.content|linebreaks }}</p>
+
+	</div>
+	{% else %}
+		<h1>Nothing to show</h1>
+
+
+	{% endif %}
+
+
+{% endblock %}

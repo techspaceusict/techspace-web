@@ -4,11 +4,14 @@ from blog.models import BlogPost
 from blog.views import BlogListView
 from event.models import Events 
 from event.views import EventView 
+from home.models import Info, Team
 
 # Create your views here.
 
 def index(request):
-	return render(request,'cogitans/index.html')
+	info = Info.objects.filter(club=Info.cogitans)
+	team = Team.objects.filter(club=Team.cogitans)
+	return render(request,'cogitans/index.html', {'info':info, 'team': team})
 
 
 class BlogPostView(BlogListView):

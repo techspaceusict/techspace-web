@@ -26,3 +26,72 @@ class Association(models.Model):
 		return self.company
 
 
+class Info(models.Model):
+	author = models.CharField(max_length=255)
+	title = models.CharField(max_length=255)
+	content = models.TextField()
+
+	codeschool = 'codeschool'
+	cogitans = 'cogitans'
+	droidclub = 'droidclub'
+	ecell = 'ecell'
+	electrotech = 'electrotech'
+	oslc = 'oslc'
+	renderedusict = 'renderedusict'
+	turingai = 'turingai'
+
+	club_choices = (
+			(codeschool, 'Codeschool'),
+			(cogitans, 'Cogitans'),
+			(droidclub, 'Droid Club'),
+			(ecell, 'E-Cell'),
+			(electrotech, 'Electrotech'),
+			(oslc, 'OSLC'),
+			(renderedusict, 'Rendered-USICT'),
+			(turingai, 'Turing A.I.'),
+
+		)
+
+	club = models.CharField(max_length=255, choices=club_choices)
+
+	def __str__(self):
+		return self.title + '-' + self.get_club_display()
+
+
+class Team(models.Model):
+	name = models.CharField(max_length=255)
+	image = models.ImageField(upload_to='clubs/team')
+	designation = models.CharField(max_length=255)
+	facebook = models.URLField(null=True)
+	github = models.URLField(null=True)
+	twitter =  models.URLField(null=True)
+
+	codeschool = 'codeschool'
+	cogitans = 'cogitans'
+	droidclub = 'droidclub'
+	ecell = 'ecell'
+	electrotech = 'electrotech'
+	oslc = 'oslc'
+	renderedusict = 'renderedusict'
+	turingai = 'turingai'
+
+	club_choices = (
+			(codeschool, 'Codeschool'),
+			(cogitans, 'Cogitans'),
+			(droidclub, 'Droid Club'),
+			(ecell, 'E-Cell'),
+			(electrotech, 'Electrotech'),
+			(oslc, 'OSLC'),
+			(renderedusict, 'Rendered-USICT'),
+			(turingai, 'Turing A.I.'),
+
+		)
+
+	club = models.CharField(max_length=255, choices=club_choices)
+
+	def __str__(self):
+		return self.name + '-' + self.get_club_display()
+
+
+
+

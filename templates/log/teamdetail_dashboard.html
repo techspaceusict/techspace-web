@@ -1,0 +1,34 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+	{% if team_detail %}
+	<div class="blog_content">
+
+	<div class="stack">
+		<form action="{% url 'log:team-edit' team_detail.pk %}" method="get">
+			<button>Edit</button>
+		</form>
+		<form action="{% url 'log:team-delete' team_detail.pk %}" method="post" >
+			{% csrf_token %}
+			<button>Delete</button>
+		</form>
+	</div>
+		
+
+		<h1 class="center">{{ team_detail.name }}</h1>
+		<img src="{{ team_detail.image.url }}">
+		<h4 class="center">{{ team_detail.designation }} </h4>
+		<p>{{ team_detail.facebook }}</p>
+		<p>{{ team_detail.github }}</p>
+		<p>{{ team_detail.twitter }}</p>
+
+	</div>
+	{% else %}
+		<h1>Nothing to show</h1>
+
+
+	{% endif %}
+
+
+{% endblock %}

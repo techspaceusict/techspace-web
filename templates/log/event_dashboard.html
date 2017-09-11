@@ -9,13 +9,19 @@
 <h4>hey, {{ user.username }}</h4>
 <h4>{{ user.club }}</h4>
 
+
+
+<h2><a href=" {% url 'log:event-add' %} ">Add Event</a></h2>
+
+
+
 {% if events %}
 <ul>
 	
 	{% for event in events %}
 	<li>
-		<p>{{ event.title }}</p>
-		<p>{{ event.author }}</p>
+		<p><a href="{% url 'log:event-detail' event.id %}"> {{ event.title }}</a></p>
+		<p>{{ event.date }}</p>
 	</li>
 	{% endfor %}
 
@@ -33,6 +39,8 @@
 <h1>You need to login first!</h1>
 
 {% endif %}
+
+
 
 {% endblock %}
 

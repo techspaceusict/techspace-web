@@ -4,13 +4,13 @@ from blog.models import BlogPost
 from blog.views import BlogListView
 from event.models import Events 
 from event.views import EventView 
-from .models import Info, Team
+from home.models import Info, Team
 
 # Create your views here.
 
 def index(request):
-	info = Info.objects.all()
-	team = Team.objects.all()
+	info = Info.objects.filter(club=Info.codeschool)
+	team = Team.objects.filter(club=Team.codeschool)
 	return render(request,'codeschool/index.html', {'info':info, 'team': team})
 
 class BlogPostView(BlogListView):

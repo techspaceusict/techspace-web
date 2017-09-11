@@ -5,6 +5,58 @@
 {% block content %}
 
 
+<style>
+    
+
+
+.svg-wrapper {
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 70px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+}
+
+.shape {
+  fill: transparent;
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  stroke-width: 12px;
+  stroke: #19f6e8;
+}
+
+.text {
+  color: #fff;
+  font-family: 'Roboto Condensed';
+  font-size: 50px;
+  letter-spacing: 8px;
+  line-height: 32px;
+  position: relative;
+  top: -48px;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 12px;
+  }
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 8px;
+  }
+}
+
+.svg-wrapper:hover .shape {
+  -webkit-animation: 0.5s draw linear forwards;
+  animation: 0.5s draw linear forwards;
+}
+</style>
+
+
 <body data-spy="scroll" data-target=".navbar-fixed-top" data-offset="65">
 
     <header>
@@ -56,6 +108,9 @@
 
     </header>
 
+
+
+
     <!-- Home -->
     <section id="home">
 
@@ -66,8 +121,17 @@
                 <div id="home-content-box-inner" class="text-center">
 
                     <div id="home-heading" class="animated zoomIn">
-                        <h3>Welcome to<br></h3><h3 style="color: #2e2eb8;">TechSpace</h3>
+                        <h3>Welcome to<br></h3>
                     </div>
+
+                    <div class="svg-wrapper">
+                          <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="shape" height="60" width="320" />
+                          </svg>
+                           <div class="text">TechSpace</div>
+                    </div>
+
+
                    <!--  <div id="home-btn" class="animated zoomIn">
                         <a class="btn btn-lg btn-general btn-white smooth-scroll" href="#work" role="button" title="View Our Work">View Our Work</a>
                     </div> -->
