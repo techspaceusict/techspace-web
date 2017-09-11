@@ -1,0 +1,27 @@
+{% extends '../log/base.html' %}
+
+
+{% block content %}
+
+	<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
+		{% csrf_token %}
+		{% include './form-template.html' %}
+		<div class="form-group">
+			<div class="col-sm-offset-2">
+				<button>Submit</button>
+			</div>
+			
+		</div>
+
+		
+	</form>
+
+
+
+
+
+
+
+
+
+{% endblock %}

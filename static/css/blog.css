@@ -4,11 +4,10 @@
 .center{
 	text-align: center;
 }
-.justify{
-	text-align: center;
-}
+
 .blog_content{
 	margin:0 10%;
+	word-wrap: break-word;
 }
 p{
 	font-family: 'Oxygen', sans-serif;

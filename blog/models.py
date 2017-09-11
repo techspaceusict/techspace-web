@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.core.urlresolvers import reverse
 
 
 # Create your models here.
@@ -33,6 +34,10 @@ class BlogPost(models.Model):
 		)
 
 	club = models.CharField(max_length=200, choices=club_choices, blank=True)
+
+	def get_absolute_url(self):
+		return reverse('blog:detail', kwargs={'pk': self.pk})
+
 
 
 	def __str__(self):

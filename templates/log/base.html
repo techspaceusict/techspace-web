@@ -3,19 +3,20 @@
 <head>
 	<title>Dashboard</title>
 	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
 	
 </head>
 <body>
 {% include './navbar.html' %}
 
+<div class="container-fluid" style="margin: 2%;">
 {% block content %}
 
 
 
 {% endblock %}
-
+</div>
 
 </body>
 </html>
