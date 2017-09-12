@@ -105,7 +105,9 @@ h5, h4{
 	margin: 3em auto 5em auto;
 }
 .blog_image{
-	width: 70%;
+	/*width: 70%;*/
+	max-width: 60em;
+	max-height: 30em; 
 	margin: 5em auto;
 }
 .stack{

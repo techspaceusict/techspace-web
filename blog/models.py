@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 # Create your models here.
 
 class BlogPost(models.Model):
-	author = models.CharField(max_length=1024)
+	author = models.CharField(max_length=255)
 	date = models.DateTimeField(default=datetime.now)
 	title = models.CharField(max_length=1024)
 	image = models.ImageField(upload_to='blog', default='blog/thumbnail-default.jpg')

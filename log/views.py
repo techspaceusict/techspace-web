@@ -57,11 +57,11 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect(reverse('log:dashboard'))
 			else:
-				raise ValidationError('account not active')
+				return HttpResponse("Account is not active")
 		else:
 			print("someone tried to login with wrong credentials")
 
-			raise ValidationError("invalid credentials")
+			return HttpResponse("invalid credentials")
 	else:
 		return render(request, 'registration/login.html', {})
 
@@ -75,7 +75,8 @@ def user_logout(request):
 
 @login_required
 def dashboard(request):
-	return render(request, 'log/dashboard.html')
+	userprofile = UserProfile.objects.get(user=request.user)
+	return render(request, 'log/dashboard.html', {'userprofile': userprofile})
 
 
 
@@ -156,12 +157,12 @@ def events(request):
 	return render(request, 'log/event_dashboard.html', {'events': events})
 
 
-<<<<<<< HEAD
+
 
 # class BlogCreate(CreateView):
 # 	model = BlogPost
 # 	fields = ['author', 'title', 'image', 'content', 'club']
-=======
+
 @login_required
 def event_new(request):
 	if request.method == 'POST':
@@ -195,27 +196,27 @@ def event_edit(request, pk):
 
 	else:
 		return redirect('home:index')
->>>>>>> f681a7f64deb5bf33968d9223537e8395ffc081f
 
 
 class EventDelete(LoginRequiredMixin, DeleteView):
 	model = Events
 	success_url = reverse_lazy('log:events')
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> f681a7f64deb5bf33968d9223537e8395ffc081f
 @login_required
 def post_new(request):
 	if request.method == "POST":
-		form = BlogAddForm(request.POST)
+		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = user
 			post.club = user.club
+			
+			if 'image' in request.FILES:
+				post.image = request.FILES['image']
+
 			post.save()
 			return redirect('log:blog-detail', pk=post.pk)
 
@@ -223,25 +224,26 @@ def post_new(request):
 	form = BlogAddForm()
 	return render(request, 'log/blogadd_form.html', {'form':form})
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f681a7f64deb5bf33968d9223537e8395ffc081f
 @login_required
 def post_edit(request, pk):
 	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, pk=pk)
 	if user.club == post.club:
 		if request.method == "POST":
-			form = BlogAddForm(request.POST, instance=post)
+			form = BlogAddForm(request.POST, request.FILES ,instance=post)
 		
 			if form.is_valid():
 				post = form.save(commit=False)
 				post.author = str(user)
 				post.club = str(user.club)
 				post.date = timezone.now()
+
+				if 'image' in request.FILES:
+					post.image = request.FILES['image']
+				
 				post.save()
-				return redirect('log:detail', pk=post.pk)
+				return redirect('log:blog-detail', pk=post.pk)
 
 		form = BlogAddForm(instance=post)
 		return render(request, 'log/blogedit_form.html', {'form': form})
@@ -261,14 +263,6 @@ def info_new(request):
 		form = InfoAddForm(request.POST)
 		user = UserProfile.objects.get(user=request.user)
 		if form.is_valid():
-<<<<<<< HEAD
-			post = form.save(commit=False)
-			post.author = str(user)
-			post.club = str(user.club)
-			post.date = timezone.now()
-			post.save()
-			return redirect('log:blog-detail', pk=post.pk)
-=======
 			info = form.save(commit=False)
 			info.author = str(user)
 			info.club = user.club
@@ -297,16 +291,14 @@ def info_edit(request, pk):
 		form = InfoAddForm(instance=info)
 		return render(request, 'log/infoedit_form.html', {'form': form})
 
->>>>>>> f681a7f64deb5bf33968d9223537e8395ffc081f
 	else:
 		return redirect('home:index')
 
 
-<<<<<<< HEAD
 class BlogDelete(LoginRequiredMixin ,DeleteView):
 	model = BlogPost
 	success_url = reverse_lazy('log:blogs')
-=======
+
 class InfoDelete(LoginRequiredMixin, DeleteView):
 	model = Info
 	success_url = reverse_lazy('log:info')
@@ -347,7 +339,6 @@ def team_edit(request, pk):
 	else:
 		return redirect('home:index')
 
->>>>>>> f681a7f64deb5bf33968d9223537e8395ffc081f
 
 class TeamDelete(LoginRequiredMixin, DeleteView):
 	model = Team

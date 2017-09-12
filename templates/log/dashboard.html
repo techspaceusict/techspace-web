@@ -6,14 +6,18 @@
 
 {% if user.is_authenticated %}
 
-<h4>hey, {{ user.username }}</h4>
-<h4>{{ user.club }}</h4>
+<h4>hey, <b>{{ user.username }}</b> from <b>{{ userprofile.club }}</b></h4>
+
 
 
 <div class="">
-<a href="{% url 'log:messages' %}"><h4>Contact forms</h4></a><br>
+<a href="{% url 'log:messages' %}"><h4>Contact forms</h4></a>
+
+
 <a href="{% url 'log:blogs' %}"><h4>Blogs</h4></a>
 <a href="{% url 'log:events' %}"><h4>Events</h4></a>
+
+
 <a href="{% url 'log:info' %}"><h4>Club Info</h4></a>
 <a href="{% url 'log:team' %}"><h4>Team</h4></a>
 

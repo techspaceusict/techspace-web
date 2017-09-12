@@ -20,7 +20,7 @@
 	
 	{% for blog in blogs %}
 	<li>
-		<p><a href="{% url 'log:detail' blog.id %}"> {{ blog.title }}</a></p>
+		<p><a href="{% url 'log:blog-detail' blog.id %}"> {{ blog.title }}</a></p>
 		<p>{{ blog.author }}</p>
 	</li>
 	{% endfor %}

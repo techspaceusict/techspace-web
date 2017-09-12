@@ -25,7 +25,7 @@ class BlogAddForm(forms.ModelForm):
 
 	class Meta:
 		model = BlogPost
-		fields = ['title', 'content']
+		fields = ['title','image' , 'content']
 
 
 class InfoAddForm(forms.ModelForm):
@@ -39,7 +39,7 @@ class TeamAddForm(forms.ModelForm):
 
 	class Meta:
 		model = Team
-		fields = ['name', 'image', 'designation', 'facebook', 'github', 'twitter']
+		fields = ['name', 'image', 'designation', 'facebook', 'github', 'linkedin']
 
 
 class EventAddForm(forms.ModelForm):

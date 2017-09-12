@@ -50,6 +50,7 @@ class Info(models.Model):
 			(renderedusict, 'Rendered-USICT'),
 			(turingai, 'Turing A.I.'),
 
+
 		)
 
 	club = models.CharField(max_length=255, choices=club_choices)
@@ -64,7 +65,7 @@ class Team(models.Model):
 	designation = models.CharField(max_length=255)
 	facebook = models.URLField(null=True)
 	github = models.URLField(null=True)
-	twitter =  models.URLField(null=True)
+	linkedin =  models.URLField(null=True)
 
 	codeschool = 'codeschool'
 	cogitans = 'cogitans'

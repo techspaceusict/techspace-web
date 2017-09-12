@@ -19,6 +19,9 @@
 		<h1 class="center">{{ blog_detail.title }}</h1>
 		<h4 class="center">{{ blog_detail.author }} </h4>
 		<h4 class="center">{{ blog_detail.date }} </h4>
+				<div class="underline"></div>
+
+		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
 		<p>{{ blog_detail.content|linebreaks }}</p>
 
 	</div>
