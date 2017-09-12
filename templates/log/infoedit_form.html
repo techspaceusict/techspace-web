@@ -2,12 +2,17 @@
 
 {% block content %}
 
+
+<div class="blog-container">
+<h1>Edit information</h1>
 	<form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button>Submit</button>
+		<button class="btn btn-default blog-sub">Submit</button>
 		
 	</form>
+
+</div>
 		
 
 

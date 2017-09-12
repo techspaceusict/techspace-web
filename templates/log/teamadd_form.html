@@ -2,13 +2,18 @@
 
 {% block content %}
 
-
+<div class="blog-container">
+<div class="team-container">
+<div class="shift">
+<h1>Add team members</h1>
 <form method="post" class="form-group">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<button>Submit</button>
+	<button class="btn btn-default blog-sub">Submit</button>
 
 </form>
-
+</div>
+</div>
+</div>
 
 {% endblock %}

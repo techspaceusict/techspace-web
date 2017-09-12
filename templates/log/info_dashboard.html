@@ -11,8 +11,6 @@
 
 
 
-<h2><a href=" {% url 'log:info-add' %} ">Add info</a></h2>
-
 
 
 {% if info %}
@@ -28,6 +26,7 @@
 </ul>
 
 {% else %}
+<h2><a href=" {% url 'log:info-add' %} ">Add info</a></h2>
 
 <h4>No info To show</h4>
 

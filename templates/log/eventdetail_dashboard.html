@@ -2,8 +2,12 @@
 
 {% block content %}
 
+<div class="blog-container">
+	
+
+<div class="blog_content">
+
 	{% if event_detail %}
-	<div class="blog_content">
 
 	<div class="stack">
 		<form action="{% url 'log:event-edit' event_detail.pk %}" method="get">
@@ -21,12 +25,14 @@
 		<h4 class="center">{{ event_detail.venue }} </h4>
 		<p>{{ event_detail.content|linebreaks }}</p>
 
-	</div>
+</div>
 	{% else %}
 		<h1>Nothing to show</h1>
 
 
 	{% endif %}
 
+
+</div>
 
 {% endblock %}
