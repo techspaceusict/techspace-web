@@ -64,7 +64,7 @@ class EventAddForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ['title', 'date', 'venue', 'content']
+		fields = ['title', 'date', 'time', 'venue', 'content']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder':'Title', 'class': 'form-title'}),
 				'venue': forms.TextInput(attrs={'placeholder': 'Venue', 'class': 'form-control'}),
 				'content': forms.Textarea(attrs={'placeholder': 'Enter the details about the event...'})
