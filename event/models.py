@@ -5,7 +5,8 @@ from django.db import models
 class Events(models.Model):
 	title = models.CharField(max_length=255)
 	author = models.CharField(max_length=255)
-	date = models.DateTimeField()
+	date = models.DateField()
+	time = models.TimeField()
 	venue = models.CharField(max_length=1024)
 	content = models.TextField()
 

@@ -171,6 +171,7 @@ def event_new(request):
 		if form.is_valid():
 			event = form.save(commit=False)
 			event.club = user.club
+			event.author = str(user)
 			event.save()
 			return redirect('log:event-detail', pk=event.pk)
 

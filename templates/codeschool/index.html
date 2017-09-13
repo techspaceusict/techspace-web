@@ -152,8 +152,12 @@
 						<header>
 							<h2>Events</h2>
 						</header>
+
 						<div class="content">
-							<img class="event" src="http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx">
+							<br>
+							<h3>Upcoming event</h3>
+							<h3>{{ event.title }}</h3>
+							<h4>{{ event.date }} - {{ event.time }}</h4>
 						</div>
 						<footer>
 							<a href="{% url 'codeschool:events' %}" class="button alt">All Events</a>
