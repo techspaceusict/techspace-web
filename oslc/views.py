@@ -9,9 +9,10 @@ from home.models import Info, Team
 # Create your views here.
 
 def index(request):
-	info = Info.objects.filter(club=Info.oslc)
+	info = Info.objects.filter(club=Info.oslc).order_by('id').last()
 	team = Team.objects.filter(club=Team.oslc)
-	return render(request,'oslc/index.html', {'info':info, 'team': team})
+	event = Events.objects.filter(club=Events.oslc).order_by('-date').first()
+	return render(request,'oslc/index.html', {'info':info, 'team': team, 'event': event})
 
 
 class BlogPostView(BlogListView):

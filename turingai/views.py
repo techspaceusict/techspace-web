@@ -9,9 +9,10 @@ from home.models import Info, Team
 # Create your views here.
 
 def index(request):
-	info = Info.objects.filter(club=Info.turingai)
+	info = Info.objects.filter(club=Info.turingai).order_by('id').last()
 	team = Team.objects.filter(club=Team.turingai)
-	return render(request,'turingai/index.html', {'info':info, 'team': team})
+	event = Events.objects.filter(club=Events.turingai).order_by('date').last()
+	return render(request,'turingai/index.html', {'info':info, 'team': team, 'event': event})
 
 
 class BlogPostView(BlogListView):
