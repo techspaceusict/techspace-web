@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
@@ -202,6 +202,12 @@ def event_edit(request, pk):
 class EventDelete(LoginRequiredMixin, DeleteView):
 	model = Events
 	success_url = reverse_lazy('log:events')
+	def get_object(self, queryset=None):
+		event = super(EventDelete,self).get_object()
+		user = UserProfile.objects.get(user=self.request.user)
+		if event.club == user.club:
+			return event
+		raise Http404
 
 
 
@@ -257,6 +263,13 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = BlogPost
 	success_url = reverse_lazy('log:blogs')
 
+	def get_object(self, queryset=None):
+		blog = super(BlogDelete,self).get_object()
+		user = UserProfile.objects.get(user=self.request.user)
+		if blog.club == user.club:
+			return blog
+		raise Http404
+
 
 @login_required
 def info_new(request):
@@ -296,13 +309,16 @@ def info_edit(request, pk):
 		return redirect('home:index')
 
 
-class BlogDelete(LoginRequiredMixin ,DeleteView):
-	model = BlogPost
-	success_url = reverse_lazy('log:blogs')
 
 class InfoDelete(LoginRequiredMixin, DeleteView):
 	model = Info
 	success_url = reverse_lazy('log:info')
+	def get_object(self, queryset=None):
+		info = super(InfoDelete,self).get_object()
+		user = UserProfile.objects.get(user=self.request.user)
+		if info.club == user.club:
+			return blog
+		raise Http404
 
 
 @login_required
@@ -344,6 +360,12 @@ def team_edit(request, pk):
 class TeamDelete(LoginRequiredMixin, DeleteView):
 	model = Team
 	success_url = reverse_lazy('log:team')
+	def get_object(self, queryset=None):
+		team = super(TeamDelete,self).get_object()
+		user = UserProfile.objects.get(user=self.request.user)
+		if team.club == user.club:
+			return team
+		raise Http404
 
 
 
