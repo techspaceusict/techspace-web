@@ -1,0 +1,42 @@
+body{
+	background-image: url('../img/events.jpeg');
+	/*opacity: .5;*/
+}
+
+.event-wrapper{
+	position: relative;
+	height: 100%;
+	/*opacity: .5;*/
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+}
+.event-content{
+	position: absolute;
+	top: 0;
+	width: 100%;
+
+}
+
+.navbar-right{
+	margin: 0;
+}
+.navbar{
+	width: 100%;
+	opacity: .7;
+	position: static;
+	border-radius:0;
+}
+.event-card{
+	background-color: rgba(0,0,0,0.4);
+	width: 50em;
+	margin:2% 10%;
+	text-align: center;
+	color: #fff;
+	/*opacity: 0.5;*/
+}
+p{
+	color: #fff;
+}

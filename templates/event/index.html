@@ -1,0 +1,52 @@
+{% extends '../home/base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+
+
+<div class="event-wrapper">
+</div>
+
+<div class="event-content">
+
+<nav class="navbar navbar-inverse">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Events</a>
+	</div>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="{% url 'home:index' %}">Techspace</a></li>
+		
+		{% if user.is_authenticated %}
+		<li><a href="{% url 'log:logout' %}">Logout</a></li>
+		{% endif %}
+	</ul>
+
+</nav>
+<div class="container-fluid">
+
+<h1>Events</h1>
+
+
+
+{% if events %}
+	{% for event in events %}
+
+	<div class="event-card">
+		<h2>{{ event.title }}</h2>
+		<h4>{{ event.date }}</h4>
+		<h4>{{ event.time }}</h4>
+		<h4>{{ event.venue }}</h4>
+		<p>{{ event.content|linebreaks }}</p>
+	</div>
+	
+
+
+	{% endfor %}
+
+{% else %}
+<h1>No events to display</h1>
+</div>
+</div>
+{% endif  %}
+
+{% endblock %}

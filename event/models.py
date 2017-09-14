@@ -7,6 +7,7 @@ class Events(models.Model):
 	author = models.CharField(max_length=255)
 	date = models.DateField()
 	time = models.TimeField()
+	image = models.ImageField(upload_to='events', default='blog/thumbnail-default.jpg')
 	venue = models.CharField(max_length=1024)
 	content = models.TextField()
 
