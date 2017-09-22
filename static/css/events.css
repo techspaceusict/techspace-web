@@ -32,9 +32,10 @@ body{
 .event-card{
 	background-color: rgba(0,0,0,0.4);
 	width: 50em;
-	margin:2% 10%;
+	margin:2% auto;
 	text-align: center;
 	color: #fff;
+	padding: 1%;
 	/*opacity: 0.5;*/
 }
 p{
