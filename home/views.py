@@ -7,14 +7,15 @@ from .models import Contact,Club, Association
 # Create your views here.
 
 def index(request):
-	#clubs
-	club_objects = Club.objects.all()
-	app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']
-	clubs = zip(club_objects,app_urls)
+        #clubs
+        club_objects = Club.objects.all()
+        print(club_objects)
+        app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']
+        clubs = zip(club_objects,app_urls)
 	#associations
-	assocs = Association.objects.all()
+        assocs = Association.objects.all()
 
-	return render(request, 'home/index.html', {'clubs':clubs, 'assocs':assocs})
+        return render(request, 'home/index.html', {'clubs':clubs, 'assocs':assocs})
 
 
 def contactSubmit(request):

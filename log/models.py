@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User)
-
+		
+	user = models.OneToOneField(User, on_delete=models.PROTECT)
 	club_choice = (
 		('nothing', 'nothing'),
 		('codeschool', 'codeschool'),

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
