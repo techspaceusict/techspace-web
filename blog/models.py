@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 # Create your models here.
