@@ -3,22 +3,22 @@
 {% block content %}
 
 <div class="blog-container">
-	
+
 
 <div class="blog_content">
 
 	{% if event_detail %}
 
 	<div class="stack">
-		<form action="{% url 'log:event-edit' event_detail.pk %}" method="get">
+		<form action="{% url 'log:event-edit' event_detail.slug %}" method="get">
 			<button>Edit</button>
 		</form>
-		<form action="{% url 'log:event-delete' event_detail.pk %}" method="post" >
+		<form action="{% url 'log:event-delete' event_detail.slug %}" method="post" >
 			{% csrf_token %}
 			<button>Delete</button>
 		</form>
 	</div>
-		
+
 
 		<h1 class="center">{{ event_detail.title }}</h1>
 		<h4 class="center">{{ event_detail.date }} </h4>

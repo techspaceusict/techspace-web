@@ -20,7 +20,6 @@ from .models import UserProfile
 
 def register(request):
 	registered = False
-
 	if request.method == 'POST':
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileForm(data=request.POST)
@@ -142,7 +141,7 @@ class BlogDetailView(LoginRequiredMixin, DetailView):
 	model = BlogPost
 	template_name = 'log/blogdetail_dashboard.html'
 	context_object_name = 'blog_detail'
-	
+
 
 @login_required
 def events(request):
@@ -173,16 +172,16 @@ def event_new(request):
 			event.club = user.club
 			event.author = str(user)
 			event.save()
-			return redirect('log:event-detail', pk=event.pk)
+			return redirect('log:event-detail', slug=event.slug)
 
 	form = EventAddForm()
 	return render(request, 'log/eventadd_form.html', {'form': form})
 
 
 @login_required
-def event_edit(request, pk):
+def event_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
-	event = get_object_or_404(Events, pk=pk)
+	event = get_object_or_404(Events, slug=slug)
 	if user.club == event.club:
 		if request.method == 'POST':
 			form = EventAddForm(request.POST, instance=event)
@@ -190,7 +189,7 @@ def event_edit(request, pk):
 				event = form.save(commit=False)
 				event.club = user.club
 				event.save()
-				return redirect('log:event-detail', pk=event.pk)
+				return redirect('log:event-detail', slug=event.slug)
 
 		form = EventAddForm(instance=event)
 		return render(request, 'log/eventedit_form.html', {'form': form})
@@ -218,28 +217,28 @@ def post_new(request):
 		user = UserProfile.objects.get(user=request.user)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.author = user
+			post.author = user.user.username
 			post.club = user.club
-			
+
 			if 'image' in request.FILES:
 				post.image = request.FILES['image']
 
 			post.save()
-			return redirect('log:blog-detail', pk=post.pk)
+			return redirect('blog:detail', slug=post.slug)
 
-	
+
 	form = BlogAddForm()
 	return render(request, 'log/blogadd_form.html', {'form':form})
 
 
 @login_required
-def post_edit(request, pk):
+def post_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
-	post = get_object_or_404(BlogPost, pk=pk)
+	post = get_object_or_404(BlogPost, slug=slug)
 	if user.club == post.club:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
-		
+
 			if form.is_valid():
 				post = form.save(commit=False)
 				post.author = str(user)
@@ -248,9 +247,9 @@ def post_edit(request, pk):
 
 				if 'image' in request.FILES:
 					post.image = request.FILES['image']
-				
+
 				post.save()
-				return redirect('log:blog-detail', pk=post.pk)
+				return redirect('log:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
 		return render(request, 'log/blogedit_form.html', {'form': form})
@@ -294,7 +293,7 @@ def info_edit(request, pk):
 	if info.club == user.club:
 		if request.method == 'POST':
 			form = InfoAddForm(request.POST, instance=info)
-		
+
 			if form.is_valid():
 				info = form.save(commit=False)
 				info.author = str(user)
@@ -343,7 +342,7 @@ def team_edit(request, pk):
 	if user.club == team.club:
 		if request.method == 'POST':
 			form = InfoAddForm(request.POST, instance=team)
-		
+
 			if form.is_valid():
 				team = form.save(commit=False)
 				team.club = user.club
@@ -366,21 +365,3 @@ class TeamDelete(LoginRequiredMixin, DeleteView):
 		if team.club == user.club:
 			return team
 		raise Http404
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

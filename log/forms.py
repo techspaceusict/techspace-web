@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
 	class Meta():
 		model = User
 		fields = ['username', 'email','password']
-		widgets = { 'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
+		widgets = { 'username': forms.TextInput(attrs={'placeholder': 'Username'}),
 					'email': forms.TextInput(attrs={'placeholder': 'E-mail', 'class': 'form-control' }),
 					'password': forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control' }),
 
@@ -25,7 +25,7 @@ class UserProfileForm(forms.ModelForm):
 
 	class Meta():
 		model = UserProfile
-		fields = ['club']
+		fields = []
 
 class BlogAddForm(forms.ModelForm):
 
@@ -33,7 +33,7 @@ class BlogAddForm(forms.ModelForm):
 		model = BlogPost
 		fields = ['title','image' , 'content']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Title', 'class': 'form-control'}),
-					'content': forms.Textarea(attrs={'placeholder': 'Write your post...', 'class': 'form-control' }),
+					'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 
 		}
 
@@ -77,7 +77,3 @@ class EventAddForm(forms.ModelForm):
 
 
 		}
-
-
-
-

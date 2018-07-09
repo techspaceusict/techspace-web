@@ -15,7 +15,7 @@
 	</div>
 	<ul class="nav navbar-nav navbar-right">
 		<li><a href="{% url 'home:index' %}">Techspace</a></li>
-		
+
 		{% if user.is_authenticated %}
 		<li><a href="{% url 'log:logout' %}">Logout</a></li>
 		{% endif %}
@@ -25,19 +25,17 @@
 <div class="container-fluid">
 
 {% if events %}
-	{% for event in events %}
+{% for event in events reversed %}
+<div class="event-card">
+  <h2 class="center"> {{ event.title }} </h2>
+  <h5 class="center"> {{ event.date }} </h5>
+  <h5 class="center"> {{ event.content|linebreaks|truncatewords:50 }} </h5>
+  <div class="underline"></div>
+  <a href="{% url 'event:detail' event.slug %}">(more...)</a>
+</div>
+<div class="end_line"></div>
+{% endfor %}
 
-	<div class="event-card">
-		<h2>{{ event.title }}</h2>
-		<h4>{{ event.date }}</h4>
-		<h4>{{ event.time }}</h4>
-		<h4>{{ event.venue }}</h4>
-		<p>{{ event.content|linebreaks }}</p>
-	</div>
-	
-
-
-	{% endfor %}
 
 {% else %}
 <h1>No events to display</h1>

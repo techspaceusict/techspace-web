@@ -1,0 +1,22 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+  {%  if event_detail %}
+  <h1 class="center">{{ event_detail.title }}</h1>
+  <h4 class="center">{{ event_detail.author }}</h4>
+  <h4 class="center"> {{ event_detail.date }} </h4>
+  <div class="underline"></div>
+  {% if event_detail.image.url is not None %}
+  <img class="centre img-responsive blog_image" src="{{ event_detail.image.url }}">
+  {% else %}
+  <h5>image not found</h5>
+  {% endif %}
+  <p> {{ event_detail.content|linebreaks }} </p>
+
+
+  {% else %}
+  NO events
+  {% endif %}
+
+{% endblock %}

@@ -2,14 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-
-
-
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 
 	club_choice = (
-		('nothing', 'nothing'),
+		('none', 'none'),
 		('codeschool', 'codeschool'),
 		('cogitans', 'cogitans'),
 		('ecell', 'ecell'),
@@ -20,8 +17,7 @@ class UserProfile(models.Model):
 		('techspace', 'techspace')
 	)
 
-	club = models.CharField(max_length=255, choices=club_choice, default='nothing')
+	club = models.CharField(max_length=255, choices=club_choice, default='none')
 
 	def __str__(self):
 		return self.user.username
-

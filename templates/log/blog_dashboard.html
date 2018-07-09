@@ -17,14 +17,14 @@
 
 {% if blogs %}
 <ul>
-	
 	{% for blog in blogs %}
+	{% if blog.author == user.username %}
 	<li>
-		<p><a href="{% url 'log:blog-detail' blog.id %}"> {{ blog.title }}</a></p>
+		<p><a href="{% url 'log:blog-detail' blog.slug %}"> {{ blog.title }}</a></p>
 		<p>{{ blog.author }}</p>
 	</li>
+	{% endif %}
 	{% endfor %}
-
 </ul>
 
 {% else %}
@@ -43,5 +43,3 @@
 
 
 {% endblock %}
-
-

@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Events(models.Model):
 	image = models.ImageField(upload_to='events', default='blog/thumbnail-default.jpg')
 	venue = models.CharField(max_length=1024)
 	content = models.TextField()
+	slug = models.SlugField(db_index=True, unique=True, max_length=2024)
 
 	codeschool = 'codeschool'
 	cogitans = 'cogitans'
@@ -33,6 +35,14 @@ class Events(models.Model):
 		)
 
 	club = models.CharField(max_length=200, choices=club_choices, blank=True)
+
+	def get_absolute_url(self):
+		return reverse('event:detail', args=[self.id, self.slug])
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.slug = slugify(self.title)
+		super(Events, self).save(*args, **kwargs)
 
 
 	def __str__(self):

@@ -17,10 +17,10 @@
 
 {% if events %}
 <ul>
-	
+
 	{% for event in events %}
 	<li>
-		<p><a href="{% url 'log:event-detail' event.id %}"> {{ event.title }}</a></p>
+		<p><a href="{% url 'log:event-detail' event.slug %}"> {{ event.title }}</a></p>
 		<p>{{ event.date }}</p>
 	</li>
 	{% endfor %}
@@ -43,5 +43,3 @@
 
 
 {% endblock %}
-
-

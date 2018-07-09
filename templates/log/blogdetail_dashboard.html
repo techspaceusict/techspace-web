@@ -4,17 +4,17 @@
 
 	{% if blog_detail %}
 	<div class="blog_content">
-
+{% if user.username == blog_detail.author %}
 	<div class="stack">
-		<form action="{% url 'log:blog-edit' blog_detail.pk %}" method="get">
+		<form action="{% url 'log:blog-edit' blog_detail.slug %}" method="get">
 			<button>Edit</button>
 		</form>
-		<form action="{% url 'log:blog-delete' blog_detail.pk %}" method="post" >
+		<form action="{% url 'log:blog-delete' blog_detail.slug %}" method="post" >
 			{% csrf_token %}
 			<button>Delete</button>
 		</form>
 	</div>
-		
+
 
 		<h1 class="center">{{ blog_detail.title }}</h1>
 		<h4 class="center">{{ blog_detail.author }} </h4>
@@ -25,6 +25,10 @@
 		<p>{{ blog_detail.content|linebreaks }}</p>
 
 	</div>
+
+	{% else %}
+	<h2>You are not authorised to visit this page. Kindly go to <a href="{% url 'home:index' %}">homepage</a>.</h2>
+	{% endif %}
 	{% else %}
 		<h1>Nothing to show</h1>
 
