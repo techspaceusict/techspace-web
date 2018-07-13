@@ -1,756 +1,679 @@
-<!--  -->
-{% extends '../home/base.html' %}
-
+{% extends './base.html' %}
 
 {% block content %}
+<!-- THE TOP PART OF THE WEBPAGE -->
+<div id="particles-js">
+<div class="back"></div>
 
+<div class="container-fluid content-top">
+    <div class="row align-items-center" style="height: 100%">
+        <div class="col-md-1 d-none d-sm-block"></div>
+        <div class="col-xs-12 col-md-5">
+            <h1 class="text-white techspace-title">Techspace <br>USICT</h1>
+            <p class="text-white" style="font-family: 'Quicksand'">Best place to nurture yourself.</p>
+            <br>
+            <h4 style="font-family: 'Quicksand'"><a href="#" class="btn-wire">Let's Join Hands</a></h4>
+        </div>
+        <div class="col-md-5 d-none d-sm-block">
+            <img class="img-fluid img-thumbnail" src="{% static 'img/3.jpg' %}">
+        </div>
+        <div class="col-xs-12 col-md-12 text-center">
 
-<style>
-    
+            <a href="#about" class="scrollToAbout"><i class="icon fa fa-chevron-down fa-2x text-white" aria-hidden="true"></i></a>
+        </div>
+    </div>
 
+</div>
+</div>
 
-.svg-wrapper {
-  height: 100px;
-  margin: 0 auto;
-  margin-top: 70px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 320px;
-}
+<!-- ABOUT SECTION -->
+<div class="container-fluid about-section">
+<!--     <div class="row slant-heading" id="about">
+        <div class="col p-2 text-center"><h1 class="section-heading">About us</h1></div>
+    </div> -->
+    <div class="row" id="about">
+            <div class="col-12 col-md-6" style="padding: 3rem; padding-bottom: 0">
+                <h4 class="small-heading">About Us
+                <div class="hr"></div>
+                </h4>
 
-.shape {
-  fill: transparent;
-  stroke-dasharray: 140 540;
-  stroke-dashoffset: -474;
-  stroke-width: 12px;
-  stroke: #19f6e8;
-}
+                <p class="about-para" style="font-family: 'Quicksand'">
+                    Techspace is the “of the students, by the students, for the students” technical society of USICT that works towards promoting discussion, creative collaboration, research and skill development.<!-- providing students with  opportunities to grow outside -->
+                    <br>
+                    We aim to provide an environment where students can tinker with ideas, experiment and capitalize on the power of a strong community.<br>
+                    <br><h5><span style="border-bottom: 2px dotted #f29260;">Our vision is:</h5>
+                    <ul class="about-list" style="font-family: 'Quicksand'">
+                        <li>To inculcate the culture of sharing knowledge and values</li>
+                        <li>To be the best place to nurture oneself</li>
+                    </ul>
+                </p>
+                <h4 class="pt-3"><a href="#clubs" class="btn-wire-dark scrollTo">Join Hands</a></h4>
+                <br>
+            </div>
+        <div id="about-bg-diagonal" class="bg-parallax d-none d-md-block"></div>
 
-.text {
-  color: #fff;
-  font-family: 'Roboto Condensed';
-  font-size: 50px;
-  letter-spacing: 8px;
-  line-height: 32px;
-  position: relative;
-  top: -48px;
-}
-
-@keyframes draw {
-  0% {
-    stroke-dasharray: 140 540;
-    stroke-dashoffset: -474;
-    stroke-width: 12px;
-  }
-  100% {
-    stroke-dasharray: 760;
-    stroke-dashoffset: 0;
-    stroke-width: 8px;
-  }
-}
-
-.svg-wrapper:hover .shape {
-  -webkit-animation: 0.5s draw linear forwards;
-  animation: 0.5s draw linear forwards;
-}
-</style>
-
-
-<body data-spy="scroll" data-target=".navbar-fixed-top" data-offset="65">
-
-    <header>
-
-        <nav class="navbar navbar-fixed-top">
-
-            <div class="container-fluid">
-
-                <div class="vesco-nav-wrapper">
-
-                    <div class="navbar-header">
-
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#vesco-menu">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                       </button>
-
-                        <a class="navbar-brand" href="#home">
-                            <h1 class="navbar-pop">TS</h1>
-                            <!-- <img src="img/logo.png" alt="logo"> -->
+            <!-- <div class="col-12 col-md-6 p-4 d-none d-sm-block">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img class="d-block w-100" src="{% static 'img/3.jpg' %}" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="{% static 'img/3.jpg' %}" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="{% static 'img/3.jpg' %}" alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
                         </a>
                     </div>
-
-                    <div class="collapse navbar-collapse" id="vesco-menu">
-                        <ul class="nav navbar-nav">
-                            <li><a class="smooth-scroll" href="#home">Home</a></li>
-                            <!-- <li><a class="smooth-scroll" href="#services">SIG</a></li> -->
-                            <li><a class="smooth-scroll" href="#about">About</a></li>
-                            <li><a class="smooth-scroll" href="#work">Club</a></li>
-                            <li><a class="smooth-scroll" href="#team">Team</a></li>
-                            <li><a class="smooth-scroll" href="#testimonials">Testimonials</a></li>
-                            <!-- <li><a class="smooth-scroll" href="#pricing">Pricing</a></li> -->
-                            <li><a class="smooth-scroll" href="#stats">Stats</a></li>
-                            <li><a class="smooth-scroll" href="#clients">Association</a></li>
-                            <li><a class="smooth-scroll" href="#contact">Contact</a></li>           
-
-                        </ul>
-
-                        
-
-                    </div>
-
-                </div>
-
             </div>
-        </nav>
-
-    </header>
+ -->
 
 
+    </div>
 
+</div>
+<!-- CLUBS SECTION -->
+    <div class="container-fluid about-section pt-5" style="min-height: 100%;" id="clubs">
 
-    <!-- Home -->
-    <section id="home">
-
-        <div id="home-cover" class="bg-parallax animated fadeIn">
-
-            <div id="home-content-box">
-
-                <div id="home-content-box-inner" class="text-center">
-
-                    <div id="home-heading" class="animated zoomIn">
-                        <h3>Welcome to<br></h3>
-                    </div>
-
-                    <div class="svg-wrapper">
-                          <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-                            <rect class="shape" height="60" width="320" />
-                          </svg>
-                           <div class="text">TechSpace</div>
-                    </div>
-
-
-                   <!--  <div id="home-btn" class="animated zoomIn">
-                        <a class="btn btn-lg btn-general btn-white smooth-scroll" href="#work" role="button" title="View Our Work">View Our Work</a>
-                    </div> -->
-
-                </div>
-
-            </div>
-
+        <div class="row slant-heading d-md-none">
+            <div class="col p-2 text-center"><h1 class="section-heading">Clubs @Techspace</h1></div>
         </div>
-
-    </section>
-
-    <!-- Services -->
-    <section id="services">
-
-        <!-- <div class="content-box">
-            <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                <h3> SIG </h3>
-                <div class="content-title-underline"></div>
-            </div>
-
-            <div class="container">
-
-                <div class="row">
-
-                    
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-item wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-
-                            <div class="service-item-icon">
-                                <i class="fa fa-laptop fa-3x"></i>
-                            </div>
-
-                            <div class="service-item-title">
-                                <h3> CodeGeek</h3>
-                            </div>
-
-                            <div class="service-item-desc">
-                                <p>Group of like minded coders who love to compete at asymptotic level.</p>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-
-                        <div class="service-item wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-
-                            <div class="service-item-icon">
-                                <i class="fa fa-tablet fa-3x"></i>
-                            </div>
-
-                            <div class="service-item-title">
-                                <h3>Ignited Minds</h3>
-                            </div>
-
-                            <div class="service-item-desc">
-                                <p>How to win hackathons.</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section> -->
-
-    <!-- About -->
-    <section id="about">
-
-        <!-- About right side with diagonal BG parallax -->
-        <div id="about-bg-diagonal" class="bg-parallax"></div>
-
-        <!-- About left side with content -->
-        <div class="container">
-
+        <div class="content container-fluid" style="height: 100%; background-color: #f7f7f7;" id="root">
             <div class="row">
-
-                <div class="col-md-4">
-
-                    <div id="about-content-box">
-
-                        <div id="about-content-box-outer">
-
-                            <div id="about-content-box-inner">
-
-                                <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                                    <h3> About TechSpace </h3>
-                                    <div class="content-title-underline"></div>
-                                </div>
-
-                                <div id="about-desc" class="wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                                    <p>Magna arbitror et dolor amet, fabulas do noster non eu mentitum praesentibus e est ex quid cupidatat. Dolore reprehenderit probant quorum tempor, illum hic ut illum pariatur. Qui o magna aute labore.</p>
-                                </div>
-
-                                <div id="about-btn" class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-
-                                    <a class="btn btn-lg btn-general btn-blue smooth-scroll" href="#work" role="button" title="View Work"> Our Work </a>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
+                <div class="col-md-3 d-none d-md-block">
+                    <div class="sticky">
+                    <div class="row slant-heading">
+                        <div class="col p-2 text-center"><h2 class="section-heading" style="margin-top: 1rem">Clubs @Techspace</h2></div>
                     </div>
 
+                    <div class="list-group" id="list-clubs">
+                      <a href="#codeschool" class="list-group-item list-group-item-action active scrollTo">Codeschool</a>
+                      <a href="#cogitans" class="list-group-item list-group-item-action scrollTo">Cogitans</a>
+                      <a href="#droid" class="list-group-item list-group-item-action scrollTo">Droid Club</a>
+                      <a href="#electrotech" class="list-group-item list-group-item-action scrollTo">Electrotech</a>
+                      <a href="#oslc" class="list-group-item list-group-item-action scrollTo">Open Source Learning Club</a>
+                      <a href="#ecell" class="list-group-item list-group-item-action scrollTo">Zenith E-Cell</a>
+                      <a href="#turing" class="list-group-item list-group-item-action scrollTo">Turing AI</a>
+                      <a href="#unity" class="list-group-item list-group-item-action scrollTo">Unity Game-Dev</a>
+                    </div>
                 </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Work -->
-    <section id="work">
-
-        <div class="content-box">
-            <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                <h3> Clubs </h3>
-                <div class="content-title-underline"></div>
-            </div>
-
-            <div class="container-fluid">
-
-                <div class="row no-gutters wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-
-                        {% if clubs %}
-                            {% for club,app_url in clubs %}
-                   <a href="{% url app_url %}">
-                    <div class="col-md-3 col-sm-4 card_logo">
-                       
-                        <div class="img-wrapper">
-                                <img src="{{ club.club_image.url }}" class="img-responsive">
-                                <div class="overlay">
-                                    <h4>{{ club.club_name }}</h4>
-                                    <div class="center">
-                                    <a href="{% url app_url %}" class="info">more...</a>
-                                    </div>
-                                </div>
+                </div>
+            <div class="col-md-9">
+            <!--Begin club row-->
+            <div class="row content-club" id="codeschool">
+                <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://www.setaswall.com/wp-content/uploads/2017/06/Programming-Wallpapers-30-1280-x-720-768x432.jpg');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fa fa-code"></i></span></a>
+                            <div class="title">CODE SCHOOL</div>
+                            <div class="desc">Competitive Coding</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
-                       </a> 
-
-                      {% endfor %}
-                        {% else %}
-                            <h1>No clubs to display.</h1>
-
-                        {% endif %}
-                    </div>
-                        
-
                 </div>
-
-            </div>
-        </div>
-        <!-- End Content Box -->
-    </section>
-
-    <!-- Team -->
-    <section id="team">
-
-        <div class="content-box">
-            <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                <h3> Our Team </h3>
-                <div class="content-title-underline"></div>
-            </div>
-
-
-            <div class="container">
-
-                <div class="row wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <div class="col-md-12">
-
-                        <div id="team-members" class="owl-carousel owl-theme">
-                        <div class="team-member">
-                                <img src="{% static 'img/team/navdeepb.jpg' %}" class="img-responsive p" alt="team member">
-                                <div class="team-member-info text-center">
-                                    <h4 class="team-member-name">Navdeep Sandhu</h4>
-                                    <h4 class="team-member-designation">Founder</h4>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="team-member">
-                                <img src="{% static 'img/team/rajiv.jpeg' %}" class="img-responsive p" alt="team member">
-                                <div class="team-member-info text-center">
-                                    <h4 class="team-member-name">Rajeev Jha</h4>
-                                    <h4 class="team-member-designation">Co-Founder</h4>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-member">
-                                <img src="{% static 'img/team/piyush.jpg' %}" class="img-responsive p" alt="team member">
-                                <div class="team-member-info text-center">
-                                    <h4 class="team-member-name">Piyush Mehndiratta</h4>
-                                    <h4 class="team-member-designation">President</h4>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-member">
-                                <img src="{% static 'img/team/prabhanshu.jpg' %}" class="img-responsive p" alt="team member">
-                                <div class="team-member-info text-center">
-                                    <h4 class="team-member-name">Prabhanshu Gupta</h4>
-                                    <h4 class="team-member-designation">Convenor</h4>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="team-member">
-                                <img src="{% static 'img/team/pranjal.jpg' %}" class="img-responsive p" alt="team member">
-                                <div class="team-member-info text-center">
-                                    <h4 class="team-member-name">Pranjal Rajan</h4>
-                                    <h4 class="team-member-designation">Chairperson</h4>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="social-icon icon-gray"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            
-
-                        </div>
-
-                    </div>
-
+                <div class="col-xs-8 col-md-8 d-none d-md-block" >
+                <div class="row about-club">
+                    <h3>Codeschool</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br>Excepteur sint occaecat cupidatat non proident, </p>
                 </div>
-
-            </div>
-        </div>
-        <!-- End Content Box -->
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials">
-
-        <div id="testimonials-cover" class="bg-parallax">
-            <div class="content-box">
-                <div class="content-title content-title-white wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                    <h3> Achievements </h3>
-                    <div class="content-title-underline"></div>
-                </div>
-
-                <div class="container">
-
-                    <div class="row wow animated bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="col-md-12">
-
-                            <div id="customers-testimonials" class="text-center owl-carousel owl-theme">
-
-                                <div class="testimonial">
-                                    <img src="{% static 'img/client/av.png' %}" class="img-responsive img-circle" alt="testimonial">
-                                    <blockquote class="text-center">
-                                        <p>Two time GSOCer.</p>
-                                        <p>Paper published in IEEE.</p>
-                                        <p>Gamer - DOTA champion.</p>
-                                        <p></p>
-                                    </blockquote>
-                                    <div class="testimonial-author">
-                                        <p>
-                                            <strong> Anudit Verma </strong>
-                                            <!-- <span> CEO & Founder - Google </span> -->
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="testimonial">
-                                    <img src="{% static 'img/client/sid.jpg' %}" class="img-responsive img-circle" alt="client" />
-                                    <blockquote class="text-center">
-                                        <p>Top coder at CodeChef.</p>
-                                        <p>Finalist in Naggaro Code-n-counter.</p>
-                                        <p>Top contributor in Py Data Delhi &amp; PyCon.</p>
-                                    </blockquote>
-
-                                    <div class="testimonial-author">
-                                        <p>
-                                            <strong>Siddharth Gupta</strong>
-                                            <!-- <span>CEO & Founder - Yahoo</span> -->
-                                        </p>
-                                    </div>
-                                </div>
-
-
-                                <div class="testimonial">
-                                    <img src="{% static 'img/client/nishchal.jpg' %}" class="img-responsive img-circle" alt="client" />
-                                    <blockquote class="text-center">
-                                        <p>MS(AI) at Edinburgh University.</p>
-                                        <p>Entrepreneur</p>
-                                    </blockquote>
-
-                                    <div class="testimonial-author">
-                                        <p>
-                                            <strong>Nishchal Gaba</strong>
-                                            <!-- <span>CEO & Founder - Amazon</span> -->
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="testimonial">
-                                    <img src="{% static 'img/client/harshit.jpeg' %}" class="img-responsive img-circle" alt="client" />
-                                    <blockquote class="text-center">
-                                        <p>GSOC mentor.</p>
-                                        <p>Google associate android developer</p>
-                                    </blockquote>
-
-                                    <div class="testimonial-author">
-                                        <p>
-                                            <strong>Harshit Dwivedi</strong>
-                                            <!-- <span>CEO & Founder - Amazon</span> -->
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="testimonial">
-                                    <img src="{% static 'img/client/vatsal.jpeg' %}" class="img-responsive img-circle" alt="client" />
-                                    <blockquote class="text-center">
-                                        <p>Head of Kotlin group.</p>
-                                        <p>Speaker at GDG.</p>
-                                    </blockquote>
-
-                                    <div class="testimonial-author">
-                                        <p>
-                                            <strong>Vatsal Bajpayee</strong>
-                                            <!-- <span>CEO & Founder - Amazon</span> -->
-                                        </p>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <!-- End Content Box -->
-        </div>
-    </section>
-
-    
-    </section>
-
-    <!-- Stats -->
-    <section id="stats">
-
-        <div id="stats-cover" class="bg-parallax">
-
-            <div class="content-box">
-                <div class="content-title content-title-white wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                    <h3> We Never Stop Improving </h3>
-                    <div class="content-title-underline"></div>
-                </div>
-
-                <div class="container">
-
-                    <div class="row text-center wow animated bounceInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="stats-item">
-                                <i class="fa fa-cloud-download fa-5x"></i>
-                                <h2><span class="counter"> 300000 </span><span>+</span></h2>
-                                <p>Lines of Code</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="stats-item">
-                                <i class="fa fa-star-o fa-5x"></i>
-                                <h2><span class="counter"> 25 </span><span>+</span></h2>
-                                <p>Number of projects</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="stats-item">
-                                <i class="fa fa-heart-o fa-5x"></i>
-                                <h2><span class="counter"> 500 </span><span>+</span></h2>
-                                <p>Number of students</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="stats-item">
-                                <i class="fa fa-check fa-5x"></i>
-                                <h2><span class="counter"> 2200 </span><span>+</span></h2>
-                                <p>Recomended</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <!-- End Content Box -->
-        </div>
-    </section>
-
-    <!-- Clients -->
-    <section id="clients">
-
-        <div class="content-box">
-            <div class="content-title wow animated fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                <h3> Associations </h3>
-                <div class="content-title-underline"></div>
-            </div>
-
-            <div class="container">
-
-                <div class="row wow animated bounceInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                    <div class="col-md-12">
-                        {% if assocs %}
-                        <div id="clients-list" class="owl-carousel owl-theme">
-
-                            {% for assoc in assocs %}
-                                <div class="client col-md-8">
-                              <!--   {{ assoc.company }} -->
-                                <img src="{{ assoc.company_img.url }}">
-                                </div>
-                            {% endfor %}
-                        </div>
-
-
-                        {% else %}
-                        <h1>Nothing to display</h1>
-                        {% endif %}
-
-                       
-        <!-- End Content Box -->
-    </section>
-
-    <footer>
-
-        <div id="contact">
-
-            <div class="container">
-
                 <div class="row">
-
-                    <div class="col-md-6">
-                        <div id="contact-left">
-
-                            <h3>TechSpace</h3>
-                            <!-- <p>We believe in <strong>Simple</strong>, <strong>Clean</strong> & <strong>Modern</strong> Design Standards with Responsive Approach. Browse the amazing work of our company.</p> -->
-
-                            <div id="contact-info">
-
-                                <address>
-                                    <strong>Headquarters:</strong><br>
-                                    <p>USICT, GGSIPU<br>
-                                    Dwarka, New Delhi</p>
-                                </address>
-                                <div id="phone-fax-email">
-                                    <p>
-                                        <strong>Phone:</strong><span>  </span> <br>
-                                        <strong>Fax:</strong><span>  </span> <br>
-                                        <strong>Email:</strong><span>   </span> <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                            <ul class="social-list">
-                                <li><a href="#" class="social-icon icon-white"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="social-icon icon-white"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="social-icon icon-white"><i class="fa fa-youtube-play"></i></a></li>
-                                <li><a href="#" class="social-icon icon-white"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-
-                        </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
                     </div>
-                    <div class="col-md-6">
-                        <div id="contact-right">
-
-                            <h3>Contact Us</h3>
-                            <form id="contact_form">
-                            {% csrf_token %}
-
-                                <input type="text" id="name" name="name" placeholder="Full Name" class="form-control" required>
-                                <input type="text" id="email" name="email" placeholder="Email Address" class="form-control" required>
-                                <textarea rows="5" id="content" name="content" placeholder="Message..." class="form-control" required></textarea>
-
-                                <button class="btn btn-lg btn-general">Submit</button>
-                                
-                                <!-- <div id="send-btn">
-                                    <a class="btn btn-lg btn-general btn-white" type="submit" href="#" role="button">SEND</a>
-                                </div> -->
-
-                            </form>
-
-                        </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
                     </div>
-
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
                 </div>
             </div>
+            <!--End club row-->
 
-        </div>
-
-        <div id="footer-bottom">
-            <div class="container">
+            <!--Begin club row-->
+            <div class="row content-club" id="cogitans">
+                <div class="col-xs-8 col-md-8 d-none d-md-block">
+                <div class="row about-club">
+                    <h3>Cogitans</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
                 <div class="row">
-                    <!-- <div class="col-md-6">
-
-                        <div id="footer-copyrights">
-                            <p>Copyrights &copy; 2017 All Rights Reserved by Vesco Inc.</p>
-                        </div>
-
-                    </div> -->
-                    <div class="col-md-6 hidden-sm hidden-xs">
-                        <div id="footer-menu">
-                            <ul>
-                                <li><a class="smooth-scroll" href="#home">Home</a>/</li>
-                                <li><a class="smooth-scroll" href="#services">SIG</a>/</li>
-                                <li><a class="smooth-scroll" href="#work">About</a>/</li>
-                                <li><a class="smooth-scroll" href="#team">Team</a>/</li>
-                                <li><a class="smooth-scroll" href="#testimonials">Testimonials</a>/</li>
-                                <!-- <li><a class="smooth-scroll" href="#pricing">Pricing</a>/</li> -->
-                                <li><a class="smooth-scroll" href="#stats">Stats</a>/</li>
-
-                                {% if user.is_authenticated %}
-                                <li><a  href="{% url 'log:logout' %}"> Logout</li>
-                                {% else %}
-                                <li><a href="{% url 'log:login' %}">Login</a></li>
-                                {% endif %}
-                                
-                            </ul>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://udemy-images.udemy.com/course/750x422/260756_bac8_3.jpg');background-repeat: none; background-size: cover"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fab fa-html5"></i></span></a>
+                            <div class="title">COGITANS</div>
+                            <div class="desc">The Web Dev Club</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--End club row-->
+
+             <!--Begin club row-->
+            <div class="row content-club" id="droid">
+                <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://i.pinimg.com/originals/8d/51/8f/8d518fbf62bfe6b2d895646ebd0422a0.jpg');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fab fa-android"></i></span></a>
+                            <div class="title">Droid Club</div>
+                            <div class="desc">Android Developement</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-md-8 d-none d-md-block">
+                <div class="row about-club">
+                    <h3>Droid Club</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+            <!--End club row-->
+
+            <!--Begin club row-->
+            <div class="row content-club" id="electrotech">
+                <div class="col-xs-8 col-md-8 d-none d-md-block">
+                <div class="row about-club">
+                    <h3>Electrotech</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://images6.alphacoders.com/388/thumb-1920-388041.jpg');background-repeat: none; background-size: cover"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fab fa-html5"></i></span></a>
+                            <div class="title">Electrotech</div>
+                            <div class="desc">Electronics</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End club row-->
+
+            <!--Begin club row-->
+            <div class="row content-club" id="oslc">
+                <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('http://linux-2-day.com/wp-content/uploads/2015/03/github-universe1.jpg');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fa fa-code"></i></span></a>
+                            <div class="title">OSLC</div>
+                            <div class="desc">Open Source Learning</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-md-8 d-none d-md-block" >
+                <div class="row about-club">
+                    <h3>Open Source Learning Center</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br>Excepteur sint occaecat cupidatat non proident, </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--End club row-->
+
+            <!--Begin club row-->
+            <div class="row content-club" id="ecell">
+                <div class="col-xs-8 col-md-8 d-none d-md-block">
+                <div class="row about-club">
+                    <h3>Zenith E-Cell</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('http://www.printawallpaper.com/upload/designs/idea_d.jpg');background-repeat: none; background-size: cover"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fab fa-html5"></i></span></a>
+                            <div class="title">Zenith E-Cell</div>
+                            <div class="desc">Entrepreneurship Cell</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End club row-->
+
+
+            <!--Begin club row-->
+            <div class="row content-club" id="turing">
+                <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://techcrunch.com/wp-content/uploads/2015/12/shutterstock_228897490.png');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fa fa-code"></i></span></a>
+                            <div class="title">Turing AI</div>
+                            <div class="desc">Machine Learning, Deep learning, Neural Networks</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-md-8 d-none d-md-block" >
+                <div class="row about-club">
+                    <h3>Turing AI</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br>Excepteur sint occaecat cupidatat non proident, </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--End club row-->
+
+
+             <!--Begin club row-->
+            <div class="row content-club" id="unity">
+                <div class="col-xs-8 col-md-8 d-none d-md-block">
+                <div class="row about-club">
+                    <h3>RenderedSpace USICT</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <p>Member 1</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('https://wordpress-storage.nyc3.digitaloceanspaces.com/2018/03/Unity-1024x579.jpg');background-repeat: none; background-size: cover"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fab fa-html5"></i></span></a>
+                            <div class="title">Unity GameDev</div>
+                            <div class="desc">AR/VR, Game Development</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End club row-->
         </div>
+    </div>
 
-        <a href="#home" id="back-to-top" class="btn btn-sm btn-blue btn-back-to-top smooth-scroll hidden-sm hidden-xs" title="home" role="button">
-            <i class="fa fa-angle-up"></i>
-        </a>
+        </div>
+        <div class="p-4"></div>
+    </div>
+<div class="container-fluid about-section" style="min-height: 100%;">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+             <div class="row slant-heading d-block d-sm-none" id="timeline" style="background-color: #f7f7f7; z-index: 1">
+                    <div class="col p-2 text-center"><h1 class="section-heading">JOURNEY TILL NOW</h1><p class="cd-timeline__date">THE TECHSPACE STORY</p></div>
+            </div>
+            <section class="cd-timeline js-cd-timeline">
+                <div class="cd-timeline__container">
+                    <div class="cd-timeline__block js-cd-block">
+                        <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
+                            <!-- <img src="{% static 'img/cd-icon-picture.svg' %}" alt="Picture"> -->
+                        </div> <!-- cd-timeline__img -->
 
-    </footer>
+                        <div class="cd-timeline__content js-cd-content">
+                            <h4>Foundation (September, 2014)</h4>
+                            <p class="cd-timeline__date">Jan 14</p>
+                            <br>
+                            <a href="#0" class="btn-wire-dark">Read more</a>
+                        </div> <!-- cd-timeline__content -->
+                    </div> <!-- cd-timeline__block -->
 
-    {% load staticfiles %}
-    <!-- jQuery -->
-    <script src="{% static 'js/jquery.js' %}"></script>
+                    <div class="cd-timeline__block js-cd-block">
+                        <div class="cd-timeline__img cd-timeline__img--movie js-cd-img">
+                            <!-- <img src="{% static 'img/cd-icon-movie.svg' %}" alt="Movie"> -->
+                        </div> <!-- cd-timeline__img -->
 
-    <!-- bootstrap JS -->
-    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+                        <div class="cd-timeline__content js-cd-content">
+                            <h4>Orientation 1.0 on engineer’s day (2nd November, 2015)</h4>
+                            <p class="cd-timeline__date">Jan 18</p>
 
-    <!-- WOW JS -->
-    <script src="{% static 'js/wow/wow.min.js' %}"></script>
+                            <img class="img-fluid" src="{% static 'img/14.jpg' %}">
+                            <br>
+                            <br>
+                            <a href="#0" class="btn-wire-dark">Read more</a>
+                            <br>
+                        </div> <!-- cd-timeline__content -->
+                    </div> <!-- cd-timeline__block -->
 
-    <!-- magnific-popup JS -->
-    <!-- <script src="{% static 'js/magnific-popup/jquery.magnific-popup.min.js' %}"></script> -->
+                    <div class="cd-timeline__block js-cd-block">
+                        <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
+                            <!-- <img src="{% static 'img/cd-icon-picture.svg' %}" alt="Picture"> -->
+                        </div> <!-- cd-timeline__img -->
 
-    <!-- owl carousel JS -->
-    <script src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+                        <div class="cd-timeline__content js-cd-content">
+                            <h4>Infoxpression 2016 </h4>
+                            <p class="cd-timeline__date">Jan 24</p>
 
-    <!-- counter -->
-    <script src="{% static 'js/counter/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'js/counter/jquery.counterup.min.js' %}"></script>
+                            <br>
+                            <a href="#0" class="btn-wire-dark">Read more</a>
+                        </div> <!-- cd-timeline__content -->
+                    </div> <!-- cd-timeline__block -->
 
-    <!-- easing -->
-    <script src="{% static 'js/easing/jquery.easing.1.3.js' %}"></script>
+                    <div class="cd-timeline__block js-cd-block">
+                        <div class="cd-timeline__img cd-timeline__img--location js-cd-img">
+                            <!-- <img src="{% static 'img/cd-icon-location.svg' %}" alt="Location"> -->
+                        </div> <!-- cd-timeline__img -->
 
+                        <div class="cd-timeline__content js-cd-content">
+                            <h4>UHack</h4>
+                            <p class="cd-timeline__date">Feb 14</p>
+                            <br>
+                            <a href="#0" class="btn-wire-dark">Read more</a>
+                        </div> <!-- cd-timeline__content -->
+                    </div> <!-- cd-timeline__block -->
 
-    <!-- custom JS -->
-    <script src="{% static 'js/custom.js' %}"></script>
-</body>
+                    <div class="cd-timeline__block js-cd-block">
+                        <div class="cd-timeline__img cd-timeline__img--movie js-cd-img">
+                            <!-- <img src="{% static 'img/cd-icon-location.svg' %}" alt="Location"> -->
+                        </div> <!-- cd-timeline__img -->
 
+                        <div class="cd-timeline__content js-cd-content">
+                            <h2>TODAY</h2>
+                            <p class="cd-timeline__date">Feb 18</p>
 
+                            <p>From 12 clubs, 25 members in 2015 to 8 clubs, 200 members</p>
+                            <br>
+                            <a href="#0" class="btn-wire-dark">Read more</a>
+                        </div> <!-- cd-timeline__content -->
+                    </div> <!-- cd-timeline__block -->
+                </div>
+            </section>
+        </div>
+        <div class="col-md-6 col-xs-12 text-center sticky" style="z-index: 2">
+            <div class="sticky pt-2">
 
+                <div class="row slant-heading d-none d-sm-block" id="timeline" style="background-color: #f7f7f7; z-index: 1">
+                    <div class="col p-2 text-center"><h1 class="section-heading">JOURNEY TILL NOW</h1><p class="cd-timeline__date">THE TECHSPACE STORY</p></div>
+                </div>
+                <h3 class="small-heading" >Faculty Board</h3>
+                <br>
+                <div class="row" id="facultyBoard" style="font-family: 'Quicksand'">
+                    <div class="col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Dr. Arvinder Kaur <br> <em>Dean USICT</em></p>
+                        <p>Chairperson</p>
+                    </div>
+                    <div class=" col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Mr. Shiv Ram Meena <br> <em>Asstt. Prof. USICT</em></p>
+                        <p>Chief Faculty Advisor</p>
+                    </div>
+                    <div class="col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Mr. Chakresh Kumar <br> <em>Asstt. Prof. USICT</em></p>
+                        <p>Faculty Advisor</p>
+                    </div>
+                </div>
+                <!-- <div class="row" id="facultyBoard" style="font-family: 'Quicksand'">
+                    <div class="col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Dr. Arvinder Kaur <br> <em>Dean USICT</em></p>
+                        <p>Chairperson</p>
+                    </div>
+                    <div class=" col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Mr. Shiv Ram Meena <br> <em>Asstt. Prof. USICT</em></p>
+                        <p>Chief Faculty Advisor</p>
+                    </div>
+                    <div class="col col-md-4 col-xs-4">
+                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <p>Mr. Chakresh Kumar <br> <em>Asstt. Prof. USICT</em></p>
+                        <p>Faculty Advisor</p>
+                    </div>
+                </div> -->
+                <br>
+                <h3 class="small-heading" >Student Body</h3>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid content-blog"><!--
+    <div class="row">
+    <div class="col-xs-12 col-md-6">
+        <h4 class="small-heading">Upcoming Events
+            <div class="hr"></div>
+        </h4>
+        <ul>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+        </ul>
+        <div class="text-right"><a href="#" class="btn-wire-dark">See all</a></div>
+        <br>
+        <br>
+        <h4 class="small-heading">Archives
+            <div class="hr"></div>
+        </h4>
+        <ul>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+        </ul>
+        <br>
+        <br>
+        <h4 class="small-heading">External Links
+            <div class="hr"></div>
+        </h4>
+        <ul>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="sticky">
+        <h4 class="small-heading">Recent posts
+            <div class="hr"></div>
+        </h4>
+        <ul>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+            <li>
+                <h5>Post example</h5>
+                <h6 class="blog-date">06 Jul 2018</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+            </li>
+        </ul>
+        <div class="text-right"><a href="#" class="btn-wire-dark">community.techspace.club</a></div>
+    </div>
+    </div>
+    </div>
+ --></div>
+<div class="container-fluid contact-section">
+    <div class="row">
+        <div class="col-md-6 col-xs-12 contact-form-div text-center" id="contact">
+            <br>
+            <h2 class="small-section-heading">Contact US</h2>
+            <p>
+            <br>
+            +91 99684 65876
+            <br>techspace@ipu.ac.in
+            <br>
+            O/o Mr. Shiv Ram Meena <br> DTL-505, USICT, GGSIPU<br> Dwarka Sec 16-C, New Delhi - 110078</p>
+            <form action="https://airform.io/guptaprabhanshu1@gmail.com" method="post">
+                <!-- <label for="name" class="contact-label">Name</label><br> -->
+                <input type="text" name="name" placeholder="Name"><br>
+                <br>
 
+                <!-- <label for="name" class="contact-label">Email</label><br> -->
+                <input type="email" name="email" placeholder="Your Email"><br>
+                <br>
 
-<script type="text/javascript">
+                <!-- <label for="name" class="contact-label">Message</label><br> -->
+                <textarea type="text" name="message" rows="5" placeholder="Your message goes here.."></textarea><br>
+                <br>
+                <button type="submit" class="btn-wire">Send message</button>
+            </form>
+                <br>
 
-    $(document).on('submit', '#contact_form', function(e){
-        e.preventDefault();
+        </div>
+        <div class="col-md-6 col-xs-12 text-center">
+            <br>
+            <h2 class="small-section-heading">Partner Organisations</h2>
+            <div class="row">
+                <div class="col col-xs-6">
+                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                </div>
+                <div class="col col-xs-6">
+                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                </div>
+                <div class="col col-xs-6">
+                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                </div>
+                <div class="col col-xs-6">
+                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                </div>
 
-        var formData = $('#contact_form').serializeArray();
-        formData.push({ name: "app_name", value: "techspace" });
-        
-
-        $.ajax({
-            type: 'POST',
-            url: '/contact/submit/',
-            data: formData,
-            success:function(){
-                clearMsg();
-            }
-        });
-    });
-
-    function clearMsg(){
-        var s = document.getElementById('contact_form');
-        v = "<div class='form_msg'><h2>Your message has been recorded.<br>Thank you for your response.</h2></div>"
-        s.innerHTML = v;
-        console.log("Success");
-    }
-
-</script>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
