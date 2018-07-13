@@ -1,49 +1,71 @@
-{% extends './base.html' %}
-
+{% extends '../home/base.html' %}
 {% block content %}
-
-
 
 {% if user.is_authenticated %}
 
-
-
-{% if userprofile.club == 'none' %}
-<h4>hey, <b>{{ user.username }}</b></h4>
-
-<a href="{% url 'log:blogs' %}"><h4>Blogs</h4></a>
-
-{% else %}
-
-<h4>hey, <b>{{ user.username }}</b> from <b>{{ userprofile.club }}</b></h4>
-
-<div class="">
-<a href="{% url 'log:blogs' %}"><h4>Blogs</h4></a>
-<a href="{% url 'log:messages' %}"><h4>Contact forms</h4></a>
-<a href="{% url 'log:events' %}"><h4>Events</h4></a>
-<a href="{% url 'log:info' %}"><h4>Club Info</h4></a>
-<a href="{% url 'log:team' %}"><h4>Team</h4></a>
-
-
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="d-none d-sm-block col-md-2"></div>
+        <div class="col-xs-12 col-md-8 card profile-container">
+            <div class="row">
+                <div class="col-xs-8 col-md-9">
+                    <h2 class="profile-name">{{ user.username }}</h2>
+                    <p class="profile-bio">Prabhanshu Gupta is a good boy.</p>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-envelope"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+                </div>
+                <div class="col-xs-4 col-md-3 text-center">
+                    <div class="profile-img" style="background-image: url('TS-1.jpg')"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <br>
+                    <!-- If other user -->
+                    <span class="small-p"><a href="#">Send Message</a> |</span>
+                    <span class="small-p"><a href="#" class="small-p">Report User</a> |</span>
+                    <!-- If logged in -->
+                    <span class="small-p"><a href="#" class="small-p">Edit profile </a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="d-none d-sm-block col-md-2"></div>
+        <div class="col-xs-12 col-md-8 posts-container">
+            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Blogs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Discussions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Comments</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Portfolio</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Teams</a>
+              </li> -->
+            </ul>
+        </div>
+    </div>
 </div>
 
-
-{% endif %}
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 {% else %}
-<h1>You need to <a href="{% url 'log:login' %}">login</a> first.</h1>
-
-
-
-
-
+<h2>You neeed to login first <a href="{% url 'log:login' %}"></a></h2>
 
 {% endif %}
-
-
-
-
-
 
 {% endblock %}

@@ -27,9 +27,19 @@
     <!-- <span class="navbar-brand w-100">Navbar 5</span> -->
     <div class="navbar-collapse collapse order-3 order-sm-2 w-100 dual-collapse d-none d-sm-block">
         <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="btn-wire-dark" href="{% url 'log:register' %}">Sign in</a>
+              <a href="#" class="small-p"><i class="fa fa-bell"></i>Notifications</a>&nbsp;
+
+              <a class="btn-wire-dark" href="{% url 'log:logout' %}">Logout </a>
             </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="btn-wire-dark" href="{% url 'log:login' %}">Sign in</a>
+            </li>
+          {% endif %}
+
+
         </ul>
     </div>
     <div class="w-75 d-block d-sm-none spacer"><!-- spacer --></div>
