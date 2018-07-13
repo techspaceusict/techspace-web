@@ -1,43 +1,40 @@
-{% extends '../log/base.html' %}
+{% extends '../community/base.html' %}
 
 {% block title %} - Login{% endblock %}
 
 {% block content %}
 
 
-<div class="container-fluid">
+<div class="container text-center">
+	<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-xs-12 col-md-4 card login-card">
+	<h5 class="small-heading">Login to Techspace community.</h5>
+	<br>	
+	<form action="{% url 'log:login' %}" method="POST">
+		{% csrf_token %}
 
-<div class="col-sm-offset-4 col-sm-4">
-<div class="login_card container-fluid">
+		{{ errors }}
+		<input class="form-control" type="text" name="username" placeholder="Username" required><br>
+		<input class="form-control" type="password" name="password" placeholder="Password" required><br>
+		{% if error %}
+	                    <p class=" label label-danger">
+	                        Your username and password didn't match. 
+	                        Please try again.
+	                    </p>
+	    {% endif %}
 
-<div class="inner_card col-centered">
+		<button class="btn btn-block btn-wire-dark-simple">Login</button>	
+		<br>
+	</form>
+	<p>Not registered? Create an <a href="{% url 'log:register' %}">account</a>.</p>
 
-<form action="{% url 'log:login' %}" method="POST">
-	{% csrf_token %}
 
-	{{ errors }}
-	<input class="form-control" type="text" name="username" placeholder="username" required><br>
-	<input class="form-control" type="password" name="password" placeholder="password" required><br>
-	{% if error %}
-                    <p class=" label label-danger">
-                        Your username and password didn't match. 
-                        Please try again.
-                    </p>
-    {% endif %}
 
-	<button class="btn btn-block btn-primary">Login</button>	
-</form>
-<h5>Not registered? Create an <a href="{% url 'log:register' %}">account</a> </h5>
 
+	</div>
+	</div>
 </div>
 
-</div>
-</div>
-</div>
-
-
-<style type="text/css">body{
-	background: #b3c6ff;
-}</style>
 {% endblock %}
 

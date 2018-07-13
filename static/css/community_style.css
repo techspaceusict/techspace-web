@@ -60,6 +60,15 @@ nav {
   outline: none;
 }
 
+.nav-user-img {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid grey;
+  border-radius: 100%; 
+}
+
 /*End Navbar CSS*/
 
 /*Buttons, helpers (MISC)*/
@@ -288,3 +297,36 @@ nav {
   border: 1px solid transparent;
 }
 /*End profile*/
+
+
+/*Login/Register page*/
+.login-card {
+  padding: 30px;
+  margin-top: 10rem; 
+}
+
+
+.btn-wire-dark-simple {
+  background-color: transparent;
+  border: 1px solid #888;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.1s all;
+  cursor: pointer;
+
+}
+
+.btn-wire-dark-simple:active,
+.btn-wire-dark-simple:hover {
+  text-decoration: none;
+  background-color: #f29260;
+  border: 1px solid #f29260;
+  color: white;
+}
+
+.btn-wire-dark-simple:focus,
+.btn-wire-simple:focus {
+  outline: none;
+}
+/*EndLogin/Register page*/

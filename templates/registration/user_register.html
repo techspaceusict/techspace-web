@@ -1,45 +1,26 @@
-{% extends '../log/base.html' %}
+{% extends '../community/base.html' %}
 
 {% block title %} - Register{% endblock %}
 
 {% block content %}
 
 
+<div class="container text-center">
+	<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-xs-12 col-md-4 card login-card">
+	<h5 class="small-heading">Register with Techspace community.</h5>
+	<br>	
+	<form action="{% url 'log:register' %}" method="POST">
+		{% csrf_token %}
+		{{ user_form.as_p }}
+		{{ profile_form.as_p }}
+		<button class="btn btn-block btn-wire-dark-simple">Submit</button>
+	</form>
 
-<div class="container-fluid">
-
-<div class="col-sm-offset-4 col-sm-4">
-<div class="login_card container-fluid">
-
-<div class="inner_card col-centered">
-
-<form action="{% url 'log:register' %}" method="POST">
-	{% csrf_token %}
-	{{ user_form.as_p }}
-	{{ profile_form.as_p }}
-	<button class="btn btn-block btn-primary">Submit</button>
-
-</form>
+	</div>
+	</div>
 </div>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-<style type="text/css">body{
-	background: #b3c6ff;
-}</style>
-
-
-
-
-
 
 
 <!-- 
