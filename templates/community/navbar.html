@@ -10,6 +10,12 @@
         <li class="nav-item">
             <a class="nav-link scrollTo" href="{% url 'home:index' %}#clubs">Clubs @Techspace</a>
         </li>
+        <li class="nav-item d-block d-sm-none">
+            <a class="nav-link scrollTo" href="{% url 'log:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="nav-item d-block d-sm-none">
+            <a class="nav-link scrollTo" href="{% url 'log:logout' %}">Logout</a>
+        </li>
         <!-- <li class="nav-item">
             <a class="nav-link scrollTo" href="{% url 'home:index' %}#contact"></a>
         </li> -->
@@ -37,7 +43,6 @@
         </li>
         <li class="nav-item">
             <a class="btn-wire-dark" href="{% url 'log:logout' %}">Logout </a>
-
         </li>
         {% else %}
             <li class="nav-item">

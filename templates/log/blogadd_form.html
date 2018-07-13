@@ -1,17 +1,20 @@
-{% extends './base.html' %}
+{% extends '../community/base.html' %}
 
 {% block content %}
 
-<div class="blog-container">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-xs-12 col-md-8 card create-post-content">
+			<h1>Create a post</h1>
+			<form method="post" class="form-group" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-wire-dark-simple">Submit</button>
 
-<h1>Add a blog</h1>
-<form method="post" class="form-group" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button class="btn btn-default blog-sub">Submit</button>
-
-</form>
+			</form>
+		</div>   
+	</div>
 </div>
-
 
 {% endblock %}

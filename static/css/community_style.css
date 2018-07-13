@@ -330,3 +330,10 @@ nav {
   outline: none;
 }
 /*EndLogin/Register page*/
+
+/*Create post page*/
+.create-post-content{
+  padding: 20px;
+  margin-top: 40px;
+}
+/*End create blog page*/
