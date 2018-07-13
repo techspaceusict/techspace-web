@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'log',
     'blog',
     'event',
+    'community',
 ]
 
 MIDDLEWARE = [

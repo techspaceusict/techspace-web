@@ -1,0 +1,104 @@
+{% extends './base.html' %}
+{% block content %}
+
+
+<div class="container-fluid content-posts">
+    <div class="row">
+    <div class="col-xs-12 col-md-8">
+        <h4 class="small-heading">Community Section
+        <div class="hr"></div>
+        </h4>
+        <div class="toolbar-posts">
+           <h6><a href="{% url 'log:blog-add' %}" class="float-right">Create New Post</a></h6>
+            <p>Sort by:
+            <select>
+                <option>Time</option>
+                <option>Points</option>
+            </select>
+            &nbsp;
+            Filter by:
+            <select>
+                <option>Codeschool</option>
+                <option>Cogitans</option>
+            </select>
+            </p>
+        </div>
+        <ul class="posts">
+          {% for blog in blogs reversed %}
+          <li class="row">
+              <div class="col-xs-12 col-md-10">
+                  <h5>{{blog.title}}</h5>
+                  <h6 class="blog-date">{{ blog.date }} by <a href="#">{{ blog.author }}</a></h6>
+                  <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:detail' blog.slug %}">(more...)</a></p>
+              </div>
+              <div class="col-xs-12 col-md-2">
+                  <div class="post-image" style="background: url('TS-1.jpg');background-size: cover;background-position: center;">
+              </div>
+              </div>
+              <div class="col-xs-12 col-md-12 post-actions">
+                  <a href="#"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
+                  <a href="#">2 comments</a> |
+                  Tags:
+                  <span class="tag">Codeschool</span>
+                  <span class="tag">Cogitans</span>
+                  <span class="tag">Blog</span>
+              </div>
+          </li>
+          <hr>
+
+
+
+
+          {% endfor %}
+
+        </ul>
+        <div class="toolbar-posts-bottom">
+            <button class="btn-wire-dark">Next</button>
+            <button class="btn-wire-dark">Previous</button>
+        </div>
+    </div>
+
+   <div class="col-xs-12 col-md-4 right-aside">
+        <div class="sticky">
+            <div class="col-xs-12">
+                    <h4 class="small-heading">Upcoming Events
+                        <div class="hr"></div>
+                    </h4>
+                    <ul>
+                      {% if events %}
+                      {% for event in events reversed %}
+                      <li>
+                          <h5>{{event.title}}</h5>
+                          <h6 class="blog-date">{{event.date}}</h6>
+                          <p>{{event.content|truncatewords:50}} <a href="{% url 'event:detail' event.slug %}">more...</a></p>
+                      </li>
+                      {% endfor %}
+                      {% else %}
+                      <h3>No upcoming events.</h3>
+                      {% endif %}
+                    <div class="text-right"><a href="{% url 'event:events' %}" class="btn-wire-dark">See all events</a></div>
+            </div>
+            <div class="col-xs-12">
+                <br>
+                <h4 class="small-heading">Latest
+                        <div class="hr"></div>
+                </h4>
+                <ul>
+                    <li>
+                        <h5>Post example</h5>
+                        <h6 class="blog-date">06 Jul 2018</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                    </li>
+                    <li>
+                        <h5>Post example</h5>
+                        <h6 class="blog-date">06 Jul 2018</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

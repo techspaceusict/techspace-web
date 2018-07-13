@@ -54,7 +54,7 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(reverse('log:dashboard'))
+				return HttpResponseRedirect(reverse('community:community_content_view'))
 			else:
 				return HttpResponse("Account is not active")
 		else:
@@ -71,6 +71,8 @@ def user_logout(request):
 	return HttpResponseRedirect(reverse('home:index'))
 
 
+def profile_view(request, username):
+    u = User.objects.get(username=username)
 
 @login_required
 def dashboard(request):

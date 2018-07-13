@@ -31,5 +31,3 @@ def contactSubmit(request):
 			content = content
 			)
 	return HttpResponse('')
-
-

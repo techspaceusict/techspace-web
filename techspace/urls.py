@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^renderedusict/', include('renderedusict.urls')),
     url(r'^turingai/', include('turingai.urls')),
     url(r'^accounts/', include('log.urls')),
-    url(r'^community/', include('blog.urls')),
+    url(r'^blogs/', include('blog.urls')),
+    url(r'^community/', include('community.urls')),
     url(r'^events/', include('event.urls')),
     url(r'^', include('home.urls')),
 ]
