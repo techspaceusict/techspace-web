@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 
-from .forms import UserForm, UserProfileForm, BlogAddForm, InfoAddForm, TeamAddForm, EventAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, BlogAddForm, InfoAddForm, TeamAddForm, EventAddForm
 from home.models import Contact, Info, Team
 from blog.models import BlogPost
 from event.models import Events
@@ -64,11 +64,26 @@ def user_login(request):
 	else:
 		return render(request, 'registration/login.html', {})
 
-
 @login_required
 def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('home:index'))
+
+@login_required
+def userProfileEdit(request):
+	user = UserProfile.objects.get(user=request.user)
+	if request.method == "POST":
+		form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
+		if form.is_valid():
+			user = form.save(commit=False)
+			if 'profile_pic' in request.FILES:
+				user.profile_pic = request.FILES['profile_pic']
+			user.save()
+
+			return redirect('log:dashboard')
+	form = UserProfileEditForm(instance=request.user)
+	return render(request, 'log/profile_edit_form.html', {'form':form})
+
 
 
 def profile_view(request, username):

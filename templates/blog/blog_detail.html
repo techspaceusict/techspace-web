@@ -12,10 +12,10 @@
 {% if user.username == blog_detail.author %}
 
 		<div class="stack">
-			<form action="{% url 'log:blog-edit' blog_detail.pk %}" method="get">
+			<form action="{% url 'log:blog-edit' blog_detail.slug %}" method="get">
 				<button>Edit</button>
 			</form>
-			<form action="{% url 'log:blog-delete' blog_detail.pk %}" method="post" >
+			<form action="{% url 'log:blog-delete' blog_detail.slug %}" method="post" >
 				{% csrf_token %}
 				<button>Delete</button>
 			</form>
