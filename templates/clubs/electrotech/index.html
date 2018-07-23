@@ -1,12 +1,12 @@
-{% extends 'club_base/base.html' %}
+{% extends '../club_base/base.html' %}
 
-{% block title %}Turing A.I.{% endblock %}
+{% block title %}Electrotech{% endblock %}
 
 {% block content %}
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="#">Turing A.I. <span>- Techspace</span></a></div>
+				<div class="logo"><a href="#">Electrotech <span>- Techspace</span></a></div>
 				<a href="#menu"><span>Menu</span></a>
 			</header>
 
@@ -21,17 +21,17 @@
 				</ul>
 			</nav>
 
-			<section id="banner" class="bg-img" data-bg="{% static 'img/turingai/banner.jpg' %}">
+			<section id="banner" class="bg-img" data-bg="{% static 'img/electrotech/banner.jpg' %}">
 				<div class="inner">
 					<header>
-						<h1>Turing A.I.</h1>
+						<h1>Electrotech</h1>
 					</header>
 				</div>
 				<a href="#one" class="more">Learn More</a>
 			</section>
 
 		<!-- One -->
-			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/turingai/banner2.jpg' %}">
+			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/electrotech/banner2.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -49,7 +49,7 @@
 			</section>
 
 		<!-- Two -->
-			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/turingai/banner3.jpg' %}">
+			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/electrotech/banner3.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -59,7 +59,7 @@
 							<h3>Click the link below to read our blogs.</h3>
 						</div>
 						<footer>
-							<a href="{% url 'turingai:post' %}" class="button alt">Blogs</a>
+							<a href="{% url 'electrotech:post' %}" class="button alt">Blogs</a>
 						</footer>
 					</article>
 				</div>
@@ -85,7 +85,7 @@
 
 		</style>
 
-			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/turingai/banner4.jpg' %}">
+			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/electrotech/banner4.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -146,7 +146,7 @@
 			</section>
 
 		<!-- Four -->
-			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/turingai/banner5.jpg' %}">
+			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/electrotech/banner5.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -159,7 +159,7 @@
 							<h4>{{ event.date }} - {{ event.time }}</h4>
 						</div>
 						<footer>
-							<a href="{% url 'turingai:events' %}" class="button alt">All Events</a>
+							<a href="{% url 'electrotech:events' %}" class="button alt">All Events</a>
 						</footer>
 					</article>
 				</div>
@@ -211,7 +211,7 @@
         e.preventDefault();
 
         var formData = $('#contact_form').serializeArray();
-        formData.push({ name: "app_name", value: "turingai" });
+        formData.push({ name: "app_name", value: "electrotech" });
         
 
         $.ajax({

@@ -54,7 +54,7 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(reverse('community:community_content_view'))
+				return HttpResponseRedirect(reverse('community:index'))
 			else:
 				return HttpResponse("Account is not active")
 		else:
@@ -117,19 +117,6 @@ class InfoDetailView(LoginRequiredMixin, DetailView):
 
 
 @login_required
-def events(request):
-	user = UserProfile.objects.get(user=request.user)
-	events = Events.objects.filter(club=user.club)
-	return render(request, 'log/event_dashboard.html', {'events': events})
-
-
-class EventDetailView(LoginRequiredMixin, DetailView):
-	model = Events
-	template_name = 'log/eventdetail_dashboard.html'
-	context_object_name = 'event_detail'
-
-
-@login_required
 def team(request):
 	user = UserProfile.objects.get(user=request.user)
 	team = Team.objects.filter(club=user.club)
@@ -142,72 +129,10 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
 
 
 
-@login_required
-def events(request):
-	user = UserProfile.objects.get(user=request.user)
-
-	if user.club == 'techspace':
-		events = Events.objects.all()
-
-	else:
-		events = Events.objects.filter(club=user.club)
-
-	return render(request, 'log/event_dashboard.html', {'events': events})
-
-
-
 
 # class BlogCreate(CreateView):
 # 	model = BlogPost
 # 	fields = ['author', 'title', 'image', 'content', 'club']
-
-@login_required
-def event_new(request):
-	if request.method == 'POST':
-		form = EventAddForm(request.POST)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			event = form.save(commit=False)
-			event.club = user.club
-			event.author = str(user)
-			event.save()
-			return redirect('log:event-detail', slug=event.slug)
-
-	form = EventAddForm()
-	return render(request, 'log/eventadd_form.html', {'form': form})
-
-
-@login_required
-def event_edit(request, slug):
-	user = UserProfile.objects.get(user=request.user)
-	event = get_object_or_404(Events, slug=slug)
-	if user.club == event.club:
-		if request.method == 'POST':
-			form = EventAddForm(request.POST, instance=event)
-			if form.is_valid():
-				event = form.save(commit=False)
-				event.club = user.club
-				event.save()
-				return redirect('log:event-detail', slug=event.slug)
-
-		form = EventAddForm(instance=event)
-		return render(request, 'log/eventedit_form.html', {'form': form})
-
-	else:
-		return redirect('home:index')
-
-
-class EventDelete(LoginRequiredMixin, DeleteView):
-	model = Events
-	success_url = reverse_lazy('log:events')
-	def get_object(self, queryset=None):
-		event = super(EventDelete,self).get_object()
-		user = UserProfile.objects.get(user=self.request.user)
-		if event.club == user.club:
-			return event
-		raise Http404
-
-
 
 
 @login_required

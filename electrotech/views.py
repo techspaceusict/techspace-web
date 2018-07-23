@@ -12,7 +12,7 @@ def index(request):
 	info = Info.objects.filter(club=Info.electrotech).order_by('id').last()
 	team = Team.objects.filter(club=Team.electrotech)
 	event = Events.objects.filter(club=Events.electrotech).order_by('-date').first()
-	return render(request,'electrotech/index.html', {'info':info, 'team': team, 'event': event})
+	return render(request,'clubs/electrotech/index.html', {'info':info, 'team': team, 'event': event})
 
 
 class BlogPostView(BlogListView):

@@ -18,7 +18,7 @@ from .forms import BlogAddForm
 
 class BlogListView(ListView):
 	model = BlogPost
-	template_name = 'blog/index.html'
+	template_name = 'blog/blog_list.html'
 	context_object_name = 'blogs'
 #
 # class BlogDetailView(DetailView):
@@ -52,7 +52,7 @@ def blogDetailView(request, slug):
 			return redirect('blog:blog-detail', slug=slug)
 	else:
 		comment_form = CommentForm()
-	return render(request, 'blog/blog_detail.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
+	return render(request, 'blog/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 
 
@@ -74,7 +74,7 @@ def post_new(request):
 
 
 	form = BlogAddForm()
-	return render(request, 'blog/blogadd_form.html', {'form':form})
+	return render(request, 'blog/blog_add_form.html', {'form':form})
 
 
 @login_required
@@ -98,7 +98,7 @@ def post_edit(request, slug):
 				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
-		return render(request, 'blog/blogedit_form.html', {'form': form})
+		return render(request, 'blog/blog_edit_form.html', {'form': form})
 
 	else:
 		return redirect('home:index')
@@ -106,7 +106,7 @@ def post_edit(request, slug):
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = BlogPost
-	success_url = reverse_lazy('community:community_content_view')
+	success_url = reverse_lazy('community:index')
 
 	def get_object(self, queryset=None):
 		blog = super(BlogDelete,self).get_object()

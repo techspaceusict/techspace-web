@@ -12,7 +12,7 @@ def index(request):
 	info = Info.objects.filter(club=Info.codeschool).order_by('id').last()
 	team = Team.objects.filter(club=Team.codeschool)
 	event = Events.objects.filter(club=Events.codeschool).order_by('-date').first()
-	return render(request,'codeschool/index.html', {'info':info, 'team': team, 'event': event})
+	return render(request,'clubs/codeschool/index.html', {'info':info, 'team': team, 'event': event})
 
 class BlogPostView(BlogListView):
 

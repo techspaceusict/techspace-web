@@ -12,7 +12,7 @@ def index(request):
 	info = Info.objects.filter(club=Info.renderedusict).order_by('id').last()
 	team = Team.objects.filter(club=Team.renderedusict)
 	event = Events.objects.filter(club=Events.renderedusict).order_by('-date').first()
-	return render(request,'renderedusict/index.html', {'info':info, 'team': team, 'event': event})
+	return render(request,'clubs/renderedusict/index.html', {'info':info, 'team': team, 'event': event})
 
 
 class BlogPostView(BlogListView):

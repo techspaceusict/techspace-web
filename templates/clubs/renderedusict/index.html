@@ -1,12 +1,12 @@
-{% extends 'club_base/base.html' %}
+{% extends '../club_base/base.html' %}
 
-{% block title %}Droidclub{% endblock %}
+{% block title %}Rendered-USICT{% endblock %}
 
 {% block content %}
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="#">Droidclub <span>- Techspace</span></a></div>
+				<div class="logo"><a href="#">Rendered-USICT <span>- Techspace</span></a></div>
 				<a href="#menu"><span>Menu</span></a>
 			</header>
 
@@ -21,17 +21,17 @@
 				</ul>
 			</nav>
 
-			<section id="banner" class="bg-img" data-bg="{% static 'img/droidclub/banner.jpg' %}">
+			<section id="banner" class="bg-img" data-bg="{% static 'img/renderedusict/banner.jpg' %}">
 				<div class="inner">
 					<header>
-						<h1>Droidclub</h1>
+						<h1>Rendered-USICT</h1>
 					</header>
 				</div>
 				<a href="#one" class="more">Learn More</a>
 			</section>
 
 		<!-- One -->
-			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/droidclub/banner2.jpg' %}">
+			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/renderedusict/banner2.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -49,7 +49,7 @@
 			</section>
 
 		<!-- Two -->
-			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/droidclub/banner3.jpg' %}">
+			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/renderedusict/banner3.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -59,7 +59,7 @@
 							<h3>Click the link below to read our blogs.</h3>
 						</div>
 						<footer>
-							<a href="{% url 'droidclub:post' %}" class="button alt">Blogs</a>
+							<a href="{% url 'renderedusict:post' %}" class="button alt">Blogs</a>
 						</footer>
 					</article>
 				</div>
@@ -85,7 +85,7 @@
 
 		</style>
 
-			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/droidclub/banner4.jpg' %}">
+			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/renderedusict/banner4.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -146,7 +146,7 @@
 			</section>
 
 		<!-- Four -->
-			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/droidclub/banner5.jpg' %}">
+			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/renderedusict/banner5.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -159,7 +159,7 @@
 							<h4>{{ event.date }} - {{ event.time }}</h4>
 						</div>
 						<footer>
-							<a href="{% url 'droidclub:events' %}" class="button alt">All Events</a>
+							<a href="{% url 'renderedusict:events' %}" class="button alt">All Events</a>
 						</footer>
 					</article>
 				</div>
@@ -211,7 +211,7 @@
         e.preventDefault();
 
         var formData = $('#contact_form').serializeArray();
-        formData.push({ name: "app_name", value: "droidclub" });
+        formData.push({ name: "app_name", value: "renderedusict" });
         
 
         $.ajax({

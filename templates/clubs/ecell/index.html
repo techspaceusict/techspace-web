@@ -1,12 +1,12 @@
-{% extends 'club_base/base.html' %}
+{% extends '../club_base/base.html' %}
 
-{% block title %}OSLC{% endblock %}
+{% block title %}E-Cell{% endblock %}
 
 {% block content %}
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="#">OSLC <span>- Techspace</span></a></div>
+				<div class="logo"><a href="#">E-Cell <span>- Techspace</span></a></div>
 				<a href="#menu"><span>Menu</span></a>
 			</header>
 
@@ -21,17 +21,17 @@
 				</ul>
 			</nav>
 
-			<section id="banner" class="bg-img" data-bg="{% static 'img/oslc/banner.jpg' %}">
+			<section id="banner" class="bg-img" data-bg="{% static 'img/ecell/banner.jpg' %}">
 				<div class="inner">
 					<header>
-						<h1>OSLC</h1>
+						<h1>E-Cell</h1>
 					</header>
 				</div>
 				<a href="#one" class="more">Learn More</a>
 			</section>
 
 		<!-- One -->
-			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/oslc/banner2.jpg' %}">
+			<section id="one" class="wrapper post bg-img" data-bg="{% static 'img/ecell/banner2.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -49,7 +49,7 @@
 			</section>
 
 		<!-- Two -->
-			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/oslc/banner3.jpg' %}">
+			<section id="two" class="wrapper post bg-img" data-bg="{% static 'img/ecell/banner3.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -59,7 +59,7 @@
 							<h3>Click the link below to read our blogs.</h3>
 						</div>
 						<footer>
-							<a href="{% url 'oslc:post' %}" class="button alt">Blogs</a>
+							<a href="{% url 'ecell:post' %}" class="button alt">Blogs</a>
 						</footer>
 					</article>
 				</div>
@@ -85,7 +85,7 @@
 
 		</style>
 
-			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/oslc/banner4.jpg' %}">
+			<section id="three" class="wrapper post bg-img" data-bg="{% static 'img/ecell/banner4.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -146,7 +146,7 @@
 			</section>
 
 		<!-- Four -->
-			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/oslc/banner5.jpg' %}">
+			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/ecell/banner5.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -159,7 +159,7 @@
 							<h4>{{ event.date }} - {{ event.time }}</h4>
 						</div>
 						<footer>
-							<a href="{% url 'oslc:events' %}" class="button alt">All Events</a>
+							<a href="{% url 'ecell:events' %}" class="button alt">All Events</a>
 						</footer>
 					</article>
 				</div>
@@ -211,7 +211,7 @@
         e.preventDefault();
 
         var formData = $('#contact_form').serializeArray();
-        formData.push({ name: "app_name", value: "oslc" });
+        formData.push({ name: "app_name", value: "ecell" });
         
 
         $.ajax({
