@@ -1,4 +1,4 @@
-{% extends './base.html' %}
+{% extends '../community/base.html' %}
 
 {% block content %}
 
@@ -11,7 +11,7 @@
 
 
 
-<h2><a href=" {% url 'log:blog-add' %} ">Add blog</a></h2>
+<h2><a href=" {% url 'blog:blog-add' %} ">Add blog</a></h2>
 
 
 
@@ -20,7 +20,7 @@
 	{% for blog in blogs %}
 	{% if blog.author == user.username %}
 	<li>
-		<p><a href="{% url 'log:blog-detail' blog.slug %}"> {{ blog.title }}</a></p>
+		<p><a href="{% url 'blog:blog-detail' blog.slug %}"> {{ blog.title }}</a></p>
 		<p>{{ blog.author }}</p>
 	</li>
 	{% endif %}

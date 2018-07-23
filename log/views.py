@@ -10,9 +10,9 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 
-from .forms import UserForm, UserProfileForm, UserProfileEditForm, BlogAddForm, InfoAddForm, TeamAddForm, EventAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, InfoAddForm, TeamAddForm, EventAddForm
 from home.models import Contact, Info, Team
-from blog.models import BlogPost
+
 from event.models import Events
 from .models import UserProfile
 
@@ -141,24 +141,6 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
 	context_object_name = 'team_detail'
 
 
-@login_required
-def blogs(request):
-	user = UserProfile.objects.get(user=request.user)
-
-	if user.club == 'techspace':
-		blogs = BlogPost.objects.all()
-
-	else:
-		blogs = BlogPost.objects.filter(club=user.club)
-
-	return render(request, 'log/blog_dashboard.html', {'blogs': blogs})
-
-
-class BlogDetailView(LoginRequiredMixin, DetailView):
-	model = BlogPost
-	template_name = 'log/blogdetail_dashboard.html'
-	context_object_name = 'blog_detail'
-
 
 @login_required
 def events(request):
@@ -226,65 +208,6 @@ class EventDelete(LoginRequiredMixin, DeleteView):
 		raise Http404
 
 
-
-@login_required
-def post_new(request):
-	if request.method == "POST":
-		form = BlogAddForm(request.POST, request.FILES)
-		user = UserProfile.objects.get(user=request.user)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = user.user.username
-			post.club = user.club
-
-			if 'image' in request.FILES:
-				post.image = request.FILES['image']
-
-			post.save()
-			return redirect('blog:detail', slug=post.slug)
-
-
-	form = BlogAddForm()
-	return render(request, 'log/blogadd_form.html', {'form':form})
-
-
-@login_required
-def post_edit(request, slug):
-	user = UserProfile.objects.get(user=request.user)
-	post = get_object_or_404(BlogPost, slug=slug)
-	if user.club == post.club:
-		if request.method == "POST":
-			form = BlogAddForm(request.POST, request.FILES ,instance=post)
-
-			if form.is_valid():
-				post = form.save(commit=False)
-				post.author = str(user)
-				post.club = str(user.club)
-				post.date = timezone.now()
-
-				if 'image' in request.FILES:
-					post.image = request.FILES['image']
-
-				post.save()
-				return redirect('log:blog-detail', slug=post.slug)
-
-		form = BlogAddForm(instance=post)
-		return render(request, 'log/blogedit_form.html', {'form': form})
-
-	else:
-		return redirect('home:index')
-
-
-class BlogDelete(LoginRequiredMixin, DeleteView):
-	model = BlogPost
-	success_url = reverse_lazy('log:blogs')
-
-	def get_object(self, queryset=None):
-		blog = super(BlogDelete,self).get_object()
-		user = UserProfile.objects.get(user=self.request.user)
-		if blog.club == user.club:
-			return blog
-		raise Http404
 
 
 @login_required

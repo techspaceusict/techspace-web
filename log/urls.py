@@ -27,7 +27,6 @@ urlpatterns = [
 	url(r'^dashboard/edit$', views.userProfileEdit, name='edit_profile'),
 
 	url(r'^dashboard/messages/$', views.messages, name='messages'),
-	url(r'^dashboard/blogs/$', views.blogs, name='blogs'),
 	url(r'^dashboard/info/$', views.info, name='info'),
 	url(r'^dashboard/info/(?P<pk>[0-9]+)/$', views.InfoDetailView.as_view(), name='info-detail'),
 
@@ -35,11 +34,6 @@ urlpatterns = [
 	url(r'^dashboard/team/(?P<pk>[0-9]+)/$', views.TeamDetailView.as_view(), name='team-detail'),
 
 	url(r'^dashboard/events/$', views.events, name='events'),
-
-
-	url(r'^dashboard/blogs/add/$', views.post_new, name='blog-add'),
-	url(r'^dashboard/blogs/(?P<slug>[\w-]+)/edit$', views.post_edit , name='blog-edit'),
-	url(r'^dashboard/blogs/(?P<slug>[\w-]+)/delete$', views.BlogDelete.as_view() , name='blog-delete'),
 
 	url(r'^dashboard/info/add/$', views.info_new, name='info-add'),
 	url(r'^dashboard/info/(?P<pk>[0-9]+)/edit$', views.info_edit , name='info-edit'),
@@ -55,7 +49,6 @@ urlpatterns = [
 
 	url(r'^dashboard/events/(?P<slug>[\w-]+)/$', views.EventDetailView.as_view(), name='event-detail'),
 
-	url(r'^dashboard/blogs/(?P<slug>[\w-]+)/$', views.BlogDetailView.as_view(), name='blog-detail'),
 
 	# url(r'^dashboard/$',),
 

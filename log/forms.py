@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
 
-from blog.models import BlogPost
 from home.models import Info, Team
 from event.models import Events
 
@@ -54,20 +53,6 @@ class UserProfileEditForm(forms.ModelForm):
 					'linkedIn': forms.TextInput(attrs={'placeholder': 'LinkedIn', 'class': 'form-control' }),
 					'twitter': forms.TextInput(attrs={'placeholder': 'Twitter', 'class': 'form-control' }),
 					'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control' }),
-
-		}
-
-
-
-
-
-class BlogAddForm(forms.ModelForm):
-
-	class Meta:
-		model = BlogPost
-		fields = ['title','image' , 'content']
-		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Title', 'class': 'form-control'}),
-					'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 
 		}
 
