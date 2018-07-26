@@ -32,12 +32,15 @@
                   <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
               </div>
               <div class="col-xs-12 col-md-2">
-                  <div class="post-image" style="background: url('TS-1.jpg');background-size: cover;background-position: center;">
-              </div>
+                {% if blog.image.url is not None %}
+                  <div class="post-image" style="background: url('{{ blog.image.url }}');background-size: cover;background-position: center;">
+                    </div>
+                {% endif %}
+              
               </div>
               <div class="col-xs-12 col-md-12 post-actions">
                   <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
-                  <a href="#" class="small-p">2 comments</a> |
+                  <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
                   <span class="small-p">Tags:</span>
                   <span class="tag">Codeschool</span>
                   <span class="tag">Cogitans</span>

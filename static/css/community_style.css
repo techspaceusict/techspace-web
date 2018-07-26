@@ -1,8 +1,4 @@
 /*Resets*/ 
-{
-  box-sizing: border-box
-}
-
 html, body {
   width: 100vw;
   height: 100vh;
@@ -254,6 +250,10 @@ nav {
   }
 }  
 
+.post-actions > a {
+  color: black;
+}
+
 .tag {
   background-color: #ccc;
   font-size: 12px;
@@ -337,3 +337,58 @@ nav {
   margin-top: 40px;
 }
 /*End create blog page*/
+
+
+.underline{
+  width: 15em;
+  background:  #cc0000;
+  height: .3em;
+  margin: 0 auto 30px auto;
+  border-radius: 1.5em;
+}
+.end_line{
+  width: 80em;
+  height: .1em;
+  background: rgb(215,215,215);
+  margin: 3em auto 5em auto;
+}
+.blog_image{
+  width: 70%;
+  margin: 5em auto;
+}
+
+.underline{
+	width: 15em;
+	background:  #cc0000;
+	height: .3em;
+	margin: 0 auto 30px auto;
+	border-radius: 1.5em;
+}
+.end_line{
+	width: 80em;
+	height: .1em;
+	background: rgb(215,215,215);
+	margin: 3em auto 5em auto;
+}
+.blog_image{
+	width: 70%;
+	margin: 5em auto;
+}
+
+.underline{
+	width: 15em;
+	background:  #cc0000;
+	height: .3em;
+	margin: 0 auto 30px auto;
+	border-radius: 1.5em;
+}
+.end_line{
+	width: 80em;
+	height: .1em;
+	background: rgb(215,215,215);
+	margin: 3em auto 5em auto;
+}
+.blog_image{
+	width: 70%;
+	margin: 5em auto;
+}
