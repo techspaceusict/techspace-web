@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d1f9255b-f464-44f4-88b6-d2ab18f70538" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/log/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/log/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/techspace/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/techspace/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/blog_detail_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/blog_detail_single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/community/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/event/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/contact_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/contact_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/info_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/info_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/infodetail_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/infodetail_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/old.dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/old.dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/team_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/team_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/teamdetail_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/teamdetail_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/user_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/user_register.html" afterDir="false" />
-    </list>
+    <list default="true" id="d1f9255b-f464-44f4-88b6-d2ab18f70538" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,8 +80,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/techspace/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            <state relative-caret-position="285">
+              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -196,11 +175,6 @@
             <path>
               <item name="techspace-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="techspace-web" type="462c0819:PsiDirectoryNode" />
-              <item name="community" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="techspace-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="techspace-web" type="462c0819:PsiDirectoryNode" />
               <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -283,7 +257,7 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.115488395" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27576903" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -460,8 +434,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/techspace/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="285">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
