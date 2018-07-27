@@ -20,26 +20,24 @@ urlpatterns = [
 	# url(r'^dashboard/blogs/add/$', post_new, name='blog-add'),
 	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/edit$', post_edit , name='blog-edit'),
 	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/delete$', BlogDelete.as_view() , name='blog-delete'),
-	url(r'^register/$', views.register, name='register'),
-	url(r'^login/$', views.user_login, name='login'),
-	url(r'^logout/$', views.user_logout, name='logout'),
-	url(r'^dashboard/$', views.dashboard, name='dashboard'),
-	url(r'^dashboard/edit$', views.userProfileEdit, name='edit_profile'),
 
-	url(r'^dashboard/messages/$', views.messages, name='messages'),
-	url(r'^dashboard/info/$', views.info, name='info'),
-	url(r'^dashboard/info/(?P<pk>[0-9]+)/$', views.InfoDetailView.as_view(), name='info-detail'),
+	url(r'^$', views.dashboard, name='dashboard'),
+	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
 
-	url(r'^dashboard/team/$', views.team, name='team'),
-	url(r'^dashboard/team/(?P<pk>[0-9]+)/$', views.TeamDetailView.as_view(), name='team-detail'),
+	url(r'^messages/$', views.messages, name='messages'),
+	url(r'^info/$', views.info, name='info'),
+	url(r'^info/(?P<pk>[0-9]+)/$', views.InfoDetailView.as_view(), name='info-detail'),
 
-	url(r'^dashboard/info/add/$', views.info_new, name='info-add'),
-	url(r'^dashboard/info/(?P<pk>[0-9]+)/edit$', views.info_edit , name='info-edit'),
-	url(r'^dashboard/info/(?P<pk>[0-9]+)/delete$', views.InfoDelete.as_view() , name='info-delete'),
+	url(r'^team/$', views.team, name='team'),
+	url(r'^team/(?P<pk>[0-9]+)/$', views.TeamDetailView.as_view(), name='team-detail'),
 
-	url(r'^dashboard/team/add/$', views.team_new, name='team-add'),
-	url(r'^dashboard/team/(?P<pk>[0-9]+)/edit$', views.team_edit , name='team-edit'),
-	url(r'^dashboard/team/(?P<pk>[0-9]+)/delete$', views.TeamDelete.as_view() , name='team-delete'),
+	url(r'^info/add/$', views.info_new, name='info-add'),
+	url(r'^info/(?P<pk>[0-9]+)/edit$', views.info_edit , name='info-edit'),
+	url(r'^info/(?P<pk>[0-9]+)/delete$', views.InfoDelete.as_view() , name='info-delete'),
+
+	url(r'^team/add/$', views.team_new, name='team-add'),
+	url(r'^team/(?P<pk>[0-9]+)/edit$', views.team_edit , name='team-edit'),
+	url(r'^team/(?P<pk>[0-9]+)/delete$', views.TeamDelete.as_view() , name='team-delete'),
 
 
 

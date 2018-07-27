@@ -11,7 +11,7 @@
 	<div class="col-xs-12 col-md-4 card login-card">
 	<h5 class="small-heading">Register with Techspace community.</h5>
 	<br>	
-	<form action="{% url 'log:register' %}" method="POST">
+	<form action="{% url 'register' %}" method="POST">
 		{% csrf_token %}
 		{{ user_form.as_p }}
 		{{ profile_form.as_p }}

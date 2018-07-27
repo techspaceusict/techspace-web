@@ -13,7 +13,7 @@ class BlogPost(models.Model):
 	author = models.CharField(max_length=255)
 	date = models.DateTimeField(default=datetime.now)
 	title = models.CharField(max_length=1024, unique=True)
-	image = models.ImageField(upload_to='blog', default='blog/thumbnail-default.jpg')
+	image = models.ImageField(upload_to='blog')
 	content = models.TextField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
 

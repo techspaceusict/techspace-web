@@ -11,7 +11,7 @@
 
 
 
-<h2><a href=" {% url 'log:team-add' %} ">Add team member</a></h2>
+<h2><a href=" {% url 'log:team-add' name=user.username %} ">Add team member</a></h2>
 
 
 
@@ -20,7 +20,7 @@
 	
 	{% for member in team %}
 	<li>
-		<p><a href="{% url 'log:team-detail' member.id %}"> {{ member.name }}</a></p>
+		<p><a href="{% url 'log:team-detail' member.id name=user.username %}"> {{ member.name }}</a></p>
 		<img src="{{ member.image.url }}">
 		<p>{{ member.designation }}</p>
 	</li>

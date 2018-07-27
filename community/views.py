@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from blog.views import BlogPost, Upvote
 from event.views import Events
 
+from log.models import UserProfile
+
 # # Create your views here.
 # class BlogListView(ListView):
 #     model = BlogPost
@@ -28,21 +30,28 @@ def contentForCommunity(request):
         blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
         blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user) )
 
-    return render(request, 'community/index.html', {'blogs':blogs, 'events':events, 'upvotes': upvotes})
+    try:
+    	#User is logged in 
+    	user = UserProfile.objects.get(user=request.user)
+    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events, 'userprofile' : user })
+    except:
+    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events})
 
 
 @login_required
-def addUpvote(request) :
+def toggleUpvote(request) :
 
     if (request.method == "POST") :
         
         blog_title = request.POST['title'] 
-        print ("Title : " + blog_title)
+        blog_state = int(request.POST['state'])
 
-        exists = len(Upvote.objects.filter( username = request.user , title = blog_title ))
+        #print ("STate : " + blog_state)
 
-        if (exists == 0) :
-            Upvote.objects.create( username = request.user , title = blog_title )
+        if (blog_state == 0) :
+            Upvote.objects.create( username = request.user , title = blog_title )    
+        else :
+            Upvote.objects.get( username = request.user , title = blog_title ).delete()
 
     blogs = BlogPost.objects.all()
     events = Events.objects.all()
@@ -54,3 +63,5 @@ def addUpvote(request) :
 
     return redirect( reverse('community:index') )         
         
+    
+

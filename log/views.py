@@ -54,7 +54,11 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(reverse('community:index'))
+
+				if 'next' in request.POST:
+					return redirect(request.POST.get('next'))
+				else:
+					return HttpResponseRedirect(reverse('community:index'))
 			else:
 				return HttpResponse("Account is not active")
 		else:
@@ -62,7 +66,10 @@ def user_login(request):
 
 			return HttpResponse("invalid credentials")
 	else:
-		return render(request, 'registration/login.html', {})
+		if request.user.is_authenticated:
+			return HttpResponseRedirect(reverse('community:index'))
+		else:
+			return render(request, 'registration/login.html', {})
 
 @login_required
 def user_logout(request):
@@ -70,7 +77,7 @@ def user_logout(request):
 	return HttpResponseRedirect(reverse('home:index'))
 
 @login_required
-def userProfileEdit(request):
+def userProfileEdit(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	if request.method == "POST":
 		form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
@@ -80,7 +87,7 @@ def userProfileEdit(request):
 				user.profile_pic = request.FILES['profile_pic']
 			user.save()
 
-			return redirect('log:dashboard')
+			return redirect('log:dashboard', name=user.username)
 	form = UserProfileEditForm(instance=request.user)
 	return render(request, 'log/profile_edit_form.html', {'form':form})
 
@@ -89,22 +96,21 @@ def userProfileEdit(request):
 def profile_view(request, username):
     u = User.objects.get(username=username)
 
-@login_required
-def dashboard(request):
+def dashboard(request, name=None):
 	userprofile = UserProfile.objects.get(user=request.user)
 	return render(request, 'log/dashboard.html', {'userprofile': userprofile})
 
 
 
 @login_required
-def messages(request):
+def messages(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	contacts = Contact.objects.filter(app_name=user.club)
 	return render(request, 'log/contact_dashboard.html', {'contacts': contacts})
 
 
 @login_required
-def info(request):
+def info(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	info = Info.objects.filter(club=user.club)
 	return render(request, 'log/info_dashboard.html', {'info': info})
@@ -117,7 +123,7 @@ class InfoDetailView(LoginRequiredMixin, DetailView):
 
 
 @login_required
-def team(request):
+def team(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	team = Team.objects.filter(club=user.club)
 	return render(request, 'log/team_dashboard.html', {'team': team})
@@ -136,7 +142,7 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
 
 
 @login_required
-def info_new(request):
+def info_new(request, name=None):
 	if request.method == "POST":
 		form = InfoAddForm(request.POST)
 		user = UserProfile.objects.get(user=request.user)
@@ -145,14 +151,14 @@ def info_new(request):
 			info.author = str(user)
 			info.club = user.club
 			info.save()
-			return redirect('log:info-detail', pk=info.pk)
+			return redirect('log:info-detail', pk=info.pk, name=user.username)
 
 	form = InfoAddForm()
 	return render(request, 'log/infoadd_form.html', {'form': form})
 
 
 @login_required
-def info_edit(request, pk):
+def info_edit(request, pk, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	info = get_object_or_404(Info, pk=pk)
 	if info.club == user.club:
@@ -164,7 +170,7 @@ def info_edit(request, pk):
 				info.author = str(user)
 				info.club = user.club
 				info.save()
-				return redirect('log:info-detail', pk=info.pk)
+				return redirect('log:info-detail', pk=info.pk, name=user.username)
 
 		form = InfoAddForm(instance=info)
 		return render(request, 'log/infoedit_form.html', {'form': form})
@@ -176,17 +182,21 @@ def info_edit(request, pk):
 
 class InfoDelete(LoginRequiredMixin, DeleteView):
 	model = Info
-	success_url = reverse_lazy('log:info')
+
+	def get_success_url(self):
+		user = UserProfile.objects.get(user=self.request.user)
+		return reverse('log:info', kwargs={'name': user.user})
+
 	def get_object(self, queryset=None):
 		info = super(InfoDelete,self).get_object()
 		user = UserProfile.objects.get(user=self.request.user)
 		if info.club == user.club:
-			return blog
+			return info
 		raise Http404
 
 
 @login_required
-def team_new(request):
+def team_new(request, name=None):
 	if request.method == 'POST':
 		form = TeamAddForm(request.POST)
 		user = UserProfile.objects.get(user=request.user)
@@ -194,14 +204,14 @@ def team_new(request):
 			team = form.save(commit=False)
 			team.club = user.club
 			team.save()
-			return redirect('log:team-detail', pk=info.pk)
+			return redirect('log:team-detail', pk=info.pk, name=user.name)
 
 	form = TeamAddForm()
 	return render(request, 'log/teamadd_form.html', {'form': form})
 
 
 @login_required
-def team_edit(request, pk):
+def team_edit(request, pk, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	team = get_object_or_404(Team, pk=pk)
 	if user.club == team.club:
@@ -212,7 +222,7 @@ def team_edit(request, pk):
 				team = form.save(commit=False)
 				team.club = user.club
 				team.save()
-				return redirect('log:team-detail', pk=team.pk)
+				return redirect('log:team-detail', pk=team.pk, name=	user.username)
 
 		form = InfoAddForm(instance=team)
 		return render(request, 'log/teamedit_form.html', {'form': form})
@@ -223,7 +233,11 @@ def team_edit(request, pk):
 
 class TeamDelete(LoginRequiredMixin, DeleteView):
 	model = Team
-	success_url = reverse_lazy('log:team')
+
+	def get_success_url(self):
+		user = UserProfile.objects.get(user=self.request.user)
+		return reverse('log:blogs', kwargs={'name': user.user})
+
 	def get_object(self, queryset=None):
 		team = super(TeamDelete,self).get_object()
 		user = UserProfile.objects.get(user=self.request.user)
