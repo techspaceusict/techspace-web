@@ -10,6 +10,8 @@ class CommentForm(forms.ModelForm):
 
 class BlogAddForm(forms.ModelForm):
 
+    image = forms.ImageField(required=False)
+
 	class Meta:
 		model = BlogPost
 		fields = ['title','image' , 'content']
