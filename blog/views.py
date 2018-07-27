@@ -70,7 +70,7 @@ def post_new(request):
 				post.image = request.FILES['image']
 
 			post.save()
-			return redirect('blog:blog-detail', slug=post.slug)
+			return HttpResponseRedirect(reverse('community:index'))
 
 
 	form = BlogAddForm()

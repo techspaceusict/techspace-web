@@ -11,7 +11,7 @@
 	<div class="col-xs-12 col-md-4 card login-card">
 	<h5 class="small-heading">Login to Techspace community.</h5>
 	<br>	
-	<form action="{% url 'log:login' %}" method="POST">
+	<form action="{% url 'login' %}" method="POST">
 		{% csrf_token %}
 
 		{{ errors }}
@@ -24,10 +24,14 @@
 	                    </p>
 	    {% endif %}
 
+		{% if request.GET.next %}
+		<input type="hidden" name="next" value="{{ request.GET.next }}">
+		{% endif %}
+
 		<button class="btn btn-block btn-wire-dark-simple">Login</button>	
 		<br>
 	</form>
-	<p>Not registered? Create an <a href="{% url 'log:register' %}">account</a>.</p>
+	<p>Not registered? Create an <a href="{% url 'register' %}">account</a>.</p>
 
 
 

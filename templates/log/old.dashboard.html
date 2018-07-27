@@ -11,18 +11,18 @@
 {% if userprofile.club == 'none' %}
 <h4>hey, <b>{{ user.username }}</b></h4>
 
-<a href="{% url 'log:blogs' %}"><h4>Blogs</h4></a>
+<a href="{% url 'log:blogs' name=user.username %}"><h4>Blogs</h4></a>
 
 {% else %}
 
 <h4>hey, <b>{{ user.username }}</b> from <b>{{ userprofile.club }}</b></h4>
 
 <div class="">
-<a href="{% url 'log:blogs' %}"><h4>Blogs</h4></a>
-<a href="{% url 'log:messages' %}"><h4>Contact forms</h4></a>
-<a href="{% url 'log:events' %}"><h4>Events</h4></a>
-<a href="{% url 'log:info' %}"><h4>Club Info</h4></a>
-<a href="{% url 'log:team' %}"><h4>Team</h4></a>
+<a href="{% url 'log:blogs' name=user.username %}"><h4>Blogs</h4></a>
+<a href="{% url 'log:messages' name=user.username %}"><h4>Contact forms</h4></a>
+<a href="{% url 'log:events' name=user.username %}"><h4>Events</h4></a>
+<a href="{% url 'log:info' name=user.username %}"><h4>Club Info</h4></a>
+<a href="{% url 'log:team' name=user.username %}"><h4>Team</h4></a>
 
 
 </div>
@@ -32,7 +32,7 @@
 
 
 {% else %}
-<h1>You need to <a href="{% url 'log:login' %}">login</a> first.</h1>
+<h1>You need to <a href="{% url 'login' %}">login</a> first.</h1>
 
 
 

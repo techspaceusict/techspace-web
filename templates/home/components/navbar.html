@@ -31,11 +31,11 @@
             <li class="nav-item">
               <a href="#" class="small-p"><i class="fa fa-bell"></i>Notifications</a>&nbsp;
 
-              <a class="btn-wire-dark" href="{% url 'log:logout' %}">Logout </a>
+              <a class="btn-wire-dark" href="{% url 'logout' %}">Logout </a>
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="btn-wire-dark" href="{% url 'log:login' %}">Sign in</a>
+              <a class="btn-wire-dark" href="{% url 'login' %}">Sign in</a>
             </li>
           {% endif %}
 

@@ -31,7 +31,7 @@
                     <span class="small-p"><a href="#">Send Message</a> |</span>
                     <span class="small-p"><a href="#" class="small-p">Report User</a> |</span>
                     <!-- If logged in -->
-                    <span class="small-p"><a href="{% url 'log:edit_profile' %}" class="small-p">Edit profile </a></span>
+                    <span class="small-p"><a href="{% url 'log:edit_profile' name=user.username %}" class="small-p">Edit profile </a></span>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 {% else %}
-<h2>You neeed to login first <a href="{% url 'log:login' %}"></a></h2>
+<h2>You neeed to login first <a href="{% url 'login' %}"></a></h2>
 
 {% endif %}
 
