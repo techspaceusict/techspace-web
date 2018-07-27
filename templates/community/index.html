@@ -1,7 +1,6 @@
 {% extends './base.html' %}
 {% block content %}
 
-
 <div class="container-fluid content-posts">
     <div class="row">
     <div class="col-xs-12 col-md-8">
@@ -39,12 +38,26 @@
               
               </div>
               <div class="col-xs-12 col-md-12 post-actions">
-                  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
-                  <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
-                  <span class="small-p">Tags:</span>
-                  <span class="tag">Codeschool</span>
-                  <span class="tag">Cogitans</span>
-                  <span class="tag">Blog</span>
+                    <form class="form-horizontal" action="{% url 'community:add-upvote'%}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ blog.title }}" name="title">
+                        
+                        <div class="form-group">
+                            {% if blog.state == 1 %}
+                                <button type="submit" class="small-p"> <i class="fa fa-thumbs-up"></i> Upvoted ( {{ blog.upvotes }} ) | </button>
+                            {% endif %}
+                            {% if blog.state == 0 %}
+                                <button type="submit" class="small-p"> <i class="fa fa-thumbs-up"></i> Upvote ( {{ blog.upvotes }} ) | </button>
+                            {% endif %}
+                        </div>  
+                    </form>
+                    <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
+                    <span class="small-p">Tags:</span>
+                    <span class="tag">Codeschool</span>
+                    <span class="tag">Cogitans</span>
+                    <span class="tag">Blog</span>
+                  {% comment %} <a href="#" class="small-p"></a> | {% endcomment %}
+                 
               </div>
           </li>
           <hr>
