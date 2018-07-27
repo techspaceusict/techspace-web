@@ -4,6 +4,8 @@ from django.views.generic import ListView
 from blog.views import BlogPost
 from event.views import Events
 
+from log.models import UserProfile
+
 # # Create your views here.
 # class BlogListView(ListView):
 #     model = BlogPost
@@ -18,4 +20,10 @@ from event.views import Events
 def contentForCommunity(request):
     blogs = BlogPost.objects.all()
     events = Events.objects.all()
-    return render(request, 'community/index.html', {'blogs':blogs, 'events':events})
+    try:
+    	#User is logged in 
+    	user = UserProfile.objects.get(user=request.user)
+    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events, 'userprofile' : user})
+    except:
+    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events})
+

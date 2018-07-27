@@ -27,6 +27,11 @@ nav {
   height: 60px;
 }
 
+.nav-logo-left {
+  height: 45px;
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 770px) {
   .nav-logo{
    height: 50px;
@@ -56,13 +61,19 @@ nav {
   outline: none;
 }
 
+.nav-item {
+  vertical-align: middle !important;
+}
+
 .nav-user-img {
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   margin-left: 10px;
   margin-right: 10px;
   border: 2px solid grey;
   border-radius: 100%; 
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*End Navbar CSS*/
@@ -252,6 +263,27 @@ nav {
 
 .post-actions > a {
   color: black;
+}
+
+.post-actions > form {
+  display: inline-block;
+}
+
+.post-actions-button {
+  border: none;
+  background-color: transparent;
+  color: black;
+  display: inline-block;
+  padding: 0;
+} 
+
+.post-actions-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-actions-button:focus {
+  outline: none;
 }
 
 .tag {

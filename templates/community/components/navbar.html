@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-sm navbar-light flex-nowrap">
+<nav class="navbar navbar-expand-sm navbar-light flex-nowrap" style="font-family: 'Quicksand'">
+    <div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="/"><img src="{% static './img/TS-1.jpg' %}" class="nav-logo-left"></a>
+</div>
 <div class="navbar-collapse collapse w-100 order-1 order-sm-0 dual-collapse">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -27,22 +30,19 @@
 <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target=".dual-collapse">
     <span class="navbar-toggler-icon"></span>
 </button>
-<div class="mx-auto order-0">
-    <a class="navbar-brand mx-auto" href="/"><img src="{% static './img/TS-1.jpg' %}" class="nav-logo"></a>
-</div>
 <!-- <span class="navbar-brand w-100">Navbar 5</span> -->
 <div class="navbar-collapse collapse order-3 order-sm-2 w-100 dual-collapse d-none d-sm-block">
     <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a href="#" class="small-p"><i class="fa fa-bell"></i>Notifications</a>
+            <a href="#">Notifications</a>
              &nbsp;
             <!-- <button class="btn-wire-dark">Sign in</button> or-->
 
-            <a href="{% url 'log:dashboard' %}" class="btn-wire-dark">Dashboard</a>
+            <a href="{% url 'log:dashboard' %}" title="Profile @{{userprofile.user.username}}" class=""><div class="nav-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div></a>
         </li>
         <li class="nav-item">
-            <a class="btn-wire-dark" href="{% url 'log:logout' %}">Logout </a>
+            <a class="btn-wire-dark" href="{% url 'log:logout' %}" style="margin-top: 5px;display: inline-block;">Logout </a>
         </li>
         {% else %}
             <li class="nav-item">

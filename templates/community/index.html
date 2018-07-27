@@ -41,7 +41,16 @@
               <div class="col-xs-12 col-md-12 post-actions">
                   <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
                   <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
-                  <span class="small-p">Tags:</span>
+                  {% if user.username == blog.author %}
+                      <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
+                        <button class="post-actions-button small-p">Edit</button>
+                      </form> |
+                      <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
+                        {% csrf_token %}
+                        <button class="post-actions-button small-p">Delete</button>
+                      </form> | 
+                  {% endif %}
+                  <span class="small-p"></span>
                   <span class="tag">Codeschool</span>
                   <span class="tag">Cogitans</span>
                   <span class="tag">Blog</span>

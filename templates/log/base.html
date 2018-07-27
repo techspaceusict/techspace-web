@@ -1,28 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard</title>
-	{% load staticfiles %}
-	<!-- Compiled and minified CSS -->
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <title>Techspace USICT | GGSIPU</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{% static 'img/TS-1.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
 
-	 <!-- Compiled and minified JavaScript -->
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-	<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'community_style.css' %}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-{% include './navbar.html' %}
 
-<div class="container-fluid" style="margin: 2%;">
+{% include '../community/components/navbar.html' %}
+
+
+<div class="container-fluid">
+
+
+	<div class="container">
+    <br>
+    <div class="row">
+        <div class="d-none d-sm-block col-md-2"></div>
+        <div class="col-xs-12 col-md-8 card profile-container">
+            <div class="row">
+                <div class="col-xs-8 col-md-9">
+                    <h2 class="profile-name">{{ userprofile.user.username }}</h2>
+                    <p class="profile-bio">{{ userprofile.bio }}</p>
+                    <h6>{{ userprofile.course }}</h6>
+                    <h6>{{ userprofile.institution }}</h6>
+                    <a href="{{ userprofile.facebook }}"><i class="fa fa-facebook"></i></a>
+                    <a href="{{ userprofile.twitter }}"><i class="fa fa-twitter"></i></a>
+                    <a href="{{ userprofile.email }}"><i class="fa fa-envelope"></i></a>
+                    <a href="{{ userprofile.linkedIn }}"><i class="fa fa-linkedin"></i></a>
+                    <a href="{{ userprofile.github }}"><i class="fa fa-github"></i></a>
+                </div>
+                <div class="col-xs-4 col-md-3 text-center">
+                    <img class="profile-img" src="{{ userprofile.profile_pic.url }}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <br>
+                    <!-- If other user -->
+                    <span class="small-p"><a href="#">Send Message</a> |</span>
+                    <span class="small-p"><a href="#" class="small-p">Report User</a> |</span>
+                    <!-- If logged in -->
+                    <span class="small-p"><a href="{% url 'log:edit_profile' %}" class="small-p">Edit profile </a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+<br>
+
 {% block content %}
-
-
-
 {% endblock %}
-</div>
 
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 </html>
+
