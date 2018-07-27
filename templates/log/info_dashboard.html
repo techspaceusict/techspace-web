@@ -18,7 +18,7 @@
 	
 	{% for i in info %}
 	<li>
-		<p><a href="{% url 'log:info-detail' i.id %}"> {{ i.title }}</a></p>
+		<p><a href="{% url 'log:info-detail' pk=i.id name=user.username %}"> {{ i.title }}</a></p>
 		<p>{{ i.author }}</p>
 	</li>
 	{% endfor %}
@@ -26,7 +26,7 @@
 </ul>
 
 {% else %}
-<h2><a href=" {% url 'log:info-add' %} ">Add info</a></h2>
+<h2><a href=" {% url 'log:info-add' name=user.username %} ">Add info</a></h2>
 
 <h4>No info To show</h4>
 

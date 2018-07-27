@@ -1,11 +1,11 @@
 <nav id="nav1" class="navbar navbar-inverse animated fadeIn">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="{% url 'log:dashboard' %}">TechSpace - Dashboard</a>
+		<a class="navbar-brand" href="{% url 'log:dashboard' name=user.username %}">TechSpace - Dashboard</a>
 	</div>
 	<ul class="nav navbar-nav navbar-right" style="margin: 0;">
 		<li><a href="{% url 'home:index' %} ">Home</a></li>
 		{% if user.is_authenticated %}
-		<li><a href="{% url 'log:logout' %}">Logout</a></li>
+		<li><a href="{% url 'logout' %}">Logout</a></li>
 		{% endif %}
 	</ul>
 </nav>

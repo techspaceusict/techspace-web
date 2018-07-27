@@ -8,10 +8,10 @@
 	<div class="blog_content">
 
 	<div class="stack">
-		<form action="{% url 'log:info-edit' info_detail.pk %}" method="get">
+		<form action="{% url 'log:info-edit' pk=info_detail.pk name=user.username %}" method="get">
 			<button>Edit</button>
 		</form>
-		<form action="{% url 'log:info-delete' info_detail.pk %}" method="post" >
+		<form action="{% url 'log:info-delete' pk=info_detail.pk name=user.username %}" method="post" >
 			{% csrf_token %}
 			<button>Delete</button>
 		</form>
