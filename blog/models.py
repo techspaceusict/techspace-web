@@ -23,7 +23,7 @@ class BlogPost(models.Model):
 	image = models.ImageField(upload_to='blog')
 	content = models.TextField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
-	#tags = models.ManyToManyField(Tag)
+	tags = models.ManyToManyField(Tag)
 
 
 	codeschool = 'codeschool'

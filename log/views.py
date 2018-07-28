@@ -88,6 +88,7 @@ def userProfileEdit(request, name=None):
 				user.profile_pic = request.FILES['profile_pic']
 			user.save()
 
+
 			return redirect('log:dashboard', name=user.username)
 	form = UserProfileEditForm(instance=request.user)
 	return render(request, 'log/profile_edit_form.html', {'form':form})
@@ -101,21 +102,31 @@ def dashboard(request, name=None):
 	try:
 		userprofile = UserProfile.objects.get(user__username=name)
 		return render(request, 'log/dashboard.html', {'userprofile': userprofile})
-
 	except:
 		raise Http404
 
+
+
 def portfolio(request, name=None):
-	userprofile = UserProfile.objects.get(user=request.user)
-	return render(request, 'log/portfolio.html', {'userprofile': userprofile})
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/portfolio.html', {'userprofile': userprofile})
+	except:
+		raise Http404
 
 def discussions(request, name=None):
-	userprofile = UserProfile.objects.get(user=request.user)
-	return render(request, 'log/discussions.html', {'userprofile': userprofile})
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/discussions.html', {'userprofile': userprofile})
+	except:
+		raise Http404
 
 def comments(request, name=None):
-	userprofile = UserProfile.objects.get(user=request.user)
-	return render(request, 'log/comments.html', {'userprofile': userprofile})
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/comments.html', {'userprofile': userprofile})
+	except:
+		raise Http404
 
 
 

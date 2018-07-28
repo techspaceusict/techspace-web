@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
-from .models import BlogPost, Upvote
+from .models import BlogPost, Upvote, Tag
 from .forms import CommentForm
 from log.models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -61,20 +61,31 @@ def post_new(request):
 	if request.method == "POST":
 		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
+		print("invalid form")
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = user.user.username
 			post.club = user.club
 
+
 			if 'image' in request.FILES:
 				post.image = request.FILES['image']
 
 			post.save()
+			blog = BlogPost.objects.get(title = post.title)
+			for tag in form.cleaned_data['tags']:
+				t = Tag.objects.get(word = tag)
+				blog.tags.add(t)
 			return HttpResponseRedirect(reverse('community:index'))
 
 
 	form = BlogAddForm()
-	return render(request, 'blog/blog_add_form.html', {'form':form})
+	tags = Tag.objects.all()
+	tags_list = []
+	for val in tags:
+		tags_list.append(val.word)
+	print(tags_list)
+	return render(request, 'blog/blog_add_form.html', {'form':form, 'tags_list': tags_list})
 
 
 @login_required
