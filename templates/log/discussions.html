@@ -2,32 +2,42 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
+
+    <ul class="posts">
+    
+    <!-- Begin post -->
+    <br>
+    <li class="row">
         <div class="d-none d-sm-block col-md-2"></div>
-        <div class="col-xs-12 col-md-8 posts-container">
-            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Blogs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Portfolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Discussions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Comments</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Portfolio</a>
-              </li> -->
-              <!-- <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Teams</a>
-              </li> -->
-            </ul>
+        <div class="col-xs-12 col-md-8 card">
+            <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">
+            <div class="row">
+              <div class="col-xs-6 col-md-10 discussion-content">
+                <a href="#" class="blog-post-profile"><h5>Post heading here.</h5></a>
+                <h6 class="blog-date"> Date here</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                <br>
+                <div class="post-actions" style="position:absolute;bottom:1rem">
+                  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
+                  <a href="#" class="small-p">2 comments</a> |
+                      <form action="#" method="get">
+                        <button class="post-actions-button small-p">Edit</button>
+                      </form> |
+                      <form action="#" method="post" >
+                        <button class="post-actions-button small-p">Delete</button> 
+                      </form> 
+               </div>
+
+              </div>
+              <!-- <div class="col-xs-6 col-md-4"> -->
+                <div class="discussion-image" style="background-image: url('{% static 'img/bg-about.jpg' %}');background-size: cover;background-position: center;"></div>
+              
         </div>
-    </div>
+    </li>
+    <!-- End post -->
+  </ul>
 </div>
 
-
 {% endblock %}
+
+
