@@ -16,6 +16,7 @@ from home.models import Contact, Info, Team
 from event.models import Events
 from .models import UserProfile
 
+
 # Create your views here.
 
 def register(request):
@@ -97,9 +98,12 @@ def profile_view(request, username):
     u = User.objects.get(username=username)
 
 def dashboard(request, name=None):
-	userprofile = UserProfile.objects.get(user=request.user)
-	return render(request, 'log/dashboard.html', {'userprofile': userprofile})
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/dashboard.html', {'userprofile': userprofile})
 
+	except:
+		raise Http404
 
 
 @login_required
@@ -151,7 +155,7 @@ def info_new(request, name=None):
 			info.author = str(user)
 			info.club = user.club
 			info.save()
-			return redirect('log:info-detail', pk=info.pk, name=user.username)
+			return redirect('log:info-detail', pk=info.pk, name=user.user.username)
 
 	form = InfoAddForm()
 	return render(request, 'log/infoadd_form.html', {'form': form})

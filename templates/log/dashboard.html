@@ -1,7 +1,6 @@
 {% extends '../community/base.html' %}
 {% block content %}
 
-{% if user.is_authenticated %}
 
 <div class="container">
     <br>
@@ -31,7 +30,9 @@
                     <span class="small-p"><a href="#">Send Message</a> |</span>
                     <span class="small-p"><a href="#" class="small-p">Report User</a> |</span>
                     <!-- If logged in -->
+                    {% if user.is_authenticated %}
                     <span class="small-p"><a href="{% url 'log:edit_profile' name=user.username %}" class="small-p">Edit profile </a></span>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -66,9 +67,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
-{% else %}
-<h2>You neeed to login first <a href="{% url 'login' %}"></a></h2>
-
-{% endif %}
 
 {% endblock %}
