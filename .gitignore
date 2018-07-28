@@ -3,3 +3,5 @@
 db.*
 .vscode/
 .idea/
+node_modules/
+

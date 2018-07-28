@@ -10,11 +10,11 @@
     <li class="row">
         <div class="d-none d-sm-block col-md-2"></div>
         <div class="col-xs-12 col-md-8 card">
-            <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">
             <div class="row">
               <div class="col-xs-6 col-md-10 discussion-content">
                 <a href="#" class="blog-post-profile"><h5>Post heading here.</h5></a>
                 <h6 class="blog-date"> Date here</h6>
+                 <div class="discussion-image-xs d-block d-sm-none" style="background-image: url('{% static 'img/bg-about.jpg' %}');background-size: cover;background-position: center;"></div><hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
                 <br>
                 <div class="post-actions" style="position:absolute;bottom:1rem">
@@ -30,7 +30,7 @@
 
               </div>
               <!-- <div class="col-xs-6 col-md-4"> -->
-                <div class="discussion-image" style="background-image: url('{% static 'img/bg-about.jpg' %}');background-size: cover;background-position: center;"></div>
+                <div class="discussion-image d-none d-sm-block" style="background-image: url('{% static 'img/bg-about.jpg' %}');background-size: cover;background-position: center;"></div>
               
         </div>
     </li>

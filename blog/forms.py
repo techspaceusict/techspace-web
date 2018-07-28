@@ -15,8 +15,10 @@ class BlogAddForm(forms.ModelForm):
 	image = forms.ImageField(required=False)
 	class Meta:
 		model = BlogPost
-		fields = ['title','image' , 'content', 'tags']
-		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Title', 'class': 'form-control'}),
+
+
+		fields = ['title','image' , 'content']
+		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
 					'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 
 		}
