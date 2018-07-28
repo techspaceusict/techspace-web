@@ -2,351 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1f9255b-f464-44f4-88b6-d2ab18f70538" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/blog/migrations/0023_merge_20180728_1913.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/migrations/0024_auto_20180728_2214.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/event/migrations/0015_auto_20180728_2214.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/css/clubs/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/css/community_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/css/events.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/12189171_434159780110133_7912882799473586164_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/12193761_434159766776801_7308397155248291271_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/12196348_434160690110042_3641423619562608559_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/12208527_434160000110111_5751983266262522127_n.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/Logo.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/TS-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/bg-about.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/bg-stats.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/blog/thumbnail-default.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/av.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/harshit.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/RedHat.svg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/google.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/logo-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/mozilla.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/mozilla.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/logos/oslc.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/nishchal.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/sid.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/client/vatsal.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/codeschool/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/coding-ninjas.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/cogitans/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/droidclub/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/dsclogo.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ecell/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/edit.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/electrotech/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/events.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/ieee-vector-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/oslc/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/pexels-photo-131637.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/pexels-photo-171198.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/pexels-photo-268435.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/renderedusict/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/navdeep.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/navdeepb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/piyush.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/prabhanshu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/pranjal.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/pranjal1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/team/rajiv.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/banner4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/banner5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/pic01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/turingai/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/Mozilla_Community_Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/codeschool.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/cogitans.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/cogitansold.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/droid.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/ecell.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/electrotech.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/firefox-logo-100690302-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/index.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/mozilla-firefox-logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/renderedusict.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/img/work/turingai.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/jquery.scrollex.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/jquery.scrolly.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/skel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/clubs/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/src/js/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/post/blog_add_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/post/blog_detail_single.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/post/blog_edit_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/log/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/blog/thumbnail-default.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/blog/thumbnail-default.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/animate/animate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/blog.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/blog_navbar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/clubs/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/css/clubs/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/clubs/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/css/clubs/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/community_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/css/community_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/events.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/css/events.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/css/clubs/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/magnific-popup/magnific-popup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/owl-carousel/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/owl-carousel/owl.theme.default.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/responsive.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/timeline.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/12189171_434159780110133_7912882799473586164_n.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/12189171_434159780110133_7912882799473586164_n.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/12193761_434159766776801_7308397155248291271_n.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/12193761_434159766776801_7308397155248291271_n.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/12196348_434160690110042_3641423619562608559_n.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/12196348_434160690110042_3641423619562608559_n.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/12208527_434160000110111_5751983266262522127_n.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/12208527_434160000110111_5751983266262522127_n.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/13.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/14.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/Logo.psd" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/Logo.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/TS-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/TS-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/bg-about.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/bg-about.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/bg-home.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/bg-stats.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/bg-stats.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/bg-testimonials.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cd-icon-location.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cd-icon-movie.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cd-icon-picture.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/av.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/av.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/client-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/client-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/client-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/harshit.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/harshit.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/RedHat.svg.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/RedHat.svg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/google.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/google.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/logo-8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/logo-8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/mozilla.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/mozilla.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/mozilla.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/mozilla.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/logos/oslc.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/logos/oslc.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/nishchal.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/nishchal.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/sid.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/sid.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/client/vatsal.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/client/vatsal.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/codeschool/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/codeschool/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/coding-ninjas.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/coding-ninjas.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/cogitans/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/cogitans/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/droidclub/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/droidclub/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/dsclogo.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/dsclogo.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ecell/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ecell/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/edit.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/edit.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/electrotech/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/electrotech/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/events.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/events.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/ieee-vector-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/ieee-vector-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/oslc/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/oslc/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/pexels-photo-131637.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/pexels-photo-131637.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/pexels-photo-171198.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/pexels-photo-171198.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/pexels-photo-268435.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/pexels-photo-268435.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/renderedusict/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/renderedusict/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/18198391_1287339338051536_925753067731136643_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/navdeep.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/navdeep.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/navdeepb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/navdeepb.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/piyush.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/piyush.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/po.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/po.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/prabhanshu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/prabhanshu.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/pranjal.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/pranjal.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/pranjal1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/pranjal1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/rajiv.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/team/rajiv.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/rajiv.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/team-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/team-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/team-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/team-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/team/team-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/banner2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/banner2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/banner3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/banner3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/banner4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/banner4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/banner5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/banner5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/pic01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/pic01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/turingai/pic02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/turingai/pic02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/3-new.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/Mozilla_Community_Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/Mozilla_Community_Logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/codeschool.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/codeschool.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/cogitans.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/cogitans.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/cogitansold.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/cogitansold.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/droid.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/droid.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/ecell.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/ecell.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/electrotech.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/electrotech.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/firefox-logo-100690302-large.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/firefox-logo-100690302-large.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/index.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/index.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/mozilla-firefox-logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/mozilla-firefox-logo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/renderedusict.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/renderedusict.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/work/turingai.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/img/work/turingai.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/world-map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap-markdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/jquery.scrollex.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/jquery.scrollex.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/jquery.scrolly.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/jquery.scrolly.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/skel.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/skel.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/clubs/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/clubs/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/counter/jquery.counterup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/counter/jquery.waypoints.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/custom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/easing/jquery.easing.1.3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/magnific-popup/jquery.magnific-popup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/owl-carousel/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/particles.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/build/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/timeline.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/wow/wow.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/techspace/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/techspace/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/blog_add_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post_add_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/blog_detail_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post_detail_single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/blog_edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post_edit_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/blog_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/temp_blog_dashboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/community/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community/components/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/community/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/comments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log/discussions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/discussions.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -357,14 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
+            <state relative-caret-position="475">
+              <caret line="138" column="27" selection-start-line="138" selection-start-column="27" selection-end-line="138" selection-end-column="27" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/community/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="743">
+              <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -505,6 +172,7 @@
         <option value="$PROJECT_DIR$/blog/models.py" />
         <option value="$PROJECT_DIR$/blog/forms.py" />
         <option value="$PROJECT_DIR$/blog/views.py" />
+        <option value="$PROJECT_DIR$/templates/community/index.html" />
       </list>
     </option>
   </component>
@@ -912,11 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/community/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-815" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/techspace/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1078,11 +741,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
+        <state relative-caret-position="475">
+          <caret line="138" column="27" selection-start-line="138" selection-start-column="27" selection-end-line="138" selection-end-column="27" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/community/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
         </state>
       </provider>
     </entry>

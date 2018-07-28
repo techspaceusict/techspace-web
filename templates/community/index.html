@@ -54,12 +54,14 @@
                       <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                         {% csrf_token %}
                         <button class="post-actions-button small-p">Delete</button>
-                      </form> | 
+                      </form>
                     {% endif %}
-                    <span class="small-p">Tags:</span>
-                    <span class="tag">Codeschool</span>
-                    <span class="tag">Cogitans</span>
-                    <span class="tag">Blog</span>
+                  {% if blog.tags.all %}
+                    <span class="small-p">| Tags:</span>
+                    {% for tag in blog.tags.all %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                  {% endif %}
                   {% comment %} <a href="#" class="small-p"></a> | {% endcomment %}
                  
               </div>
