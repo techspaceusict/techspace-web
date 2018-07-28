@@ -9,6 +9,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Tag(models.Model):
+	word = models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.word
+
+
 class BlogPost(models.Model):
 	author = models.CharField(max_length=255)
 	date = models.DateTimeField(default=datetime.now)
@@ -16,6 +23,7 @@ class BlogPost(models.Model):
 	image = models.ImageField(upload_to='blog')
 	content = models.TextField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
+	#tags = models.ManyToManyField(Tag)
 
 
 	codeschool = 'codeschool'
