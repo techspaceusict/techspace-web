@@ -9,7 +9,10 @@ class CommentForm(forms.ModelForm):
 		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...'})}
 
 class BlogAddForm(forms.ModelForm):
+
 	tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all())
+
+	image = forms.ImageField(required=False)
 
 	class Meta:
 		model = BlogPost

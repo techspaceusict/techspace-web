@@ -105,6 +105,19 @@ def dashboard(request, name=None):
 	except:
 		raise Http404
 
+def portfolio(request, name=None):
+	userprofile = UserProfile.objects.get(user=request.user)
+	return render(request, 'log/portfolio.html', {'userprofile': userprofile})
+
+def discussions(request, name=None):
+	userprofile = UserProfile.objects.get(user=request.user)
+	return render(request, 'log/discussions.html', {'userprofile': userprofile})
+
+def comments(request, name=None):
+	userprofile = UserProfile.objects.get(user=request.user)
+	return render(request, 'log/comments.html', {'userprofile': userprofile})
+
+
 
 @login_required
 def messages(request, name=None):

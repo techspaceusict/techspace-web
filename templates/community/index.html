@@ -1,7 +1,6 @@
 {% extends './base.html' %}
 {% block content %}
 
-
 <div class="container-fluid content-posts">
     <div class="row">
     <div class="col-xs-12 col-md-8">
@@ -26,25 +25,43 @@
         <ul class="posts">
           {% for blog in blogs reversed %}
           <li class="row">
-              <div class="col-xs-12 col-md-10">
+              <div class="col-xs-12 col-md-12">
                   <h5>{{blog.title}}</h5>
                   <h6 class="blog-date">{{ blog.date }} by <a href="#">{{ blog.author }}</a></h6>
                   <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
-              </div>
-              <div class="col-xs-12 col-md-2">
-                {% if blog.image.url is not None %}
+                  {% if blog.image.url is not None %}
                   <div class="post-image" style="background: url('{{ blog.image.url }}');background-size: cover;background-position: center;">
-                    </div>
+                  </div>
                 {% endif %}
-              
               </div>
               <div class="col-xs-12 col-md-12 post-actions">
-                  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
-                  <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
-                  <span class="small-p">Tags:</span>
-                  <span class="tag">Codeschool</span>
-                  <span class="tag">Cogitans</span>
-                  <span class="tag">Blog</span>
+                    <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ blog.title }}" name="title">
+                        <input type="hidden" value="{{ blog.state }}" name="state">
+                            {% if blog.state == 1 %}
+                                <button type="submit" class="post-actions-button small-p upvoted"><i class="fa fa-thumbs-up"></i> Upvoted({{ blog.upvotes }})</button> | 
+                            {% endif %}
+                            {% if blog.state == 0 %}
+                                <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> | 
+                            {% endif %}
+                    </form>
+                    <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a> |
+                    {% if user.username == blog.author %}
+                      <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
+                        <button class="post-actions-button small-p">Edit</button>
+                      </form> |
+                      <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
+                        {% csrf_token %}
+                        <button class="post-actions-button small-p">Delete</button>
+                      </form> | 
+                    {% endif %}
+                    <span class="small-p">Tags:</span>
+                    <span class="tag">Codeschool</span>
+                    <span class="tag">Cogitans</span>
+                    <span class="tag">Blog</span>
+                  {% comment %} <a href="#" class="small-p"></a> | {% endcomment %}
+                 
               </div>
           </li>
           <hr>
@@ -67,10 +84,10 @@
                     <h4 class="small-heading">Upcoming Events
                         <div class="hr"></div>
                     </h4>
-                    <ul>
+                    <ul class="list-group">
                       {% if events %}
                       {% for event in events reversed %}
-                      <li>
+                      <li class="list-group-item">
                           <h5>{{event.title}}</h5>
                           <h6 class="blog-date">{{event.date}}</h6>
                           <p>{{event.content|truncatewords:50}} <a href="{% url 'event:detail' event.slug %}">more...</a></p>
@@ -79,20 +96,21 @@
                       {% else %}
                       <h3>No upcoming events.</h3>
                       {% endif %}
-                    <div class="text-right"><a href="{% url 'event:events' %}" class="btn-wire-dark">See all events</a></div>
+                    <a href="{% url 'event:events' %}" class="list-group-item"><div class="text-center">See all events</div></a>
+                  </ul>
             </div>
             <div class="col-xs-12">
                 <br>
                 <h4 class="small-heading">Latest
                         <div class="hr"></div>
                 </h4>
-                <ul>
-                    <li>
+                <ul class="list-group">
+                    <li class="list-group-item">
                         <h5>Post example</h5>
                         <h6 class="blog-date">06 Jul 2018</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
                     </li>
-                    <li>
+                    <li class="list-group-item">
                         <h5>Post example</h5>
                         <h6 class="blog-date">06 Jul 2018</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>

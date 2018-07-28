@@ -27,9 +27,15 @@ nav {
   height: 60px;
 }
 
+.nav-logo-left {
+  height: 45px;
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 770px) {
   .nav-logo{
    height: 50px;
+   margin-right: 10px;
   }
 }
 
@@ -56,13 +62,19 @@ nav {
   outline: none;
 }
 
+.nav-item {
+  vertical-align: middle !important;
+}
+
 .nav-user-img {
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   margin-left: 10px;
   margin-right: 10px;
   border: 2px solid grey;
   border-radius: 100%; 
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*End Navbar CSS*/
@@ -240,6 +252,9 @@ nav {
 .post-image {
   height: 100px;
   width: 100px;
+  top: 0;
+  right: 1rem;
+  position: absolute;
 }
 
 @media screen and (max-width : 768px) {
@@ -254,6 +269,30 @@ nav {
   color: black;
 }
 
+.post-actions > form {
+  display: inline-block;
+}
+
+.post-actions-button {
+  border: none;
+  background-color: transparent;
+  color: black;
+  display: inline-block;
+  padding: 0;
+} 
+
+.post-actions-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-actions-button:focus {
+  outline: none;
+}
+
+.upvoted {
+  color: #1579f6;
+}
 .tag {
   background-color: #ccc;
   font-size: 12px;
@@ -296,6 +335,49 @@ nav {
   /*bootstrap reset*/
   border: 1px solid transparent;
 }
+
+.blog-image-profile {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 70%;
+  border-radius: 0 3px 3px 0;
+  /*Automatically expands to right and left*/
+}
+
+.filter {
+  background-color: rgba(0,0,0,0.3);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 70%;
+  z-index: 2;
+  border-radius: 0 3px 3px 0;
+}
+
+.blog-content-profile {
+  padding: 1.5rem;
+  padding-top: 1rem;
+  min-height: 200px;
+}
+
+.discussion-content {
+  padding: 1.5rem;
+  padding-top: 1rem;
+  min-height: 150px;
+}
+
+.discussion-image {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  /*Automatically expands to right and left*/
+}
 /*End profile*/
 
 
@@ -336,6 +418,7 @@ nav {
   padding: 20px;
   margin-top: 40px;
 }
+
 /*End create blog page*/
 
 
@@ -392,3 +475,4 @@ nav {
 	width: 70%;
 	margin: 5em auto;
 }
+

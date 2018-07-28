@@ -9,19 +9,6 @@
 
 <div class="event-content">
 
-<nav class="navbar navbar-inverse">
-	<div class="navbar-header">
-		<a href="#" class="navbar-brand">Events</a>
-	</div>
-	<ul class="nav navbar-nav navbar-right">
-		<li><a href="{% url 'home:index' %}">Techspace</a></li>
-
-		{% if user.is_authenticated %}
-		<li><a href="{% url 'logout' %}">Logout</a></li>
-		{% endif %}
-	</ul>
-
-</nav>
 <div class="container-fluid">
 
 {% if events %}
