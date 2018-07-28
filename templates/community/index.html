@@ -76,10 +76,10 @@
                     <h4 class="small-heading">Upcoming Events
                         <div class="hr"></div>
                     </h4>
-                    <ul>
+                    <ul class="list-group">
                       {% if events %}
                       {% for event in events reversed %}
-                      <li>
+                      <li class="list-group-item">
                           <h5>{{event.title}}</h5>
                           <h6 class="blog-date">{{event.date}}</h6>
                           <p>{{event.content|truncatewords:50}} <a href="{% url 'event:detail' event.slug %}">more...</a></p>
@@ -88,20 +88,21 @@
                       {% else %}
                       <h3>No upcoming events.</h3>
                       {% endif %}
-                    <div class="text-right"><a href="{% url 'event:events' %}" class="btn-wire-dark">See all events</a></div>
+                    <a href="{% url 'event:events' %}" class="list-group-item"><div class="text-center">See all events</div></a>
+                  </ul>
             </div>
             <div class="col-xs-12">
                 <br>
                 <h4 class="small-heading">Latest
                         <div class="hr"></div>
                 </h4>
-                <ul>
-                    <li>
+                <ul class="list-group">
+                    <li class="list-group-item">
                         <h5>Post example</h5>
                         <h6 class="blog-date">06 Jul 2018</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
                     </li>
-                    <li>
+                    <li class="list-group-item">
                         <h5>Post example</h5>
                         <h6 class="blog-date">06 Jul 2018</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>

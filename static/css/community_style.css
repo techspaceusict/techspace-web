@@ -368,6 +368,35 @@ nav {
   padding: 20px;
   margin-top: 40px;
 }
+
+.blog-image-profile {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 70%;
+  border-radius: 0 3px 3px 0;
+  /*Automatically expands to right and left*/
+}
+
+.blog-content-profile {
+  padding: 1.5rem;
+  min-height: 200px;
+}
+.filter {
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 70%;
+  z-index: 2;
+  border-radius: 0 3px 3px 0;
+
+}
+
+
 /*End create blog page*/
 
 
@@ -424,3 +453,4 @@ nav {
 	width: 70%;
 	margin: 5em auto;
 }
+

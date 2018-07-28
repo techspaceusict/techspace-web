@@ -22,6 +22,8 @@ urlpatterns = [
 	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/delete$', BlogDelete.as_view() , name='blog-delete'),
 
 	url(r'^$', views.dashboard, name='dashboard'),
+	# url(r'^$', views.discussions, name='discussions'),
+	# url(r'^$', views.comments, name='comments'),
 	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
 
 	url(r'^messages/$', views.messages, name='messages'),
