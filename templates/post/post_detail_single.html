@@ -9,7 +9,7 @@
 {% if user.username == blog_detail.author %}
 
 		<div class="stack">
-			<form action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get">
+			<form action="{% url 'blog:post-edit' blog_detail.slug %}" method="get">
 				<button>Edit</button>
 			</form>
 			<form action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" >

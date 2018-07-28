@@ -378,6 +378,15 @@ nav {
   top: 1rem;
   /*Automatically expands to right and left*/
 }
+
+.discussion-image-xs {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  /*Automatically expands to right and left*/
+}
+
+
 /*End profile*/
 
 

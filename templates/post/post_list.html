@@ -13,7 +13,7 @@
 			<h5 class="center"> {{ post.date }} </h5>
 			<div class="underline"></div>
 			<p> {{ post.content|linebreaks|truncatewords:100 }} </p>
-			<a href="{% url 'blog:blog-detail' post.slug %}">(more...)</a>
+			<a href="{% url 'blog:post-detail' post.slug %}">(more...)</a>
 		</div>
 		<div class="end_line"></div>
 		{% endfor %}

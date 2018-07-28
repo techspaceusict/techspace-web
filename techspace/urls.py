@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^renderedusict/', include('renderedusict.urls')),
     url(r'^turingai/', include('turingai.urls')),
     url(r'^@(?P<name>[\w]+)/', include('log.urls')),
-    url(r'^blogs/', include('blog.urls')),
+    url(r'^post/', include('blog.urls')),
     url(r'^community/', include('community.urls')),
     url(r'^events/', include('event.urls')),
     url(r'^register/$', log_views.register, name='register'),
