@@ -73,7 +73,7 @@ def post_new(request):
 def post_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, slug=slug)
-	if user.club == post.club:
+	if request.user.username == post.author:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
 
@@ -91,7 +91,6 @@ def post_edit(request, slug):
 
 		form = BlogAddForm(instance=post)
 		return render(request, 'post/post_edit_form.html', {'form': form, 'userprofile' : user})
-
 	else:
 		return redirect('home:index')
 
@@ -142,7 +141,7 @@ def blog_new(request):
 def blog_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, slug=slug)
-	if user.club == post.club:
+	if request.user.username == post.author:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
 

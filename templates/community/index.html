@@ -8,7 +8,7 @@
         <div class="hr"></div>
         </h4>
         <div class="toolbar-posts">
-           <h6><a href="{% url 'blog:blog-add' %}" class="float-right">Create New Blog</a><a href="{% url 'blog:post-add' %}" class="float-right">Submit New Post</a></h6>
+           <h6 class="float-right"><a href="{% url 'blog:blog-add' %}">Create New Blog</a> | <a href="{% url 'blog:post-add' %}">Submit New Post</a></h6>
             <p>Sort by:
             <select>
                 <option>Time</option>
@@ -75,6 +75,7 @@
         <div class="toolbar-posts-bottom">
             <button class="btn-wire-dark">Previous</button>
             <button class="btn-wire-dark">Next</button>
+            <br>
         </div>
     </div>
 
