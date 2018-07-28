@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
 from django.core.urlresolvers import reverse
 
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -50,7 +52,7 @@ class BlogPost(models.Model):
 
 
 	def __str__(self):
-		return self.title + ' - ' + self.author + ' - ' + self.get_club_display()
+		return self.title + ' - ' + self.author 
 
 class Comments(models.Model):
 	post = models.ForeignKey(BlogPost, related_name='comments', on_delete=models.CASCADE)
@@ -61,3 +63,11 @@ class Comments(models.Model):
 
 	def __str__(self):
 		return self.post.title + ' - ' + self.comment_author
+
+
+class Upvote(models.Model):
+	title = models.CharField(max_length=1024 , null = True )
+	username = models.CharField(max_length=255 , null = True)
+
+	def __str__(self):
+		return self.title 

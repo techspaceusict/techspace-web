@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
-from .models import BlogPost
+from .models import BlogPost, Upvote
 from .forms import CommentForm
 from log.models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
