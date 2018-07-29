@@ -5,6 +5,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
+  overflow-x: hidden;
   /*overflow-clip-box: hidden;  */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -236,6 +237,14 @@ nav {
   background-color: #f7f7f7;
   position: relative;
   padding: 2rem;
+  padding-top: 1rem;
+}
+
+@media screen and (min-width : 1500px) {
+.content-posts {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  }
 }
 
 .blog-date {
@@ -299,11 +308,23 @@ nav {
   padding: 5px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .small-xs {
+    width:75%;
+  }
+}
 /*End Feed CSS*/
 
 /*Right aside*/
 .right-aside {
 
+}
+
+@media screen and (max-width: 768px) {
+  .right-aside {
+    padding: 0;
+  }
 }
 /**/
 
@@ -386,6 +407,14 @@ nav {
   /*Automatically expands to right and left*/
 }
 
+.card-post {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.pills {
+  margin-bottom: 20px;
+}
 
 /*End profile*/
 
@@ -422,13 +451,23 @@ nav {
 }
 /*EndLogin/Register page*/
 
-/*Create post page*/
+/*Create post/blog page*/
+
 .create-post-content{
   padding: 20px;
   margin-top: 40px;
 }
 
-/*End create blog page*/
+#id_tags {
+  padding-left: 10px;
+  list-style: none;
+}
+
+#id_tags > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+/*End create post/blog page*/
 
 
 .underline{
