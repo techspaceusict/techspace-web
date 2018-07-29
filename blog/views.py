@@ -57,6 +57,7 @@ def post_new(request):
 			post = form.save(commit=False)
 			post.author = user.user.username
 			post.club = user.club
+			post.isblog = False
 
 			if 'image' in request.FILES:
 				post.image = request.FILES['image']
@@ -126,6 +127,7 @@ def blog_new(request):
 			post = form.save(commit=False)
 			post.author = user.user.username
 			post.club = user.club
+			post.isblog = True
 
 
 			if 'image' in request.FILES:
@@ -146,13 +148,15 @@ def blog_new(request):
 
 @login_required
 def blog_edit(request, slug):
+	print("start")
 	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, slug=slug)
 	if request.user.username == post.author:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
-
+			print("okkkk")
 			if form.is_valid():
+				print("valid form")
 				post = form.save(commit=False)
 				post.author = str(user)
 				post.club = str(user.club)
@@ -162,7 +166,13 @@ def blog_edit(request, slug):
 					post.image = request.FILES['image']
 
 				post.save()
-				return redirect('blog:post-detail', slug=post.slug)
+				blog = BlogPost.objects.get(title=post.title)
+				blog.tags.clear()
+				for tag in form.cleaned_data['tags']:
+					t = Tag.objects.get(word=tag)
+					blog.tags.add(t)
+				print("done")
+				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
 		return render(request, 'post/blog_edit_form.html', {'form': form, 'userprofile' : user})

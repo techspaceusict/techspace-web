@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^register/$', log_views.register, name='register'),
     url(r'^login/$', log_views.user_login, name='login'),
     url(r'^logout/$', log_views.user_logout, name='logout'),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^', include('home.urls')),
 ]
 

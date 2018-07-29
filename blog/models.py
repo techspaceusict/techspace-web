@@ -6,6 +6,9 @@ from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
 
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 # Create your models here.
 
@@ -21,9 +24,10 @@ class BlogPost(models.Model):
 	date = models.DateTimeField(default=datetime.now)
 	title = models.CharField(max_length=1024, unique=True)
 	image = models.ImageField(upload_to='blog')
-	content = models.TextField()
+	content = RichTextUploadingField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
 	tags = models.ManyToManyField(Tag)
+	isblog = models.BooleanField(default=True)
 
 
 	codeschool = 'codeschool'

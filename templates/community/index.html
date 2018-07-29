@@ -28,7 +28,11 @@
               <div class="col-xs-12 col-md-12">
                   <h5>{{blog.title}}</h5>
                   <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}"">{{ blog.author }}</a></h6>
-                  <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}">(more...)</a></p>
+                  {% if blog.isblog %}
+                  <p>{{ blog.content|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
+                  {% else %}
+                   <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}">(more...)</a></p>
+                  {% endif %}
                   {% if blog.image.url is not None %}
                   <div class="post-image" style="background: url('{{ blog.image.url }}');background-size: cover;background-position: center;">
                   </div>
