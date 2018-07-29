@@ -2,18 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1f9255b-f464-44f4-88b6-d2ab18f70538" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/1_5XV55gL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/RedHat.svg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/RedHat.svg_MWNIKqD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/RedHat.svg_RP4Ls8C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/RedHat.svg_yrnOBQB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/cogitans.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/dark-silhouette-1160.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_DOTP6ts.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_IHNLzt2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_RUdjUvn.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_RjUGogW.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_TeMpPMd.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_Tlk3KKv.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_bFzcqfI.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/index_tIDylql.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blog/mozilla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/css/community_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/css/community_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/src/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/techspace/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/techspace/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/techspace/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/community/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community/components/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/community/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/blog_add_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/blog_add_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/blog_detail_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/blog_detail_single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/blog_edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/blog_edit_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/post_edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post_edit_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/log/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/log/comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/comments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/log/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/log/discussions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log/discussions.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +43,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
+            <state relative-caret-position="555">
+              <caret line="169" column="32" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -36,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/community/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="38" />
+            <state relative-caret-position="209">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
@@ -61,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/templates/post/post_add_form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -84,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="12" column="97" selection-start-line="12" selection-start-column="97" selection-end-line="12" selection-end-column="97" />
+              <caret line="12" column="78" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="78" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -100,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/templates/post/blog_edit_form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -118,7 +134,7 @@
         <entry file="file://$PROJECT_DIR$/templates/post/blog_add_form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -174,12 +190,12 @@
         <option value="$PROJECT_DIR$/templates/post/blog_add_form.html" />
         <option value="$PROJECT_DIR$/templates/post/post_add_form.html" />
         <option value="$PROJECT_DIR$/blog/models.py" />
-        <option value="$PROJECT_DIR$/templates/community/index.html" />
         <option value="$PROJECT_DIR$/templates/post/post_edit_form.html" />
         <option value="$PROJECT_DIR$/templates/post/blog_detail_single.html" />
         <option value="$PROJECT_DIR$/templates/post/blog_edit_form.html" />
-        <option value="$PROJECT_DIR$/blog/views.py" />
         <option value="$PROJECT_DIR$/blog/forms.py" />
+        <option value="$PROJECT_DIR$/blog/views.py" />
+        <option value="$PROJECT_DIR$/templates/community/index.html" />
       </list>
     </option>
   </component>
@@ -736,7 +752,7 @@
     <entry file="file://$PROJECT_DIR$/templates/post/post_add_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -747,13 +763,6 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/community/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -774,34 +783,41 @@
     <entry file="file://$PROJECT_DIR$/templates/post/blog_add_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/post/blog_edit_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blog/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="12" column="97" selection-start-line="12" selection-start-column="97" selection-end-line="12" selection-end-column="97" />
+          <caret line="12" column="78" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="78" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="169" column="32" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/community/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
