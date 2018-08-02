@@ -94,10 +94,10 @@
                 <h4 class="small-heading">Latest
                         <div class="hr"></div>
                 </h4>
-                <ul>
+                <ul class="list-group">
                     {% if latest_posts %}
                     {% for latest in latest_posts reversed %}
-                    <li>
+                    <li class="list-group-item">
                         <h5>{{latest.title}}</h5>
                         <h6 class="blog-date">{{latest.date}}</h6>
                         <p>{{latest.content|truncatewords:150}} <a href="{% url 'latest:latest_posts_detail' latest.slug %}">more...</a></p>
@@ -106,7 +106,7 @@
                     {% else %}
                     <h3>No upcoming posts.</h3>
                     {% endif %}
-                    <div class="text-right"><a href="{% url 'latest:latest_posts' %}" class="btn-wire-dark">See all Posts</a></div>
+                    <a href="{% url 'latest:latest_posts' %}" class="list-group-item"><div class="text-center">See all Posts</div></a>
                 </ul>
             </div>
             <div class="col-xs-12">
