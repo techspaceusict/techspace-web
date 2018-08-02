@@ -43,7 +43,6 @@
               </div>
               <div class="col-xs-12 col-md-12 post-actions">
                     <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
-                        {% csrf_token %}
                         <input type="hidden" value="{{ blog.title }}" name="title">
                         <input type="hidden" value="{{ blog.state }}" name="state">
                             {% if blog.state == 1 %}
