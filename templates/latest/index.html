@@ -1,0 +1,33 @@
+{% extends '../home/base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+
+
+<div class="event-wrapper">
+</div>
+
+<div class="event-content">
+
+<div class="container-fluid">
+
+{% if latest_posts %}
+{% for latest in latest_posts reversed %}
+<div class="event-card">
+  <h2 class="center"> {{ latest.title }} </h2>
+  <h5 class="center"> {{ latest.date }} </h5>
+  <h5 class="center"> {{ latest.content|linebreaks|truncatewords:50 }} </h5>
+  <div class="underline"></div>
+  <a href="{% url 'latest:latest_posts_detail' latest.slug %}">(more...)</a>
+</div>
+<div class="end_line"></div>
+{% endfor %}
+
+
+{% else %}
+<h1>No Latest Posts to display</h1>
+</div>
+</div>
+{% endif  %}
+
+{% endblock %}

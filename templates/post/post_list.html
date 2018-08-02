@@ -1,0 +1,26 @@
+{% extends '../community/base.html' %}
+
+{% block content %}
+
+
+
+	{% if blogs %}
+		{% for post in blogs reversed %}
+		<div class="blog_content">
+			<h2 class="center"> {{ post.title }} </h2>
+
+			<h5 class="center"> {{ post.author }} </h5>
+			<h5 class="center"> {{ post.date }} </h5>
+			<div class="underline"></div>
+			<p> {{ post.content|linebreaks|truncatewords:100 }} </p>
+			<a href="{% url 'blog:post-detail' post.slug %}">(more...)</a>
+		</div>
+		<div class="end_line"></div>
+		{% endfor %}
+	{% else %}
+		<h1>NO BLOG TO SHOW.</h1>
+
+	{% endif %}
+
+
+{% endblock %}

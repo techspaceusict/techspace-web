@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <title>Techspace USICT | GGSIPU</title>
@@ -17,7 +17,6 @@
 
 
 <div class="container-fluid">
-
 
 	<div class="container">
     <br>
@@ -45,16 +44,47 @@
                     <br>
                     <!-- If other user -->
                     <span class="small-p"><a href="#">Send Message</a> |</span>
-                    <span class="small-p"><a href="#" class="small-p">Report User</a> |</span>
+                    <span class="small-p"><a href="#" class="small-p">Report User</a></span>
                     <!-- If logged in -->
-                    <span class="small-p"><a href="{% url 'log:edit_profile' name=user.username %}" class="small-p">Edit profile </a></span>
+                    {% if user.is_authenticated and user.username == userprofile.user.username %}
+                    <span class="small-p">| <a href="{% url 'log:edit_profile' name=userprofile.user.username %}" class="small-p">Edit profile </a></span>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 	</div>
 <br>
+    
+    <div class="container">
+        <div class="row pills">
+            <div class="d-none d-sm-block col-md-2"></div>
+            <div class="col-xs-12 col-md-8 posts-container">
+                <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'log:dashboard' name=userprofile.user.username %}">Blogs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'log:portfolio' name=userprofile.user.username %}">Portfolio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'discussions' %}active{% endif %}" href="{% url 'log:discussions' name=userprofile.user.username %}">Discussions</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'comments' %}active{% endif %}" href="{% url 'log:comments' name=userprofile.user.username %}">Comments</a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Portfolio</a>
+                  </li> -->
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Teams</a>
+                  </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
 
+</div>
 {% block content %}
 {% endblock %}
 

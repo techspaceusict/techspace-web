@@ -1,0 +1,19 @@
+{% extends '../community/base.html' %}
+
+{% block content %}
+
+
+	<div class="blog-container">
+
+<h1>Edit your post</h1>
+	<form method="post" class="form-group" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-submit blog-sub">Submit</button>
+		
+	</form>
+		
+	</div>
+
+
+{% endblock %}

@@ -14,14 +14,17 @@ urlpatterns = [
 	# url(r'^dashboard/messages/$', messages, name='messages'),
 	# url(r'^dashboard/blogs/$', blogs, name='blogs'),
 
-	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/$', BlogDetailView.as_view(), name='blog-detail'),
+	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/$', BlogDetailView.as_view(), name='post-detail'),
 
 	# url(r'^dashboard/events/$', events, name='events'),
-	# url(r'^dashboard/blogs/add/$', post_new, name='blog-add'),
-	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/edit$', post_edit , name='blog-edit'),
+	# url(r'^dashboard/blogs/add/$', post_new, name='post-add'),
+	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/edit$', post_edit , name='post-edit'),
 	# url(r'^dashboard/blogs/(?P<pk>[0-9]+)/delete$', BlogDelete.as_view() , name='blog-delete'),
 
 	url(r'^$', views.dashboard, name='dashboard'),
+	url(r'^portfolio/$', views.portfolio, name='portfolio'),
+	url(r'^discussions/$', views.discussions, name='discussions'),
+	url(r'^comments/$', views.comments, name='comments'),
 	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
 
 	url(r'^messages/$', views.messages, name='messages'),

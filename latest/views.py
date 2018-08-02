@@ -1,21 +1,16 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Latestpost
 
 # Create your views here.
 
-class LatestPostsList(ListView) :
+class LatestPostsListView(ListView) :
     model = Latestpost
-    context_object_name = 'latest-posts'
+    context_object_name = 'latest_posts'
     template_name = 'latest/index.html'
 
-class LatestPostsDetail(DetailView) :
+class LatestPostsDetailView(DetailView) :
     model = Latestpost
-    context_object_name = 'latest-posts-detail'
-    template_name = 'latest/index.html'    
+    context_object_name = 'latest_posts_detail'
+    template_name = 'latest/latest_post_detail.html'    
 
-
-class EventDetailView(DetailView):
-	model = Events
-	context_object_name = 'event_detail'
-	template_name = 'event/event_detail.html'

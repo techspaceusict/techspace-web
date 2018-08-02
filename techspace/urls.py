@@ -17,12 +17,14 @@ urlpatterns = [
     url(r'^renderedusict/', include('renderedusict.urls')),
     url(r'^turingai/', include('turingai.urls')),
     url(r'^@(?P<name>[\w]+)/', include('log.urls')),
-    url(r'^blogs/', include('blog.urls')),
+    url(r'^post/', include('blog.urls')),
     url(r'^community/', include('community.urls')),
     url(r'^events/', include('event.urls')),
+    url(r'^latest-posts/', include('latest.urls')),
     url(r'^register/$', log_views.register, name='register'),
     url(r'^login/$', log_views.user_login, name='login'),
     url(r'^logout/$', log_views.user_logout, name='logout'),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^', include('home.urls')),
 ]
 
