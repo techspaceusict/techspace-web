@@ -1,4 +1,4 @@
-/*Resets*/ 
+/*Resets*/
 html, body {
   width: 100vw;
   height: 100vh;
@@ -15,13 +15,13 @@ html, body {
 
 /*Navbar CSS*/
 nav {
-  border-bottom: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc;
   background-color: white;
   z-index: 2 !important;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   position: sticky;
-} 
+}
 
 .nav-logo {
   height: 60px;
@@ -71,7 +71,7 @@ nav {
   margin-left: 10px;
   margin-right: 10px;
   border: 2px solid grey;
-  border-radius: 100%; 
+  border-radius: 100%;
   display: inline-block;
   vertical-align: middle;
 }
@@ -259,7 +259,7 @@ nav {
     width: 75px;
     margin-bottom: 10px;
   }
-}  
+}
 
 .post-actions > a {
   color: black;
@@ -275,7 +275,7 @@ nav {
   color: black;
   display: inline-block;
   padding: 0;
-} 
+}
 
 .post-actions-button:hover {
   text-decoration: underline;
@@ -302,7 +302,7 @@ nav {
 
 /*Profile Section*/
 .profile-container {
-  padding: 20px; 
+  padding: 20px;
 }
 .profile-img {
   border-radius: 1000px;
@@ -334,7 +334,7 @@ nav {
 /*Login/Register page*/
 .login-card {
   padding: 30px;
-  margin-top: 10rem; 
+  margin-top: 10rem;
 }
 
 
@@ -370,25 +370,7 @@ nav {
 }
 /*End create blog page*/
 
-
-.underline{
-  width: 15em;
-  background:  #cc0000;
-  height: .3em;
-  margin: 0 auto 30px auto;
-  border-radius: 1.5em;
-}
-.end_line{
-  width: 80em;
-  height: .1em;
-  background: rgb(215,215,215);
-  margin: 3em auto 5em auto;
-}
-.blog_image{
-  width: 70%;
-  margin: 5em auto;
-}
-
+/* Blog detail view*/
 .underline{
 	width: 15em;
 	background:  #cc0000;
@@ -396,24 +378,29 @@ nav {
 	margin: 0 auto 30px auto;
 	border-radius: 1.5em;
 }
-.end_line{
-	width: 80em;
-	height: .1em;
-	background: rgb(215,215,215);
-	margin: 3em auto 5em auto;
+.center{
+  text-align: center;
+  margin-top: 20px;
 }
-.blog_image{
-	width: 70%;
-	margin: 5em auto;
+.centre
+  {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.parent {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.list{
+  width:200px;
+}
+.parent > ul {
+  display: inline-block;
 }
 
-.underline{
-	width: 15em;
-	background:  #cc0000;
-	height: .3em;
-	margin: 0 auto 30px auto;
-	border-radius: 1.5em;
-}
 .end_line{
 	width: 80em;
 	height: .1em;
@@ -421,6 +408,7 @@ nav {
 	margin: 3em auto 5em auto;
 }
 .blog_image{
-	width: 70%;
+	width: 50%;
 	margin: 5em auto;
 }
+/* End Blog detail view*/

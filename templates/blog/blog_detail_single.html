@@ -1,11 +1,11 @@
 {% extends '../community/base.html' %}
 
 {% block content %}
-
+<div class="container">
 	{% if blog_detail %}
 
 
-	<div class="blog_content">
+	<div class="blog_content center">
 {% if user.username == blog_detail.author %}
 
 		<div class="stack">
@@ -18,51 +18,73 @@
 			</form>
 		</div>
 	{% endif %}
-
-		<h1 class="center">{{ blog_detail.title }}</h1>
-		<h4 class="center">{{ blog_detail.author }}</h4>
-		<h4 class="center"> {{ blog_detail.date }} </h4>
+ <div class="center">
+		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
+		<h4 style="color: #f29260">{{ blog_detail.author }}</h4>
+		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
 		<div class="underline"></div>
 		{% if blog_detail.image.url is not None %}
+		<div class="container-fluid card">
 		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
 		{% else %}
 		<h5>image not found</h5>
+	</div>
 		{% endif %}
-		<p> {{ blog_detail.content|linebreaks }} </p>
+
+		<p style="margin-top:-30px;">{{ blog_detail.content|linebreaks }}</p>
+
+
 
 		<!-- upvotes and comments -->
 
-		<i class="material-icons">thumb_up</i><br>
 
 
+
+	 		<div class="post-actions">
+				<p style="margin-top:-30px;"><i class="fa fa-thumbs-up"></i></p>
 			{% with comments.count as total_comments %}
-				<h4><i class="material-icons">comment</i>{{ total_comments }} comment{{total_comments|pluralize}}</h4>
+				<p style="margin-top:-20px;">{{ total_comments }} comment{{total_comments|pluralize}}</p>
 			{% endwith %}
-
+		</div>
+		<div class="container">
 {% if user.is_authenticated %}
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
+      <div class="container">
 				{% csrf_token %}
+
 				{% include '../global_components/form-template.html' %}
+			</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2">
-						<button class="btn-primary">Submit</button>
+						<button class="btn-wire-dark">Submit</button>
 					</div>
 				</div>
 			</form>
+		</div>
+
 {% else %}
 <h3>What are your thoughts. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a></h3>
 
 {% endif %}
 
 <!-- displaying all comments -->
-{% for comment in comments reversed %}
-<ul class="collection">
-	<li class="collection-item"><p>	<h5>{{ comment.comment_author }} <span class="small">{{ comment.comment_date }}</span><h5></p></li>
-	<li class="collection-item"><h5>{{ comment.comment_text|linebreaks }}</h5></li>
+
+<div class="container">
+<ul class="list-group">
+	{% for comment in comments reversed %}
+
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
+  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a>
+	</li>
+	{% endfor %}
+
 </ul>
-{% empty %}
-<h4>No comments yet</h4>
-{% endfor %}
+</div>
+
+<!--
+
+<h4>No comments yet</h4> -->
+</div>
 
 
 
@@ -73,10 +95,10 @@
 
 
 
-	</div>
+
 	{% else %}
 		<h1>How come you came here if there is no blog!!! kindly tell <a href="mailto:prafful.usict.025164@ipu.ac.in?subject=feedback">me</a></h1>
 
 	{% endif %}
-
+</div>
 {% endblock %}
