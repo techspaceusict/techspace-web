@@ -16,6 +16,7 @@ from home.models import Contact, Info, Team
 from event.models import Events
 from .models import UserProfile
 
+
 # Create your views here.
 
 def register(request):
@@ -87,6 +88,7 @@ def userProfileEdit(request, name=None):
 				user.profile_pic = request.FILES['profile_pic']
 			user.save()
 
+
 			return redirect('log:dashboard', name=user.username)
 	form = UserProfileEditForm(instance=request.user)
 	return render(request, 'log/profile_edit_form.html', {'form':form})
@@ -97,8 +99,34 @@ def profile_view(request, username):
     u = User.objects.get(username=username)
 
 def dashboard(request, name=None):
-	userprofile = UserProfile.objects.get(user=request.user)
-	return render(request, 'log/dashboard.html', {'userprofile': userprofile})
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/dashboard.html', {'userprofile': userprofile})
+	except:
+		raise Http404
+
+
+
+def portfolio(request, name=None):
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/portfolio.html', {'userprofile': userprofile})
+	except:
+		raise Http404
+
+def discussions(request, name=None):
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/discussions.html', {'userprofile': userprofile})
+	except:
+		raise Http404
+
+def comments(request, name=None):
+	try:
+		userprofile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/comments.html', {'userprofile': userprofile})
+	except:
+		raise Http404
 
 
 
@@ -151,7 +179,7 @@ def info_new(request, name=None):
 			info.author = str(user)
 			info.club = user.club
 			info.save()
-			return redirect('log:info-detail', pk=info.pk, name=user.username)
+			return redirect('log:info-detail', pk=info.pk, name=user.user.username)
 
 	form = InfoAddForm()
 	return render(request, 'log/infoadd_form.html', {'form': form})

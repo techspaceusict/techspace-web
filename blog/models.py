@@ -4,16 +4,30 @@ from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
 from django.core.urlresolvers import reverse
 
+from django.contrib.auth.models import User
+
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 # Create your models here.
+
+class Tag(models.Model):
+	word = models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.word
+
 
 class BlogPost(models.Model):
 	author = models.CharField(max_length=255)
 	date = models.DateTimeField(default=datetime.now)
 	title = models.CharField(max_length=1024, unique=True)
 	image = models.ImageField(upload_to='blog')
-	content = models.TextField()
+	content = RichTextUploadingField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
+	tags = models.ManyToManyField(Tag)
+	isblog = models.BooleanField(default=True)
 
 
 	codeschool = 'codeschool'
@@ -50,7 +64,7 @@ class BlogPost(models.Model):
 
 
 	def __str__(self):
-		return self.title + ' - ' + self.author + ' - ' + self.get_club_display()
+		return self.title + ' - ' + self.author 
 
 class Comments(models.Model):
 	post = models.ForeignKey(BlogPost, related_name='comments', on_delete=models.CASCADE)
@@ -61,3 +75,11 @@ class Comments(models.Model):
 
 	def __str__(self):
 		return self.post.title + ' - ' + self.comment_author
+
+
+class Upvote(models.Model):
+	title = models.CharField(max_length=1024 , null = True )
+	username = models.CharField(max_length=255 , null = True)
+
+	def __str__(self):
+		return self.title 

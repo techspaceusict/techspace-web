@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
+from home.models import Club
 
 # Create your models here.
 
@@ -26,19 +27,7 @@ class UserProfile(models.Model):
 	github = models.URLField(blank=True)
 	linkedIn = models.URLField(blank=True)
 	profile_pic = models.ImageField(upload_to='user/avatar/', default='default/Default_avatar.jpg')
-	club_choice = (
-		('none', 'none'),
-		('codeschool', 'codeschool'),
-		('cogitans', 'cogitans'),
-		('ecell', 'ecell'),
-		('electrotech', 'electrotech'),
-		('oslc', 'oslc'),
-		('renderedusict', 'renderedusict'),
-		('turingai', 'turingai'),
-		('techspace', 'techspace')
-	)
-
-	club = models.CharField(max_length=255, choices=club_choice, default='none')
+	club = models.ManyToManyField(Club)
 
 	def __str__(self):
 		return self.user.username
