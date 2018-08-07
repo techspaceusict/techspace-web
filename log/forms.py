@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
 
-from home.models import Info, Team
+# from home.models import Info, Team
 from event.models import Events
 
 
@@ -42,7 +42,7 @@ class UserProfileForm(forms.ModelForm):
 
 class UserProfileEditForm(forms.ModelForm):
 	class Meta():
-		model = UserProfile	
+		model = UserProfile
 		fields = ['institution', 'course', 'year_of_graduation', 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic', 'email',]
 		widgets = {
 					'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
@@ -53,34 +53,6 @@ class UserProfileEditForm(forms.ModelForm):
 					'linkedIn': forms.TextInput(attrs={'placeholder': 'LinkedIn', 'class': 'form-control' }),
 					'twitter': forms.TextInput(attrs={'placeholder': 'Twitter', 'class': 'form-control' }),
 					'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control' }),
-
-		}
-
-
-class InfoAddForm(forms.ModelForm):
-
-	class Meta:
-		model = Info
-		fields = ['title', 'content']
-		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'type "information"'}),
-				'content': forms.Textarea(attrs={'placeholder': 'Describe your club...'}),
-
-		}
-
-
-class TeamAddForm(forms.ModelForm):
-
-	class Meta:
-		model = Team
-		fields = ['name', 'image', 'designation', 'facebook', 'github', 'linkedin']
-		widgets = { 'name': forms.TextInput(attrs={'placeholder': 'Name'}),
-					'designation': forms.TextInput(attrs={'placeholder': 'Designation'}),
-					'facebook': forms.TextInput(attrs={'placeholder': 'facebook'}),
-					'github': forms.TextInput(attrs={'placeholder': 'github'}),
-					'linkedin': forms.TextInput(attrs={'placeholder': 'linkedin'}),
-
-
-
 
 		}
 
@@ -96,3 +68,30 @@ class EventAddForm(forms.ModelForm):
 
 
 		}
+
+# class InfoAddForm(forms.ModelForm):
+#
+# 	class Meta:
+# 		model = Info
+# 		fields = ['title', 'content']
+# 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'type "information"'}),
+# 				'content': forms.Textarea(attrs={'placeholder': 'Describe your club...'}),
+#
+# 		}
+#
+#
+# class TeamAddForm(forms.ModelForm):
+#
+# 	class Meta:
+# 		model = Team
+# 		fields = ['name', 'image', 'designation', 'facebook', 'github', 'linkedin']
+# 		widgets = { 'name': forms.TextInput(attrs={'placeholder': 'Name'}),
+# 					'designation': forms.TextInput(attrs={'placeholder': 'Designation'}),
+# 					'facebook': forms.TextInput(attrs={'placeholder': 'facebook'}),
+# 					'github': forms.TextInput(attrs={'placeholder': 'github'}),
+# 					'linkedin': forms.TextInput(attrs={'placeholder': 'linkedin'}),
+#
+#
+#
+#
+# 		}

@@ -27,20 +27,20 @@ urlpatterns = [
 	url(r'^comments/$', views.comments, name='comments'),
 	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
 
-	url(r'^messages/$', views.messages, name='messages'),
-	url(r'^info/$', views.info, name='info'),
-	url(r'^info/(?P<pk>[0-9]+)/$', views.InfoDetailView.as_view(), name='info-detail'),
-
-	url(r'^team/$', views.team, name='team'),
-	url(r'^team/(?P<pk>[0-9]+)/$', views.TeamDetailView.as_view(), name='team-detail'),
-
-	url(r'^info/add/$', views.info_new, name='info-add'),
-	url(r'^info/(?P<pk>[0-9]+)/edit$', views.info_edit , name='info-edit'),
-	url(r'^info/(?P<pk>[0-9]+)/delete$', views.InfoDelete.as_view() , name='info-delete'),
-
-	url(r'^team/add/$', views.team_new, name='team-add'),
-	url(r'^team/(?P<pk>[0-9]+)/edit$', views.team_edit , name='team-edit'),
-	url(r'^team/(?P<pk>[0-9]+)/delete$', views.TeamDelete.as_view() , name='team-delete'),
+	# url(r'^messages/$', views.messages, name='messages'),
+	# url(r'^info/$', views.info, name='info'),
+	# url(r'^info/(?P<pk>[0-9]+)/$', views.InfoDetailView.as_view(), name='info-detail'),
+	#
+	# url(r'^team/$', views.team, name='team'),
+	# url(r'^team/(?P<pk>[0-9]+)/$', views.TeamDetailView.as_view(), name='team-detail'),
+	#
+	# url(r'^info/add/$', views.info_new, name='info-add'),
+	# url(r'^info/(?P<pk>[0-9]+)/edit$', views.info_edit , name='info-edit'),
+	# url(r'^info/(?P<pk>[0-9]+)/delete$', views.InfoDelete.as_view() , name='info-delete'),
+	#
+	# url(r'^team/add/$', views.team_new, name='team-add'),
+	# url(r'^team/(?P<pk>[0-9]+)/edit$', views.team_edit , name='team-edit'),
+	# url(r'^team/(?P<pk>[0-9]+)/delete$', views.TeamDelete.as_view() , name='team-delete'),
 
 
 
