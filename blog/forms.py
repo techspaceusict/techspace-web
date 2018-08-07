@@ -10,14 +10,14 @@ class CommentForm(forms.ModelForm):
 
 class BlogAddForm(forms.ModelForm):
 
-	tags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset=Tag.objects.all())
+	tags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset=Tag.objects.all(), required=False)
 
 	image = forms.ImageField(required=False)
 	class Meta:
 		model = BlogPost
 
 
-		fields = ['title','image' , 'content']
+		fields = ['title','image' , 'content', 'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
 					#'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 

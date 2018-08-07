@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.core.urlresolvers import reverse, reverse_lazy
 from .models import BlogPost, Upvote, Tag
 from .forms import CommentForm
@@ -185,9 +185,15 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = BlogPost
 	success_url = reverse_lazy('community:index')
 
-	def get_object(self, queryset=None):
-		blog = super(BlogDelete,self).get_object()
-		user = UserProfile.objects.get(user=self.request.user)
-		if blog.club == user.club:
-			return blog
-		raise Http404
+	def delete(self, request, *args, **kwargs):
+		#the Post object
+		self.object = self.get_object()
+		print(self.object.author, "==", request.user)
+		if str(self.object.author) == str(request.user):
+			print(self.object.author, "==", request.user)
+
+			success_url = self.get_success_url()
+			self.object.delete()
+			return HttpResponseRedirect(success_url)
+		else:
+			return HttpResponseForbidden("Cannot delete other's posts")

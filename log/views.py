@@ -15,6 +15,7 @@ from home.models import Contact, Info, Team
 
 from event.models import Events
 from .models import UserProfile
+from blog.models import BlogPost, Comments
 
 
 # Create your views here.
@@ -36,7 +37,7 @@ def register(request):
 
 
 			registered = True
-			return HttpResponseRedirect(reverse('log:login'))
+			return HttpResponseRedirect(reverse('login'))
 		else:
 			print(user_form.errors, profile_form.errors)
 	else:
@@ -99,11 +100,12 @@ def profile_view(request, username):
     u = User.objects.get(username=username)
 
 def dashboard(request, name=None):
-	try:
+	# try:
+		blogs = BlogPost.objects.filter(author=request.user)
 		userprofile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/dashboard.html', {'userprofile': userprofile})
-	except:
-		raise Http404
+		return render(request, 'log/dashboard.html', {'userprofile': userprofile, 'blogs': blogs})
+	# except:
+	# 	raise Http404
 
 
 
@@ -116,15 +118,17 @@ def portfolio(request, name=None):
 
 def discussions(request, name=None):
 	try:
+		posts = BlogPost.objects.filter(author=request.user)
 		userprofile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/discussions.html', {'userprofile': userprofile})
+		return render(request, 'log/discussions.html', {'posts': posts, 'userprofile': userprofile})
 	except:
 		raise Http404
 
 def comments(request, name=None):
 	try:
+		comments = Comments.objects.filter(comment_author=request.user)
 		userprofile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/comments.html', {'userprofile': userprofile})
+		return render(request, 'log/comments.html', {'userprofile': userprofile, 'comments': comments})
 	except:
 		raise Http404
 
