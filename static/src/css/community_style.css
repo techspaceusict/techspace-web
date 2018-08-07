@@ -279,6 +279,10 @@ nav {
   color: black;
 }
 
+.post-actions {
+  padding-left: 0px;
+}
+
 .post-actions > form {
   display: inline-block;
 }
