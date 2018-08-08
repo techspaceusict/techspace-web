@@ -53,7 +53,6 @@ class UserProfileEditForm(forms.ModelForm):
 					'linkedIn': forms.TextInput(attrs={'placeholder': 'LinkedIn', 'class': 'form-control' }),
 					'twitter': forms.TextInput(attrs={'placeholder': 'Twitter', 'class': 'form-control' }),
 					'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control' }),
-
 		}
 
 

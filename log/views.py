@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
 from django.views.generic import DetailView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 
 from .forms import UserForm, UserProfileForm, UserProfileEditForm, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
@@ -78,21 +78,36 @@ def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('home:index'))
 
-@login_required
-def userProfileEdit(request, name=None):
-	user = UserProfile.objects.get(user=request.user)
-	if request.method == "POST":
-		form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
-		if form.is_valid():
-			user = form.save(commit=False)
-			if 'profile_pic' in request.FILES:
-				user.profile_pic = request.FILES['profile_pic']
-			user.save()
+# @login_required
+# def userProfileEdit(request, name):
+# 	if str(request.user) == str(name):
+# 		# user = UserProfile.objects.get(user=request.user)
+# 		# print('form : ', form)
+# 		# print("user: ", str(user)==str(name))
+# 		if request.method == "POST":
+# 			form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
+# 			print('form : ', form)
+# 			if form.is_valid():
+# 				user = form.save(commit=False)
+# 				if 'profile_pic' in request.FILES:
+# 					user.profile_pic = request.FILES['profile_pic']
+# 				user.save()
+#
+#
+# 				return redirect('log:dashboard', name=user.username)
+# 		form = UserProfileEditForm(instance=request.user)
+# 	else:
+# 		print("user not same")
+# 	return render(request, 'log/profile_edit_form.html', {'form':form})
+#
 
+class UserProfileEditView(UpdateView):
+	model = UserProfile
+	fields = ['institution', 'course', 'year_of_graduation', 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic', 'email',]
+	template_name = 'profile_edit_form.html'
+	slug_field = 'user'
+	slug_url_kwarg = 'name'
 
-			return redirect('log:dashboard', name=user.username)
-	form = UserProfileEditForm(instance=request.user)
-	return render(request, 'log/profile_edit_form.html', {'form':form})
 
 
 
