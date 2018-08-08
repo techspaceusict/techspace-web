@@ -82,7 +82,7 @@ def user_logout(request):
 def userProfileEdit(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
 	if request.method == "POST":
-		form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
+		form = UserProfileEditForm(request.POST, request.FILES, instance=user)
 		if form.is_valid():
 			user = form.save(commit=False)
 			if 'profile_pic' in request.FILES:
@@ -90,9 +90,9 @@ def userProfileEdit(request, name=None):
 			user.save()
 
 
-			return redirect('log:dashboard', name=user.username)
-	form = UserProfileEditForm(instance=request.user)
-	return render(request, 'log/profile_edit_form.html', {'form':form})
+			return redirect('log:dashboard', name=user.user.username)
+	form = UserProfileEditForm(instance=user)
+	return render(request, 'log/profile_edit_form.html', {'form':form, 'username': user.user.username})
 
 
 
