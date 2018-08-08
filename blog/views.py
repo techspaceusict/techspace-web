@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.core.urlresolvers import reverse, reverse_lazy
 from .models import BlogPost, Upvote, Tag
 from .forms import CommentForm
@@ -28,24 +28,31 @@ class BlogListView(ListView):
 
 def postDetailView(request, slug):
 	# print("sulg = ", slug)
+
 	user=None
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
 
-	blog = get_object_or_404(BlogPost, slug=slug)
-	comments = blog.comments.filter(active=True)
-	if request.method == 'POST':
-		comment_form = CommentForm(data=request.POST)
-		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			new_comment.comment_author = request.user.username
-			new_comment.post = blog
-			new_comment.save()
-			return redirect('blog:post-detail', slug=slug)
-	else:
-		comment_form = CommentForm()
-	return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
 
+	blog = get_object_or_404(BlogPost, slug=slug)
+
+	try:
+		user = UserProfile.objects.get(user=request.user)
+		comments = blog.comments.filter(active=True)
+		if request.method == 'POST':
+			comment_form = CommentForm(data=request.POST)
+			if comment_form.is_valid():
+				new_comment = comment_form.save(commit=False)
+				new_comment.comment_author = request.user.username
+				new_comment.post = blog
+				new_comment.save()
+				return redirect('blog:post-detail', slug=slug)
+		else:
+			comment_form = CommentForm()
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+
+	except:
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog})
 
 
 @login_required
@@ -99,24 +106,33 @@ def post_edit(request, slug):
 
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
+
 	user=None
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
 
 
+
 	blog = get_object_or_404(BlogPost, slug=slug)
+	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
+	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True)
-	if request.method == 'POST':
-		comment_form = CommentForm(data=request.POST)
-		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			new_comment.comment_author = request.user.username
-			new_comment.post = blog
-			new_comment.save()
-			return redirect('blog:post-detail', slug=slug)
-	else:
-		comment_form = CommentForm()
-	return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+	try:
+		user = UserProfile.objects.get(user=request.user)
+		if request.method == 'POST':
+			comment_form = CommentForm(data=request.POST)
+			if comment_form.is_valid():
+				new_comment = comment_form.save(commit=False)
+				new_comment.comment_author = request.user.username
+				new_comment.post = blog
+				new_comment.save()
+				return redirect('blog:post-detail', slug=slug)
+		else:
+			comment_form = CommentForm()
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+
+	except:
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'comments': comments })
 
 
 
@@ -190,9 +206,15 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = BlogPost
 	success_url = reverse_lazy('community:index')
 
-	def get_object(self, queryset=None):
-		blog = super(BlogDelete,self).get_object()
-		user = UserProfile.objects.get(user=self.request.user)
-		if blog.club == user.club:
-			return blog
-		raise Http404
+	def delete(self, request, *args, **kwargs):
+		#the Post object
+		self.object = self.get_object()
+		print(self.object.author, "==", request.user)
+		if str(self.object.author) == str(request.user):
+			print(self.object.author, "==", request.user)
+
+			success_url = self.get_success_url()
+			self.object.delete()
+			return HttpResponseRedirect(success_url)
+		else:
+			return HttpResponseForbidden("Cannot delete other's posts")

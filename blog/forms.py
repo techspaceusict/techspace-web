@@ -17,7 +17,7 @@ class BlogAddForm(forms.ModelForm):
 		model = BlogPost
 
 
-		fields = ['title','image' , 'content']
+		fields = ['title','image' , 'content', 'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
 					#'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 

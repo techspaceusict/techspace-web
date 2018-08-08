@@ -5,7 +5,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
+
   /*overflow-clip-box: hidden;  */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -276,6 +277,10 @@ nav {
 
 .post-actions > a {
   color: black;
+}
+
+.post-actions {
+  padding-left: 0px;
 }
 
 .post-actions > form {

@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
+<form class="form-horizontal" action="{% url 'log:edit_profile' name=username %}" method="post" enctype="multipart/form-data" >
   {% csrf_token %}
   {% include '../global_components/form-template.html' %}
   <div class="form-group">
