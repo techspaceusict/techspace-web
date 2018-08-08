@@ -28,22 +28,25 @@ class BlogListView(ListView):
 
 def postDetailView(request, slug):
 	# print("sulg = ", slug)
-	user = UserProfile.objects.get(user=request.user)
-
 	blog = get_object_or_404(BlogPost, slug=slug)
-	comments = blog.comments.filter(active=True)
-	if request.method == 'POST':
-		comment_form = CommentForm(data=request.POST)
-		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			new_comment.comment_author = request.user.username
-			new_comment.post = blog
-			new_comment.save()
-			return redirect('blog:post-detail', slug=slug)
-	else:
-		comment_form = CommentForm()
-	return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
 
+	try:
+		user = UserProfile.objects.get(user=request.user)
+		comments = blog.comments.filter(active=True)
+		if request.method == 'POST':
+			comment_form = CommentForm(data=request.POST)
+			if comment_form.is_valid():
+				new_comment = comment_form.save(commit=False)
+				new_comment.comment_author = request.user.username
+				new_comment.post = blog
+				new_comment.save()
+				return redirect('blog:post-detail', slug=slug)
+		else:
+			comment_form = CommentForm()
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+
+	except:
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog})
 
 
 @login_required
@@ -97,21 +100,26 @@ def post_edit(request, slug):
 
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
-	user = UserProfile.objects.get(user=request.user)
-
 	blog = get_object_or_404(BlogPost, slug=slug)
+	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
+	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True)
-	if request.method == 'POST':
-		comment_form = CommentForm(data=request.POST)
-		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			new_comment.comment_author = request.user.username
-			new_comment.post = blog
-			new_comment.save()
-			return redirect('blog:post-detail', slug=slug)
-	else:
-		comment_form = CommentForm()
-	return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+	try:
+		user = UserProfile.objects.get(user=request.user)
+		if request.method == 'POST':
+			comment_form = CommentForm(data=request.POST)
+			if comment_form.is_valid():
+				new_comment = comment_form.save(commit=False)
+				new_comment.comment_author = request.user.username
+				new_comment.post = blog
+				new_comment.save()
+				return redirect('blog:post-detail', slug=slug)
+		else:
+			comment_form = CommentForm()
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+
+	except:
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'comments': comments })
 
 
 

@@ -10,11 +10,11 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 
-from .forms import UserForm, UserProfileForm, UserProfileEditForm, EventAddForm#, InfoAddForm, TeamAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
 
 from event.models import Events
-from .models import UserProfile
+from .models import UserProfile, Report
 from blog.models import BlogPost, Comments
 
 
@@ -78,6 +78,7 @@ def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('home:index'))
 
+<<<<<<< HEAD
 # @login_required
 # def userProfileEdit(request, name):
 # 	if str(request.user) == str(name):
@@ -100,6 +101,18 @@ def user_logout(request):
 # 		print("user not same")
 # 	return render(request, 'log/profile_edit_form.html', {'form':form})
 #
+=======
+@login_required
+def userProfileEdit(request, name=None):
+	user = UserProfile.objects.get(user=request.user)
+	if request.method == "POST":
+		form = UserProfileEditForm(request.POST, request.FILES, instance=user)
+		if form.is_valid():
+			user = form.save(commit=False)
+			if 'profile_pic' in request.FILES:
+				user.profile_pic = request.FILES['profile_pic']
+			user.save()
+>>>>>>> 9f0db756659ce566eb62f03480a47e0e66ab60cb
 
 class UserProfileEditView(UpdateView):
 	model = UserProfile
@@ -108,8 +121,28 @@ class UserProfileEditView(UpdateView):
 	slug_field = 'user'
 	slug_url_kwarg = 'name'
 
+<<<<<<< HEAD
+=======
+			return redirect('log:dashboard', name=user.user.username)
+	form = UserProfileEditForm(instance=user)
+	return render(request, 'log/profile_edit_form.html', {'form':form, 'username': user.user.username})
+>>>>>>> 9f0db756659ce566eb62f03480a47e0e66ab60cb
 
+@login_required
+def userReport(request, name=None):
+	user = UserProfile.objects.get(user=request.user)
+	if request.method == "POST":
+		form = UserReportForm(request.POST)
+		if form.is_valid():
+			report = form.save(commit=False)
+			report.reported_by = user
+			reported_user = UserProfile.objects.get(user__username=name)
+			report.reported_user = reported_user
+			report.save()
 
+			return redirect('log:dashboard', name=name)
+	form = UserReportForm()
+	return render(request, 'log/user_report_form.html', {'form': form, 'username': name})
 
 def profile_view(request, username):
     u = User.objects.get(username=username)

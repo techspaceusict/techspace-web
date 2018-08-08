@@ -31,3 +31,12 @@ class UserProfile(models.Model):
 
 	def __str__(self):
 		return self.user.username
+
+class Report(models.Model):
+	reported_user = models.OneToOneField(UserProfile)
+	reported_by = models.OneToOneField(UserProfile, related_name='reported_by')
+	reason = models.TextField()
+	resolved = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.reported_user.user.username
