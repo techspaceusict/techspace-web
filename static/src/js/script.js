@@ -124,9 +124,10 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 }, !1);
 $(document).ready(function() {
+
     /*$(window).scroll(function() {
         var top_of_element = $("#facultyBoard").offset().top;
-        
+
         var bottom_of_element = $("#facultyBoard").offset().top + $("#facultyBoard").outerHeight();
         var bottom_of_screen = $(window).scrollTop() + window.innerHeight;
         var top_of_screen = $(window).scrollTop();
@@ -141,8 +142,10 @@ $(document).ready(function() {
             // The element is not visible, do something else
         }
     });*/
-    $(".scrollTo").on('click', function(e) {
 
+
+
+    $(".scrollTo").on('click', function(e) {
        // prevent default anchor click behavior
        e.preventDefault();
 
@@ -170,14 +173,85 @@ $(document).ready(function() {
     });
 
     $(".list-group .list-group-item").click(function(e) {
+
        $(".list-group .list-group-item").removeClass("active");
+       console.log($(e.tar))
        $(e.target).addClass("active");
     });
-
+    $('.clubs-list').children().removeClass("active") ;
 
 });
 
 (function(){
+
+    // button click
+    // alert("open1") ;
+
+
+    $("a").click(function(event) {
+       var classes1 = $(event.target).attr('class');
+       var classes_list = classes1.split(" ") ;
+       if (classes_list[1] == "list-group-item-action")
+       {
+         $('.clubs-list').children().removeClass("active") ;
+         // alert("." + classes_list[2]) ;
+
+         $('.' + classes_list[2]).addClass("active") ;
+         // alert( $('.' + classes_list[2]).attr("class") ) ;
+       }
+     });
+
+    // Club Cards scrolling
+
+    $('.clubs-list').children().removeClass("active") ;
+    $('.content-club').attr("attop", false);
+    var lastScrollTop = 0;
+    $(window).on('scroll', function() {
+      var windowScrollTop = $(this).scrollTop();
+
+
+      if (windowScrollTop > lastScrollTop) {
+          var currentDiv = $('.content-club[attop="false"]:first');
+          if (currentDiv && currentDiv.length > 0) {
+              if (windowScrollTop >= currentDiv.offset().top) {
+                  currentDiv.attr('attop', true);
+                  //alert('reached top');
+                  let id = currentDiv.attr("id") ;
+                  //console.log(id);
+
+                //  $('a[href$="#codeschool"]').addClass("active") ;
+                  $('.clubs-list').children().removeClass("active") ;
+                  $("." + "clubs-list-" + id).addClass("active") ;
+
+              }
+          }
+
+      } else {//this part needs to be removed to call only once
+          var currentTopDivs = $('.content-club[attop="true"]');
+          var currentTopDiv = $('.content-club[attop="false"]:first');
+
+
+          let id = currentTopDiv.attr("id") ;
+          $('.clubs-list').children().removeClass("active") ;
+          $("." + "clubs-list-" + id).addClass("active") ;
+
+
+          if (currentTopDivs && currentTopDivs.length > 0) {
+              $.each(currentTopDivs,function(i,elem){
+                  if (windowScrollTop <= $(elem).offset().top) {
+                      $(elem).attr('attop', false);
+
+                  }
+
+
+              });
+          }
+
+      }
+      lastScrollTop = windowScrollTop;
+
+  });
+
     // Vertical Timeline - by CodyHouse.co
     function VerticalTimeline( element ) {
         this.element = element;
@@ -197,8 +271,8 @@ $(document).ready(function() {
         for( var i = 0; i < this.blocks.length; i++) {
             (function(i){
                 if( self.blocks[i].getBoundingClientRect().top > window.innerHeight*self.offset ) {
-                    self.images[i].classList.add("cd-is-hidden"); 
-                    self.contents[i].classList.add("cd-is-hidden"); 
+                    self.images[i].classList.add("cd-is-hidden");
+                    self.contents[i].classList.add("cd-is-hidden");
                 }
             })(i);
         }
@@ -247,4 +321,7 @@ $(document).ready(function() {
         });
         scrolling = false;
     };
+
+
+
 })();

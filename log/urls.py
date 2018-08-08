@@ -25,8 +25,9 @@ urlpatterns = [
 	url(r'^portfolio/$', views.portfolio, name='portfolio'),
 	url(r'^discussions/$', views.discussions, name='discussions'),
 	url(r'^comments/$', views.comments, name='comments'),
-	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
-	url(r'^report$', views.userReport, name='report_user'),
+	url(r'^edit/$', views.userProfileEdit, name='edit_profile'),
+	url(r'^report/$', views.userReport, name='report_user'),
+
 
 	# url(r'^messages/$', views.messages, name='messages'),
 	# url(r'^info/$', views.info, name='info'),
