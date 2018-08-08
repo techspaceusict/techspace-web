@@ -26,7 +26,7 @@ class BlogPost(models.Model):
 	image = models.ImageField(upload_to='blog')
 	content = RichTextUploadingField()
 	slug = models.SlugField(_('slug'), db_index=True, max_length=2024, unique=True)
-	tags = models.ManyToManyField(Tag)
+	tags = models.ManyToManyField(Tag, blank=True)
 	isblog = models.BooleanField(default=True)
 
 

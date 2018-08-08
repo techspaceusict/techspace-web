@@ -10,7 +10,7 @@ class CommentForm(forms.ModelForm):
 
 class BlogAddForm(forms.ModelForm):
 
-	tags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset=Tag.objects.all())
+	tags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset=Tag.objects.all(), required=False)
 
 	image = forms.ImageField(required=False)
 	class Meta:

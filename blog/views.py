@@ -28,7 +28,9 @@ class BlogListView(ListView):
 
 def postDetailView(request, slug):
 	# print("sulg = ", slug)
-	user = UserProfile.objects.get(user=request.user)
+	user=None
+	if request.user.is_authenticated():
+		user = UserProfile.objects.get(user=request.user)
 
 	blog = get_object_or_404(BlogPost, slug=slug)
 	comments = blog.comments.filter(active=True)
@@ -97,7 +99,10 @@ def post_edit(request, slug):
 
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
-	user = UserProfile.objects.get(user=request.user)
+	user=None
+	if request.user.is_authenticated():
+		user = UserProfile.objects.get(user=request.user)
+
 
 	blog = get_object_or_404(BlogPost, slug=slug)
 	comments = blog.comments.filter(active=True)
