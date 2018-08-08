@@ -44,7 +44,7 @@
                     <br>
                     <!-- If other user -->
                     <span class="small-p"><a href="#">Send Message</a> |</span>
-                    <span class="small-p"><a href="#" class="small-p">Report User</a></span>
+                    <span class="small-p"><a href="{% url 'log:report_user' name=userprofile.user.username %}" class="small-p">Report User</a></span>
                     <!-- If logged in -->
                     {% if user.is_authenticated and user.username == userprofile.user.username %}
                     <span class="small-p">| <a href="{% url 'log:edit_profile' name=userprofile.user.username %}" class="small-p">Edit profile </a></span>

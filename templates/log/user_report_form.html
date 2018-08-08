@@ -1,0 +1,17 @@
+{% extends '../community/base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<form class="form-horizontal" action="{% url 'log:report_user' name=username %}" method="post" enctype="multipart/form-data" >
+  {% csrf_token %}
+  {% include '../global_components/form-template.html' %}
+  <div class="form-group">
+    <div class="col-sm-offset-2">
+      <button>Submit</button>
+    </div>
+  </div>
+</form>
+
+{% endif %}
+{% endblock %}

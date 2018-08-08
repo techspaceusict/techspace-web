@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, Report
 
 # from home.models import Info, Team
 from event.models import Events
@@ -56,6 +56,11 @@ class UserProfileEditForm(forms.ModelForm):
 
 		}
 
+class UserReportForm(forms.ModelForm):
+	class Meta():
+		model = Report
+		fields = ['reason']
+		widgets = { 'reason': forms.Textarea(attrs={'placeholder': 'If related to some post, provide respective link(s)'}) }
 
 class EventAddForm(forms.ModelForm):
 
