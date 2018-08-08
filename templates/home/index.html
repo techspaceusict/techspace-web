@@ -12,7 +12,7 @@
             <h1 class="text-white techspace-title">Techspace <br>USICT</h1>
             <p class="text-white" style="font-family: 'Quicksand'">Best place to nurture yourself.</p>
             <br>
-            <h4 style="font-family: 'Quicksand'"><a href="#" class="btn-wire">Let's Join Hands</a></h4>
+            <h4 style="font-family: 'Quicksand'"><a href="{% url 'register' %}" class="btn-wire">Let's Join Hands</a></h4>
         </div>
         <div class="col-md-5 d-none d-sm-block">
             <img class="img-fluid img-thumbnail" src="{% static 'img/3.jpg' %}">
@@ -563,7 +563,7 @@
                     </div>
                 </div> -->
                 <br>
-                <h3 class="small-heading" >Student Body (2017)</h3>
+                <h3 class="small-heading" >Student Body (2017-18)</h3>
                 <table class="table table-bordered">
                     <tr>
                         <td>Piyush Mehndiratta<br>(Batch CSE '19)</td>
@@ -687,18 +687,25 @@
         <div class="col-md-6 col-xs-12 text-center">
             <br>
             <h2 class="small-section-heading">Partner Organisations</h2>
+            <br>
             <div class="row">
-                <div class="col col-xs-6">
-                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                <div class="col col-xs-6 col-md-6">
+                    <img class="logo-partner" src="{% static 'img/coding-ninjas.svg' %}">
+                    <p>Coding Ninjas</p>
                 </div>
-                <div class="col col-xs-6">
-                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                <div class="col col-xs-6 col-md-6">
+                    <img class="logo-partner" src="{% static 'img/dsclogo.png' %}" height="100">
+                    <p>Google DSC, USICT</p>
+
                 </div>
-                <div class="col col-xs-6">
-                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                <div class="col col-xs-6 col-md-6">
+                    <img class="logo-partner" src="{% static 'img/ieee-vector-logo.png' %}">
+                    <p>IEEE USICT</p>
+
                 </div>
-                <div class="col col-xs-6">
-                    <img class="logo-partner" src="{% static 'img/14.jpg' %}">
+                <div class="col col-xs-6 col-md-6">
+                    <img class="logo-partner" src="{% static 'img/T&P.jpg' %}">
+                    <p>Training and placement Cell, USICT</p>
                 </div>
 
             </div>

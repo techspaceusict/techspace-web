@@ -28,6 +28,12 @@ class BlogListView(ListView):
 
 def postDetailView(request, slug):
 	# print("sulg = ", slug)
+
+	user=None
+	if request.user.is_authenticated():
+		user = UserProfile.objects.get(user=request.user)
+
+
 	blog = get_object_or_404(BlogPost, slug=slug)
 
 	try:
@@ -100,6 +106,13 @@ def post_edit(request, slug):
 
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
+
+	user=None
+	if request.user.is_authenticated():
+		user = UserProfile.objects.get(user=request.user)
+
+
+
 	blog = get_object_or_404(BlogPost, slug=slug)
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
