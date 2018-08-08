@@ -41,7 +41,21 @@
 
 
 	 		<div class="post-actions">
-				<p style="margin-top:-30px;"><i class="fa fa-thumbs-up"></i></p>
+				{% if user.is_authenticated %}
+					<form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+							<input type="hidden" value="{{ blog_detail.title }}" name="title">
+							<input type="hidden" value="1" name="onDetailPage">
+							{% csrf_token %}
+							<input type="hidden" value="{{ blog_detail.state }}" name="state">
+									{% if blog_detail.state == 1 %}
+											<button type="submit" class="post-actions-button small-p upvoted"><i class="fa fa-thumbs-up"></i> Upvoted({{ blog_detail.upvotes }})</button> |
+									{% endif %}
+									{% if blog_detail.state == 0 %}
+											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
+									{% endif %}
+					</form>
+				{% endif %}
+				<hr>
 			{% with comments.count as total_comments %}
 				<p style="margin-top:-20px;">{{ total_comments }} comment{{total_comments|pluralize}}</p>
 			{% endwith %}

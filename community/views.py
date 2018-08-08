@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView
 
 from django.contrib.auth.decorators import login_required
 
-from blog.views import BlogPost, Upvote
-from event.views import Events
-from latest.views import Latestpost
+from blog.models import BlogPost, Upvote
+from event.models import Events
+from latest.models import Latestpost
 
 from log.models import UserProfile
 
@@ -23,48 +23,46 @@ from log.models import UserProfile
 
 def contentForCommunity(request):
 
-    blogs = BlogPost.objects.all()
+    blogs = BlogPost.objects.filter(pinned = False)
+    pinned_blogs = BlogPost.objects.filter(pinned = True)
     events = Events.objects.all()
     latest_posts = Latestpost.objects.all()
     upvotes = Upvote.objects.all()
 
     for blog in blogs :
         blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
-        blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user) )
+        blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
+
+    for blog in pinned_blogs:
+        blog.upvotes = len(Upvote.objects.filter(title = blog.title))
+        blog.state = len(Upvote.objects.filter(title = blog.title, username = request.user))
 
     try:
-    	#User is logged in 
+    	#User is logged in
     	user = UserProfile.objects.get(user=request.user)
-    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events, 'latest_posts' : latest_posts, 'userprofile' : user })
+    	return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events, 'latest_posts' : latest_posts, 'userprofile' : user })
     except:
-    	return render(request, 'community/index.html', {'blogs':blogs, 'events':events , 'latest_posts' : latest_posts})
+    	return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events , 'latest_posts' : latest_posts})
 
 
 @login_required
 def toggleUpvote(request) :
 
     if (request.method == "POST") :
-        
-        blog_title = request.POST['title'] 
+
+        blog_title = request.POST['title']
         blog_state = int(request.POST['state'])
+        onDetailPage = int(request.POST['onDetailPage'])
+        blog = get_object_or_404(BlogPost, title = blog_title)
 
         #print ("STate : " + blog_state)
 
         if (blog_state == 0) :
-            Upvote.objects.create( username = request.user , title = blog_title )    
+            Upvote.objects.create( username = request.user , title = blog_title )
         else :
             Upvote.objects.get( username = request.user , title = blog_title ).delete()
 
-    blogs = BlogPost.objects.all()
-    events = Events.objects.all()
-    upvotes = Upvote.objects.all()
-    latest_posts = Latestpost.objects.all()
+        if onDetailPage:
+            return redirect(reverse('blog:blog-detail', args=[blog.slug]))
 
-    for blog in blogs :
-        blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
-        blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user) )
-
-    return redirect( reverse('community:index') )         
-        
-    
-
+    return redirect( reverse('community:index') )
