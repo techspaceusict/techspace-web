@@ -78,30 +78,7 @@ def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('home:index'))
 
-<<<<<<< HEAD
-# @login_required
-# def userProfileEdit(request, name):
-# 	if str(request.user) == str(name):
-# 		# user = UserProfile.objects.get(user=request.user)
-# 		# print('form : ', form)
-# 		# print("user: ", str(user)==str(name))
-# 		if request.method == "POST":
-# 			form = UserProfileEditForm(request.POST, request.FILES, instance=request.user)
-# 			print('form : ', form)
-# 			if form.is_valid():
-# 				user = form.save(commit=False)
-# 				if 'profile_pic' in request.FILES:
-# 					user.profile_pic = request.FILES['profile_pic']
-# 				user.save()
-#
-#
-# 				return redirect('log:dashboard', name=user.username)
-# 		form = UserProfileEditForm(instance=request.user)
-# 	else:
-# 		print("user not same")
-# 	return render(request, 'log/profile_edit_form.html', {'form':form})
-#
-=======
+
 @login_required
 def userProfileEdit(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
@@ -112,21 +89,9 @@ def userProfileEdit(request, name=None):
 			if 'profile_pic' in request.FILES:
 				user.profile_pic = request.FILES['profile_pic']
 			user.save()
->>>>>>> 9f0db756659ce566eb62f03480a47e0e66ab60cb
-
-class UserProfileEditView(UpdateView):
-	model = UserProfile
-	fields = ['institution', 'course', 'year_of_graduation', 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic', 'email',]
-	template_name = 'profile_edit_form.html'
-	slug_field = 'user'
-	slug_url_kwarg = 'name'
-
-<<<<<<< HEAD
-=======
 			return redirect('log:dashboard', name=user.user.username)
 	form = UserProfileEditForm(instance=user)
 	return render(request, 'log/profile_edit_form.html', {'form':form, 'username': user.user.username})
->>>>>>> 9f0db756659ce566eb62f03480a47e0e66ab60cb
 
 @login_required
 def userReport(request, name=None):

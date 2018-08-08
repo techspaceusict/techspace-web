@@ -25,12 +25,8 @@ urlpatterns = [
 	url(r'^portfolio/$', views.portfolio, name='portfolio'),
 	url(r'^discussions/$', views.discussions, name='discussions'),
 	url(r'^comments/$', views.comments, name='comments'),
-<<<<<<< HEAD
-	url(r'^edit$', views.UserProfileEditView.as_view(), name='edit_profile'),
-=======
 	url(r'^edit$', views.userProfileEdit, name='edit_profile'),
 	url(r'^report$', views.userReport, name='report_user'),
->>>>>>> 9f0db756659ce566eb62f03480a47e0e66ab60cb
 
 	# url(r'^messages/$', views.messages, name='messages'),
 	# url(r'^info/$', views.info, name='info'),
