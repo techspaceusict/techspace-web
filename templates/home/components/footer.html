@@ -3,8 +3,8 @@
 <div class="footer row">
     <div class="col-xs-12 col-md-4 text-center">
         <h4>Sitemap</h4>
-        <a href="/community.html" class="footer-links">Techspace Community</a><br>
-        <a href="/community.html" class="footer-links">Events</a><br>
+        <a href="{% url 'community:index' %}" class="footer-links">Techspace Community</a><br>
+        <a href="{% url 'event:events' %}" class="footer-links">Events</a><br>
         <a href="#clubs" class="footer-links">Clubs @Techspace</a>
         <br>
         <br>
@@ -22,3 +22,5 @@
     </div>
 </div>
 </div>
+
+{% include '../../community/components/smallfooter.html' %}

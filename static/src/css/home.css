@@ -604,6 +604,14 @@ input:focus, textarea:focus {
   background-repeat: no-repeat; 
 }
 
+.small-footer {
+  background: #f2925f;
+  position: relative;
+  text-align: center;
+  padding-top: 5px;
+  display: flow-root;
+}
+
 /*End club card CSS*/
 /*Timeline CSS*/
 .cd-timeline {

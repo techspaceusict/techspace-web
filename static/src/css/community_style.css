@@ -197,6 +197,14 @@ nav {
 .small-p {
   font-size: 0.9rem;
 }
+
+.small-footer {
+  background: #f2925f;
+  position: relative;
+  text-align: center;
+  padding-top: 5px;
+  display: flow-root;
+}
 /*End Buttons and helpers*/
 
 /*Feed CSS*/
