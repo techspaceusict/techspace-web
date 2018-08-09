@@ -27,4 +27,15 @@
 		font-size: 14px;
 	}
 </style>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+	$('#id_content').addClass( "form-control" );
+	$('#id_content').attr( { "placeholder" : "Write your thoughts..." } );
+		$('.django-ckeditor-widget').css( { "width" : "100%" } );
+</script>
 {% endblock %}

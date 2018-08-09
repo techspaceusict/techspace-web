@@ -29,6 +29,7 @@ class BlogPost(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	isblog = models.BooleanField(default=True)
 	pinned = models.BooleanField(default=False)
+	description = models.TextField(null=True, blank=True)
 
 
 	codeschool = 'codeschool'

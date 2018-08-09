@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 
-from .forms import BlogAddForm
+from .forms import BlogAddForm, PostAddForm
 # Create your views here.
 
 class BlogListView(ListView):
@@ -60,7 +60,7 @@ def post_new(request):
 	user = UserProfile.objects.get(user=request.user)
 
 	if request.method == "POST":
-		form = BlogAddForm(request.POST, request.FILES)
+		form = PostAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
 		if form.is_valid():
 			post = form.save(commit=False)
@@ -75,7 +75,7 @@ def post_new(request):
 			return HttpResponseRedirect(reverse('community:index'))
 
 
-	form = BlogAddForm()
+	form = PostAddForm()
 	return render(request, 'post/post_add_form.html', {'form':form, 'userprofile' : user})
 
 
@@ -85,7 +85,7 @@ def post_edit(request, slug):
 	post = get_object_or_404(BlogPost, slug=slug)
 	if request.user.username == post.author:
 		if request.method == "POST":
-			form = BlogAddForm(request.POST, request.FILES ,instance=post)
+			form = PostAddForm(request.POST, request.FILES ,instance=post)
 
 			if form.is_valid():
 				post = form.save(commit=False)
@@ -99,7 +99,7 @@ def post_edit(request, slug):
 				post.save()
 				return redirect('blog:post-detail', slug=post.slug)
 
-		form = BlogAddForm(instance=post)
+		form = PostAddForm(instance=post)
 		return render(request, 'post/post_edit_form.html', {'form': form, 'userprofile' : user})
 	else:
 		return redirect('home:index')

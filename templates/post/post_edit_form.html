@@ -2,18 +2,40 @@
 
 {% block content %}
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-xs-12 col-md-8 card create-post-content">
+			<h4 class="small-heading">Edit post
+	        <div class="hr"></div>
+	        </h4>
+	        <br>
+			<form method="post" class="form-group" enctype="multipart/form-data" autocomplete="off">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-wire-dark-simple">Submit</button>
 
-	<div class="blog-container">
-
-<h1>Edit your post</h1>
-	<form method="post" class="form-group" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button class="btn btn-submit blog-sub">Submit</button>
-		
-	</form>
-		
+			</form>
+		</div>
 	</div>
+</div>
+<style type="text/css">
+	label {
+		text-transform: uppercase;
+		letter-spacing: 0.1rem;
+		color: grey;
+		font-size: 14px;
+	}
+</style>
 
 
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+	$('#id_content').addClass( "form-control" );
+	$('#id_content').attr( { "placeholder" : "Write your thoughts..." } );
+		$('.django-ckeditor-widget').css( { "width" : "100%" } );
+</script>
 {% endblock %}
