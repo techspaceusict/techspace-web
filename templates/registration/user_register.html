@@ -15,6 +15,7 @@
 		{% csrf_token %}
 		{{ user_form.as_p }}
 		{{ profile_form.as_p }}
+		
 		<button class="btn btn-block btn-wire-dark-simple">Submit</button>
 	</form>
 
@@ -34,4 +35,35 @@
 		<input type="submit" value="Submit">
 	</form>
 	{% endif %}
- -->{% endblock %}
+	
+ -->
+<script>
+    
+    function setAttributes(el, attrs) {
+        for(var key in attrs) {
+            el.setAttribute(key, attrs[key]);
+        }
+    }
+    function check(){
+        if(document.getElementById("id_password").value == document.getElementById("id_confirm_password").value){
+            id_confirm_password.setCustomValidity("");
+        }else{
+            id_confirm_password.setCustomValidity("Passwords Don't Match");
+        }
+    } 
+    var password = document.getElementById("id_password");
+    var confirm_label = document.createElement("LABEL");
+    var confirm_label_text = document.createTextNode("Confirm Password : ");
+    var node = document.createElement("input");
+    var id_username = document.getElementById("id_username");
+    document.getElementsByClassName("helptext")[0].style.display = 'none';
+    confirm_label.appendChild(confirm_label_text);
+    password.parentNode.insertBefore(node, password.nextSibling);
+    setAttributes(node, {"type" :"password" ,"name":"confirm_password" , "onkeyup":"check()", "id":"id_confirm_password" , "required":"" , "placeholder":"Confirm Password" , class:"form-control"});
+    setAttributes(password, {"onkeyup":"check()" , "placeholder":"Password" , class:"form-control"});
+    setAttributes(confirm_label, {"for":"id_confirm_password"});
+    setAttributes(id_username,{class : "form-control"});
+    node.parentNode.insertBefore(confirm_label, password.nextSibling);
+        
+</script>
+ {% endblock %}
