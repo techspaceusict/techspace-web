@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Techspace USICT | GGSIPU</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{% static 'img/TS-1.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
+
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+
+{% include '../community/components/navbar.html' %}
+
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-3 col-xs-2">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-inbox-list" data-toggle="list" href="#list-inbox" role="tab" aria-controls="home">Inbox <span class="badge badge-primary badge-pill">{{ messages|length }}</span></a>
+      <a class="list-group-item list-group-item-action" id="list-sent-list" data-toggle="list" href="#list-sent" role="tab" aria-controls="profile">Sent <span class="badge badge-primary badge-pill">{{ sent_messages|length }}</span></a>
+    </div>
+  </div>
+  <div class="col-md-9 col-xs-10">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-inbox" role="tabpanel" aria-labelledby="list-inbox-list">
+        <ul class="list-group">
+          {% for msg in messages %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="col-md-2 col-xs-1">By: @{{ msg.sender.user.username }}</div>
+            <div class="col-md-9 col-xs-10"><p>{{ msg.content }}</p></div>
+            <div class="col-md-1 col-xs-1"><a href="{% url 'log:send_message' name=msg.sender.user.username %}"><button type="button" class="btn btn-primary">Reply</button></a></div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="tab-pane fade" id="list-sent" role="tabpanel" aria-labelledby="list-sent-list">
+        <ul class="list-group">
+          {% for msg in sent_messages %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="col-md-2">To: @{{ msg.sender.user.username }}</div>
+            <div class="col-md-10"><p>{{ msg.content }}</p></div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</html>
