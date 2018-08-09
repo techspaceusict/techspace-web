@@ -27,6 +27,8 @@ urlpatterns = [
 	url(r'^comments/$', views.comments, name='comments'),
 	url(r'^edit/$', views.userProfileEdit, name='edit_profile'),
 	url(r'^report/$', views.userReport, name='report_user'),
+	url(r'^message/$', views.sendMessage, name='send_message'),
+	url(r'^inbox/$', views.inbox, name='inbox'),
 
 
 	# url(r'^messages/$', views.messages, name='messages'),
