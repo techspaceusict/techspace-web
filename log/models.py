@@ -48,6 +48,7 @@ class Message(models.Model):
 	receiver = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='received')
 	content = RichTextUploadingField()
 	date = models.DateTimeField(default=datetime.datetime.now)
+	read = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.sender.user.username + '-' + self.receiver.user.username

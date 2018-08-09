@@ -131,13 +131,13 @@ def profile_view(request, username):
     u = User.objects.get(username=username)
 
 def dashboard(request, name=None):
-	# try:
-		blogs = BlogPost.objects.filter(author=request.user)
+	profile = UserProfile.objects.get(user__username=name)
+	blogs = BlogPost.objects.filter(author=name)
+	try:
 		userprofile = UserProfile.objects.get(user=request.user)
-		profile = UserProfile.objects.get(user__username=name)
 		return render(request, 'log/dashboard.html', {'userprofile': userprofile, 'blogs': blogs, 'profile': profile})
-	# except:
-	# 	raise Http404
+	except:
+		return render(request, 'log/dashboard.html', {'profile': profile, 'blogs': blogs})
 
 
 
@@ -152,8 +152,12 @@ def portfolio(request, name=None):
 def inbox(request, name=None):
 	if request.user.username == name:
 		user = UserProfile.objects.get(user=request.user)
-		messages = Message.objects.filter(receiver=user)
-		sent_messages = Message.objects.filter(sender=user)
+		new_messages = user.received.filter(read=False)
+		for msg in new_messages:
+			msg.read = True
+			msg.save()
+		messages = user.received.all()
+		sent_messages = user.sent.all()
 		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages, 'userprofile': user})
 
 	return redirect('log:dashboard', name=name)
@@ -161,7 +165,7 @@ def inbox(request, name=None):
 def discussions(request, name=None):
 	try:
 		posts = BlogPost.objects.filter(author=request.user)
-		userprofile = UserProfile.objects.get(user__username=name)
+		userprofile = UserProfile.objects.get(user=request.user)
 		return render(request, 'log/discussions.html', {'posts': posts, 'userprofile': userprofile})
 	except:
 		raise Http404
@@ -169,7 +173,7 @@ def discussions(request, name=None):
 def comments(request, name=None):
 	try:
 		comments = Comments.objects.filter(comment_author=request.user)
-		userprofile = UserProfile.objects.get(user__username=name)
+		userprofile = UserProfile.objects.get(user=request.user)
 		return render(request, 'log/comments.html', {'userprofile': userprofile, 'comments': comments})
 	except:
 		raise Http404

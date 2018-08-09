@@ -89,6 +89,8 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATES[0]['OPTIONS']['context_processors'].append("log.context_processors.new_messages_processor")
+
 WSGI_APPLICATION = 'techspace.wsgi.application'
 
 

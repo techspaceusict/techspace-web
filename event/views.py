@@ -12,7 +12,8 @@ class EventView(ListView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(EventView, self).get_context_data(*args, **kwargs)
-		context['userprofile'] = UserProfile.objects.get(user=self.request.user)
+		if self.request.user.is_authenticated:
+			context['userprofile'] = UserProfile.objects.get(user=self.request.user)
 		return context
 
 
@@ -23,5 +24,6 @@ class EventDetailView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(EventDetailView, self).get_context_data(*args, **kwargs)
-		context['userprofile'] = UserProfile.objects.get(user=self.request.user)
+		if self.request.user.is_authenticated:
+			context['userprofile'] = UserProfile.objects.get(user=self.request.user)
 		return context

@@ -43,7 +43,7 @@
         <ul class="list-group">
           {% for msg in sent_messages %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="col-md-2">By: @{{ msg.receiver.user.username }}</div>
+            <div class="col-md-2">To: @{{ msg.sender.user.username }}</div>
             <div class="col-md-10"><p>{{ msg.content }}</p></div>
           </li>
           {% endfor %}
