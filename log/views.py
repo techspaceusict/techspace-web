@@ -10,11 +10,11 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 
-from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, EventAddForm#, InfoAddForm, TeamAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
 
 from event.models import Events
-from .models import UserProfile, Report
+from .models import UserProfile, Report, Message
 from blog.models import BlogPost, Comments
 
 
@@ -93,6 +93,24 @@ def userProfileEdit(request, name=None):
 	form = UserProfileEditForm(instance=user)
 	return render(request, 'log/profile_edit_form.html', {'form':form, 'username': user.user.username})
 
+
+@login_required
+def sendMessage(request, name=None):
+	user = UserProfile.objects.get(user=request.user)
+	if request.method == "POST":
+		form = MessageForm(request.POST)
+		if form.is_valid():
+			message = form.save(commit=False)
+			message.sender = user
+			message.receiver = UserProfile.objects.get(user__username=name)
+			message.save()
+
+			return redirect('log:dashboard', name=name)
+
+	form = MessageForm()
+	return render(request, 'log/message_form.html', {'form': form, 'username': name, 'userprofile': user})
+
+
 @login_required
 def userReport(request, name=None):
 	user = UserProfile.objects.get(user=request.user)
@@ -115,8 +133,9 @@ def profile_view(request, username):
 def dashboard(request, name=None):
 	# try:
 		blogs = BlogPost.objects.filter(author=request.user)
-		userprofile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/dashboard.html', {'userprofile': userprofile, 'blogs': blogs})
+		userprofile = UserProfile.objects.get(user=request.user)
+		profile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/dashboard.html', {'userprofile': userprofile, 'blogs': blogs, 'profile': profile})
 	# except:
 	# 	raise Http404
 
@@ -124,10 +143,20 @@ def dashboard(request, name=None):
 
 def portfolio(request, name=None):
 	try:
-		userprofile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/portfolio.html', {'userprofile': userprofile})
+		profile = UserProfile.objects.get(user__username=name)
+		userprofile = UserProfile.objects.get(user=request.user)
+		return render(request, 'log/portfolio.html', {'userprofile': userprofile, 'profile': profile})
 	except:
 		raise Http404
+
+def inbox(request, name=None):
+	if request.user.username == name:
+		user = UserProfile.objects.get(user=request.user)
+		messages = Message.objects.filter(receiver=user)
+		sent_messages = Message.objects.filter(sender=user)
+		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages, 'userprofile': user})
+
+	return redirect('log:dashboard', name=name)
 
 def discussions(request, name=None):
 	try:
