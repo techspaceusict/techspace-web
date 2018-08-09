@@ -327,6 +327,11 @@ nav {
     width:75%;
   }
 }
+
+.pinned {
+  color: green;
+  text-decoration: underline;
+}
 /*End Feed CSS*/
 
 /*Right aside*/
