@@ -14,14 +14,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Latestpost',
+            name='Events',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
                 ('author', models.CharField(max_length=255)),
                 ('date', models.DateField()),
                 ('time', models.TimeField()),
-                ('image', models.ImageField(default='blog/thumbnail-default.jpg', upload_to='latest_posts')),
+                ('image', models.ImageField(default='img/blog/thumbnail-default.jpg', upload_to='events')),
+                ('venue', models.CharField(max_length=1024)),
                 ('content', models.TextField()),
                 ('slug', models.SlugField(max_length=2024, unique=True)),
                 ('club', models.CharField(blank=True, choices=[('codeschool', 'Codeschool'), ('cogitans', 'Cogitans'), ('droidclub', 'Droid Club'), ('ecell', 'E-Cell'), ('electrotech', 'Electrotech'), ('oslc', 'OSLC'), ('renderedusict', 'Rendered-USICT'), ('turingai', 'Turing A.I.')], max_length=200)),
