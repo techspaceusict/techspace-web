@@ -41,7 +41,7 @@ Running techspace-web on your system:
 
 9. Now open localhost:8000 in browser and the application must be running.
 
-10.Every time to run the project first activate virtual environment and then run the server
+10. Every time to run the project first activate virtual environment and then run the server
    ```
    $ source env/bin/activate
    $ python manage.py runserver
