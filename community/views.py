@@ -37,12 +37,7 @@ def contentForCommunity(request):
         blog.upvotes = len(Upvote.objects.filter(title = blog.title))
         blog.state = len(Upvote.objects.filter(title = blog.title, username = request.user))
 
-    try:
-    	#User is logged in
-    	user = UserProfile.objects.get(user=request.user)
-    	return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events, 'latest_posts' : latest_posts, 'userprofile' : user })
-    except:
-    	return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events , 'latest_posts' : latest_posts})
+    return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events , 'latest_posts' : latest_posts})
 
 
 @login_required

@@ -10,20 +10,8 @@ class EventView(ListView):
 	context_object_name = 'events'
 	template_name = 'event/index.html'
 
-	def get_context_data(self, *args, **kwargs):
-		context = super(EventView, self).get_context_data(*args, **kwargs)
-		if self.request.user.is_authenticated:
-			context['userprofile'] = UserProfile.objects.get(user=self.request.user)
-		return context
-
 
 class EventDetailView(DetailView):
 	model = Events
 	context_object_name = 'event_detail'
 	template_name = 'event/event_detail.html'
-
-	def get_context_data(self, *args, **kwargs):
-		context = super(EventDetailView, self).get_context_data(*args, **kwargs)
-		if self.request.user.is_authenticated:
-			context['userprofile'] = UserProfile.objects.get(user=self.request.user)
-		return context

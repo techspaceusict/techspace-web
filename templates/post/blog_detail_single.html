@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Techspace USICT | GGSIPU</title>
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="{% static 'img/TS-1.jpg' %}">
-    <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
+{% extends '../community/base.html' %}
 
-    <meta name="viewport" content="width=device-width">
-</head>
-<body  style="background-color:#D3D3D3;">
+{% block content %}
+
 <div style="position:absolute; width:100%; background-image:url('https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg'); width:100%; height:250px; background-size:cover; z-index:0;">
 <!--<img src="https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg" style="width:100%; height:250px;">-->
 </div>
@@ -19,24 +9,15 @@
 	{% if blog_detail %}
 
 
-	<div class="blog_content center">
-{% if user.username == blog_detail.author %}
-
-		<div class="stack">
-			<form action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get">
-				<button>Edit</button>
-			</form>
-			<form action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" >
-				{% csrf_token %}
-				<button>Delete</button>
-			</form>
-		</div>
-	{% endif %}
+<div class="blog_content center">
+  <br>
  <div class="center">
-		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
-		<h4 style="color: #f29260">{{ blog_detail.author }}</h4>
-		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
-		<div class="underline"></div>
+   <div style="text-align: center;" >
+  		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
+  		<h4 style="color: #f29260">By: {{ blog_detail.author }}</h4>
+  		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
+  		<div class="underline"></div>
+    </div>
 		{% if blog_detail.image.url is not None %}
 		<div class="container-fluid card">
 		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
@@ -48,13 +29,25 @@
 		 {{ blog_detail.content|safe|linebreaks }}
 		{{ blog_detail.content|safe|linebreaks }}
 
+    {% if user.username == blog_detail.author %}
+
+    		<div class="stack" style="text-align: center;">
+    			<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+    				<button class="btn btn-primary">Edit</button>
+    			</form>
+    			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+    				{% csrf_token %}
+    				<button class="btn btn-danger">Delete</button>
+    			</form>
+    		</div>
+    	{% endif %}
+
 
 		<!-- upvotes and comments -->
 
+<hr>
 
-
-
-	 		<div class="post-actions">
+	 	<div class="post-actions">
 				{% if user.is_authenticated %}
 					<form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.title }}" name="title">
@@ -76,17 +69,14 @@
 		</div>
 		<div class="container">
 {% if user.is_authenticated %}
-			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
-      <div class="container">
+			<form class="form-horizontal form-group" action="" method="post" enctype="multipart/form-data" >
+        <div class="container">
 				{% csrf_token %}
-
-				{% include '../global_components/form-template.html' %}
-			</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2">
-						<button class="btn-wire-dark">Submit</button>
-					</div>
-				</div>
+        {% include '../global_components/form-template.html' %}
+          <div class="col-sm-offset-2">
+            <button class="btn-wire-dark">Submit</button>
+          </div>
+			  </div>
 			</form>
 		</div>
 
@@ -131,9 +121,5 @@
 </div>
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-{% block scripts %}
+
 {% endblock %}
-</body>
-</html>

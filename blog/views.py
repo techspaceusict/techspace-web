@@ -49,7 +49,7 @@ def postDetailView(request, slug):
 				return redirect('blog:post-detail', slug=slug)
 		else:
 			comment_form = CommentForm()
-		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 	except:
 		return render(request, 'post/post_detail_single.html', {'blog_detail': blog})
@@ -76,7 +76,7 @@ def post_new(request):
 
 
 	form = PostAddForm()
-	return render(request, 'post/post_add_form.html', {'form':form, 'userprofile' : user})
+	return render(request, 'post/post_add_form.html', {'form':form})
 
 
 @login_required
@@ -100,7 +100,7 @@ def post_edit(request, slug):
 				return redirect('blog:post-detail', slug=post.slug)
 
 		form = PostAddForm(instance=post)
-		return render(request, 'post/post_edit_form.html', {'form': form, 'userprofile' : user})
+		return render(request, 'post/post_edit_form.html', {'form': form})
 	else:
 		return redirect('home:index')
 
@@ -129,7 +129,7 @@ def blogDetailView(request, slug):
 				return redirect('blog:post-detail', slug=slug)
 		else:
 			comment_form = CommentForm()
-		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 	except:
 		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'comments': comments })
@@ -163,7 +163,7 @@ def blog_new(request):
 
 
 	form = BlogAddForm()
-	return render(request, 'post/blog_add_form.html', {'form':form, 'userprofile' : user})
+	return render(request, 'post/blog_add_form.html', {'form':form})
 
 
 
@@ -196,7 +196,7 @@ def blog_edit(request, slug):
 				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
-		return render(request, 'post/blog_edit_form.html', {'form': form, 'userprofile' : user})
+		return render(request, 'post/blog_edit_form.html', {'form': form})
 
 	else:
 		return redirect('home:index')

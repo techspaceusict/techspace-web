@@ -1,22 +1,30 @@
 {% extends '../community/base.html' %}
+
 {% block content %}
 
-{% if user.is_authenticated %}
-<form class="form-horizontal" action="{% url 'log:edit_profile' name=username %}" method="post" enctype="multipart/form-data" >
-  {% csrf_token %}
-  {% include '../global_components/form-template.html' %}
-  <div class="form-group">
-    <div class="col-sm-offset-2">
-      <button>Submit</button>
-    </div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-xs-12 col-md-8 card create-post-content">
+			<h4 class="small-heading">Edit Profile
+	        <div class="hr"></div>
+	        </h4>
+	        <br>
+			<form method="post" action="{% url 'log:edit_profile' name=username %}" class="form-group" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-wire-dark-simple">Submit</button>
 
-  </div>
-
-
-</form>
-
-
-
-
-{% endif %}
+			</form>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	label {
+		text-transform: uppercase;
+		letter-spacing: 0.1rem;
+		color: grey;
+		font-size: 14px;
+	}
+</style>
 {% endblock %}

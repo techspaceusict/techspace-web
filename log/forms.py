@@ -47,6 +47,7 @@ class UserProfileEditForm(forms.ModelForm):
 		widgets = {
 					'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
 					'course': forms.TextInput(attrs={'placeholder': 'Course', 'class': 'form-control' }),
+					'year_of_graduation': forms.Select(attrs={'class': 'form-control'}),
 					'bio': forms.TextInput(attrs={'placeholder': 'About yourself', 'class': 'form-control' }),
 					'facebook': forms.TextInput(attrs={'placeholder': 'Facebook', 'class': 'form-control' }),
 					'github': forms.TextInput(attrs={'placeholder': 'Github', 'class': 'form-control' }),

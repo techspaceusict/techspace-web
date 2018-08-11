@@ -108,7 +108,7 @@ def sendMessage(request, name=None):
 			return redirect('log:dashboard', name=name)
 
 	form = MessageForm()
-	return render(request, 'log/message_form.html', {'form': form, 'username': name, 'userprofile': user})
+	return render(request, 'log/message_form.html', {'form': form, 'username': name})
 
 
 @login_required
@@ -135,7 +135,7 @@ def dashboard(request, name=None):
 	blogs = BlogPost.objects.filter(author=name)
 	try:
 		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/dashboard.html', {'userprofile': userprofile, 'blogs': blogs, 'profile': profile})
+		return render(request, 'log/dashboard.html', {'blogs': blogs, 'profile': profile})
 	except:
 		return render(request, 'log/dashboard.html', {'profile': profile, 'blogs': blogs})
 
@@ -145,7 +145,7 @@ def portfolio(request, name=None):
 	try:
 		profile = UserProfile.objects.get(user__username=name)
 		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/portfolio.html', {'userprofile': userprofile, 'profile': profile})
+		return render(request, 'log/portfolio.html', {'profile': profile})
 	except:
 		raise Http404
 
@@ -158,7 +158,7 @@ def inbox(request, name=None):
 			msg.save()
 		messages = user.received.all()
 		sent_messages = user.sent.all()
-		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages, 'userprofile': user})
+		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages})
 
 	return redirect('log:dashboard', name=name)
 
@@ -167,7 +167,7 @@ def discussions(request, name=None):
 		posts = BlogPost.objects.filter(author=request.user)
 		userprofile = UserProfile.objects.get(user=request.user)
 		profile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/discussions.html', {'posts': posts, 'userprofile': userprofile, 'profile': profile})
+		return render(request, 'log/discussions.html', {'posts': posts, 'profile': profile})
 	except:
 		raise Http404
 
@@ -176,7 +176,7 @@ def comments(request, name=None):
 		comments = Comments.objects.filter(comment_author=request.user)
 		userprofile = UserProfile.objects.get(user=request.user)
 		profile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/comments.html', {'userprofile': userprofile, 'comments': comments, 'profile': profile})
+		return render(request, 'log/comments.html', {'comments': comments, 'profile': profile})
 	except:
 		raise Http404
 

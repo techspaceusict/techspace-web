@@ -1,7 +1,8 @@
-/*Resets*/ 
+/*Resets*/
 html, body {
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
@@ -17,13 +18,13 @@ html, body {
 
 /*Navbar CSS*/
 nav {
-  border-bottom: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc;
   background-color: white;
   z-index: 2 !important;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   position: sticky;
-} 
+}
 
 .nav-logo {
   height: 60px;
@@ -74,7 +75,7 @@ nav {
   margin-left: 10px;
   margin-right: 10px;
   border: 2px solid grey;
-  border-radius: 100%; 
+  border-radius: 100%;
   display: inline-block;
   vertical-align: middle;
 }
@@ -281,7 +282,7 @@ nav {
     width: 75px;
     margin-bottom: 10px;
   }
-}  
+}
 
 .post-actions > a {
   color: black;
@@ -301,7 +302,7 @@ nav {
   color: black;
   display: inline-block;
   padding: 0;
-} 
+}
 
 .post-actions-button:hover {
   text-decoration: underline;
@@ -343,7 +344,7 @@ nav {
 
 /*Profile Section*/
 .profile-container {
-  padding: 20px; 
+  padding: 20px;
 }
 .profile-img {
   border-radius: 1000px;
@@ -536,4 +537,3 @@ nav {
 	width: 70%;
 	margin: 5em auto;
 }
-
