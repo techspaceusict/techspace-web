@@ -17,13 +17,13 @@ html, body {
 }
 
 nav {
-  border-bottom: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc;
   background-color: white;
   z-index: 2 !important;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   position: sticky;
-} 
+}
 
 .nav-logo {
   height: 80px;
@@ -37,6 +37,67 @@ nav {
 .content-top {
   height:  calc(100vh - 91px);
   position: absolute;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  80% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-left {
+  animation: moveInLeft 1s ease-out;
+}
+
+.animate-right {
+  animation: moveInRight 1s ease-out;
+}
+
+.animate-down {
+  animation: moveUp 1s ease-out .5s;
+  animation-fill-mode: backwards;
 }
 
 .fa-chevron-down {
@@ -58,7 +119,7 @@ nav {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }*/
 
 .back {
@@ -108,10 +169,10 @@ nav {
 }
 
 @media only screen and (min-width: 550px) {
-  .border-div { 
+  .border-div {
     border-width: 50px 100vw 0 0;
   }
-  .border-div-2 { 
+  .border-div-2 {
     border-width: 50px 100vw 0 0;
   }
 }
@@ -135,6 +196,13 @@ nav {
   text-decoration: none;
   background-color: #f29260;
   border: 2px solid white;
+  color: white;
+}
+
+.btn-wire:active,
+.btn-wire:hover {
+  text-decoration: none;
+  background-color: #f29260;
   color: white;
 }
 
@@ -170,7 +238,7 @@ nav {
 
 .about-section {
   background-color: #f7f7f7;
-  position: relative; 
+  position: relative;
 }
 
 .slant-heading {
@@ -315,12 +383,12 @@ p.about-para {
 
 @media screen and (max-width: 768px) {
   .contact-form-div {
-    border-bottom: 2px dotted white; 
+    border-bottom: 2px dotted white;
   }
 }
 @media screen and (min-width: 768px) {
 .contact-form-div {
-  border-right: 2px dotted white; 
+  border-right: 2px dotted white;
 }
 
 }
@@ -571,13 +639,13 @@ input:focus, textarea:focus {
   }
 
   .box-wrapper {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
   .circle-img {
     height: 60px;
     width: 60px;
   }
-} 
+}
 
 @media screen and (max-width: 768px) {
   .content-club {
@@ -601,7 +669,7 @@ input:focus, textarea:focus {
 .card-image {
   height: 200px;
   background-size: cover;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 
 .small-footer {
