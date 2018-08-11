@@ -14,9 +14,10 @@ Running techspace-web on your system:
 
 1. Make sure you have Python 3 and pip setup on your computer. 
    https://www.makeuseof.com/tag/install-pip-for-python/
-2. Make sure you have virtual environment installed(to check run command ```$ pip freeze```
-   To install virtual environment
-   ``` $ pip install virtualenv ```
+2. Make sure you have virtual environment installed
+   To check run command ```$ pip freeze```
+   To install virtual environment``` $ pip install virtualenv ```
+   
 3. Clone the repository.
 4. Create and activate virtual environment for the project
    ```
