@@ -166,7 +166,8 @@ def discussions(request, name=None):
 	try:
 		posts = BlogPost.objects.filter(author=request.user)
 		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/discussions.html', {'posts': posts, 'userprofile': userprofile})
+		profile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/discussions.html', {'posts': posts, 'userprofile': userprofile, 'profile': profile})
 	except:
 		raise Http404
 
@@ -174,7 +175,8 @@ def comments(request, name=None):
 	try:
 		comments = Comments.objects.filter(comment_author=request.user)
 		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/comments.html', {'userprofile': userprofile, 'comments': comments})
+		profile = UserProfile.objects.get(user__username=name)
+		return render(request, 'log/comments.html', {'userprofile': userprofile, 'comments': comments, 'profile': profile})
 	except:
 		raise Http404
 
