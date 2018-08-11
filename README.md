@@ -20,8 +20,8 @@ Running techspace-web on your system:
 3. Clone the repository.
 4. Create and activate virtual environment for the project
    ```
-      $ python3 -m venv .
-      $ source bin/activate
+   $ python3 -m venv .
+   $ source bin/activate
    ```
 5. Install requirements
    ```$ pip3 install -r requirements.txt```
