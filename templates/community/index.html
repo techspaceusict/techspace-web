@@ -50,7 +50,7 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -61,7 +61,15 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
+
                       <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
@@ -118,7 +126,7 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -129,7 +137,15 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
+
                       <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
@@ -215,4 +231,35 @@
     </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+
+</script>
+
 {% endblock %}

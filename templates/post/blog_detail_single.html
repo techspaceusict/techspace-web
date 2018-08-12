@@ -49,7 +49,7 @@
 
 	 	<div class="post-actions">
 				{% if user.is_authenticated %}
-					<form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+					<!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.title }}" name="title">
 							<input type="hidden" value="1" name="onDetailPage">
 							{% csrf_token %}
@@ -60,6 +60,13 @@
 									{% if blog_detail.state == 0 %}
 											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
 									{% endif %}
+					</form> -->
+
+					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+							<input type="hidden" value="{{ blog_detail.id }}" name="id">
+							{% csrf_token %}
+							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
+							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
 					</form>
 				{% endif %}
 				<hr>
@@ -121,5 +128,36 @@
 </div>
 
 
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+
+</script>
 
 {% endblock %}
