@@ -451,8 +451,9 @@ nav {
   padding: 30px;
   margin-top: 6rem;
 }
-
-
+#id_confirm_password{
+    margin-top: 15px;    
+}
 .btn-wire-dark-simple {
   background-color: transparent;
   border: 1px solid #888;
@@ -496,7 +497,34 @@ nav {
 }
 /*End create post/blog page*/
 
+/*Events index page*/
 
+#event_card{
+    width: 20rem;
+    margin-top: 2rem;
+}
+#card_body{
+    font-weight: 400;
+    font-size: 16px;
+}
+#card_subtitle{
+    font-size: 16px;
+}
+.underline_events{
+    width: 12em;
+    background:  #cc0000;
+    height: .2em;
+    margin: 0 auto 30px auto;
+    border-radius: 1.5em;
+}
+.card-title.text-center{
+    font-size: 1.3rem;
+}
+/*End Events index page*/
+
+/*Event detail page*/
+
+/*End event detail page*/
 .underline{
   width: 15em;
   background:  #cc0000;
