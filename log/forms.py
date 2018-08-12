@@ -7,6 +7,7 @@ from event.models import Events
 
 
 class UserForm(forms.ModelForm):
+	# email = forms.EmailField(widget=forms.EmailInput())
 	password = forms.CharField(widget=forms.PasswordInput())
 
 	class Meta():
@@ -18,11 +19,12 @@ class UserForm(forms.ModelForm):
 					# 'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
 					# 'course': forms.TextInput(attrs={'placeholder': 'Course', 'class': 'form-control' }),
 					# # 'year_of_graduation': forms.TextInput(attrs={'placeholder': 'Year of graduation', 'class': 'form-control' }),
-
-
-
-
 		}
+	# def clean_email(self):
+	# 	email = self.cleaned_data.get('email')
+	# 	if UserProfile.objects.filter(email=email).exists():
+	# 		raise forms.ValidationError("This email is already used.")
+	# 	return email
 
 
 class UserProfileForm(forms.ModelForm):
@@ -67,18 +69,18 @@ class MessageForm(forms.ModelForm):
 		model = Message
 		fields = ['content']
 
-
-class EventAddForm(forms.ModelForm):
-
-	class Meta:
-		model = Events
-		fields = ['title', 'date', 'time', 'image', 'venue', 'content']
-		widgets = { 'title': forms.TextInput(attrs={'placeholder':'Title', 'class': 'form-title'}),
-				'venue': forms.TextInput(attrs={'placeholder': 'Venue', 'class': 'form-control'}),
-				'content': forms.Textarea(attrs={'placeholder': 'Enter the details about the event...'})
-
-
-		}
+# 
+# class EventAddForm(forms.ModelForm):
+#
+# 	class Meta:
+# 		model = Events
+# 		fields = ['title', 'date', 'time', 'image', 'venue', 'content']
+# 		widgets = { 'title': forms.TextInput(attrs={'placeholder':'Title', 'class': 'form-title'}),
+# 				'venue': forms.TextInput(attrs={'placeholder': 'Venue', 'class': 'form-control'}),
+# 				'content': forms.Textarea(attrs={'placeholder': 'Enter the details about the event...'})
+#
+#
+# 		}
 
 # class InfoAddForm(forms.ModelForm):
 #

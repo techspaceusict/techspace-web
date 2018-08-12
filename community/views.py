@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.urls import reverse
 from django.http import JsonResponse
 from django.views.generic import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.contrib.auth.decorators import login_required
 
@@ -11,6 +12,7 @@ from latest.models import Latestpost
 
 from log.models import UserProfile
 
+from itertools import chain
 # # Create your views here.
 # class BlogListView(ListView):
 #     model = BlogPost
@@ -24,11 +26,22 @@ from log.models import UserProfile
 
 def contentForCommunity(request):
 
-    blogs = BlogPost.objects.filter(pinned = False)
+    all_blogs = BlogPost.objects.filter(pinned = False)
     pinned_blogs = BlogPost.objects.filter(pinned = True)
     events = Events.objects.all()
     latest_posts = Latestpost.objects.all()
     upvotes = Upvote.objects.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_blogs, 10)
+
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        blogs = paginator.page(1)
+    except EmptyPage:
+        blogs = paginator.page(paginator.num_pages)
+
 
     for blog in blogs :
         blog.upvotes = len(Upvote.objects.filter( title = blog.title ))

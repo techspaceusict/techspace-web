@@ -31,8 +31,8 @@ class UserProfile(models.Model):
 	profile_pic = models.ImageField(upload_to='user/avatar/', default='default/Default_avatar.jpg')
 	club = models.ManyToManyField(Club)
 
-	user_badge_text = models.CharField(max_length=255, null=True)
-	user_badge_icon = models.CharField(max_length=255, null=True)
+	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
+	user_badge_text = models.CharField(max_length=255, blank=True, null=True)
 
 	def __str__(self):
 		return self.user.username
