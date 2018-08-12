@@ -19,6 +19,7 @@ urlpatterns =[
 	url(r'^blog/(?P<slug>[\w-]+)/$', views.blogDetailView, name='blog-detail'),
 
 	url(r'^(?P<slug>[\w-]+)/delete$', views.BlogDelete.as_view() , name='blog-delete'),
+	url(r'^togglecommentupvote', views.toggleCommentUpvote, name='toggle-comment-upvote'),
 
 
 ]

@@ -33,14 +33,16 @@ def contentForCommunity(request):
     for blog in blogs :
         blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
         blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
+        blog.no_of_comments = len(blog.comments.all())
 
     for blog in pinned_blogs:
         blog.upvotes = len(Upvote.objects.filter(title = blog.title))
         blog.state = len(Upvote.objects.filter(title = blog.title, username = request.user))
+        blog.no_of_comments = len(blog.comments.all())
 
     return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events , 'latest_posts' : latest_posts})
 
-
+@login_required
 def toggleUpvote(request) :
 
     if (request.method == "POST") :

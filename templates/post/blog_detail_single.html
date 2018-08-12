@@ -99,7 +99,12 @@
 	{% for comment in comments reversed %}
 
 	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
-  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a>
+		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+				<input type="hidden" value="{{ comment.id }}" name="id">
+				{% csrf_token %}
+				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
+				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
+		</form>
 	</li>
 	{% endfor %}
 
@@ -134,6 +139,7 @@
 {% block scripts %}
 <script type="text/javascript">
 
+	// For Blog Upvotes
   $(document).on('submit', '.upvote-form',function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -156,6 +162,30 @@
       $("#state-"+id).val(data.state ? 1 : 0);
       $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
     }
+
+		// For Comment Upvotes
+		$(document).on('submit', '.comment-upvote-form',function(e) {
+	      e.preventDefault();
+	      e.stopPropagation();
+	      var $form = $(this);
+	      var url = $form.attr( "action" );
+	      var thisId = $form.attr( "id" );
+	      $.post(url, $form.serialize())
+	          .done(function(data) {
+	              changeCommentUpvoteButton(data, thisId);
+	          });
+	  });
+
+	    function changeCommentUpvoteButton(data, id){
+	      if(data.state){
+	        $("#btn-comment-"+id).addClass("upvoted");
+	      }
+	      else {
+	        $("#btn-comment-"+id).removeClass("upvoted");
+	      }
+	      $("#state-comment-"+id).val(data.state ? 1 : 0);
+	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+	    }
 
 
 </script>

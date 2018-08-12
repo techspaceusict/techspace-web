@@ -72,7 +72,7 @@
                       </form>
                     {% endif %}
 
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
@@ -149,7 +149,7 @@
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
                     {% endif %}
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
