@@ -50,6 +50,7 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
+                    {% if user.is_authenticated %}
                       <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
@@ -69,6 +70,7 @@
                           <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
+                    {% endif %}
 
                       <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
                       {% if user.username == blog.author %}
@@ -126,6 +128,7 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
+                    {% if user.is_authenticated %}
                       <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
@@ -145,7 +148,7 @@
                           <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
-
+                    {% endif %}
                       <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
