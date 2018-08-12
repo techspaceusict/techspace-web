@@ -10,12 +10,18 @@
         <!-- <li class="nav-item">
             <a class="nav-link scrollTo" href="{% url 'home:index' %}#clubs">Clubs @Techspace</a>
         </li> -->
+        {% if user.is_authenticated %}
         <li class="nav-item d-block d-sm-none">
-            <a class="nav-link scrollTo" href="{% url 'log:dashboard' name='anonymous' %}">Dashboard</a>
+            <a class="nav-link scrollTo" href="{% url 'log:dashboard' name=user.username %}">Dashboard</a>
         </li>
         <li class="nav-item d-block d-sm-none">
             <a class="nav-link scrollTo" href="{% url 'logout' %}">Logout</a>
         </li>
+        {% else %}
+        <li class="nav-item d-block d-sm-none">
+            <a class="nav-link scrollTo" href="{% url 'login' %}">Sign In</a>
+        </li>
+        {% endif %}
         <!-- <li class="nav-item">
             <a class="nav-link scrollTo" href="{% url 'home:index' %}#contact"></a>
         </li> -->
@@ -39,7 +45,7 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bell" aria-hidden="true"></i><span class="badge badge-light">{{new_messages|length}}</span>
             </button>
-            <a href="{% url 'log:inbox' name=userprofile.user.username %}"><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a href="{% url 'log:inbox' name=user.username %}"><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <p>You have {{new_messages|length}} new messages.</p>
             </div></a>
           </div>
@@ -47,7 +53,7 @@
         </li>
             <!-- <button class="btn-wire-dark">Sign in</button> or-->
         <li class="nav-item">
-            <a href="{% url 'log:dashboard' name=user.username %}" title="Profile @{{userprofile.user.username}}" class=""><div class="nav-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div></a>
+            <a href="{% url 'log:dashboard' name=user.username %}" title="Profile @{{user.username}}" class=""><div class="nav-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div></a>
         </li>
         <li class="nav-item">
             <a class="btn-wire-dark" href="{% url 'logout' %}" style="margin-top: 5px;display: inline-block;">Logout </a>

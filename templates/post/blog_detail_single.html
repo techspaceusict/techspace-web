@@ -1,42 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Techspace USICT | GGSIPU</title>
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="{% static 'img/TS-1.jpg' %}">
-    <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
+{% extends '../community/base.html' %}
 
-    <meta name="viewport" content="width=device-width">
-</head>
-<body  style="background-color:#D3D3D3;">
+{% block content %}
+
 <div style="position:absolute; width:100%; background-image:url('https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg'); width:100%; height:250px; background-size:cover; z-index:0;">
 <!--<img src="https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg" style="width:100%; height:250px;">-->
 </div>
-	<div class="container" style="margin-top:200px; background-color:#ffffff; z-index:1; position:relative;">
+	<div class="container" style="margin-top:150px; background-color:#ffffff; z-index:1; position:relative;">
 	{% if blog_detail %}
 
 
-	<div class="blog_content center">
-{% if user.username == blog_detail.author %}
-
-		<div class="stack">
-			<form action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get">
-				<button>Edit</button>
-			</form>
-			<form action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" >
-				{% csrf_token %}
-				<button>Delete</button>
-			</form>
-		</div>
-	{% endif %}
+<div class="blog_content center">
+  <br>
  <div class="center">
-		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
-		<h4 style="color: #f29260">{{ blog_detail.author }}</h4>
-		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
-		<div class="underline"></div>
+   <div style="text-align: center;" >
+  		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
+  		<h4 style="color: #f29260">By: {{ blog_detail.author }}</h4>
+  		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
+  		<div class="underline"></div>
+    </div>
 		{% if blog_detail.image.url is not None %}
 		<div class="container-fluid card">
 		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
@@ -45,22 +26,30 @@
 	</div>
 		{% endif %}
 
-<<<<<<< HEAD
 		 {{ blog_detail.content|safe|linebreaks }}
-=======
 		{{ blog_detail.content|safe|linebreaks }}
->>>>>>> 942a4641df3f54b76551237704bd904e063e8e0e
 
+    {% if user.username == blog_detail.author %}
+
+    		<div class="stack" style="text-align: center;">
+    			<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+    				<button class="btn btn-primary">Edit</button>
+    			</form>
+    			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+    				{% csrf_token %}
+    				<button class="btn btn-danger">Delete</button>
+    			</form>
+    		</div>
+    	{% endif %}
 
 
 		<!-- upvotes and comments -->
 
+<hr>
 
-
-
-	 		<div class="post-actions">
+	 	<div class="post-actions">
 				{% if user.is_authenticated %}
-					<form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+					<!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.title }}" name="title">
 							<input type="hidden" value="1" name="onDetailPage">
 							{% csrf_token %}
@@ -71,6 +60,13 @@
 									{% if blog_detail.state == 0 %}
 											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
 									{% endif %}
+					</form> -->
+
+					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+							<input type="hidden" value="{{ blog_detail.id }}" name="id">
+							{% csrf_token %}
+							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
+							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
 					</form>
 				{% endif %}
 				<hr>
@@ -80,17 +76,14 @@
 		</div>
 		<div class="container">
 {% if user.is_authenticated %}
-			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
-      <div class="container">
+			<form class="form-horizontal form-group" action="" method="post" enctype="multipart/form-data" >
+        <div class="container">
 				{% csrf_token %}
-
-				{% include '../global_components/form-template.html' %}
-			</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2">
-						<button class="btn-wire-dark">Submit</button>
-					</div>
-				</div>
+        {% include '../global_components/form-template.html' %}
+          <div class="col-sm-offset-2">
+            <button class="btn-wire-dark">Submit</button>
+          </div>
+			  </div>
 			</form>
 		</div>
 
@@ -106,7 +99,12 @@
 	{% for comment in comments reversed %}
 
 	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
-  <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a>
+		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+				<input type="hidden" value="{{ comment.id }}" name="id">
+				{% csrf_token %}
+				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
+				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
+		</form>
 	</li>
 	{% endfor %}
 
@@ -135,10 +133,61 @@
 </div>
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-{% block scripts %}
-{% endblock %}
-</body>
-</html>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+	// For Blog Upvotes
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+		// For Comment Upvotes
+		$(document).on('submit', '.comment-upvote-form',function(e) {
+	      e.preventDefault();
+	      e.stopPropagation();
+	      var $form = $(this);
+	      var url = $form.attr( "action" );
+	      var thisId = $form.attr( "id" );
+	      $.post(url, $form.serialize())
+	          .done(function(data) {
+	              changeCommentUpvoteButton(data, thisId);
+	          });
+	  });
+
+	    function changeCommentUpvoteButton(data, id){
+	      if(data.state){
+	        $("#btn-comment-"+id).addClass("upvoted");
+	      }
+	      else {
+	        $("#btn-comment-"+id).removeClass("upvoted");
+	      }
+	      $("#state-comment-"+id).val(data.state ? 1 : 0);
+	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+	    }
+
+
+</script>
+
+{% endblock %}

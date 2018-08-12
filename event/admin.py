@@ -3,4 +3,4 @@ from .models import Events
 # Register your models here.
 
 
-admin.site.register(Events)
+admin.site.register(Events,prepopulated_fields = {"slug": ("title",),})

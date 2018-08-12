@@ -29,11 +29,17 @@
             <li class="row">
                 <div class="col-xs-12 col-md-12">
                   <div class="small-xs">
+
                     <h5> {{blog.title}} <span class="small-p pinned" style="color: green">Pinned Post <i class="fa fa-thumb-tack" aria-hidden="true"></i></span></h5>
+
+                      {% if blog.isblog %}
+                        <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                      {% endif %}
+
                     <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.content|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
+                      <p>{{ blog.description|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10">
@@ -46,7 +52,8 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                    {% if user.is_authenticated %}
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -57,12 +64,27 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                    {% endif %}
+
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
-                        | <form action="{% url 'blog:post-edit' blog.slug %}" method="get">
+                        | {% if blog.isblog %}
+                    <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
                           <button class="post-actions-button small-p">Edit</button>
-                        </form> |
+                        </form>
+                    {% else %}
+                    <form action="{% url 'blog:post-edit' blog.slug %}" method="get">
+                          <button class="post-actions-button small-p">Edit</button>
+                        </form>
+                    {% endif %} |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
                           <button class="post-actions-button small-p">Delete</button>
@@ -86,12 +108,16 @@
             <li class="row">
                 <div class="col-xs-12 col-md-12">
                   <div class="small-xs">
-                    <h5>{{blog.title}}</h5>
+                      {% if blog.isblog %}
+                      <h5>{{blog.title}}<span style="color:#fd7e14;" class="small-p"> <i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Blogpost</span></h5>
+                      {% else %}
+                      <h5>{{blog.title}}</h5>
+                      {% endif %}
                     <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
 
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.content|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">  (more...)</a></p>
+                      <p>{{ blog.description|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">  (more...)</a></p>
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10">
@@ -104,7 +130,8 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                    {% if user.is_authenticated %}
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -115,12 +142,27 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                    {% endif %}
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
-                        | <form action="{% url 'blog:post-edit' blog.slug %}" method="get">
+                        | {% if blog.isblog %}
+                    <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
                           <button class="post-actions-button small-p">Edit</button>
-                        </form> |
+                        </form>
+                    {% else %}
+                    <form action="{% url 'blog:post-edit' blog.slug %}" method="get">
+                          <button class="post-actions-button small-p">Edit</button>
+                        </form>
+                    {% endif %}
+                    |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
                           <button class="post-actions-button small-p">Delete</button>
@@ -152,7 +194,7 @@
         <div class="sticky">
             <div class="col-xs-12">
                 <br>
-                <h4 class="small-heading">Latest
+                <h4 class="small-heading">Latest News
                         <div class="hr"></div>
                 </h4>
                 <ul class="list-group">
@@ -194,4 +236,35 @@
     </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+
+</script>
+
 {% endblock %}

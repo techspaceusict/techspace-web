@@ -7,3 +7,11 @@ def new_messages_processor(request):
         return {'new_messages': new_messages}
     except:
         return {}
+
+
+def get_user_profile(request):
+    try:
+        user = UserProfile.objects.get(user=request.user)
+        return {'userprofile': user}
+    except:
+        return {}

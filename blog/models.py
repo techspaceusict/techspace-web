@@ -29,6 +29,7 @@ class BlogPost(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	isblog = models.BooleanField(default=True)
 	pinned = models.BooleanField(default=False)
+	description = models.TextField(null=True, blank=True)
 
 
 	codeschool = 'codeschool'
@@ -82,5 +83,15 @@ class Upvote(models.Model):
 	title = models.CharField(max_length=1024 , null = True )
 	username = models.CharField(max_length=255 , null = True)
 
+	class Meta:
+		unique_together = ['title','username']
+
 	def __str__(self):
 		return self.title
+
+class CommentUpvote(models.Model):
+	comment = models.ForeignKey(Comments, on_delete=models.CASCADE, related_name='upvotes')
+	username = models.CharField(max_length=255 , null = True)
+
+	def __str__(self):
+		return self.comment.post.title + '-' + self.comment.comment_author + '-' + self.username
