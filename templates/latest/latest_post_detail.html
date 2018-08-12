@@ -1,14 +1,24 @@
 {% extends '../community/base.html' %}
 
 {% block content %}
-
+<div style="position:absolute; width:100%; background-image:url('https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg'); width:100%; height:250px; background-size:cover; z-index:0;">
+    <!--<img src="https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg" style="width:100%; height:250px;">-->
+</div>
+<div class="container" style="margin-top:150px; background-color:#ffffff; z-index:1; position:relative;">
+  
   {%  if latest_posts_detail %}
-  <h1 class="center">{{ latest_posts_detail.title }}</h1>
-  <h4 class="center">{{ latest_posts_detail.author }}</h4>
-  <h4 class="center"> {{ latest_posts_detail.date }} </h4>
-  <div class="underline"></div>
-  {% if latest_posts_detail.image.url is not None %}
-  <img class="centre img-responsive blog_image" src="{{ latest_posts_detail.image.url }}">
+
+<div class="event_content center">
+        <br>
+        <div class="center">
+            <div style="text-align: center;" >
+                <h1 style="font-size:30px;">{{ latest_posts_detail.title }}</h1>
+                <h4 class="center"style="color: #f29260">By : {{ latest_posts_detail.author }}</h4>
+                <h4 style="color:#3d3d29"> {{ latest_posts_detail.date }} </h4>
+                <div class="underline"></div>
+                {% if latest_posts_detail.image.url is not None %}
+                <div class="container-fluid card">
+                <img class="centre img-responsive blog_image" src="{{ latest_posts_detail.image.url }}">
   {% else %}
   <h5> Image not found</h5>
   {% endif %}
