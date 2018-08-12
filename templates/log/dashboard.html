@@ -10,7 +10,7 @@
 
           <div class="d-none d-sm-block col-md-2"></div>
           <div class="col-xs-12 col-md-8 card">
-              <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">
+          <!--    <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">-->
               <div class="row">
                 {% if blogs %}
                   {% for blog in blogs %}
@@ -35,12 +35,16 @@
                   <div class="filter d-none d-sm-block"></div>
                   <div class="blog-image-profile d-none d-sm-block" style="background-image: url('{{ blog.image.url }}');background-size: cover;    background-position: center;"></div>
                     {% else %}
+                    <div style="height:200px; width:100%;">
                     <h5>No blogs available. <a href="{% url 'blog:blog-add' %}">Post something new!!!</a></h5>
+                    </div>
                     {% endif %}
                     {% endfor %}
 
                   {% else %}
-                  <h5>No blogs available.</h5>
+                  <div style="height:200px; width:100%; border-radius:25px; border-style: dashed;   >
+                    <a href="{% url 'blog:blog-add' %}"><i class="fa fa-plus" style="font-size:32px; color:#fd7e14;"></i></a>
+                    </div>
                   {% endif %}
 
               </div>
