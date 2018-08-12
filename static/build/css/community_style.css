@@ -5,6 +5,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
+  /*overflow-x: hidden;*/
+
   /*overflow-clip-box: hidden;  */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -195,6 +197,14 @@ nav {
 .small-p {
   font-size: 0.9rem;
 }
+
+.small-footer {
+  background: #f2925f;
+  position: relative;
+  text-align: center;
+  padding-top: 5px;
+  display: flow-root;
+}
 /*End Buttons and helpers*/
 
 /*Feed CSS*/
@@ -236,6 +246,14 @@ nav {
   background-color: #f7f7f7;
   position: relative;
   padding: 2rem;
+  padding-top: 1rem;
+}
+
+@media screen and (min-width : 1500px) {
+.content-posts {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  }
 }
 
 .blog-date {
@@ -269,6 +287,10 @@ nav {
   color: black;
 }
 
+.post-actions {
+  padding-left: 0px;
+}
+
 .post-actions > form {
   display: inline-block;
 }
@@ -299,11 +321,28 @@ nav {
   padding: 5px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .small-xs {
+    width:75%;
+  }
+}
+
+.pinned {
+  color: green;
+  text-decoration: underline;
+}
 /*End Feed CSS*/
 
 /*Right aside*/
 .right-aside {
 
+}
+
+@media screen and (max-width: 768px) {
+  .right-aside {
+    padding: 0;
+  }
 }
 /**/
 
@@ -386,6 +425,14 @@ nav {
   /*Automatically expands to right and left*/
 }
 
+.card-post {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.pills {
+  margin-bottom: 20px;
+}
 
 /*End profile*/
 
@@ -393,7 +440,7 @@ nav {
 /*Login/Register page*/
 .login-card {
   padding: 30px;
-  margin-top: 10rem; 
+  margin-top: 6rem;
 }
 
 
@@ -422,13 +469,23 @@ nav {
 }
 /*EndLogin/Register page*/
 
-/*Create post page*/
+/*Create post/blog page*/
+
 .create-post-content{
   padding: 20px;
   margin-top: 40px;
 }
 
-/*End create blog page*/
+#id_tags {
+  padding-left: 10px;
+  list-style: none;
+}
+
+#id_tags > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+/*End create post/blog page*/
 
 
 .underline{
