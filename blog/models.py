@@ -73,6 +73,7 @@ class Comments(models.Model):
 	comment_author = models.CharField(max_length=200)
 	comment_text = models.TextField()
 	comment_date = models.DateTimeField(default=datetime.now)
+	reply_for = models.ForeignKey('self', on_delete=models.CASCADE, related_name='replies', null=True, default=None)
 	active = models.BooleanField(default=True)
 
 	def __str__(self):
@@ -92,6 +93,9 @@ class Upvote(models.Model):
 class CommentUpvote(models.Model):
 	comment = models.ForeignKey(Comments, on_delete=models.CASCADE, related_name='upvotes')
 	username = models.CharField(max_length=255 , null = True)
+
+	class Meta:
+		unique_together = ['comment','username']
 
 	def __str__(self):
 		return self.comment.post.title + '-' + self.comment.comment_author + '-' + self.username

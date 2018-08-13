@@ -6,7 +6,8 @@ from django.template.defaultfilters import slugify
 class Events(models.Model):
 	title = models.CharField(max_length=255)
 	author = models.CharField(max_length=255)
-	date = models.DateField()
+	date = models.DateTimeField(auto_now_add=True)
+	event_date = models.DateField()
 	time = models.TimeField()
 	image = models.ImageField(upload_to='events', default='img/blog/thumbnail-default.jpg')
 	venue = models.CharField(max_length=1024)

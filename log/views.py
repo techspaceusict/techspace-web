@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 
-from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm, EventAddForm#, InfoAddForm, TeamAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm#, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
 
 from event.models import Events

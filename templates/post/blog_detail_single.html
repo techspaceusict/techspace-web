@@ -100,11 +100,22 @@
 	{% for comment in comments reversed %}
 
 	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
+		<ul class="list-group">
+				{% for reply in comment.replies.all %}
+				<li class="list-group-item " style="text-align:left"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
+				{% endfor %}
+		</ul>
 		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 				<input type="hidden" value="{{ comment.id }}" name="id">
 				{% csrf_token %}
 				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
 				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
+		</form>
+		<form class="form-horizontal" action="{% url 'blog:reply-comment' %}" method="post">
+			{% csrf_token %}
+			{{ form.comment_text }}
+			<input type="hidden" value="{{ comment.id }}" name="id" />
+			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
 	</li>
 	{% endfor %}
