@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
@@ -117,7 +117,7 @@ def blogDetailView(request, slug):
 	blog = get_object_or_404(BlogPost, slug=slug)
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
-	comments = blog.comments.filter(active=True)
+	comments = blog.comments.filter(active=True, reply_for=None)
 	try:
 		for comment in comments:
 			comment.upvotes_len = len(comment.upvotes.all())
@@ -241,3 +241,19 @@ def toggleCommentUpvote(request) :
         upvotes = len(CommentUpvote.objects.filter(comment = comment))
         data = {'state': not comment_state, 'upvotes': upvotes}
     return JsonResponse(data)
+
+
+@login_required
+def replyComment(request):
+	if request.method == "POST":
+		comment_id = request.POST['id']
+		comment = get_object_or_404(Comments, id=comment_id)
+		comment_form = CommentForm(request.POST)
+		if comment_form.is_valid():
+			new_comment = comment_form.save(commit=False)
+			new_comment.comment_author = request.user.username
+			new_comment.post = comment.post
+			new_comment.reply_for = comment
+			new_comment.save()
+		return redirect('blog:blog-detail', slug=comment.post.slug)
+	return redirect('home:index')

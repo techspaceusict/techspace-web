@@ -183,9 +183,44 @@
           {% endfor %}
 
         </ul>
+          <!-- {% if blogs.has_other_pages %}
+          <ul class="pagination">
+            {% if blogs.has_previous %}
+            <li><a href="?pages={{ blogs.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"> <span>&laquo;</span> </li>
+            {% endif %}
+
+            {% for i in blogs.paginator.page_range %}
+              {% if blogs.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span> </span> </li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a> </li>
+              {% endif  %}
+            {% endfor %}
+
+            {% if blogs.has_next %}
+              <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a> </li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span> </li>
+            {% endif %}
+
+          </ul>
+          {% endif %} -->
+
+
         <div class="toolbar-posts-bottom">
-            <button class="btn-wire-dark">Previous</button>
-            <button class="btn-wire-dark">Next</button>
+          {% if blogs.has_previous %}
+            <a href="?pages={{ blogs.previous_page_number }}" class="btn-wire-dark">Previous</a>
+          {% else %}
+          <a class="btn-wire-dark disabled">Previous</a>
+          {% endif %}
+          {% if blogs.has_next %}
+            <a href="?page={{ blogs.next_page_number }}" class="btn-wire-dark">Next</a>
+          {% else %}
+            <a class="btn-wire-dark disabled">Next</a>
+          {% endif %}
+
             <br>
         </div>
     </div>
@@ -222,7 +257,7 @@
                       {% for event in events reversed %}
                       <li class="list-group-item">
                           <h5>{{event.title}}</h5>
-                          <h6 class="blog-date">{{event.date}}</h6>
+                          <h6 class="blog-date">{{event.event_date}}</h6>
                           <p>{{event.content|truncatewords:50}} <a href="{% url 'event:detail' event.slug %}">more...</a></p>
                       </li>
                       {% endfor %}

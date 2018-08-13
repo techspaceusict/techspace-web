@@ -10,7 +10,7 @@
 
           <div class="d-none d-sm-block col-md-2"></div>
           <div class="col-xs-12 col-md-8 card">
-              <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">
+          <!--    <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">-->
               <div class="row">
                 {% if blogs %}
                   {% for blog in blogs %}
@@ -19,28 +19,37 @@
                 <div class="col-xs-6 col-md-8 blog-content-profile">
                   <a href="{% url 'blog:blog-detail' slug=blog.slug %}" class="blog-post-profile"><h4>{{ blog.title  }}</h4></a>
                   <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{blog.author}}</a></h6>
-                  <p>{{ blog.content|truncatewords:30 }}<a class="small" href="{% url 'blog:blog-detail' slug=blog.slug %}"> more...</a></p>
+                  <p>{{ blog.description|truncatewords:30 }}<a class="small" href="{% url 'blog:blog-detail' slug=blog.slug %}"> more...</a></p>
                   <div class="post-actions" style="position:absolute;bottom:1rem">
                     <!-- <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> | -->
-                    <a href="#" class="small-p">2 comments</a> |
-                        <form action="#" method="get">
+                    <a href="#" class="small-p">2 comments</a>
+                      {% if user == profile %}
+                       | <form action="#" method="get">
                           <a class="post-actions-button small-p" href="{% url 'blog:blog-edit' slug=blog.slug %}">Edit</a>
                         </form> |
                         <form action="#" method="post" >
                           <a class="post-actions-button small-p" href="{% url 'blog:blog-delete' slug=blog.slug %}">Delete</a>
                         </form>
+                      {% endif %}
                  </div>
                 </div>
                 <!-- <div class="col-xs-6 col-md-4"> -->
+
+                  {% if blog.image %}
                   <div class="filter d-none d-sm-block"></div>
                   <div class="blog-image-profile d-none d-sm-block" style="background-image: url('{{ blog.image.url }}');background-size: cover;    background-position: center;"></div>
-                    {% else %}
+                  {% endif %}
+                   {% else %}
+                    <div style="height:200px; width:100%;">
                     <h5>No blogs available. <a href="{% url 'blog:blog-add' %}">Post something new!!!</a></h5>
+                    </div>
                     {% endif %}
                     {% endfor %}
 
                   {% else %}
-                  <h5>No blogs available.</h5>
+                  <div style="height:200px; width:100%; border-radius:25px; border-style: dashed;   >
+                    <a href="{% url 'blog:blog-add' %}"><i class="fa fa-plus" style="font-size:32px; color:#fd7e14;"></i></a>
+                    </div>
                   {% endif %}
 
               </div>
@@ -55,3 +64,5 @@
 
 
 {% endblock %}
+
+

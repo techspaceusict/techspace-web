@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 
-from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm, EventAddForm#, InfoAddForm, TeamAddForm
+from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm#, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
 
 from event.models import Events
@@ -132,7 +132,7 @@ def profile_view(request, username):
 
 def dashboard(request, name=None):
 	profile = UserProfile.objects.get(user__username=name)
-	blogs = BlogPost.objects.filter(author=name)
+	blogs = BlogPost.objects.filter(author=name, isblog = True)
 	try:
 		userprofile = UserProfile.objects.get(user=request.user)
 		return render(request, 'log/dashboard.html', {'blogs': blogs, 'profile': profile})
@@ -163,13 +163,13 @@ def inbox(request, name=None):
 	return redirect('log:dashboard', name=name)
 
 def discussions(request, name=None):
+	profile = UserProfile.objects.get(user__username=name)
+	posts = BlogPost.objects.filter(author=name, isblog = False)
 	try:
-		posts = BlogPost.objects.filter(author=request.user)
 		userprofile = UserProfile.objects.get(user=request.user)
-		profile = UserProfile.objects.get(user__username=name)
 		return render(request, 'log/discussions.html', {'posts': posts, 'profile': profile})
 	except:
-		raise Http404
+		return render(request, 'log/discussions.html', {'profile': profile, 'posts': posts})
 
 def comments(request, name=None):
 	try:
