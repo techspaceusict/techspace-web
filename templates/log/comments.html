@@ -17,16 +17,10 @@
                   <p>{{ comment.comment_text }}</p>
                   <div class="post-actions" style="position:absolute;bottom:1rem">
                   <span class="blog-date">on {{ comment.comment_date }}</span>
-                    <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> |
-                        <!-- <form action="#" method="get">
-                          <button class="post-actions-button small-p">Edit</button>
-                        </form> | -->
-                        <form action="#" method="post" >
-                          <a class="post-actions-button small-p" href="#">Delete</a>
-                        </form>
                  </div>
 
                 </div>
+                
               {% endfor %}
               {% else %}
               <h5>No comments yet!!! Interact with others post!!!</h5>

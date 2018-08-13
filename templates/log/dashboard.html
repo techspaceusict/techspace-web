@@ -21,8 +21,8 @@
                   <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{blog.author}}</a></h6>
                   <p>{{ blog.description|truncatewords:30 }}<a class="small" href="{% url 'blog:blog-detail' slug=blog.slug %}"> more...</a></p>
                   <div class="post-actions" style="position:absolute;bottom:1rem">
-                    <!-- <a href="#" class="small-p"><i class="fa fa-thumbs-up"></i> Upvote (22)</a> | -->
-                    <a href="#" class="small-p">2 comments</a>
+                    <p style="display: inline;" class="small-p">Upvotes ({{ blog.upvotes }})</p> |
+                    <p style="display: inline;" class="small-p">{{ blog.comments.all.count }} comments</p>
                       {% if user == profile %}
                        | <form action="#" method="get">
                           <a class="post-actions-button small-p" href="{% url 'blog:blog-edit' slug=blog.slug %}">Edit</a>
@@ -47,7 +47,7 @@
                     {% endfor %}
 
                   {% else %}
-                  <div style="height:200px; width:100%; border-radius:25px; border-style: dashed;   >
+                  <div style="height:200px; width:100%; border-radius:25px; border-style: dashed;"   >
                     <a href="{% url 'blog:blog-add' %}"><i class="fa fa-plus" style="font-size:32px; color:#fd7e14;"></i></a>
                     </div>
                   {% endif %}
@@ -64,5 +64,3 @@
 
 
 {% endblock %}
-
-

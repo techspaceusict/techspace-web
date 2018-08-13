@@ -34,12 +34,16 @@ def postDetailView(request, slug):
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
 
-
 	blog = get_object_or_404(BlogPost, slug=slug)
-
+	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
+	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
+	comments = blog.comments.filter(active=True, reply_for=None)
 	try:
+		for comment in comments:
+			comment.upvotes_len = len(comment.upvotes.all())
+			comment.state = len(comment.upvotes.filter(username=request.user.username))
+
 		user = UserProfile.objects.get(user=request.user)
-		comments = blog.comments.filter(active=True)
 		if request.method == 'POST':
 			comment_form = CommentForm(data=request.POST)
 			if comment_form.is_valid():
@@ -53,7 +57,7 @@ def postDetailView(request, slug):
 		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 	except:
-		return render(request, 'post/post_detail_single.html', {'blog_detail': blog})
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'comments': comments })
 
 
 @login_required

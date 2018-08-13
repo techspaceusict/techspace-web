@@ -15,7 +15,7 @@ from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportFor
 
 from event.models import Events
 from .models import UserProfile, Report, Message
-from blog.models import BlogPost, Comments
+from blog.models import BlogPost, Comments, Upvote
 
 
 # Create your views here.
@@ -133,6 +133,8 @@ def profile_view(request, username):
 def dashboard(request, name=None):
 	profile = UserProfile.objects.get(user__username=name)
 	blogs = BlogPost.objects.filter(author=name, isblog = True)
+	for blog in blogs:
+		blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	try:
 		userprofile = UserProfile.objects.get(user=request.user)
 		return render(request, 'log/dashboard.html', {'blogs': blogs, 'profile': profile})
@@ -142,12 +144,8 @@ def dashboard(request, name=None):
 
 
 def portfolio(request, name=None):
-	try:
-		profile = UserProfile.objects.get(user__username=name)
-		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/portfolio.html', {'profile': profile})
-	except:
-		raise Http404
+	profile = UserProfile.objects.get(user__username=name)
+	return render(request, 'log/portfolio.html', {'profile': profile})
 
 def inbox(request, name=None):
 	if request.user.username == name:
@@ -165,21 +163,14 @@ def inbox(request, name=None):
 def discussions(request, name=None):
 	profile = UserProfile.objects.get(user__username=name)
 	posts = BlogPost.objects.filter(author=name, isblog = False)
-	try:
-		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/discussions.html', {'posts': posts, 'profile': profile})
-	except:
-		return render(request, 'log/discussions.html', {'profile': profile, 'posts': posts})
+	for post in posts:
+		post.upvotes = len(Upvote.objects.filter( title = post.title ))
+	return render(request, 'log/discussions.html', {'profile': profile, 'posts': posts})
 
 def comments(request, name=None):
-	try:
-		comments = Comments.objects.filter(comment_author=request.user)
-		userprofile = UserProfile.objects.get(user=request.user)
-		profile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/comments.html', {'comments': comments, 'profile': profile})
-	except:
-		raise Http404
-
+	profile = UserProfile.objects.get(user__username=name)
+	comments = Comments.objects.filter(comment_author=profile.user.username)
+	return render(request, 'log/comments.html', {'comments': comments, 'profile': profile})
 
 #
 # @login_required
