@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
+from django.http import JsonResponse
 from django.core.urlresolvers import reverse, reverse_lazy
-from .models import BlogPost, Upvote, Tag
+from .models import BlogPost, Upvote, Tag, CommentUpvote, Comments
 from .forms import CommentForm
 from log.models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -49,7 +50,7 @@ def postDetailView(request, slug):
 				return redirect('blog:post-detail', slug=slug)
 		else:
 			comment_form = CommentForm()
-		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 	except:
 		return render(request, 'post/post_detail_single.html', {'blog_detail': blog})
@@ -76,7 +77,7 @@ def post_new(request):
 
 
 	form = PostAddForm()
-	return render(request, 'post/post_add_form.html', {'form':form, 'userprofile' : user})
+	return render(request, 'post/post_add_form.html', {'form':form})
 
 
 @login_required
@@ -100,7 +101,7 @@ def post_edit(request, slug):
 				return redirect('blog:post-detail', slug=post.slug)
 
 		form = PostAddForm(instance=post)
-		return render(request, 'post/post_edit_form.html', {'form': form, 'userprofile' : user})
+		return render(request, 'post/post_edit_form.html', {'form': form})
 	else:
 		return redirect('home:index')
 
@@ -118,6 +119,10 @@ def blogDetailView(request, slug):
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True)
 	try:
+		for comment in comments:
+			comment.upvotes_len = len(comment.upvotes.all())
+			comment.state = len(comment.upvotes.filter(username=request.user.username))
+
 		user = UserProfile.objects.get(user=request.user)
 		if request.method == 'POST':
 			comment_form = CommentForm(data=request.POST)
@@ -126,10 +131,10 @@ def blogDetailView(request, slug):
 				new_comment.comment_author = request.user.username
 				new_comment.post = blog
 				new_comment.save()
-				return redirect('blog:post-detail', slug=slug)
+				return redirect('blog:blog-detail', slug=slug)
 		else:
 			comment_form = CommentForm()
-		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments, 'userprofile' : user})
+		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
 
 	except:
 		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'comments': comments })
@@ -163,7 +168,7 @@ def blog_new(request):
 
 
 	form = BlogAddForm()
-	return render(request, 'post/blog_add_form.html', {'form':form, 'userprofile' : user})
+	return render(request, 'post/blog_add_form.html', {'form':form})
 
 
 
@@ -196,7 +201,7 @@ def blog_edit(request, slug):
 				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
-		return render(request, 'post/blog_edit_form.html', {'form': form, 'userprofile' : user})
+		return render(request, 'post/blog_edit_form.html', {'form': form})
 
 	else:
 		return redirect('home:index')
@@ -218,3 +223,21 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 			return HttpResponseRedirect(success_url)
 		else:
 			return HttpResponseForbidden("Cannot delete other's posts")
+
+
+@login_required
+def toggleCommentUpvote(request) :
+
+    if (request.method == "POST") :
+
+        comment_id = request.POST['id']
+        comment_state = int(request.POST['state'])
+        comment = get_object_or_404(Comments, id = comment_id)
+
+        if (comment_state == 0) :
+            CommentUpvote.objects.create( username = request.user , comment = comment )
+        else :
+            CommentUpvote.objects.get( username = request.user , comment = comment ).delete()
+        upvotes = len(CommentUpvote.objects.filter(comment = comment))
+        data = {'state': not comment_state, 'upvotes': upvotes}
+    return JsonResponse(data)

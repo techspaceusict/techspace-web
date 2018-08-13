@@ -12,21 +12,37 @@ application up and running.
 
 Running techspace-web on your system:
 
-1. Make sure you have Python 2 and pip setup on your computer. 
+1. Make sure you have Python 3 and pip setup on your computer. 
    https://www.makeuseof.com/tag/install-pip-for-python/
-2. Clone the repository.
-2. pip install the following:
-```
-Django==1.11.13
-Pillow
-django-ckeditor
-```
-3. cd into project ```cd techspace-web``` and run:
+2. Make sure you have virtual environment installed.
+   To check run command ```$ pip freeze```
+   To install virtual environment``` $ pip install virtualenv ```
+   
+3. Clone the repository.
+4. cd into project ```cd techspace-web```
+5. Create and activate virtual environment for the project
+   ```
+   $ python3 -m virtualenv env
+   $ source env/bin/activate
+   ```
+6. Install requirements
+   ```$ pip3 install -r requirements.txt```
+   
+7. Now run the server:
+   ```
+   $ python manage.py runserver
+   ```
+  
+8. Make migrations to the database using the following commands:
+   ```
+   $ python manage.py makemigratons
+   $ python manage.py migrate
+   ```
 
-```
-$ python manage.py runserver
-```
+9. Now open localhost:8000 in browser and the application must be running.
 
-5. Now open localhost:8000 in browser and the application must be running.
-
-
+10. Every time to run the project first activate virtual environment and then run the server
+    ```
+    $ source env/bin/activate
+    $ python manage.py runserver
+    ```

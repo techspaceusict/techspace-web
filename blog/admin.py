@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Comments, Tag, Upvote
+from .models import BlogPost, Comments, Tag, Upvote, CommentUpvote
 
 # Register your models here.
 
@@ -8,3 +8,4 @@ admin.site.register(Comments, list_display=['comment_author', 'comment_text', 'c
 
 admin.site.register(Tag)
 admin.site.register(Upvote)
+admin.site.register(CommentUpvote)

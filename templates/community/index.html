@@ -29,12 +29,14 @@
             <li class="row">
                 <div class="col-xs-12 col-md-12">
                   <div class="small-xs">
-                    <h5><i class="fa fa-thumb-tack" aria-hidden="true"></i> {{blog.title}}</h5>
+
+                    <h5> {{blog.title}} <span class="small-p pinned" style="color: green">Pinned Post <i class="fa fa-thumb-tack" aria-hidden="true"></i></span></h5>
+
                       {% if blog.isblog %}
                         <i class="fa fa-sticky-note" aria-hidden="true"></i>
                       {% endif %}
-                    <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
 
+                    <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10">
                       <p>{{ blog.description|truncatewords:100 |safe }}<a href="{% url 'blog:blog-detail' blog.slug %}">(more...)</a></p>
@@ -50,7 +52,8 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                    {% if user.is_authenticated %}
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -61,8 +64,17 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                    {% endif %}
+
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
@@ -118,7 +130,8 @@
                   {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-12 post-actions">
-                      <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+                    {% if user.is_authenticated %}
+                      <!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.title }}" name="title">
                           <input type="hidden" value="0" name="onDetailPage">
                           {% csrf_token %}
@@ -129,8 +142,16 @@
                               {% if blog.state == 0 %}
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
+                      </form> -->
+
+                      <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+                          <input type="hidden" value="{{ blog.id }}" name="id">
+                          {% csrf_token %}
+                          <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
+                          <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">2 comments</a>
+                    {% endif %}
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
@@ -185,10 +206,10 @@
                         <p>{{latest.content|truncatewords:150}} <a href="{% url 'latest:latest_posts_detail' latest.slug %}">more...</a></p>
                     </li>
                     {% endfor %}
+                    <a href="{% url 'latest:latest_posts' %}" class="list-group-item"><div class="text-center">See all Posts</div></a>
                     {% else %}
                     <h3>No upcoming posts.</h3>
                     {% endif %}
-                    <a href="{% url 'latest:latest_posts' %}" class="list-group-item"><div class="text-center">See all Posts</div></a>
                 </ul>
             </div>
             <div class="col-xs-12">
@@ -205,14 +226,45 @@
                           <p>{{event.content|truncatewords:50}} <a href="{% url 'event:detail' event.slug %}">more...</a></p>
                       </li>
                       {% endfor %}
+                      <a href="{% url 'event:events' %}" class="list-group-item"><div class="text-center">See all events</div></a>
                       {% else %}
                       <h3>No upcoming events.</h3>
                       {% endif %}
-                    <a href="{% url 'event:events' %}" class="list-group-item"><div class="text-center">See all events</div></a>
                   </ul>
             </div>
         </div>
     </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+
+</script>
+
 {% endblock %}

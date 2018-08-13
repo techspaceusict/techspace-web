@@ -4,21 +4,53 @@
 <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
 
 
+<div class="container">
+    
+    <div class="row">
+            
+            {% if events %}
+            {% for event in events reversed %}
+            
+            <div class="col-sm-12 col-md-6 col-lg-4 card-deck">
+                <div class="card" id="event_card">
+                    <div class="card-body d-flex flex-column">
+                          <h2 class="card-title text-center"> {{ event.title }} </h2>
+                          <div class="underline_events"></div>
+                          <h5 class="card-subtitle" id="card_subtitle"> {{ event.date }} </h5>
+                          <h5 class="card-text" id="card_body"> {{ event.content|linebreaks|truncatewords:50 }} </h5>
+                        <a href="{%url 'event:detail' event.slug %}" class="btn-wire-dark align-self-end mt-auto" id="event_details">Details</a>     
+                      </div>
+                </div>
+                
+            
+            </div>
+            
+            {% endfor %}
 
 
+            {% else %}
+            <h1>No events to display</h1>
+            
+    </div>
+
+</div>
+
+{% endif  %}
+
+{% endblock %}
 
 
-
+<!--
 <div class="container-fluid">
 
 {% if events %}
 {% for event in events reversed %}
-<div class="event-card">
-  <h2 class="center"> {{ event.title }} </h2>
-  <h5 class="center"> {{ event.date }} </h5>
-  <h5 class="center"> {{ event.content|linebreaks|truncatewords:50 }} </h5>
-  <div class="underline"></div>
-  <a href="{% url 'event:detail' event.slug %}">(more...)</a>
+<div class="card" id="event_card">
+<h2 class="center"> {{ event.title }} </h2>
+<h5 class="center"> {{ event.date }} </h5>
+<h5 class="center"> {{ event.content|linebreaks|truncatewords:50 }} </h5>
+<div class="underline"></div>
+<a href="{% url 'event:detail' event.slug %}">(more...)</a>
 </div>
 <div class="end_line"></div>
 {% endfor %}
@@ -30,4 +62,5 @@
 
 {% endif  %}
 
-{% endblock %}
+
+-->
