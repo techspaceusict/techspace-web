@@ -1,3 +1,6 @@
+import urllib
+import json
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
@@ -6,6 +9,9 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.conf import settings
+from django.contrib import messages
+
 
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
@@ -18,6 +24,8 @@ from .models import UserProfile, Report, Message
 from blog.models import BlogPost, Comments, Upvote
 
 
+
+
 # Create your views here.
 
 def register(request):
@@ -27,17 +35,43 @@ def register(request):
 		profile_form = UserProfileForm(data=request.POST)
 
 		if user_form.is_valid() and profile_form.is_valid() :
-			user = user_form.save()
-			user.set_password(user.password)
-			user.save()
 
-			profile = profile_form.save(commit=False)
-			profile.user = user
-			profile.save()
+			''' Begin reCAPTCHA validation '''
+			recaptcha_response = request.POST.get('g-recaptcha-response')
+			url = 'https://www.google.com/recaptcha/api/siteverify'
+			values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+			data = urllib.parse.urlencode(values).encode()
+			req =  urllib.request.Request(url, data=data)
+			response = urllib.request.urlopen(req)
+			result = json.loads(response.read().decode())
+			''' End reCAPTCHA validation '''
+			if result['success']:
+				user = user_form.save()
+				user.set_password(user.password)
+				user.save()
+
+				profile = profile_form.save(commit=False)
+				profile.user = user
+				profile.save()
+				messages.info(request, 'Thanks for registering, You are now logged in.')
+				new_user = authenticate(username=user_form.cleaned_data['username'],
+										password=user_form.cleaned_data['password'],
+										)
+				login(request, new_user)
+				registered = True
+
+				return HttpResponseRedirect(reverse('community:index'))
+			else:
+				messages.error(request,'Invalid reCAPTCHA. Please try again.')
+				return HttpResponseRedirect(reverse('register'))
 
 
-			registered = True
-			return HttpResponseRedirect(reverse('login'))
+
+
+
 		else:
 			print(user_form.errors, profile_form.errors)
 	else:
@@ -62,11 +96,12 @@ def user_login(request):
 				else:
 					return HttpResponseRedirect(reverse('community:index'))
 			else:
-				return HttpResponse("Account is not active")
+				messages.warning(request, "Account is active.")
+				return HttpResponseRedirect(reverse("login"))
 		else:
 			print("someone tried to login with wrong credentials")
-
-			return HttpResponse("invalid credentials")
+			messages.error(request, "Invalid username or password. Please try again")
+			return HttpResponseRedirect(reverse("login"))
 	else:
 		if request.user.is_authenticated:
 			return HttpResponseRedirect(reverse('community:index'))

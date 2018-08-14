@@ -10,7 +10,10 @@
 	<div class="col-md-4"></div>
 	<div class="col-xs-12 col-md-4 card login-card">
 	<h5 class="small-heading">Login to Techspace community.</h5>
-	<br>	
+	{% include 'global_components/django_messages.html' %}
+
+	<br>
+
 	<form action="{% url 'login' %}" method="POST">
 		{% csrf_token %}
 
@@ -19,7 +22,7 @@
 		<input class="form-control" type="password" name="password" placeholder="Password" required><br>
 		{% if error %}
 	                    <p class=" label label-danger">
-	                        Your username and password didn't match. 
+	                        Your username and password didn't match.
 	                        Please try again.
 	                    </p>
 	    {% endif %}
@@ -28,7 +31,7 @@
 		<input type="hidden" name="next" value="{{ request.GET.next }}">
 		{% endif %}
 
-		<button class="btn btn-block btn-wire-dark-simple">Login</button>	
+		<button class="btn btn-block btn-wire-dark-simple">Login</button>
 		<br>
 	</form>
 	<p>Not registered? Create an <a href="{% url 'register' %}">account</a>.</p>
@@ -41,4 +44,3 @@
 </div>
 
 {% endblock %}
-

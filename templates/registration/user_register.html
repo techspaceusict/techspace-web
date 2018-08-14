@@ -10,12 +10,16 @@
 	<div class="col-md-4"></div>
 	<div class="col-xs-12 col-md-4 card login-card">
 	<h5 class="small-heading">Register with Techspace community.</h5>
-	<br>	
+	<br>
+	{% include 'global_components/django_messages.html' %}
+
 	<form action="{% url 'register' %}" method="POST">
 		{% csrf_token %}
 		{{ user_form.as_p }}
 		{{ profile_form.as_p }}
-		
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<div class="g-recaptcha" data-sitekey="6Lft7WkUAAAAAPiekKyU7kBzb-LVvuGEGJZkWzMF"></div>
+
 		<button class="btn btn-block btn-wire-dark-simple">Submit</button>
 	</form>
 
@@ -24,7 +28,7 @@
 </div>
 
 
-<!-- 
+<!--
 	{% if registered %}
 		<h3>Thanks for registering with us.</h3>
 	{% else %}
@@ -35,10 +39,10 @@
 		<input type="submit" value="Submit">
 	</form>
 	{% endif %}
-	
+
  -->
 <script>
-    
+
     function setAttributes(el, attrs) {
         for(var key in attrs) {
             el.setAttribute(key, attrs[key]);
@@ -70,6 +74,6 @@
     setAttributes(password, {"onkeyup":"check()" , "placeholder":"Password" , class:"form-control"});
     setAttributes(id_username,{class : "form-control"});
     setAttributes(year_label, {"for":"id_year_of_graduation"});
-    year.parentNode.insertBefore(year_label, year.previousSibling);    
+    year.parentNode.insertBefore(year_label, year.previousSibling);
 </script>
  {% endblock %}
