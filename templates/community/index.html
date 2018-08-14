@@ -10,7 +10,7 @@
         </h4>
         <div class="toolbar-posts">
            <h6 class="float-right"><a href="{% url 'blog:blog-add' %}">Create New Blog</a> | <a href="{% url 'blog:post-add' %}">Submit New Post</a></h6>
-            <p>Sort by:
+            <!-- <p>Sort by:
             <select>
                 <option>Time</option>
                 <option>Points</option>
@@ -21,7 +21,7 @@
                 <option>Codeschool</option>
                 <option>Cogitans</option>
             </select>
-            </p>
+            </p> -->
         </div>
         <ul class="posts">
 
@@ -302,4 +302,7 @@
 
 </script>
 
+{% include './components/smallfooter.html' %}
+
 {% endblock %}
+

@@ -272,6 +272,8 @@ nav {
   position: relative;
   padding: 2rem;
   padding-top: 1rem;
+  min-height: 90vh
+  
 }
 
 @media screen and (min-width : 1500px) {
