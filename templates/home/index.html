@@ -12,7 +12,7 @@
             <h1 class="text-white techspace-title">Techspace <br>USICT</h1>
             <p class="text-white" style="font-family: 'Quicksand'">Best place to nurture yourself.</p>
             <br>
-            <h4 style="font-family: 'Quicksand'"><a href="{% url 'register' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
+            <h4 style="font-family: 'Quicksand'"><a href="{% url 'community:index' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
         </div>
         <div class="col-md-5 d-none d-sm-block animate-right">
             <img class="img-fluid img-thumbnail" src="{% static 'img/3.jpg' %}">
@@ -47,7 +47,7 @@
                         <li>To be the best place to nurture oneself</li>
                     </ul>
                 </p>
-                <h4 class="pt-3"><a href="#clubs" class="btn-wire-dark scrollTo">Join Hands</a></h4>
+                <a href="{% url 'community:index' %}" class="btn-wire-dark">community@techspace.club</a>
                 <br>
             </div>
         <div id="about-bg-diagonal" class="bg-parallax d-none d-md-block"></div>
@@ -123,7 +123,7 @@
                             <div class="title">CODE SCHOOL</div>
                             <div class="desc">Competitive Coding</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'codeschool:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                             <div class="title">COGITANS</div>
                             <div class="desc">The Web Dev Club</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'cogitans:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                             <div class="title">Droid Club</div>
                             <div class="desc">Android Developement</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'droidclub:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -259,7 +259,7 @@
                             <div class="title">Electrotech</div>
                             <div class="desc">Electronics</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'electrotech:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                             <div class="title">OSLC</div>
                             <div class="desc">Open Source Learning</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'oslc:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                             <div class="title">Zenith E-Cell</div>
                             <div class="desc">Entrepreneurship Cell</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'ecell:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -363,7 +363,7 @@
                             <div class="title">Turing AI</div>
                             <div class="desc">Machine Learning, Deep learning, Neural Networks</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'turingai:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -422,7 +422,7 @@
                             <div class="title">Unity GameDev</div>
                             <div class="desc">AR/VR, Game Development</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'renderedusict:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>

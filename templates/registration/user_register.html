@@ -19,15 +19,17 @@
 		{{ profile_form.as_p }}
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<div class="g-recaptcha" data-sitekey="6Lft7WkUAAAAAPiekKyU7kBzb-LVvuGEGJZkWzMF"></div>
-
+        <br>
 		<button class="btn btn-block btn-wire-dark-simple">Submit</button>
 	</form>
-
+    <br>
+        <p>Already have an account. <a href="{% url 'register' %}">Sign in.</a></p>
 	</div>
 	</div>
 </div>
 
-
+<br>
+<br>
 <!--
 	{% if registered %}
 		<h3>Thanks for registering with us.</h3>

@@ -16,7 +16,7 @@ gulp.task('build', function() {
     }))
   	.pipe(gulp.dest('static/build/css'));
   gulp.src('static/src/js/**/*.js') 
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('static/build/js'));
   gulp.src(['static/src/scripts/**/*'])
     .pipe(gulp.dest('static/build/scripts')); 
