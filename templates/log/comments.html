@@ -24,7 +24,8 @@
               {% endfor %}
               {% else %}
               <div style="padding :10px">
-              <h5>Your comments on other discussions appear here.</h5>
+              <h5>{% if user.is_authenticated and profile.user.username == user.username %} Your comments on other discussions appear here.{% else %} No comments to show.</h5>
+              {% endif %}
               {% endif %}
             </div>
           </div>

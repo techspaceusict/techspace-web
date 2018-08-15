@@ -276,6 +276,10 @@ nav {
   
 }
 
+.content-posts-main {
+  padding-left: 0; 
+}
+
 @media screen and (min-width : 1500px) {
 .content-posts {
   padding-left: 4rem;
@@ -373,7 +377,7 @@ nav {
 }
 /**/
 
-/*Profile Section*/
+/*Profile Dashboard Section*/
 .profile-container {
   padding: 20px;
 }
@@ -461,6 +465,18 @@ nav {
   margin-bottom: 20px;
 }
 
+
+.grey-hint {
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-bottom: 1px dashed #ccc; 
+  margin-bottom: 5px;
+}
+
+.grey-hint:hover {
+  text-decoration:  none; 
+}
 /*End profile*/
 
 

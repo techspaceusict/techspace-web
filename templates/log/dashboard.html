@@ -49,7 +49,7 @@
                   {% else %}
                   <div style="padding:10px;">
 
-              <h5>You haven't written any blogs. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Write something today.</a>{% endif %}</h5>
+              <h5>{% if user.is_authenticated and profile.user.username == user.username %}You haven't written any blogs. <a href="{% url 'blog:blog-add' %}">Write something today.</a>{% else %} No blogs to show.{% endif %}</h5>
                     </div>
                   {% endif %}
 
