@@ -1,5 +1,5 @@
 {% extends './base.html' %}
-
+{% load staticfiles %}
 {% block content %}
 <!-- THE TOP PART OF THE WEBPAGE -->
 <div id="particles-js">
@@ -12,7 +12,7 @@
             <h1 class="text-white techspace-title">Techspace <br>USICT</h1>
             <p class="text-white" style="font-family: 'Quicksand'">Best place to nurture yourself.</p>
             <br>
-            <h4 style="font-family: 'Quicksand'"><a href="{% url 'register' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
+            <h4 style="font-family: 'Quicksand'"><a href="{% url 'community:index' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
         </div>
         <div class="col-md-5 d-none d-sm-block animate-right">
             <img class="img-fluid img-thumbnail" src="{% static 'img/3.jpg' %}">
@@ -47,7 +47,8 @@
                         <li>To be the best place to nurture oneself</li>
                     </ul>
                 </p>
-                <h4 class="pt-3"><a href="#clubs" class="btn-wire-dark scrollTo">Join Hands</a></h4>
+                <a href="{% url 'community:index' %}" class="btn-wire-dark">community@techspace</a>
+                <br>
                 <br>
             </div>
         <div id="about-bg-diagonal" class="bg-parallax d-none d-md-block"></div>
@@ -109,6 +110,7 @@
                       <a href="#ecell" class="list-group-item list-group-item-action scrollTo">Zenith E-Cell</a>
                       <a href="#turing" class="list-group-item list-group-item-action scrollTo">Turing AI</a>
                       <a href="#unity" class="list-group-item list-group-item-action scrollTo">Unity Game-Dev</a>
+                      <a href="#rooters" class="list-group-item list-group-item-action scrollTo">Rooters</a>
                     </div>
                 </div>
                 </div>
@@ -123,7 +125,7 @@
                             <div class="title">CODE SCHOOL</div>
                             <div class="desc">Competitive Coding</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'codeschool:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -136,16 +138,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+
+                       <div class="circle-img" style="background: url('{% static 'img/codeschool/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Vivek Kumar</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/codeschool/group-member-2.png' %}');background-size: cover;"></div>
+                        <p>Rohan Talwar</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/codeschool/group-member-3.jpg' %}');background-size: cover;"></div>
+                        <p>Harshit Narula</p>
                     </div>
                 </div>
                 </div>
@@ -157,20 +160,21 @@
                 <div class="col-xs-8 col-md-8 d-none d-md-block">
                 <div class="row about-club">
                     <h3>Cogitans</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Cogitans is the web development club of U.S.I.C.T. under Techspace; <br>It is a community of senior and junior full stack developers building responsive and reactive front-end along with complex back-end to make solutions for a user base which is largest among the technical society. 60% of the user base prefers website over apps due to the minimal time it takes to convey the message or get the work done.<br>Members work together on live projects and solve real-world problems and participate in various hackathons on the national level.</p>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+
+                        <div class="circle-img" style="background: url('{% static 'img/cogitans/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Rohan Goyal</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/cogitans/group-member-2.jpg' %}');background-size: cover;"></div>
+                        <p>Shubham Gupta</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/cogitans/group-member-3.jpg' %}');background-size: cover;"></div>
+                        <p>Akshat Papnoi</p>
                     </div>
                 </div>
                 </div>
@@ -182,7 +186,7 @@
                             <div class="title">COGITANS</div>
                             <div class="desc">The Web Dev Club</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'cogitans:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -200,7 +204,7 @@
                             <div class="title">Droid Club</div>
                             <div class="desc">Android Developement</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'droidclub:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -208,21 +212,22 @@
                 <div class="col-xs-8 col-md-8 d-none d-md-block">
                 <div class="row about-club">
                     <h3>Droid Club</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Android is without a doubt THE biggest mobile platform in the world, with over 80% market share and over 1 billion devices sold in 2016 alone. This is an amazing club that teaches you everything you want to learn about making android apps from the basic to the advanced. We will make you efficient in developing real, marketable apps. If you want to get ahead at work and increase your earning potential, I GUARANTEE that you will find this club show-stoppingly useful.</p>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+
+                        <div class="circle-img" style="background: url('{% static 'img/droidclub/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Nikit Bhandari</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/droidclub/group-member-2.jpg' %}');background-size: cover;"></div>
+                        <p>Sarthak Aggarwal</p>
                     </div>
-                    <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
+                    <!--<div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/droidclub/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Member 1</p>
-                    </div>
+                    </div>-->
 
                 </div>
                 </div>
@@ -238,16 +243,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+
+                        <div class="circle-img" style="background: url('{% static 'img/electrotech/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Aman Bhardwaj</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/electrotech/group-member-2.jpg' %}');background-size: cover;"></div>
+                        <p>Animesh Sharma</p>
                     </div>
-                    <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                   <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/electrotech/group-member-3.jpg' %}');background-size: cover;"></div>
+                        <p>Sameer Kumar</p>
                     </div>
                 </div>
                 </div>
@@ -259,7 +265,7 @@
                             <div class="title">Electrotech</div>
                             <div class="desc">Electronics</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'electrotech:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -277,7 +283,7 @@
                             <div class="title">OSLC</div>
                             <div class="desc">Open Source Learning</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'oslc:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -289,17 +295,19 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+
+                        <div class="circle-img" style="background: url('{% static 'img/oslc/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Nikit Bhandari</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/oslc/group-member-2.jpg' %}');background-size: cover;"></div>
+                        <p>Shubham Gupta</p>
+                    </div>
+
+                   <!-- <div class="col-xs-4 col-md-2 text-center">
                         <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
                         <p>Member 1</p>
-                    </div>
-                    <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
-                    </div>
+                    </div>-->
                 </div>
                 </div>
             </div>
@@ -323,16 +331,16 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/ecell/group-member-1.PNG' %}');background-size: cover;"></div>
+                        <p>Sanjay Meena</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/ecell/group-member-2.jpeg' %}');background-size: cover;"></div>
+                        <p>Ritvik Singh Rautela</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/ecell/group-member-3.jpeg' %}');background-size: cover;"></div>
+                        <p>Sakshi</p>
                     </div>
                 </div>
                 </div>
@@ -344,7 +352,7 @@
                             <div class="title">Zenith E-Cell</div>
                             <div class="desc">Entrepreneurship Cell</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'ecell:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -363,7 +371,7 @@
                             <div class="title">Turing AI</div>
                             <div class="desc">Machine Learning, Deep learning, Neural Networks</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'turingai:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -371,21 +379,21 @@
                 <div class="col-xs-8 col-md-8 d-none d-md-block" >
                 <div class="row about-club">
                     <h3>Turing AI</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br>Excepteur sint occaecat cupidatat non proident, </p>
+                    <p>Artifical Intelligence and Machine Learning make it possible for machines to learn, adjust to new inputs and perform human-like tasks. Turning AI is a SIG (Similar Interest Group) created by students of USICT.</p>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/turingai/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Shivam Garg</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
+                        <div class="circle-img" style="background: url('{% static 'img/turingai/group-member-2.png' %}');background-size: cover;"></div>
+                        <p>Rahul Kanojia</p>
                     </div>
-                    <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
+                    <!--<div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
                         <p>Member 1</p>
-                    </div>
+                    </div>-->
                 </div>
                 </div>
             </div>
@@ -401,17 +409,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
+                        <div class="circle-img" style="background: url('{% static 'img/renderedusict/group-member-1.png' %}');background-size: cover;"></div>
+                        <p>Vinay Khushwaha</p>
+                    </div>
+                    <!--<div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
                         <p>Member 1</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
                         <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
                         <p>Member 1</p>
-                    </div>
-                    <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
-                        <p>Member 1</p>
-                    </div>
+                    </div>-->
                 </div>
                 </div>
                 <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
@@ -422,13 +430,52 @@
                             <div class="title">Unity GameDev</div>
                             <div class="desc">AR/VR, Game Development</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'renderedusict:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--End club row-->
+
+                         <!--Begin club row-->
+            <div class="row content-club" id="rooters">
+                <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
+                    <div class="box-wrapper">
+                        <div class="card-image" style="background: url('{% static 'img/rooters/banner.jpg' %}');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="box-content p-4">
+                            <a class="buy" href="javascript:void(0)"><span><i class="fa fa-code"></i></span></a>
+                            <div class="title">Rooters</div>
+                            <div class="desc">Networking, Scripting, Pentesting, CTF</div>
+                            <br>
+                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <div class="p-3 d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-md-8 d-none d-md-block" >
+                <div class="row about-club">
+                    <h3>Rooters</h3>
+                    <p>Currently information security is crucial to all organization to protect their information and conducts their business. The club's main purpose is to provide students who are interested in cybersecurity with the technical resources needed to advance their computer security careers.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/rooters/group-member-1.jpg' %}');background-size: cover;"></div>
+                        <p>Punit Maurya</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/rooters/group-member-2.jpeg' %}');background-size: cover;"></div>
+                        <p>Shiv Raj Bhagat</p>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/rooters/group-member-3.jpg' %}');background-size: cover;"></div>
+                        <p>Yash Anand</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--End club row-->
+
         </div>
     </div>
 
@@ -512,7 +559,7 @@
                             <h2>TODAY</h2>
                             <!-- <p class="cd-timeline__date">Feb 18</p> -->
 
-                            <p>From 6 clubs, 25 members in 2015 to 8 clubs, 250 members.</p>
+                            <p>From 6 clubs, 25 members in 2015 to 9 clubs, 250 members.</p>
                             <br>
                             <!-- <a href="#0" class="btn-wire-dark">Read more</a> -->
                         </div> <!-- cd-timeline__content -->
@@ -530,17 +577,17 @@
                 <br>
                 <div class="row" id="facultyBoard" style="font-family: 'Quicksand'">
                     <div class="col col-md-4 col-xs-4">
-                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <img src="{% static 'img/team/dean_maam.jpg' %}" class="faculty-img">
                         <p>Dr. Arvinder Kaur <br> <em>Dean USICT</em></p>
                         <p>Chairperson</p>
                     </div>
                     <div class=" col col-md-4 col-xs-4">
-                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <img src="{% static 'img/team/srm.jpg' %}" class="faculty-img">
                         <p>Mr. Shiv Ram Meena <br> <em>Asstt. Prof. USICT</em></p>
                         <p>Chief Faculty Advisor</p>
                     </div>
                     <div class="col col-md-4 col-xs-4">
-                        <img src="{% static 'img/14.jpg' %}" class="faculty-img">
+                        <img src="{% static 'img/team/chakresh.jpg' %}" class="faculty-img">
                         <p>Mr. Chakresh Kumar <br> <em>Asstt. Prof. USICT</em></p>
                         <p>Faculty Advisor</p>
                     </div>
@@ -563,18 +610,18 @@
                     </div>
                 </div> -->
                 <br>
-                <h3 class="small-heading" >Student Body (2017-18)</h3>
+                <h3 class="small-heading" >Student Body (2018-19)</h3>
                 <table class="table table-bordered">
                     <tr>
-                        <td>Piyush Mehndiratta<br>(Batch CSE '19)</td>
+                        <td>Sameer Kumar Jha<br>(Batch ECE '20)</td>
                         <td>Convenor</td>
                     </tr>
                     <tr>
-                        <td>Prabhanshu Gupta<br>(Batch CSE '19)</td>
+                        <td>Vishu Tyagi<br>(Batch IT '20)</td>
                         <td>President</td>
                     </tr>
                     <tr>
-                        <td>Pranjal Rajan<br>(Batch ECE '19)</td>
+                        <td>Ritvik Singh Rautela<br>(Batch CSE '20)</td>
                         <td>Spokesperson</td>
                     </tr>
                 </table>
@@ -592,14 +639,17 @@
         </h4>
         <ul>
             <li>
-                <h5>Post example</h5>
-                <h6 class="blog-date">06 Jul 2018</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                <h5>Freshers' Orientation</h5>
+                <h6 class="blog-date">16 Aug 2018</h6>
+                <p>Hola Freshers !<br>
+Welcome to the amazing journey of becoming an engineer. As you try your hand in the academics, you will also need extra circulars just like a gladiator needs his sword. To give you this upper edge, we at Techspace, the official technical society of U.S.I.C.T. are here provide you with your Excalibur.
+</p>
             </li>
             <li>
-                <h5>Post example</h5>
-                <h6 class="blog-date">06 Jul 2018</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                <h5>Whiz Quiz</h5>
+                <h6 class="blog-date">28 Aug 2018</h6>
+                <p>
+E-Cell, USICT is organizing one of the most interesting and bated breath event, the Whiz Quiz. It is an amazing event to test your knowledge of the business world and win exciting prizes. The event will be organized on August 28, 2018.</p>
             </li>
         </ul>
         <div class="text-right"><a href="#" class="btn-wire-dark">See all</a></div>
@@ -610,9 +660,9 @@
         </h4>
         <ul>
             <li>
-                <h5>Post example</h5>
-                <h6 class="blog-date">06 Jul 2018</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+                <h5>InfoXpression 2k17</h5>
+                <h6 class="blog-date">13 Oct '17 - 15 Oct 2017</h6>
+                <p>The annual techfest of USICT, InfoXpression was organized with great enthusiasm and jest in 2017. The three-day extravaganza had a plethora of events ranging from competitive coding to fun events like the GOT Quiz and the Gaming Parlor. The fest saw a huge footfall of more than 3,000 students participating across all the event.</p>
             </li>
         </ul>
         <br>

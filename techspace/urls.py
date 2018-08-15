@@ -7,6 +7,8 @@ from django.contrib.auth.views import password_reset, password_reset_done, passw
 
 from log import views as log_views
 
+from ckeditor_uploader import views as uploader_views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^codeschool/', include('codeschool.urls')),
@@ -25,15 +27,18 @@ urlpatterns = [
     url(r'^register/$', log_views.register, name='register'),
     url(r'^login/$', log_views.user_login, name='login'),
     url(r'^logout/$', log_views.user_logout, name='logout'),
-	url(r'^reset-password/$', password_reset, name='reset_password'),
-	url(r'^reset-password/done/$', password_reset_done, name='password_reset_done'),
-	url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm, name='password_reset_confirm'),
-	url(r'^reset-password/done/$', password_reset_complete, name='password_reset_complete'),
+	url(r'^reset_password/$', password_reset, name='reset_password'),
+	url(r'^reset_password/done/$', password_reset_done, name='password_reset_done'),
+	url(r'^reset_password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm, name='password_reset_confirm'),
+	url(r'^reset_password/done/$', password_reset_complete, name='password_reset_complete'),
 
+        url(r'^ckeditor/upload/',
+            uploader_views.upload, name='ckeditor_upload'),
 
 
 
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
     url(r'^', include('home.urls')),
 ]
 

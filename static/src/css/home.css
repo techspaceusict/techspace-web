@@ -16,17 +16,20 @@ html, body {
   /*overflow-clip-box: hidden;  */
 }
 
+@media screen and (min-width: 768px) {
 body::-webkit-scrollbar {
     width: 0.4em;
 }
 
 body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 0.3em rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+  border-radius: 10px;
+}
 }
 
 nav {
