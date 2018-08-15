@@ -2,67 +2,131 @@
 
 {% block content %}
 
+<div style="position:absolute; width:100%; background-image:url('https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg'); width:100%; height:250px; background-size:cover; z-index:0;">
+<!--<img src="https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg" style="width:100%; height:250px;">-->
+</div>
+	<div class="container" style="margin-top:150px; background-color:#ffffff; z-index:1; position:relative;">
+
 	{% if blog_detail %}
 
 
-	<div class="blog_content">
-{% if user.username == blog_detail.author %}
-
-		<div class="stack">
-			<form action="{% url 'blog:post-edit' blog_detail.slug %}" method="get">
-				<button>Edit</button>
-			</form>
-			<form action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" >
-				{% csrf_token %}
-				<button>Delete</button>
-			</form>
-		</div>
-	{% endif %}
-
-		<h1 class="center">{{ blog_detail.title }}</h1>
-		<h4 class="center">{{ blog_detail.author }}</h4>
-		<h4 class="center"> {{ blog_detail.date }} </h4>
-		<div class="underline"></div>
+<div class="blog_content center">
+  <br>
+ <div class="center">
+   <div style="text-align: center;" >
+  		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
+  		<h4 style="color: #f29260">By: {{ blog_detail.author }}</h4>
+  		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
+  		<div class="underline"></div>
+    </div>
 		{% if blog_detail.image.url is not None %}
+		<div class="container-fluid card">
 		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
 		{% else %}
 		<h5>image not found</h5>
+	</div>
 		{% endif %}
-		<p> {{ blog_detail.content|linebreaks }} </p>
+
+		 {{ blog_detail.content|safe|linebreaks }}
+
+
+    {% if user.username == blog_detail.author %}
+
+    		<div class="stack" style="text-align: center;">
+    			<form style="display: inline;" action="{% url 'blog:post-edit' blog_detail.slug %}" method="get" class="form-group">
+    				<button class="btn btn-primary">Edit</button>
+    			</form>
+    			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+    				{% csrf_token %}
+    				<button class="btn btn-danger">Delete</button>
+    			</form>
+    		</div>
+    	{% endif %}
+
 
 		<!-- upvotes and comments -->
 
-		<i class="material-icons">thumb_up</i><br>
+<hr>
 
+	 	<div class="post-actions">
+				{% if user.is_authenticated %}
+					<!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
+							<input type="hidden" value="{{ blog_detail.title }}" name="title">
+							<input type="hidden" value="1" name="onDetailPage">
+							{% csrf_token %}
+							<input type="hidden" value="{{ blog_detail.state }}" name="state">
+									{% if blog_detail.state == 1 %}
+											<button type="submit" class="post-actions-button small-p upvoted"><i class="fa fa-thumbs-up"></i> Upvoted({{ blog_detail.upvotes }})</button> |
+									{% endif %}
+									{% if blog_detail.state == 0 %}
+											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
+									{% endif %}
+					</form> -->
 
-			{% with comments.count as total_comments %}
-				<h4><i class="material-icons">comment</i>{{ total_comments }} comment{{total_comments|pluralize}}</h4>
-			{% endwith %}
-
+					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+							<input type="hidden" value="{{ blog_detail.id }}" name="id">
+							{% csrf_token %}
+							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
+							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
+					</form>
+					<hr>
+				{% endif %}
+				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
+		</div>
+		<div class="container">
 {% if user.is_authenticated %}
-			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" >
+			<form class="form-horizontal form-group" action="" method="post" enctype="multipart/form-data" >
+        <div class="container">
 				{% csrf_token %}
-				{% include '../global_components/form-template.html' %}
-				<div class="form-group">
-					<div class="col-sm-offset-2">
-						<button class="btn-primary">Submit</button>
-					</div>
-				</div>
+        {% include '../global_components/form-template.html' %}
+          <div class="col-sm-offset-2">
+            <button class="btn-wire-dark">Submit</button>
+          </div>
+			  </div>
 			</form>
+		</div>
+
 {% else %}
 <h3>What are your thoughts. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a></h3>
 
 {% endif %}
 
 <!-- displaying all comments -->
-{% for comment in comments reversed %}
-<ul class="collection">
-	<li class="collection-item"><p>	<h5>{{ comment.comment_author }} <span class="small">{{ comment.comment_date }}</span><h5></p></li>
-	<li class="collection-item"><h5>{{ comment.comment_text|linebreaks }}</h5></li>
+
+<div class="container">
+<ul class="list-group">
+	{% for comment in comments reversed %}
+
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
+		<ul class="list-group">
+				{% for reply in comment.replies.all %}
+				<li class="list-group-item " style="text-align:left"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
+				{% endfor %}
+		</ul>
+		{% if user.is_authenticated %}
+		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+				<input type="hidden" value="{{ comment.id }}" name="id">
+				{% csrf_token %}
+				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
+				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
+		</form>
+		<form class="form-horizontal" action="{% url 'blog:reply-comment' %}" method="post">
+			{% csrf_token %}
+			{{ form.comment_text }}
+			<input type="hidden" value="{{ comment.id }}" name="id" />
+			<button type="submit" style="display: inline-block;">Reply</button>
+		</form>
+		{% endif %}
+	</li>
+	{% endfor %}
+
 </ul>
-{% empty %}
-<h4>No comments yet</h4>
-{% endfor %}
+</div>
+
+<!--
+
+<h4>No comments yet</h4> -->
+</div>
 
 
 
@@ -73,10 +137,69 @@
 
 
 
-	</div>
+
 	{% else %}
 		<h1>How come you came here if there is no blog!!! kindly tell <a href="mailto:prafful.usict.025164@ipu.ac.in?subject=feedback">me</a></h1>
 
 	{% endif %}
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+	// For Blog Upvotes
+  $(document).on('submit', '.upvote-form',function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $form = $(this);
+      var url = $form.attr( "action" );
+      var thisId = $form.attr( "id" );
+      $.post(url, $form.serialize())
+          .done(function(data) {
+              changeButton(data, thisId);
+          });
+  });
+
+    function changeButton(data, id){
+      if(data.state){
+        $("#btn-"+id).addClass("upvoted");
+      }
+      else {
+        $("#btn-"+id).removeClass("upvoted");
+      }
+      $("#state-"+id).val(data.state ? 1 : 0);
+      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+    }
+
+		// For Comment Upvotes
+		$(document).on('submit', '.comment-upvote-form',function(e) {
+	      e.preventDefault();
+	      e.stopPropagation();
+	      var $form = $(this);
+	      var url = $form.attr( "action" );
+	      var thisId = $form.attr( "id" );
+	      $.post(url, $form.serialize())
+	          .done(function(data) {
+	              changeCommentUpvoteButton(data, thisId);
+	          });
+	  });
+
+	    function changeCommentUpvoteButton(data, id){
+	      if(data.state){
+	        $("#btn-comment-"+id).addClass("upvoted");
+	      }
+	      else {
+	        $("#btn-comment-"+id).removeClass("upvoted");
+	      }
+	      $("#state-comment-"+id).val(data.state ? 1 : 0);
+	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
+	    }
+
+
+</script>
 
 {% endblock %}

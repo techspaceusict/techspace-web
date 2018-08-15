@@ -69,11 +69,9 @@
 							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
 							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
 					</form>
+					<hr>
 				{% endif %}
-				<hr>
-			{% with comments.count as total_comments %}
-				<p style="margin-top:-20px;">{{ total_comments }} comment{{total_comments|pluralize}}</p>
-			{% endwith %}
+				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
 		</div>
 		<div class="container">
 {% if user.is_authenticated %}
@@ -105,6 +103,7 @@
 				<li class="list-group-item " style="text-align:left"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
 				{% endfor %}
 		</ul>
+		{% if user.is_authenticated %}
 		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 				<input type="hidden" value="{{ comment.id }}" name="id">
 				{% csrf_token %}
@@ -117,6 +116,7 @@
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
+		{% endif %}
 	</li>
 	{% endfor %}
 
@@ -203,4 +203,3 @@
 </script>
 
 {% endblock %}
-

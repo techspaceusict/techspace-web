@@ -1,3 +1,7 @@
+#import urllib2
+import urllib
+import json
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
@@ -6,6 +10,9 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.conf import settings
+from django.contrib import messages
+
 
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
@@ -15,7 +22,9 @@ from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportFor
 
 from event.models import Events
 from .models import UserProfile, Report, Message
-from blog.models import BlogPost, Comments
+from blog.models import BlogPost, Comments, Upvote
+
+
 
 
 # Create your views here.
@@ -27,17 +36,43 @@ def register(request):
 		profile_form = UserProfileForm(data=request.POST)
 
 		if user_form.is_valid() and profile_form.is_valid() :
-			user = user_form.save()
-			user.set_password(user.password)
-			user.save()
 
-			profile = profile_form.save(commit=False)
-			profile.user = user
-			profile.save()
+			''' Begin reCAPTCHA validation '''
+			recaptcha_response = request.POST.get('g-recaptcha-response')
+			url = 'https://www.google.com/recaptcha/api/siteverify'
+			values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+			data = urllib.urlencode(values).encode()
+			req =  urllib2.Request(url, data=data)
+			response = urllib2.urlopen(req)
+			result = json.loads(response.read().decode())
+			''' End reCAPTCHA validation '''
+			if result['success']:
+				user = user_form.save()
+				user.set_password(user.password)
+				user.save()
+
+				profile = profile_form.save(commit=False)
+				profile.user = user
+				profile.save()
+				messages.info(request, 'Thanks for registering, You are now logged in.')
+				new_user = authenticate(username=user_form.cleaned_data['username'],
+										password=user_form.cleaned_data['password'],
+										)
+				login(request, new_user)
+				registered = True
+
+				return HttpResponseRedirect(reverse('community:index'))
+			else:
+				messages.error(request,'Invalid reCAPTCHA. Please try again.')
+				return HttpResponseRedirect(reverse('register'))
 
 
-			registered = True
-			return HttpResponseRedirect(reverse('login'))
+
+
+
 		else:
 			print(user_form.errors, profile_form.errors)
 	else:
@@ -62,11 +97,12 @@ def user_login(request):
 				else:
 					return HttpResponseRedirect(reverse('community:index'))
 			else:
-				return HttpResponse("Account is not active")
+				messages.warning(request, "Account is active.")
+				return HttpResponseRedirect(reverse("login"))
 		else:
 			print("someone tried to login with wrong credentials")
-
-			return HttpResponse("invalid credentials")
+			messages.error(request, "Invalid username or password. Please try again")
+			return HttpResponseRedirect(reverse("login"))
 	else:
 		if request.user.is_authenticated:
 			return HttpResponseRedirect(reverse('community:index'))
@@ -133,6 +169,8 @@ def profile_view(request, username):
 def dashboard(request, name=None):
 	profile = UserProfile.objects.get(user__username=name)
 	blogs = BlogPost.objects.filter(author=name, isblog = True)
+	for blog in blogs:
+		blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	try:
 		userprofile = UserProfile.objects.get(user=request.user)
 		return render(request, 'log/dashboard.html', {'blogs': blogs, 'profile': profile})
@@ -142,12 +180,8 @@ def dashboard(request, name=None):
 
 
 def portfolio(request, name=None):
-	try:
-		profile = UserProfile.objects.get(user__username=name)
-		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/portfolio.html', {'profile': profile})
-	except:
-		raise Http404
+	profile = UserProfile.objects.get(user__username=name)
+	return render(request, 'log/portfolio.html', {'profile': profile})
 
 def inbox(request, name=None):
 	if request.user.username == name:
@@ -165,21 +199,14 @@ def inbox(request, name=None):
 def discussions(request, name=None):
 	profile = UserProfile.objects.get(user__username=name)
 	posts = BlogPost.objects.filter(author=name, isblog = False)
-	try:
-		userprofile = UserProfile.objects.get(user=request.user)
-		return render(request, 'log/discussions.html', {'posts': posts, 'profile': profile})
-	except:
-		return render(request, 'log/discussions.html', {'profile': profile, 'posts': posts})
+	for post in posts:
+		post.upvotes = len(Upvote.objects.filter( title = post.title ))
+	return render(request, 'log/discussions.html', {'profile': profile, 'posts': posts})
 
 def comments(request, name=None):
-	try:
-		comments = Comments.objects.filter(comment_author=request.user)
-		userprofile = UserProfile.objects.get(user=request.user)
-		profile = UserProfile.objects.get(user__username=name)
-		return render(request, 'log/comments.html', {'comments': comments, 'profile': profile})
-	except:
-		raise Http404
-
+	profile = UserProfile.objects.get(user__username=name)
+	comments = Comments.objects.filter(comment_author=profile.user.username)
+	return render(request, 'log/comments.html', {'comments': comments, 'profile': profile})
 
 #
 # @login_required

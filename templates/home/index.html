@@ -12,7 +12,7 @@
             <h1 class="text-white techspace-title">Techspace <br>USICT</h1>
             <p class="text-white" style="font-family: 'Quicksand'">Best place to nurture yourself.</p>
             <br>
-            <h4 style="font-family: 'Quicksand'"><a href="{% url 'register' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
+            <h4 style="font-family: 'Quicksand'"><a href="{% url 'community:index' %}" class="btn-wire btn--animated">Let's Join Hands</a></h4>
         </div>
         <div class="col-md-5 d-none d-sm-block animate-right">
             <img class="img-fluid img-thumbnail" src="{% static 'img/3.jpg' %}">
@@ -47,7 +47,8 @@
                         <li>To be the best place to nurture oneself</li>
                     </ul>
                 </p>
-                <h4 class="pt-3"><a href="#clubs" class="btn-wire-dark scrollTo">Join Hands</a></h4>
+                <a href="{% url 'community:index' %}" class="btn-wire-dark">community@techspace</a>
+                <br>
                 <br>
             </div>
         <div id="about-bg-diagonal" class="bg-parallax d-none d-md-block"></div>
@@ -124,7 +125,7 @@
                             <div class="title">CODE SCHOOL</div>
                             <div class="desc">Competitive Coding</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'codeschool:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -137,7 +138,8 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('{% static 'img/codeschool/group-member-1.jpg' %}');background-size: cover;"></div>
+
+                       <div class="circle-img" style="background: url('{% static 'img/codeschool/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Vivek Kumar</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
@@ -162,6 +164,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
+
                         <div class="circle-img" style="background: url('{% static 'img/cogitans/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Rohan Goyal</p>
                     </div>
@@ -183,7 +186,7 @@
                             <div class="title">COGITANS</div>
                             <div class="desc">The Web Dev Club</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'cogitans:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -201,7 +204,7 @@
                             <div class="title">Droid Club</div>
                             <div class="desc">Android Developement</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'droidclub:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -213,6 +216,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
+
                         <div class="circle-img" style="background: url('{% static 'img/droidclub/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Nikit Bhandari</p>
                     </div>
@@ -239,6 +243,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
+
                         <div class="circle-img" style="background: url('{% static 'img/electrotech/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Aman Bhardwaj</p>
                     </div>
@@ -260,7 +265,7 @@
                             <div class="title">Electrotech</div>
                             <div class="desc">Electronics</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'electrotech:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -272,13 +277,13 @@
             <div class="row content-club" id="oslc">
                 <div class="col-xs-4 col-md-4 wow fadeIn" data-wow-offset="100">
                     <div class="box-wrapper">
-                        <div class="card-image" style="background: url('http://linux-2-day.com/wp-content/uploads/2015/03/github-universe1.jpg');background-repeat: none; background-size: cover" alt="code school"></div>
+                        <div class="card-image" style="background: url('{% static 'img/github-universe1.jpg' %}');background-repeat: none; background-size: cover" alt="code school"></div>
                         <div class="box-content p-4">
                             <a class="buy" href="javascript:void(0)"><span><i class="fa fa-paper-plane"></i></span></a>
                             <div class="title">OSLC</div>
                             <div class="desc">Open Source Learning</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'oslc:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -290,6 +295,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
+
                         <div class="circle-img" style="background: url('{% static 'img/oslc/group-member-1.jpg' %}');background-size: cover;"></div>
                         <p>Nikit Bhandari</p>
                     </div>
@@ -297,8 +303,9 @@
                         <div class="circle-img" style="background: url('{% static 'img/oslc/group-member-2.jpg' %}');background-size: cover;"></div>
                         <p>Shubham Gupta</p>
                     </div>
-                    <!--<div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+
+                   <!-- <div class="col-xs-4 col-md-2 text-center">
+                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
                         <p>Member 1</p>
                     </div>-->
                 </div>
@@ -339,13 +346,13 @@
                 </div>
                 <div class="col-xs-4 col-md-4 wow fadeIn text-right" data-wow-offset="100">
                     <div class="box-wrapper">
-                        <div class="card-image" style="background: url('http://www.printawallpaper.com/upload/designs/idea_d.jpg');background-repeat: none; background-size: cover"></div>
+                        <div class="card-image" style="background: url('{% static 'img/idea_d.jpg' %}');background-repeat: none; background-size: cover"></div>
                         <div class="box-content p-4">
                             <a class="buy" href="javascript:void(0)"><span><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span></a>
                             <div class="title">Zenith E-Cell</div>
                             <div class="desc">Entrepreneurship Cell</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'ecell:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -364,7 +371,7 @@
                             <div class="title">Turing AI</div>
                             <div class="desc">Machine Learning, Deep learning, Neural Networks</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'turingai:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -410,7 +417,7 @@
                         <p>Member 1</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <div class="circle-img" style="background: url('./img/14.jpg');background-size: cover;"></div>
+                        <div class="circle-img" style="background: url('{% static 'img/14.jpg' %}');background-size: cover;"></div>
                         <p>Member 1</p>
                     </div>-->
                 </div>
@@ -423,7 +430,7 @@
                             <div class="title">Unity GameDev</div>
                             <div class="desc">AR/VR, Game Development</div>
                             <br>
-                            <a href="#" class="btn-wire-dark" target="_blank">Visit page</a>
+                            <a href="{% url 'renderedusict:index' %}" class="btn-wire-dark" target="_blank">Visit page</a>
                             <div class="p-3 d-md-none"></div>
                         </div>
                     </div>
@@ -747,7 +754,7 @@ E-Cell, USICT is organizing one of the most interesting and bated breath event, 
 
                 </div>
                 <div class="col col-xs-6 col-md-6">
-                    <img class="logo-partner" src="{% static 'img/T&P.jpg' %}">
+                    <img class="logo-partner" src="{% static 'img/tandpcell.png' %}">
                     <p>Training and placement Cell, USICT</p>
                 </div>
 
