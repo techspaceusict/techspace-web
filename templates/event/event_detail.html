@@ -6,14 +6,14 @@
 </div>
     <div class="container" style="margin-top:150px; background-color:#ffffff; z-index:1; position:relative;">
       {%  if event_detail %}
-      
+
 <div class="event_content center">
     <br>
     <div class="center">
         <div style="text-align: center;" >
             <h1 style="font-size:30px;">{{ event_detail.title }}</h1>
-            <h4 style="color: #f29260">By: {{ event_detail.author }}</h4>
-            <h4 style="color:#3d3d29"> {{ event_detail.date }} </h4>
+            <!-- <h4 style="color: #f29260">By: {{ event_detail.author }}</h4> -->
+            <h6 style="color:#3d3d29"> {{ event_detail.date }} </h6>
             <div class="underline"></div>
         </div>
         {% if event_detail.image.url is not None %}
@@ -22,11 +22,20 @@
       {% else %}
       <h5>image not found</h5>
       {% endif %}
+      <div style="text-align: center;">
+
+
+      <p><b>Event date: </b> {{event_detail.event_date}}</p>
+      <p><b>Event time: </b>{{event_detail.time}}</p>
+      <p><b>Venue:</b> {{event_detail.venue}}</p>
       <p> {{ event_detail.content|linebreaks }} </p>
 
-
+</div>
       {% else %}
       NO events
       {% endif %}
-
+</div>
+</div>
+</div>
+</div>
 {% endblock %}
