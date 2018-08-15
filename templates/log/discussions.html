@@ -36,16 +36,19 @@
                  </div>
 
                 </div>
+
                 {% else %}
-                <h5>No posts available. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Post something new!!!</a>{% endif %}</h5>
+              <div style="padding :10px">
+                <h5>You haven't posted anything. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Post a question, an image or anything interesting.</a>{% endif %}</h5>
                 {% endif %}
                 {% endfor %}
               {% else %}
-              <h5>No posts available. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Post something new!!!</a>{% endif %}</h5>
-
+              <div style="padding :10px">
+                <h5>You haven't posted anything. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Post a question, an image or anything interesting.</a>{% endif %}</h5>
+              </div>
 
               {% endif %}
-
+            </div>
               <!-- <div class="col-xs-6 col-md-4"> -->
 
         </div>

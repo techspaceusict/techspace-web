@@ -47,8 +47,9 @@
                     {% endfor %}
 
                   {% else %}
-                  <div style="height:200px; width:100%; border-radius:25px; border-style: dashed;"   >
-                    <a href="{% url 'blog:blog-add' %}"><i class="fa fa-plus" style="font-size:32px; color:#fd7e14;"></i></a>
+                  <div style="padding:10px;">
+
+              <h5>You haven't written any blogs. {% if user.is_authenticated and profile.user.username == user.username %}<a href="{% url 'blog:post-add' %}">Write something today.</a>{% endif %}</h5>
                     </div>
                   {% endif %}
 

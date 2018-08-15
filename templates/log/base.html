@@ -49,7 +49,7 @@
                     {% endif %}
                     <!-- If logged in -->
                     {% if user.is_authenticated and user.username == profile.user.username %}
-                    <span class="small-p">| <a href="{% url 'log:edit_profile' name=profile.user.username %}" class="small-p">Edit profile </a></span>
+                    <span class="small-p"><a href="{% url 'log:edit_profile' name=profile.user.username %}" class="small-p">Edit profile </a></span>
                     <span class="small-p">| <a href="{% url 'log:inbox' name=profile.user.username %}" class="small-p">Inbox </a></span>
                     {% endif %}
                 </div>
@@ -68,13 +68,13 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'log:dashboard' name=profile.user.username %}">Blogs</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'log:portfolio' name=profile.user.username %}">Portfolio</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'discussions' %}active{% endif %}" href="{% url 'log:discussions' name=profile.user.username %}">Discussions</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'comments' %}active{% endif %}" href="{% url 'log:comments' name=profile.user.username %}">Comments</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'log:portfolio' name=profile.user.username %}">Portfolio</a>
                   </li>
                   <!-- <li class="nav-item">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Portfolio</a>
