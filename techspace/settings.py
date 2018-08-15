@@ -177,8 +177,8 @@ LOGOUT_URL='logout'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'username@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_HOST_USER = 'prafful.usict.025164@ipu.ac.in'
+EMAIL_HOST_PASSWORD = '21rfvardaan.01'
 EMAIL_USE_TLS = True
 
 MESSAGE_TAGS = {
