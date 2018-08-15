@@ -2,11 +2,12 @@ from django.shortcuts import render,HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Club#, Contact, Association
-
+from blog.models import BlogPost
 
 # Create your views here.
 
 def index(request):
+	blogs = BlogPost.objects.order_by('-date')[:5]
 	#clubs
 	club_objects = Club.objects.all()
 	app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']
@@ -14,7 +15,7 @@ def index(request):
 	#associations
 	# assocs = Association.objects.all()
 
-	return render(request, 'home/index.html', {'clubs':clubs})
+	return render(request, 'home/index.html', {'clubs':clubs, 'blogs':blogs})
 
 #
 # def contactSubmit(request):
