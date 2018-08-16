@@ -31,6 +31,7 @@ class UserProfile(models.Model):
 	linkedIn = models.URLField(blank=True)
 	profile_pic = models.ImageField(upload_to='user/avatar/', default='default/Default_avatar.jpg')
 	club = models.ManyToManyField(Club)
+	email_activated = models.BooleanField(default=False)
 
 	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
 	user_badge_text = models.CharField(max_length=255, blank=True, null=True)

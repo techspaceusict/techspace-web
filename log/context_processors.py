@@ -4,6 +4,8 @@ def get_user_profile(request):
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         return {'userprofile': user}
+    else:
+        return {}
 
 def get_user_notifications(request):
     if request.user.is_authenticated:
@@ -18,3 +20,5 @@ def get_user_notifications(request):
             'comment_notifications': comment_notifications,
             'notification_count': notification_count,
         }
+    else:
+        return {}

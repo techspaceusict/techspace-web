@@ -63,7 +63,8 @@ def postDetailView(request, slug):
 @login_required
 def post_new(request):
 	user = UserProfile.objects.get(user=request.user)
-
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	if request.method == "POST":
 		form = PostAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -157,7 +158,8 @@ def blogDetailView(request, slug):
 @login_required
 def blog_new(request):
 	user = UserProfile.objects.get(user=request.user)
-
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	if request.method == "POST":
 		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -189,6 +191,8 @@ def blog_new(request):
 def blog_edit(request, slug):
 	print("start")
 	user = UserProfile.objects.get(user=request.user)
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	post = get_object_or_404(BlogPost, slug=slug)
 	if request.user.username == post.author:
 		if request.method == "POST":

@@ -14,7 +14,6 @@ def index(request):
 	clubs = zip(club_objects,app_urls)
 	#associations
 	# assocs = Association.objects.all()
-
 	return render(request, 'home/index.html', {'clubs':clubs, 'blogs':blogs})
 
 #
