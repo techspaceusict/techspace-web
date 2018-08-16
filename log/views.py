@@ -21,7 +21,7 @@ from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportFor
 # from home.models import Contact, Info, Team
 
 from event.models import Events
-from .models import UserProfile, Report, Message
+from .models import UserProfile, Report, Message, Notification
 from blog.models import BlogPost, Comments, Upvote
 
 
@@ -141,6 +141,11 @@ def sendMessage(request, name=None):
 			message.receiver = UserProfile.objects.get(user__username=name)
 			message.save()
 
+			notification = Notification.objects.create(
+				user=message.receiver,
+				type=Notification.message_notification,
+			)
+
 			return redirect('log:dashboard', name=name)
 
 	form = MessageForm()
@@ -186,12 +191,9 @@ def portfolio(request, name=None):
 def inbox(request, name=None):
 	if request.user.username == name:
 		user = UserProfile.objects.get(user=request.user)
-		new_messages = user.received.filter(read=False)
-		for msg in new_messages:
-			msg.read = True
-			msg.save()
 		messages = user.received.all()
 		sent_messages = user.sent.all()
+		Notification.objects.filter(user=user, type=Notification.message_notification).delete()
 		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages})
 
 	return redirect('log:dashboard', name=name)

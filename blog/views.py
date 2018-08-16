@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from .models import BlogPost, Upvote, Tag, CommentUpvote, Comments
 from .forms import CommentForm
-from log.models import UserProfile
+from log.models import UserProfile, Notification
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
@@ -112,13 +112,14 @@ def post_edit(request, slug):
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
 
+	blog = get_object_or_404(BlogPost, slug=slug)
+
 	user=None
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
+		if request.user.username == blog.author:
+			Notification.objects.filter(user=user, post=blog).delete()
 
-
-
-	blog = get_object_or_404(BlogPost, slug=slug)
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True, reply_for=None)
@@ -135,6 +136,14 @@ def blogDetailView(request, slug):
 				new_comment.comment_author = request.user.username
 				new_comment.post = blog
 				new_comment.save()
+
+				if request.user.username != blog.author:
+					Notification.objects.create(
+						user=UserProfile.objects.get(user__username=blog.author),
+						type=Notification.comment_notification,
+						post=blog
+					)
+
 				return redirect('blog:blog-detail', slug=slug)
 		else:
 			comment_form = CommentForm()

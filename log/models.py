@@ -3,6 +3,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from home.models import Club
+from blog.models import BlogPost
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -51,7 +52,22 @@ class Message(models.Model):
 	receiver = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='received')
 	content = RichTextUploadingField()
 	date = models.DateTimeField(default=datetime.datetime.now)
-	read = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.sender.user.username + '-' + self.receiver.user.username
+
+class Notification(models.Model):
+	user = models.ForeignKey(UserProfile, related_name='notifications', on_delete=models.CASCADE)
+	post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, null=True, blank=True)
+	like_notification = 'like_notification'
+	comment_notification = 'comment_notification'
+	message_notification = 'message_notification'
+	type_choices = (
+		(like_notification, 'like_notification'),
+		(comment_notification, 'comment_notification'),
+		(message_notification, 'message_notification'),
+	)
+	type = models.CharField(max_length=200, choices=type_choices)
+
+	def __str__(self):
+		return self.user.user.username + '-'
