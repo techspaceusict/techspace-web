@@ -128,6 +128,11 @@ def blogDetailView(request, slug):
 		for comment in comments:
 			comment.upvotes_len = len(comment.upvotes.all())
 			comment.state = len(comment.upvotes.filter(username=request.user.username))
+			comment.reply_comments = comment.replies.all()
+			for reply in comment.reply_comments:
+				reply.upvotes_len = len(reply.upvotes.all())
+				reply.state = len(reply.upvotes.filter(username=request.user.username))
+
 
 		user = UserProfile.objects.get(user=request.user)
 		if request.method == 'POST':

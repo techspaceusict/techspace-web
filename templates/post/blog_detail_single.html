@@ -101,8 +101,16 @@
 
 	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
 		<ul class="list-group">
-				{% for reply in comment.replies.all %}
+				{% for reply in comment.reply_comments %}
 				<li class="list-group-item " style="text-align:left"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
+				{% if user.is_authenticated %}
+				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+						<input type="hidden" value="{{ reply.id }}" name="id">
+						{% csrf_token %}
+						<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
+						<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }})</button> |
+				</form>
+				{% endif %}
 				{% endfor %}
 		</ul>
 		{% if user.is_authenticated %}
