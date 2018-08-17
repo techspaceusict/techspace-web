@@ -150,7 +150,7 @@ def blogDetailView(request, slug):
 						post=blog
 					)
 				#date = serialize('json', [new_comment.comment_date,], cls=DjangoJSONEncoder)
-				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date})
+				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p")})
 		else:
 			comment_form = CommentForm()
 		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
@@ -278,7 +278,7 @@ def replyComment(request):
 			return JsonResponse({
 				'author': new_comment.comment_author,
 				'id': new_comment.id,
-				'date': new_comment.comment_date,
+				'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p"),
 				'text': new_comment.comment_text,
 				'parent_id': comment_id
 			})
