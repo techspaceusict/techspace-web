@@ -4,7 +4,7 @@
 {% if user.is_authenticated %}
 {% if not userprofile.email_activated %}
 <div style="text-align: center;" class="alert alert-warning" role="alert">
-  Please verify your email address to get access to all features.
+  Please verify your email address.
   <a href="{% url 'send_activation_email' %}"><button class="btn btn-primary">Verify</button></a>
   <hr>
   Specify your email address if you haven't already by editing your profile.
