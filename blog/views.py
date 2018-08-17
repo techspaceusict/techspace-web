@@ -9,6 +9,8 @@ from .forms import CommentForm
 from log.models import UserProfile, Notification
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 from django.views.generic import DetailView
@@ -149,8 +151,8 @@ def blogDetailView(request, slug):
 						type=Notification.comment_notification,
 						post=blog
 					)
-
-				return redirect('blog:blog-detail', slug=slug)
+				#date = serialize('json', [new_comment.comment_date,], cls=DjangoJSONEncoder)
+				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date})
 		else:
 			comment_form = CommentForm()
 		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
