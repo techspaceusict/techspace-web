@@ -275,5 +275,11 @@ def replyComment(request):
 			new_comment.post = comment.post
 			new_comment.reply_for = comment
 			new_comment.save()
-		return redirect('blog:blog-detail', slug=comment.post.slug)
+			return JsonResponse({
+				'author': new_comment.comment_author,
+				'id': new_comment.id,
+				'date': new_comment.comment_date,
+				'text': new_comment.comment_text,
+				'parent_id': comment_id
+			})
 	return redirect('home:index')
