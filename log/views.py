@@ -1,4 +1,7 @@
-import urllib2
+try:
+	import urllib2
+except:
+	import urllib.request as urllib2
 import urllib
 import json
 
