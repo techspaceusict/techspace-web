@@ -5,6 +5,7 @@ import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ValidationError, PermissionDenied
@@ -12,6 +13,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 
 from django.views.generic import DetailView
@@ -21,8 +27,10 @@ from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportFor
 # from home.models import Contact, Info, Team
 
 from event.models import Events
-from .models import UserProfile, Report, Message
+from .models import UserProfile, Report, Message, Notification
 from blog.models import BlogPost, Comments, Upvote
+
+from .tokens import account_activation_token
 
 
 
@@ -80,6 +88,39 @@ def register(request):
 		profile_form = UserProfileForm()
 	return render(request, 'registration/user_register.html', {'registered':registered, 'user_form': user_form, 'profile_form': profile_form})
 
+@login_required
+def activate_email(request):
+	user = request.user
+	current_site = get_current_site(request)
+	mail_subject = 'Activate your techspace account.'
+	message = render_to_string('registration/email_activate.html', {
+		'user': user,
+		'domain': current_site.domain,
+		'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+		'token': account_activation_token.make_token(user),
+	})
+	email_id = UserProfile.objects.get(user=request.user).email
+	if not email_id:
+		return HttpResponse('Please specify your email address by editing your profile.')
+	to_email = email_id
+	email = EmailMessage(mail_subject, message, to=[to_email])
+	email.send()
+	return HttpResponse('Please check your email inbox to complete the registration process')
+
+@login_required
+def activate(request, uidb64, token):
+	try:
+		uid = force_text(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+		user_profile = UserProfile.objects.get(user=user)
+	except:
+		user_profile=None
+	if user_profile is not None and account_activation_token.check_token(user, token):
+		user_profile.email_activated = True
+		user_profile.save()
+		return HttpResponseRedirect(reverse('community:index'))
+	else:
+		return HttpResponse('Activation link is invalid!')
 
 def user_login(request):
 	if request.method == 'POST':
@@ -141,6 +182,11 @@ def sendMessage(request, name=None):
 			message.receiver = UserProfile.objects.get(user__username=name)
 			message.save()
 
+			notification = Notification.objects.create(
+				user=message.receiver,
+				type=Notification.message_notification,
+			)
+
 			return redirect('log:dashboard', name=name)
 
 	form = MessageForm()
@@ -186,12 +232,9 @@ def portfolio(request, name=None):
 def inbox(request, name=None):
 	if request.user.username == name:
 		user = UserProfile.objects.get(user=request.user)
-		new_messages = user.received.filter(read=False)
-		for msg in new_messages:
-			msg.read = True
-			msg.save()
 		messages = user.received.all()
 		sent_messages = user.sent.all()
+		Notification.objects.filter(user=user, type=Notification.message_notification).delete()
 		return render(request, 'log/inbox.html', {'messages': messages, 'sent_messages': sent_messages})
 
 	return redirect('log:dashboard', name=name)

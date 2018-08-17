@@ -73,8 +73,9 @@
 				{% endif %}
 				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
 		</div>
-		<div class="container">
 {% if user.is_authenticated %}
+	{% if userprofile.email_activated %}
+		<div class="container">
 			<form class="form-horizontal form-group" action="" method="post" enctype="multipart/form-data" >
         <div class="container">
 				{% csrf_token %}
@@ -85,6 +86,7 @@
 			  </div>
 			</form>
 		</div>
+	{% endif %}
 
 {% else %}
 <h3>What are your thoughts. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a></h3>
@@ -104,6 +106,7 @@
 				{% endfor %}
 		</ul>
 		{% if user.is_authenticated %}
+		{% if userprofile.email_activated %}
 		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 				<input type="hidden" value="{{ comment.id }}" name="id">
 				{% csrf_token %}
@@ -116,6 +119,7 @@
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
+		{% endif %}
 		{% endif %}
 	</li>
 	{% endfor %}

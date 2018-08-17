@@ -43,11 +43,41 @@
         <li class="nav-item">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-10,20">
-              <i class="fa fa-bell" aria-hidden="true"></i><span class="badge badge-light">{{new_messages|length}}</span>
+              <i class="fa fa-bell" aria-hidden="true"></i><span class="badge badge-light">{{notification_count}}</span>
             </button>
-            <a href="{% url 'log:inbox' name=user.username %}"><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <p>You have {{new_messages|length}} new messages.</p>
-            </div></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
+              <div class="list-group">
+                <a href="{% url 'log:inbox' name=user.username %}">
+                  <button class="list-group-item">
+                    <p>You have {{message_notifications|length}} new messages.</p>
+                  </button>
+                </a>
+
+                  {% if upvote_notifications %}
+                    {% regroup upvote_notifications by post as post_upvote_list %}
+                    {% for post in post_upvote_list %}
+                    <a href="{% url 'blog:blog-detail' post.grouper.slug %}">
+                      <button class="list-group-item">
+                          <p>{{post.list|length}} user{{post.list|length|pluralize}} liked your post - {{post.grouper.title}}</p>
+                      </button>
+                    </a>
+                    {% endfor %}
+                  {% endif %}
+
+                {% if comment_notifications %}
+
+                  {% regroup comment_notifications by post as post_comment_list %}
+                  {% for post in post_comment_list %}
+                    <a href="{% url 'blog:blog-detail' post.grouper.slug %}">
+                      <button class="list-group-item">
+                        <p>{{post.list|length}} user{{post.list|length|pluralize}} commented on your post - {{post.grouper.title}}</p>
+                      </button>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+              </div>
+
+            </div>
           </div>
 
         </li>

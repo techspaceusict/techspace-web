@@ -3,6 +3,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from home.models import Club
+from blog.models import BlogPost
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -23,13 +24,14 @@ class UserProfile(models.Model):
 	year_of_graduation = models.IntegerField(_('year'), choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
 	bio = models.TextField(blank=True)
-	email = models.URLField(blank=True)
+	email = models.CharField(max_length=255, blank=True)
 	facebook = models.URLField(blank=True)
 	twitter = models.URLField(blank=True)
 	github = models.URLField(blank=True)
 	linkedIn = models.URLField(blank=True)
 	profile_pic = models.ImageField(upload_to='user/avatar/', default='default/Default_avatar.jpg')
 	club = models.ManyToManyField(Club)
+	email_activated = models.BooleanField(default=False)
 
 	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
 	user_badge_text = models.CharField(max_length=255, blank=True, null=True)
@@ -51,7 +53,22 @@ class Message(models.Model):
 	receiver = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='received')
 	content = RichTextUploadingField()
 	date = models.DateTimeField(default=datetime.datetime.now)
-	read = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.sender.user.username + '-' + self.receiver.user.username
+
+class Notification(models.Model):
+	user = models.ForeignKey(UserProfile, related_name='notifications', on_delete=models.CASCADE)
+	post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, null=True, blank=True)
+	like_notification = 'like_notification'
+	comment_notification = 'comment_notification'
+	message_notification = 'message_notification'
+	type_choices = (
+		(like_notification, 'like_notification'),
+		(comment_notification, 'comment_notification'),
+		(message_notification, 'message_notification'),
+	)
+	type = models.CharField(max_length=200, choices=type_choices)
+
+	def __str__(self):
+		return self.user.user.username + '-'

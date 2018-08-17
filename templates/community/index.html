@@ -1,6 +1,18 @@
 {% extends './base.html' %}
 {% block content %}
 
+{% if user.is_authenticated %}
+{% if not userprofile.email_activated %}
+<div style="text-align: center;" class="alert alert-warning" role="alert">
+  Please verify your email address to get access to all features.
+  <a href="{% url 'send_activation_email' %}"><button class="btn btn-primary">Verify</button></a>
+  <hr>
+  Specify your email address if you haven't already by editing your profile.
+  <a href="{% url 'log:edit_profile' user.username %}"><button class="btn btn-primary">Edit Profile</button></a>
+</div>
+{% endif %}
+{% endif %}
+
 <div class="container-fluid content-posts">
     <div class="row">
     <div class="col-xs-12 col-md-8 content-posts-main">
@@ -25,7 +37,6 @@
         </div>
         <br>
         <ul class="posts">
-
           {% for blog in pinned_blogs reversed %}
             <li class="row">
                 <div class="col-xs-12 col-md-12">
@@ -306,4 +317,3 @@
 {% include './components/smallfooter.html' %}
 
 {% endblock %}
-

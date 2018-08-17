@@ -6,9 +6,11 @@ from django.http import JsonResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from .models import BlogPost, Upvote, Tag, CommentUpvote, Comments
 from .forms import CommentForm
-from log.models import UserProfile
+from log.models import UserProfile, Notification
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 from django.views.generic import DetailView
@@ -63,7 +65,8 @@ def postDetailView(request, slug):
 @login_required
 def post_new(request):
 	user = UserProfile.objects.get(user=request.user)
-
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	if request.method == "POST":
 		form = PostAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -112,13 +115,14 @@ def post_edit(request, slug):
 def blogDetailView(request, slug):
 	# print("sulg = ", slug)
 
+	blog = get_object_or_404(BlogPost, slug=slug)
+
 	user=None
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
+		if request.user.username == blog.author:
+			Notification.objects.filter(user=user, post=blog).delete()
 
-
-
-	blog = get_object_or_404(BlogPost, slug=slug)
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True, reply_for=None)
@@ -126,6 +130,11 @@ def blogDetailView(request, slug):
 		for comment in comments:
 			comment.upvotes_len = len(comment.upvotes.all())
 			comment.state = len(comment.upvotes.filter(username=request.user.username))
+			comment.reply_comments = comment.replies.all()
+			for reply in comment.reply_comments:
+				reply.upvotes_len = len(reply.upvotes.all())
+				reply.state = len(reply.upvotes.filter(username=request.user.username))
+
 
 		user = UserProfile.objects.get(user=request.user)
 		if request.method == 'POST':
@@ -135,7 +144,15 @@ def blogDetailView(request, slug):
 				new_comment.comment_author = request.user.username
 				new_comment.post = blog
 				new_comment.save()
-				return redirect('blog:blog-detail', slug=slug)
+
+				if request.user.username != blog.author:
+					Notification.objects.create(
+						user=UserProfile.objects.get(user__username=blog.author),
+						type=Notification.comment_notification,
+						post=blog
+					)
+				#date = serialize('json', [new_comment.comment_date,], cls=DjangoJSONEncoder)
+				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date})
 		else:
 			comment_form = CommentForm()
 		return render(request, 'post/blog_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
@@ -148,7 +165,8 @@ def blogDetailView(request, slug):
 @login_required
 def blog_new(request):
 	user = UserProfile.objects.get(user=request.user)
-
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	if request.method == "POST":
 		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -180,6 +198,8 @@ def blog_new(request):
 def blog_edit(request, slug):
 	print("start")
 	user = UserProfile.objects.get(user=request.user)
+	if not user.email_activated:
+		return redirect('send_activation_email')
 	post = get_object_or_404(BlogPost, slug=slug)
 	if request.user.username == post.author:
 		if request.method == "POST":

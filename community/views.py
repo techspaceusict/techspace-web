@@ -3,14 +3,14 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from blog.models import BlogPost, Upvote
 from event.models import Events
 from latest.models import Latestpost
 
-from log.models import UserProfile
+from log.models import UserProfile, Notification
 
 from itertools import chain
 # # Create your views here.
@@ -66,8 +66,28 @@ def toggleUpvote(request) :
 
         if (blog_state == 0) :
             Upvote.objects.create( username = request.user , title = blog.title )
+
+            if blog.author != request.user.username:
+                notification = Notification.objects.create(
+                    user = UserProfile.objects.get(user__username=blog.author),
+                    type = Notification.like_notification,
+                    post = blog,
+                )
+                notification.save()
+
         else :
             Upvote.objects.get( username = request.user , title = blog.title ).delete()
+
+            if blog.author != request.user.username:
+                try:
+                    Notification.objects.get(
+                        user = UserProfile.objects.get(user__username=blog.author),
+                        type = Notification.like_notification,
+                        post = blog,
+                    ).delete()
+                except:
+                    print('no_notification')
+
         upvotes = len(Upvote.objects.filter(title = blog.title))
         data = {'state': not blog_state, 'upvotes': upvotes}
     return JsonResponse(data)

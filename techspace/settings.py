@@ -93,8 +93,8 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATES[0]['OPTIONS']['context_processors'].append("log.context_processors.new_messages_processor")
 TEMPLATES[0]['OPTIONS']['context_processors'].append("log.context_processors.get_user_profile")
+TEMPLATES[0]['OPTIONS']['context_processors'].append("log.context_processors.get_user_notifications")
 
 WSGI_APPLICATION = 'techspace.wsgi.application'
 
@@ -134,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -177,8 +177,8 @@ LOGOUT_URL='logout'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'prafful.usict.025164@ipu.ac.in'
-EMAIL_HOST_PASSWORD = '21rfvardaan.01'
+EMAIL_HOST_USER = 'EMAIL_HOST'
+EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
 
 MESSAGE_TAGS = {
