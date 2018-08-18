@@ -21,6 +21,7 @@ urlpatterns =[
 	url(r'^(?P<slug>[\w-]+)/delete$', views.BlogDelete.as_view() , name='blog-delete'),
 	url(r'^togglecommentupvote', views.toggleCommentUpvote, name='toggle-comment-upvote'),
 	url(r'^reply_comment', views.replyComment, name='reply-comment'),
+	url(r'^mention_suggestion', views.mentionSuggestion, name='mention_suggestion'),
 
 
 ]

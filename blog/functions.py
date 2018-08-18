@@ -3,7 +3,7 @@ from django.utils.html import strip_tags
 
 
 def find_mentions(blog, request):
-    text = blog.content
+    text = strip_tags(blog.content)
     mentions = [ t for t in text.split() if t.startswith('@') ]
     for mention in mentions:
         name = mention[1:]

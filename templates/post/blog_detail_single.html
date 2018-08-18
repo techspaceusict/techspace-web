@@ -97,7 +97,7 @@
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
 
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|safe|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
 				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
@@ -122,6 +122,7 @@
 		<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 			{% csrf_token %}
 			{{ form.comment_text }}
+			<div class="mention_suggestions"></div>
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
@@ -247,6 +248,35 @@
 	      $("#state-comment-"+id).val(data.state ? 1 : 0);
 	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
 	    }
+
+
+			function input_autocomplete(data){
+				var obj = JSON.parse(data);
+				//$(".mention_suggestions").empty().append(Object.values(obj))
+			}
+
+			var save = false;
+			var text = "";
+			function get_suggestions(val){
+				if(save){
+					text += val.substr(val.length - 1);
+					var domain = window.location.hostname;
+					$.get("http://" + domain + ":8000/post/mention_suggestion", {'text': text})
+						.done(function(data){
+							input_autocomplete(data);
+						});
+				}
+				if(val.substr(val.length - 1) == '@'){
+					save = true;
+				}
+				if(val.substr(val.length - 1) == ' '){
+					save = false;
+					text = ""
+				}
+			}
+
+
+
 
 
 </script>

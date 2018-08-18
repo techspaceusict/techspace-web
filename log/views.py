@@ -55,7 +55,10 @@ def register(request):
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
                 'response': recaptcha_response
             }
-			data = urllib.urlencode(values).encode()
+			try:
+				data = urllib.urlencode(values).encode()
+			except:
+				data = urllib.parse.urlencode(values).encode()
 			req =  urllib2.Request(url, data=data)
 			response = urllib2.urlopen(req)
 			result = json.loads(response.read().decode())

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
@@ -8,6 +9,7 @@ from .models import BlogPost, Upvote, Tag, CommentUpvote, Comments
 from .forms import CommentForm
 from log.models import UserProfile, Notification
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
@@ -290,3 +292,12 @@ def replyComment(request):
 				'parent_id': comment_id
 			})
 	return redirect('home:index')
+
+def mentionSuggestion(request):
+	users = User.objects.filter(username__startswith=request.GET['text'])
+	suggestions = dict()
+	for i, user in enumerate(users):
+		suggestions[str(i)] = user.username
+	print(suggestions)
+	suggestions = json.dumps(suggestions)
+	return HttpResponse(suggestions)

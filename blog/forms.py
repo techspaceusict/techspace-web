@@ -6,7 +6,7 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comments
 		fields = ['comment_text']
-		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...', 'autocomplete': 'off'})}
+		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...', 'autocomplete': 'off', 'oninput': 'get_suggestions(this.value)'})}
 
 class BlogAddForm(forms.ModelForm):
 
