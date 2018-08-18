@@ -27,7 +27,7 @@
 	</div>
 		{% endif %}
 
-		 {{ blog_detail.content|linebreaks }}
+		 {{ blog_detail.content|safe|linebreaks }}
 
 
     {% if user.username == blog_detail.author %}
