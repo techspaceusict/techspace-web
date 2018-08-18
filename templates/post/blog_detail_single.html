@@ -15,7 +15,7 @@
  <div class="center">
    <div style="text-align: center;" >
   		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
-  		<h4 style="color: #f29260">By: {{ blog_detail.author }}</h4>
+  		<h4 style="color: #f29260">By: <a href="{% url 'log:dashboard' name=blog_detail.author %}">{{ blog_detail.author }}</a></h4>
   		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
   		<div class="underline"></div>
     </div>
@@ -97,10 +97,10 @@
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
 
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
-				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
+				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
 				{% if user.is_authenticated %}
 				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 						<input type="hidden" value="{{ reply.id }}" name="id">
