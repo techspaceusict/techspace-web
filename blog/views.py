@@ -17,6 +17,8 @@ from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 
 from .forms import BlogAddForm, PostAddForm
+
+from .functions import find_mentions, find_comment_mentions
 # Create your views here.
 
 class BlogListView(ListView):
@@ -78,6 +80,7 @@ def post_new(request):
 				post.image = request.FILES['image']
 
 			post.save()
+			find_mentions(post, request)
 			return HttpResponseRedirect(reverse('community:index'))
 
 
@@ -103,6 +106,7 @@ def post_edit(request, slug):
 					post.image = request.FILES['image']
 
 				post.save()
+				find_mentions(post, request)
 				return redirect('blog:post-detail', slug=post.slug)
 
 		form = PostAddForm(instance=post)
@@ -118,8 +122,7 @@ def blogDetailView(request, slug):
 	user=None
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
-		if request.user.username == blog.author:
-			Notification.objects.filter(user=user, post=blog).delete()
+		Notification.objects.filter(user=user, post=blog).delete()
 
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
@@ -149,6 +152,7 @@ def blogDetailView(request, slug):
 						type=Notification.comment_notification,
 						post=blog
 					)
+				find_comment_mentions(new_comment, request)
 				#date = serialize('json', [new_comment.comment_date,], cls=DjangoJSONEncoder)
 				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p")})
 		else:
@@ -179,6 +183,7 @@ def blog_new(request):
 
 			post.save()
 			blog = BlogPost.objects.get(title = post.title)
+			find_mentions(blog, request)
 			for tag in form.cleaned_data['tags']:
 				t = Tag.objects.get(word = tag)
 				blog.tags.add(t)
@@ -218,6 +223,7 @@ def blog_edit(request, slug):
 					t = Tag.objects.get(word=tag)
 					blog.tags.add(t)
 				print("done")
+				find_mentions(blog, request)
 				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
@@ -275,6 +281,7 @@ def replyComment(request):
 			new_comment.post = comment.post
 			new_comment.reply_for = comment
 			new_comment.save()
+			find_comment_mentions(new_comment, request)
 			return JsonResponse({
 				'author': new_comment.comment_author,
 				'id': new_comment.id,

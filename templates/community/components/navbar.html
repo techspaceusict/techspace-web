@@ -75,6 +75,29 @@
                     </a>
                   {% endfor %}
                 {% endif %}
+
+                {% if comment_mention_notifications %}
+
+                  {% for notification in comment_mention_notifications %}
+                    <a href="{% url 'blog:blog-detail' notification.comment.post.slug %}">
+                      <button class="list-group-item">
+                        <p>{{notification.comment.comment_author}} mentioned you in a comment on post - {{notification.comment.post.title}}</p>
+                      </button>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+
+                {% if post_mention_notifications %}
+
+                  {% for notification in post_mention_notifications %}
+                    <a href="{% url 'blog:blog-detail' notification.post.slug %}">
+                      <button class="list-group-item">
+                        <p>{{notification.post.author}} mentioned you in a post - {{notification.post.title}}</p>
+                      </button>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+
               </div>
 
             </div>
