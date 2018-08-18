@@ -86,7 +86,11 @@
                       </form>
                     {% endif %}
 
-                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
+                      
+                      {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
+                        <a href="{% url 'blog:post-detail' blog.slug %}">
+                        {% endif %}
+                      {{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
