@@ -42,7 +42,9 @@ from .tokens import account_activation_token
 
 def register(request):
 	registered = False
-	if request.method == 'POST':
+	if request.user.is_authenticated:
+			return HttpResponseRedirect(reverse('community:index'))
+	elif request.method == 'POST':
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileForm(data=request.POST)
 
@@ -71,7 +73,7 @@ def register(request):
 				profile = profile_form.save(commit=False)
 				profile.user = user
 				profile.save()
-				messages.info(request, 'Thanks for registering, You are now logged in.')
+				# messages.info(request, 'Thanks for registering, You are now logged in.')
 				new_user = authenticate(username=user_form.cleaned_data['username'],
 										password=user_form.cleaned_data['password'],
 										)

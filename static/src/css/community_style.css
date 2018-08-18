@@ -359,6 +359,13 @@ nav {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .blog-title {
+    width: 80%;
+  }
+}
+
+
 .pinned {
   color: green;
   text-decoration: underline;
@@ -437,7 +444,7 @@ nav {
 .discussion-content {
   padding: 1.5rem;
   padding-top: 1rem;
-  min-height: 150px;
+  /*min-height: 150px;*/
 }
 
 .discussion-image {
