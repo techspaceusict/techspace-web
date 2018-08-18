@@ -6,6 +6,7 @@ Home of techspace
 To contribute check out the [Contributor's Guide][COGG]. 
 
 [COGG]: /contribution-guide.md
+[Report a bug](https://github.com/techspaceusict/techspace-web/blob/master/contribution-guide.md#submitting-a-bug-reportfeature-request)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
