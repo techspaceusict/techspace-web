@@ -437,7 +437,7 @@ nav {
 .discussion-content {
   padding: 1.5rem;
   padding-top: 1rem;
-  min-height: 150px;
+  /*min-height: 150px;*/
 }
 
 .discussion-image {
