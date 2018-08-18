@@ -4,7 +4,7 @@ Go through the issue tracker. Take up any topic of interest and discuss your pla
 
 ### Submitting a bug report/feature request
 
-Search the issue tracker to ensure that there is no open issue addressing the bug.
+Search the [issue tracker](https://github.com/techspaceusict/techspace-web/issues) to ensure that there is no open issue addressing the bug.
 If that is the case, open a new issue. Make sure to include a clear title, description, and as much relevant information as possible.
 Add the feature label if you have a new feature to add in your mind.
 
