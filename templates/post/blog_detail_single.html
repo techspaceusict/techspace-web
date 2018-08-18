@@ -97,7 +97,7 @@
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
 
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
 				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
