@@ -167,9 +167,7 @@
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }})</button> |
                       </form>
                     {% endif %}
-                     {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
-                        <a href="{% url 'blog:post-detail' blog.slug %}">
-                        {% endif %}
+                      <a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}
                         | {% if blog.isblog %}
                     <form action="{% url 'blog:blog-edit' blog.slug %}" method="get">
