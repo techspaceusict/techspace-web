@@ -6,7 +6,7 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comments
 		fields = ['comment_text']
-		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...'})}
+		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...', 'autocomplete': 'off'})}
 
 class BlogAddForm(forms.ModelForm):
 
@@ -36,5 +36,3 @@ class PostAddForm(forms.ModelForm):
 					#'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 
 		}
-
-

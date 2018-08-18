@@ -169,6 +169,7 @@
 		$.post(url, $form.serialize())
 			.done(function(data) {
 				addComment(data);
+				$form[0].reset();
 			});
 	});
 
@@ -188,6 +189,7 @@
 		$.post(url, $form.serialize())
 			.done(function(data) {
 				addCommentReply(data);
+				$form[0].reset();
 			});
 	});
 
