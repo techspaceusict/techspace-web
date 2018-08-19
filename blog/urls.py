@@ -12,7 +12,7 @@ urlpatterns =[
 
 	url(r'^add/$', views.post_new, name='post-add'),
 	url(r'^(?P<slug>[\w-]+)/edit$', views.post_edit , name='post-edit'),
-	url(r'^(?P<slug>[\w-]+)/$', views.postDetailView, name='post-detail'),
+	url(r'^(?P<slug>[\w-]+)/$', views.blogDetailView, name='post-detail'),
 
 	url(r'^blog/add/$', views.blog_new, name='blog-add'),
 	url(r'^blog/(?P<slug>[\w-]+)/edit$', views.blog_edit , name='blog-edit'),

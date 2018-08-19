@@ -78,6 +78,7 @@
         <div class="container">
 				{% csrf_token %}
         {% include '../global_components/form-template.html' %}
+				<div class="list-group mention_suggestions"></div>
           <div class="col-sm-offset-2">
             <button class="btn-wire-dark">Submit</button>
           </div>
@@ -96,10 +97,10 @@
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
 
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
-				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
+				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
 				{% if user.is_authenticated %}
 				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 						<input type="hidden" value="{{ reply.id }}" name="id">
@@ -120,8 +121,9 @@
 		</form>
 		<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 			{% csrf_token %}
-			{{ form.comment_text }}
-			<div class="mention_suggestions"></div>
+			<input class="{{ comment.id }}" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
+			<div class="list-group mention_suggestions-{{ comment.id }}"></div>
+			<!-- {{ form.comment_text }} -->
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
@@ -170,6 +172,7 @@
 			.done(function(data) {
 				addComment(data);
 				$form[0].reset();
+				$(".mention_suggestions").empty();
 			});
 	});
 
@@ -248,32 +251,62 @@
 	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
 	    }
 
+			function single_suggestion(item, index){
+				var div = '<div class="list-group-item" onClick="fill_comment(this.innerHTML);">' + item + '</div>';
+				return div;
+			}
 
-			function input_autocomplete(data){
+			function single_suggestion_reply(item, id){
+				var div = '<div class="list-group-item" id="' + id + '" onClick="fill_comment(this.innerHTML, this.id);">' + item + '</div>';
+				return div;
+			}
+
+			function input_autocomplete(data, id){
 				var obj = JSON.parse(data);
-				//$(".mention_suggestions").empty().append(Object.values(obj))
+				if(id == null){
+					$(".mention_suggestions").empty().html(Object.values(obj).map(single_suggestion));
+				}
+				else {
+					$(".mention_suggestions-" + id).empty().html(Object.values(obj).map(
+						function(s) { return single_suggestion_reply(s, id) }
+					));
+				}
 			}
 
 			var save = false;
 			var text = "";
-			function get_suggestions(val){
+			var index = -1;
+			function get_suggestions(val, id=null){
 				if(save){
 					text += val.substr(val.length - 1);
 					var domain = window.location.hostname;
 					$.get("http://" + domain + ":8000/post/mention_suggestion", {'text': text})
 						.done(function(data){
-							input_autocomplete(data);
+							input_autocomplete(data, id);
 						});
 				}
 				if(val.substr(val.length - 1) == '@'){
 					save = true;
+					index = val.length - 1;
 				}
 				if(val.substr(val.length - 1) == ' '){
 					save = false;
-					text = ""
+					text = "";
+					index = -1;
 				}
 			}
 
+			function fill_comment(str, id=null){
+				if(id == null){
+					var input = document.getElementById("id_comment_text");
+				}
+				else {
+					var input = document.getElementById("input-"+id);
+				}
+				var cur_val = input.value
+				var val = cur_val.substr(0, index + 1);
+				input.value = val + str;
+			}
 
 
 
