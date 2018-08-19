@@ -1,5 +1,5 @@
 from log.models import UserProfile, Notification
-from django.utils.html import strip_tags
+from django.utils.html import strip_tags, escape
 
 
 def find_mentions(blog, request):
@@ -23,8 +23,8 @@ def find_mentions(blog, request):
     blog.save()
 
 def find_comment_mentions(comment, request):
-    text = unicode(comment.comment_text, 'utf-8')
-    text = strip_tags(text)
+    # text = unicode(comment.comment_text, 'utf-8')
+    text = escape(text)
     mentions = [ t for t in text.split() if t.startswith('@') ]
     for mention in mentions:
         name = mention[1:]
