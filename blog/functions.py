@@ -23,7 +23,8 @@ def find_mentions(blog, request):
     blog.save()
 
 def find_comment_mentions(comment, request):
-    text = strip_tags(comment.comment_text)
+    text = unicode(comment.comment_text, 'utf-8')
+    text = strip_tags(text)
     mentions = [ t for t in text.split() if t.startswith('@') ]
     for mention in mentions:
         name = mention[1:]

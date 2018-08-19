@@ -55,7 +55,7 @@
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.content|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}">(more...)</a></p>
+                      <p>{{ blog.content|safe|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}">(more...)</a></p>
                     </div>
                     {% endif %}
                     {% if blog.image.url is not None %}
@@ -86,7 +86,7 @@
                       </form>
                     {% endif %}
 
-                      
+
                       {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
                         <a href="{% url 'blog:post-detail' blog.slug %}">
                         {% endif %}

@@ -37,10 +37,11 @@ def postDetailView(request, slug):
 	# print("sulg = ", slug)
 
 	user=None
+	blog = get_object_or_404(BlogPost, slug=slug)
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
+		Notification.objects.filter(user=user, post=blog).delete()
 
-	blog = get_object_or_404(BlogPost, slug=slug)
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
 	comments = blog.comments.filter(active=True, reply_for=None)
@@ -48,6 +49,10 @@ def postDetailView(request, slug):
 		for comment in comments:
 			comment.upvotes_len = len(comment.upvotes.all())
 			comment.state = len(comment.upvotes.filter(username=request.user.username))
+			comment.reply_comments = comment.replies.all()
+			for reply in comment.reply_comments:
+				reply.upvotes_len = len(reply.upvotes.all())
+				reply.state = len(reply.upvotes.filter(username=request.user.username))
 
 		user = UserProfile.objects.get(user=request.user)
 		if request.method == 'POST':
@@ -57,7 +62,14 @@ def postDetailView(request, slug):
 				new_comment.comment_author = request.user.username
 				new_comment.post = blog
 				new_comment.save()
-				return redirect('blog:post-detail', slug=slug)
+				if request.user.username != blog.author:
+					Notification.objects.create(
+						user=UserProfile.objects.get(user__username=blog.author),
+						type=Notification.comment_notification,
+						post=blog
+					)
+				find_comment_mentions(new_comment, request)
+				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p")})
 		else:
 			comment_form = CommentForm()
 		return render(request, 'post/post_detail_single.html', {'blog_detail': blog, 'form': comment_form, 'comments': comments})
