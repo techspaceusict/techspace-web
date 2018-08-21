@@ -109,7 +109,7 @@ def activate_email(request):
 	})
 	email_id = UserProfile.objects.get(user=request.user).email
 	if not email_id:
-		return HttpResponse('Please specify your email address by editing your profile.')
+		return render(request, 'global_components/message.html', {'title':'Add email', 'message':'Please specify your email address by editing your profile.'})
 	to_email = email_id
 	email = EmailMessage(mail_subject, message, to=[to_email])
 	email.send()

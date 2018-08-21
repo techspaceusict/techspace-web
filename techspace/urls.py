@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^oslc/', include('oslc.urls')),
     url(r'^renderedusict/', include('renderedusict.urls')),
     url(r'^turingai/', include('turingai.urls')),
-    url(r'^@(?P<name>[\w]+)/', include('log.urls')),
+    url(r'^@(?P<name>[\w.@+-]+)/', include('log.urls')),
     url(r'^post/', include('blog.urls')),
     url(r'^community/', include('community.urls')),
     url(r'^events/', include('event.urls')),
