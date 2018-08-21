@@ -93,7 +93,7 @@
 
 
                       {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
-                        <a href="{% url 'blog:post-detail' blog.slug %}">
+                        <a href="{% url 'blog:post-detail' blog.slug %}" class="small-p">
                         {% endif %}
                       {{ blog.no_of_comments }} comments</a>
                       {% if user.username == blog.author %}

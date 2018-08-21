@@ -36,7 +36,7 @@ Running techspace-web on your system:
   
 8. Make migrations to the database using the following commands:
    ```
-   $ python manage.py makemigratons
+   $ python manage.py makemigrations
    $ python manage.py migrate
    ```
 
