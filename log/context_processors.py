@@ -7,6 +7,8 @@ def get_user_profile(request):
             return {'userprofile': user}
         except:
             return {}
+    else:
+        return {}
 
 def get_user_notifications(request):
     if request.user.is_authenticated:
@@ -28,3 +30,5 @@ def get_user_notifications(request):
             }
         except:
             return {}
+    else:
+        return {}
