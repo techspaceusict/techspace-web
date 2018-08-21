@@ -13,6 +13,7 @@
 			<form method="post" class="form-group" enctype="multipart/form-data" autocomplete="off">
 				{% csrf_token %}
 				{{ form.media }}
+
 				{{ form.as_p }}
 				<button class="btn btn-wire-dark-simple">Submit</button>
 

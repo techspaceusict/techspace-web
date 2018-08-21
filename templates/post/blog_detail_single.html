@@ -25,10 +25,11 @@
 		<h5>image not found</h5>
 	</div>
 		{% endif %}
+		<div class="blog-detail-content">
 
 		 {{ blog_detail.content|safe|linebreaks }}
 
-
+	 	</div>
     {% if user.username == blog_detail.author %}
 
     		<div class="stack" style="text-align: center;">
@@ -96,8 +97,16 @@
 <div class="container">
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
-
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
+	<div class="comment list-group-item">
+		<div class="comment-user-img">
+			<img src="{{ comment.author.profile_pic.url }}" />
+		</div>
+		<div class="comment-block">
+			<a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a>
+			<span class="blog-date"><strong style="color:#000;font-size:20px;"></strong>   {{ comment.comment_date }}</span>
+			<br>
+			<h6>{{ comment.comment_text|safe }}</h6>
+		</div>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
 				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
@@ -119,16 +128,17 @@
 				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
 				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
 		</form>
-		<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
+		<a class="reply-btn btn" onclick="showReplyForm({{comment.id}});">Reply</a>
+		<form class="form-horizontal comment-reply-form comment-reply-form-{{comment.id}}" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 			{% csrf_token %}
 			<input class="{{ comment.id }}" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
+			<input type="hidden" value="{{ comment.id }}" name="id" />
+			<button class="comment-reply-btn" type="submit" style="display: inline-block;">Reply</button>
 			<div class="list-group mention_suggestions-{{ comment.id }}"></div>
 			<!-- {{ form.comment_text }} -->
-			<input type="hidden" value="{{ comment.id }}" name="id" />
-			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
 		{% endif %}
-	</li>
+	</div>
 	{% endfor %}
 
 </ul>
@@ -162,6 +172,16 @@
 {% block scripts %}
 <script type="text/javascript">
 
+	function showReplyForm(id) {
+		var form = document.getElementsByClassName("comment-reply-form-" + id)[0];
+		if (form.style.display == "inline"){
+			form.style.display = "none";
+		}
+		else {
+			form.style.display = "inline";
+		}
+	}
+
 	//For Comments
 	$(document).on('submit', '.comment-form', function(e) {
 		e.preventDefault();
@@ -178,7 +198,7 @@
 
 	function addComment(data){
 		var csrf = $("input[name='csrfmiddlewaretoken']").first().val();
-		var new_comment = '<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>' + data.text + '</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><ul class="list-group comment-reply-list-' + data.id + '"></ul><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+ csrf + '"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form><form class="form-horizontal comment-reply-form" id="' + data.id + '" action="/post/reply_comment" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+csrf+'"><input type="text" name="comment_text" placeholder="What are your thoughts..." required="" id="id_comment_text"><input type="hidden" value="' + data.id + '" name="id"><button type="submit" style="display: inline-block;">Reply</button></form></li>';
+		var new_comment = '<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6><p>' + data.text + '</p></h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><ul class="list-group comment-reply-list-' + data.id + '"></ul><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+ csrf + '"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form><form class="form-horizontal comment-reply-form" id="' + data.id + '" action="/post/reply_comment" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+csrf+'"><input type="text" name="comment_text" placeholder="What are your thoughts..." required="" id="id_comment_text"><input type="hidden" value="' + data.id + '" name="id"><button type="submit" style="display: inline-block;">Reply</button></form></li>';
 
 		$(".comment-list").prepend(new_comment);
 	}

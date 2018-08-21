@@ -81,6 +81,7 @@ def postDetailView(request, slug):
 @login_required
 def post_new(request):
 	user = UserProfile.objects.get(user=request.user)
+	form = PostAddForm()
 	if request.method == "POST":
 		form = PostAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -96,9 +97,6 @@ def post_new(request):
 			post.save()
 			find_mentions(post, request)
 			return HttpResponseRedirect(reverse('community:index'))
-
-
-	form = PostAddForm()
 	return render(request, 'post/post_add_form.html', {'form':form})
 
 
@@ -129,8 +127,6 @@ def post_edit(request, slug):
 		return redirect('home:index')
 
 def blogDetailView(request, slug):
-	# print("sulg = ", slug)
-
 	blog = get_object_or_404(BlogPost, slug=slug)
 
 	user=None
@@ -146,6 +142,7 @@ def blogDetailView(request, slug):
 			comment.upvotes_len = len(comment.upvotes.all())
 			comment.state = len(comment.upvotes.filter(username=request.user.username))
 			comment.reply_comments = comment.replies.all()
+			comment.author = UserProfile.objects.get(user__username=comment.comment_author)
 			for reply in comment.reply_comments:
 				reply.upvotes_len = len(reply.upvotes.all())
 				reply.state = len(reply.upvotes.filter(username=request.user.username))
@@ -181,10 +178,10 @@ def blogDetailView(request, slug):
 @login_required
 def blog_new(request):
 	user = UserProfile.objects.get(user=request.user)
+	form = BlogAddForm()
 	if request.method == "POST":
 		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
-		print("invalid form")
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = user.user.username
@@ -203,8 +200,6 @@ def blog_new(request):
 				blog.tags.add(t)
 			return HttpResponseRedirect(reverse('community:index'))
 
-
-	form = BlogAddForm()
 	return render(request, 'post/blog_add_form.html', {'form':form})
 
 
@@ -306,7 +301,7 @@ def replyComment(request):
 	return redirect('home:index')
 
 def mentionSuggestion(request):
-	users = User.objects.filter(username__startswith=request.GET['text'])
+	users = User.objects.filter(username__startswith=request.GET['text'])[:5]
 	suggestions = dict()
 	for i, user in enumerate(users):
 		suggestions[str(i)] = user.username
