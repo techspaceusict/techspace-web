@@ -442,6 +442,7 @@ p.about-para {
   background-color: #f7f7f7;
   position: relative;
   padding: 2rem;
+  word-wrap: break-word;
 }
 
 #list-clubs {

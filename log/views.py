@@ -72,6 +72,7 @@ def register(request):
 
 				profile = profile_form.save(commit=False)
 				profile.user = user
+				profile.email = user.email
 				profile.save()
 				# messages.info(request, 'Thanks for registering, You are now logged in.')
 				new_user = authenticate(username=user_form.cleaned_data['username'],
@@ -109,7 +110,7 @@ def activate_email(request):
 	})
 	email_id = UserProfile.objects.get(user=request.user).email
 	if not email_id:
-		return HttpResponse('Please specify your email address by editing your profile.')
+		return render(request, 'global_components/message.html', {'title':'Add email', 'message':'Please specify your email address by editing your profile.'})
 	to_email = email_id
 	email = EmailMessage(mail_subject, message, to=[to_email])
 	email.send()

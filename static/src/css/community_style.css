@@ -410,11 +410,18 @@ nav {
 }
 
 .post-actions-button {
+  font-size: .9rem;
   border: none;
   background-color: transparent;
   color: black;
   display: inline-block;
   padding: 0;
+}
+
+@media screen and (max-width:768px) {
+  .post-actions-button {
+    font-size: .6rem;
+  }
 }
 
 .post-actions-button:hover {
@@ -547,10 +554,14 @@ nav {
 }
 
 
-.blog-detail-content {
+.blog-detail-content h4 p{
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 200;
+}
+
+.comment-submit-btn {
+  font-size: 1rem;
 }
 
 .comment-form {
@@ -558,32 +569,109 @@ nav {
 }
 
 .comment-user-img {
-  max-width: 50px;
+  max-width: 6%;
   display: inline-block;
   margin-bottom: 1rem;
 }
 
 .comment-user-img img {
-  max-width: 50px;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .blog-detail-content h4 p{
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .comment-submit-btn {
+    font-size: .7rem;
+  }
+
+  .comment-user-img {
+    max-width: 25%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .comment-user-img img {
+    max-width: 80%;
+  }
 }
 
 .comment-block {
   display: inline-block;
+  padding: 0;
   margin-left: 1rem;
   height: 50px;
+  width: 70%;
 }
 
 .comment-block a,span {
   display: inline;
+  font-size: .9rem;
+}
+
+.comment-block h5 {
+  margin-bottom: 0;
+  font-size: 1rem;
 }
 
 .comment-block h6 {
-  margin-bottom: 0;
+  font-size: .8rem;
+}
+
+
+@media screen and (max-width: 768px) {
+  .comment-block {
+    margin-left: 0;
+    display: inline-block;
+    padding: 0;
+    height: 50px;
+    width: 70%;
+  }
+
+  .comment-block a,span {
+    display: inline;
+    font-size: .7rem;
+  }
+
+  .comment-block h5 {
+    margin-bottom: 0;
+    font-size: .7rem;
+  }
+
+  .comment-block h6 {
+    font-size: .6rem;
+  }
+}
+
+.comment-reply-block h5,p,span {
+  font-size: 1rem;
+}
+
+.comment-reply-block h6 {
+  font-size: .9rem;
 }
 
 .reply-btn {
   display: inline;
+  font-size: .9rem;
 }
+
+@media screen and (max-width: 768px) {
+  .comment-reply-block h5,p,span {
+    font-size: .7rem;
+  }
+  .comment-reply-block h6 {
+    font-size: .6rem;
+  }
+
+  .reply-btn {
+    font-size: .6rem;
+  }
+}
+
 
 .comment-upvote-form {
   max-width: 10%;
@@ -596,6 +684,13 @@ nav {
 
 .comment-reply-btn {
   display: inline;
+  font-size: .9rem;
+}
+
+@media screen and (max-width:768px) {
+  .comment-reply-btn {
+    font-size: .6rem;
+  }
 }
 
 
@@ -699,13 +794,6 @@ nav {
 }
 /*End Events index page*/
 
-.underline{
-  width: 15em;
-  background:  #cc0000;
-  height: .3em;
-  margin: 0 auto 30px auto;
-  border-radius: 1.5em;
-}
 .end_line{
   width: 80em;
   height: .1em;
@@ -718,7 +806,7 @@ nav {
 }
 
 .underline{
-	width: 15em;
+	width: 50%;
 	background:  #cc0000;
 	height: .3em;
 	margin: 0 auto 30px auto;
@@ -735,13 +823,6 @@ nav {
 	margin: 5em auto;
 }
 
-.underline{
-	width: 15em;
-	background:  #cc0000;
-	height: .3em;
-	margin: 0 auto 30px auto;
-	border-radius: 1.5em;
-}
 .end_line{
 	width: 80em;
 	height: .1em;

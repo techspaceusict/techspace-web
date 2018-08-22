@@ -26,8 +26,9 @@
 	</div>
 		{% endif %}
 		<div class="blog-detail-content">
-
+			<h4>
 		 {{ blog_detail.content|safe|linebreaks }}
+	 		</h4>
 
 	 	</div>
     {% if user.username == blog_detail.author %}
@@ -81,7 +82,7 @@
         {% include '../global_components/form-template.html' %}
 				<div class="list-group mention_suggestions"></div>
           <div class="col-sm-offset-2">
-            <button class="btn-wire-dark">Submit</button>
+            <button class="btn-wire-dark comment-submit-btn">Submit</button>
           </div>
 			  </div>
 			</form>
@@ -101,15 +102,14 @@
 		<div class="comment-user-img">
 			<img src="{{ comment.author.profile_pic.url }}" />
 		</div>
-		<div class="comment-block">
+		<div class="comment-block container">
 			<a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a>
-			<span class="blog-date"><strong style="color:#000;font-size:20px;"></strong>   {{ comment.comment_date }}</span>
-			<br>
-			<h6>{{ comment.comment_text|safe }}</h6>
+			<span class="blog-date"><strong></strong>   <h6>{{ comment.comment_date }}</h6></span>
+			<h5>{{ comment.comment_text|safe }}</h5>
 		</div>
 		<ul class="list-group comment-reply-list-{{ comment.id }}">
 				{% for reply in comment.reply_comments %}
-				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
+				<li class="list-group-item comment-reply-block" style="text-align:left;"><h5>{{ reply.comment_text|safe|linebreaks }}</h5><p> <span class="blog-date"><h6><strong>  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p></h6>
 				{% if user.is_authenticated %}
 				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 						<input type="hidden" value="{{ reply.id }}" name="id">
@@ -131,7 +131,7 @@
 		<a class="reply-btn btn" onclick="showReplyForm({{comment.id}});">Reply</a>
 		<form class="form-horizontal comment-reply-form comment-reply-form-{{comment.id}}" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 			{% csrf_token %}
-			<input class="{{ comment.id }}" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
+			<input class="{{ comment.id }} form-control" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button class="comment-reply-btn" type="submit" style="display: inline-block;">Reply</button>
 			<div class="list-group mention_suggestions-{{ comment.id }}"></div>

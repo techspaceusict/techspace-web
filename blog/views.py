@@ -20,7 +20,7 @@ from django.views.generic.edit import DeleteView
 
 from .forms import BlogAddForm, PostAddForm
 
-from .functions import find_mentions, find_comment_mentions
+from .functions import processBlog, processPost, processComment
 # Create your views here.
 
 class BlogListView(ListView):
@@ -41,6 +41,10 @@ def postDetailView(request, slug):
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
 		Notification.objects.filter(user=user, post=blog).delete()
+
+	if blog.isblog:
+		return redirect('blog:blog-detail', slug=slug)
+
 
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
@@ -68,7 +72,7 @@ def postDetailView(request, slug):
 						type=Notification.comment_notification,
 						post=blog
 					)
-				find_comment_mentions(new_comment, request)
+				processComment(new_comment, request)
 				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p")})
 		else:
 			comment_form = CommentForm()
@@ -95,7 +99,7 @@ def post_new(request):
 				post.image = request.FILES['image']
 
 			post.save()
-			find_mentions(post, request)
+			processPost(post, request)
 			return HttpResponseRedirect(reverse('community:index'))
 	return render(request, 'post/post_add_form.html', {'form':form})
 
@@ -118,7 +122,7 @@ def post_edit(request, slug):
 					post.image = request.FILES['image']
 
 				post.save()
-				find_mentions(post, request)
+				processBlog(post, request)
 				return redirect('blog:post-detail', slug=post.slug)
 
 		form = PostAddForm(instance=post)
@@ -133,6 +137,8 @@ def blogDetailView(request, slug):
 	if request.user.is_authenticated():
 		user = UserProfile.objects.get(user=request.user)
 		Notification.objects.filter(user=user, post=blog).delete()
+	if blog.isblog == False:
+		return redirect('blog:post-detail', slug=blog.slug)
 
 	blog.upvotes = len(Upvote.objects.filter( title = blog.title ))
 	blog.state = len(Upvote.objects.filter(title = blog.title , username = request.user))
@@ -163,7 +169,7 @@ def blogDetailView(request, slug):
 						type=Notification.comment_notification,
 						post=blog
 					)
-				find_comment_mentions(new_comment, request)
+				processComment(new_comment, request)
 				#date = serialize('json', [new_comment.comment_date,], cls=DjangoJSONEncoder)
 				return JsonResponse({'author': new_comment.comment_author, 'id': new_comment.id, 'text': new_comment.comment_text, 'date': new_comment.comment_date.strftime("%b. %d, %Y, %I:%M %p")})
 		else:
@@ -194,7 +200,7 @@ def blog_new(request):
 
 			post.save()
 			blog = BlogPost.objects.get(title = post.title)
-			find_mentions(blog, request)
+			processBlog(blog, request)
 			for tag in form.cleaned_data['tags']:
 				t = Tag.objects.get(word = tag)
 				blog.tags.add(t)
@@ -206,10 +212,9 @@ def blog_new(request):
 
 @login_required
 def blog_edit(request, slug):
-	print("start")
 	user = UserProfile.objects.get(user=request.user)
-	if not user.email_activated:
-		return redirect('send_activation_email')
+	# if not user.email_activated:
+	# 	return redirect('send_activation_email')
 	post = get_object_or_404(BlogPost, slug=slug)
 	if request.user.username == post.author:
 		if request.method == "POST":
@@ -232,7 +237,7 @@ def blog_edit(request, slug):
 					t = Tag.objects.get(word=tag)
 					blog.tags.add(t)
 				print("done")
-				find_mentions(blog, request)
+				processBlog(blog, request)
 				return redirect('blog:blog-detail', slug=post.slug)
 
 		form = BlogAddForm(instance=post)
@@ -290,7 +295,7 @@ def replyComment(request):
 			new_comment.post = comment.post
 			new_comment.reply_for = comment
 			new_comment.save()
-			find_comment_mentions(new_comment, request)
+			processComment(new_comment, request)
 			return JsonResponse({
 				'author': new_comment.comment_author,
 				'id': new_comment.id,
