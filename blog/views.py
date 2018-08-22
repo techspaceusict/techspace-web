@@ -85,6 +85,7 @@ def postDetailView(request, slug):
 @login_required
 def post_new(request):
 	user = UserProfile.objects.get(user=request.user)
+	form = PostAddForm()
 	if request.method == "POST":
 		form = PostAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -102,7 +103,6 @@ def post_new(request):
 			return HttpResponseRedirect(reverse('community:index'))
 
 
-	form = PostAddForm()
 	return render(request, 'post/post_add_form.html', {'form':form})
 
 
@@ -187,6 +187,7 @@ def blogDetailView(request, slug):
 @login_required
 def blog_new(request):
 	user = UserProfile.objects.get(user=request.user)
+	form = BlogAddForm()
 	if request.method == "POST":
 		form = BlogAddForm(request.POST, request.FILES)
 		user = UserProfile.objects.get(user=request.user)
@@ -210,7 +211,6 @@ def blog_new(request):
 			return HttpResponseRedirect(reverse('community:index'))
 
 
-	form = BlogAddForm()
 	return render(request, 'post/blog_add_form.html', {'form':form})
 
 

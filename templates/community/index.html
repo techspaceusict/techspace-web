@@ -6,9 +6,6 @@
 <div style="text-align: center;" class="alert alert-warning" role="alert">
   Please verify your email address.
   <a href="{% url 'send_activation_email' %}"><button class="btn btn-primary">Verify</button></a>
-  <hr>
-  Specify your email address if you haven't already by editing your profile.
-  <a href="{% url 'log:edit_profile' user.username %}"><button class="btn btn-primary">Edit Profile</button></a>
 </div>
 {% endif %}
 {% endif %}
@@ -47,7 +44,7 @@
                     {% else %}
                     <h5 class="blog-title">{{blog.title}}</h5>
                     {% endif %}
-                    <span class="small-p pinned" style="color: green">Pinned Post <i class="fa fa-thumb-tack" aria-hidden="true"></i></span></h5>  
+                    <span class="small-p pinned" style="color: green">Pinned Post <i class="fa fa-thumb-tack" aria-hidden="true"></i></span></h5>
 
                     <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
                     {% if blog.isblog %}

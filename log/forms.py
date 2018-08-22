@@ -12,9 +12,8 @@ class UserForm(forms.ModelForm):
 
 	class Meta():
 		model = User
-		fields = ['username', 'email','password',]# 'institution', 'course', 'year_of_graduation',]
+		fields = ['username', 'password',]# 'institution', 'course', 'year_of_graduation',]
 		widgets = { 'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-					'email': forms.TextInput(attrs={'placeholder': 'E-mail', 'class': 'form-control' }),
 					'password': forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control' }),
 					# 'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
 					# 'course': forms.TextInput(attrs={'placeholder': 'Course', 'class': 'form-control' }),
@@ -31,8 +30,9 @@ class UserProfileForm(forms.ModelForm):
 
 	class Meta():
 		model = UserProfile
-		fields = ['institution', 'course', 'year_of_graduation',]# 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic',]
+		fields = ['email', 'institution', 'course', 'year_of_graduation',]# 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic',]
 		widgets = {
+					'email': forms.TextInput(attrs={'placeholder': 'E-mail', 'class': 'form-control' }),
 					'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
 					'course': forms.TextInput(attrs={'placeholder': 'Course', 'class': 'form-control' }),
 					# # 'year_of_graduation': forms.TextInput(attrs={'placeholder': 'Year of graduation', 'class': 'form-control' }),
@@ -45,10 +45,11 @@ class UserProfileForm(forms.ModelForm):
 class UserProfileEditForm(forms.ModelForm):
 	class Meta():
 		model = UserProfile
-		fields = ['institution', 'course', 'year_of_graduation', 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic', 'email',]
+		fields = ['name', 'email', 'institution', 'course', 'year_of_graduation', 'bio', 'facebook', 'twitter', 'github', 'linkedIn', 'profile_pic',]
 		widgets = {
 					'institution': forms.TextInput(attrs={'placeholder': 'Institute', 'class': 'form-control' }),
 					'course': forms.TextInput(attrs={'placeholder': 'Course', 'class': 'form-control' }),
+					'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'form-control' }),
 					'year_of_graduation': forms.Select(attrs={'class': 'form-control'}),
 					'bio': forms.TextInput(attrs={'placeholder': 'About yourself', 'class': 'form-control' }),
 					'facebook': forms.TextInput(attrs={'placeholder': 'Facebook', 'class': 'form-control' }),
@@ -69,7 +70,7 @@ class MessageForm(forms.ModelForm):
 		model = Message
 		fields = ['content']
 
-# 
+#
 # class EventAddForm(forms.ModelForm):
 #
 # 	class Meta:
