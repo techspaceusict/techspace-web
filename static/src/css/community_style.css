@@ -353,12 +353,10 @@ nav {
   border-radius: 5px;
 }
 
-
-@media screen and (min-width: 768px) {
-  .blog-title {
+.blog-title {
     width: 75%;
-  }
 }
+
 
 
 .pinned {
@@ -530,6 +528,10 @@ nav {
 #id_tags > li {
   display: inline-block;
   margin-right: 10px;
+}
+
+.django-ckeditor-widget{
+  width: 100% !important;
 }
 /*End create post/blog page*/
 
