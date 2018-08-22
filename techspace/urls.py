@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 
 from log import views as log_views
-import views
+from . import views
 from ckeditor_uploader import views as uploader_views
 
 urlpatterns = [
