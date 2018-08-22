@@ -353,15 +353,10 @@ nav {
   border-radius: 5px;
 }
 
-@media screen and (max-width: 768px) {
-  .small-xs {
-    width:75%;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .blog-title {
-    width: 80%;
+    width: 75%;
   }
 }
 
