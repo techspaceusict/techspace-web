@@ -1,0 +1,21 @@
+{% extends '../community/base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container text-center">
+	<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-xs-12 col-md-4 card login-card">
+		{{message}}
+		<br>
+		<br>
+		<a href="{% url 'community:index' %}">Back to home</a>
+	</div>
+	</div>
+</div>
+
+{% endblock %}

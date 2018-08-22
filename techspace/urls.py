@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 
 from log import views as log_views
-
+import views
 from ckeditor_uploader import views as uploader_views
 
 urlpatterns = [
@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^oslc/', include('oslc.urls')),
     url(r'^renderedusict/', include('renderedusict.urls')),
     url(r'^turingai/', include('turingai.urls')),
-    url(r'^@(?P<name>[\w]+)/', include('log.urls')),
+    url(r'^@(?P<name>[\w.@+-]+)/', include('log.urls')),
     url(r'^post/', include('blog.urls')),
     url(r'^community/', include('community.urls')),
     url(r'^events/', include('event.urls')),
@@ -45,3 +45,6 @@ urlpatterns = [
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG == False:
+    handler404 = views.handler404
+    handler500 = views.handler500

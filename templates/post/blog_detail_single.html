@@ -280,7 +280,7 @@
 				if(save){
 					text += val.substr(val.length - 1);
 					var domain = window.location.hostname;
-					$.get("http://" + domain + ":8000/post/mention_suggestion", {'text': text})
+					$.get("/post/mention_suggestion", {'text': text})
 						.done(function(data){
 							input_autocomplete(data, id);
 						});
