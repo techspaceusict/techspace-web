@@ -14,6 +14,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
+	email = models.CharField(max_length=255)
 	institution = models.CharField(max_length=255, blank=True)
 	course = models.CharField(max_length=255, blank=True)
 
@@ -24,7 +25,6 @@ class UserProfile(models.Model):
 	year_of_graduation = models.IntegerField(_('year'), choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
 	bio = models.TextField(blank=True)
-	email = models.CharField(max_length=255, blank=True)
 	facebook = models.URLField(blank=True)
 	twitter = models.URLField(blank=True)
 	github = models.URLField(blank=True)

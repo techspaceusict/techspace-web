@@ -72,6 +72,7 @@ def register(request):
 
 				profile = profile_form.save(commit=False)
 				profile.user = user
+				profile.email = user.email
 				profile.save()
 				# messages.info(request, 'Thanks for registering, You are now logged in.')
 				new_user = authenticate(username=user_form.cleaned_data['username'],
