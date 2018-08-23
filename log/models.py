@@ -31,7 +31,7 @@ class UserProfile(models.Model):
 	github = models.URLField(blank=True)
 	linkedIn = models.URLField(blank=True)
 	profile_pic = models.ImageField(upload_to='user/avatar/', default='default/Default_avatar.jpg')
-	club = models.ManyToManyField(Club)
+	club = models.ManyToManyField(Club, blank=True)
 	email_activated = models.BooleanField(default=False)
 
 	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
