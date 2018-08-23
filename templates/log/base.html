@@ -25,7 +25,8 @@
         <div class="col-xs-12 col-md-8 card profile-container">
             <div class="row">
                 <div class="col-xs-8 col-md-9">
-                    <h2 class="profile-name">{{ profile.user.username }}</h2>
+                    <h3 class="profile-name">{{ profile.name }}</h3>
+                    <h6 class="profile-name" style="color:rgb(107, 109, 107)">{{ profile.user.username }}</h6>
                     {% if profile.bio %}<p class="profile-bio">{{ profile.bio }}</p>
                     {% elif user.is_authenticated and user.username == profile.user.username %}<a href="{% url 'log:edit_profile' name=profile.user.username %}" class="grey-hint small-p"><i class="fa fa-plus"></i>Add a bio</a><br><br>{% endif %}
 
