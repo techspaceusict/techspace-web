@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-xs-8 col-md-9">
                     {% if profile.name%}
-                        <h2 class="profile-name">{{ profile.user.name }}</h2>
+                        <h2 class="profile-name">{{ profile.name }}</h2>
                         <h2 class="profile-username">@{{ profile.user.username }}</h2>
                     {% elif user.is_authenticated and user.username == profile.user.username %}
                         <h2 class="profile-name">@{{ profile.user.username }}</h2>
