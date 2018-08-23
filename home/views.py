@@ -18,6 +18,9 @@ def index(request):
 	# assocs = Association.objects.all()
 	return render(request, 'home/index.html', {'clubs':clubs, 'blogs':blogs})
 
+def achievements(request):
+	return render(request, 'home/achievements.html')
+
 #
 # def contactSubmit(request):
 # 	if request.method == 'POST':
