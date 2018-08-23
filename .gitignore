@@ -6,4 +6,3 @@ db.*
 node_modules/
 .brackets.json
 media/
-static/build/
