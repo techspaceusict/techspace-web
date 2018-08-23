@@ -25,7 +25,16 @@
         <div class="col-xs-12 col-md-8 card profile-container">
             <div class="row">
                 <div class="col-xs-8 col-md-9">
-                    <h2 class="profile-name">{{ profile.user.username }}</h2>
+                    {% if profile.name%}
+                        <h2 class="profile-name">{{ profile.user.name }}</h2>
+                        <h2 class="profile-username">@{{ profile.user.username }}</h2>
+                    {% elif user.is_authenticated and user.username == profile.user.username %}
+                        <h2 class="profile-name">@{{ profile.user.username }}</h2>
+                        <a href="{% url 'log:edit_profile' name=profile.user.username %}" class="grey-hint small-p">What's your name?</a><br><br>
+                    {% else %} 
+                        <h2 class="profile-name">@{{ profile.user.username }}</h2><br>
+                    {% endif %}
+                    
                     {% if profile.bio %}<p class="profile-bio">{{ profile.bio }}</p>
                     {% elif user.is_authenticated and user.username == profile.user.username %}<a href="{% url 'log:edit_profile' name=profile.user.username %}" class="grey-hint small-p"><i class="fa fa-plus"></i>Add a bio</a><br><br>{% endif %}
 
@@ -36,11 +45,11 @@
                     {% if profile.institution %}<h6>{{ profile.institution }}</h6>
                     {% elif user.is_authenticated and user.username == profile.user.username %}<a href="{% url 'log:edit_profile' name=profile.user.username %}" class="grey-hint small-p"><i class="fa fa-plus"></i>Add your institution</a><br><br>{% endif %}
 
-                    <a href="{{ profile.facebook }}"><i class="fa fa-facebook"></i></a>
-                    <a href="{{ profile.twitter }}"><i class="fa fa-twitter"></i></a>
-                    <a href="{{ profile.email }}"><i class="fa fa-envelope"></i></a>
-                    <a href="{{ profile.linkedIn }}"><i class="fa fa-linkedin"></i></a>
-                    <a href="{{ profile.github }}"><i class="fa fa-github"></i></a>
+                    <a href="{{ profile.facebook }}" class="profile-social-link"><i class="fa fa-facebook"></i></a>
+                    <a href="{{ profile.twitter }}" class="profile-social-link"><i class="fa fa-twitter"></i></a>
+                    <a href="{{ profile.email }}" class="profile-social-link"><i class="fa fa-envelope"></i></a>
+                    <a href="{{ profile.linkedIn }}" class="profile-social-link"><i class="fa fa-linkedin"></i></a>
+                    <a href="{{ profile.github }}" class="profile-social-link"><i class="fa fa-github"></i></a>
                 </div>
                 <div class="col-xs-4 col-md-3 text-center">
                     <div class="profile-img" style="background:url('{{ profile.profile_pic.url }}');background-size: cover;background-position: center;"></div>
@@ -50,14 +59,16 @@
                 <div class="col-xs-12 col-md-12">
                     <br>
                     <!-- If other user -->
-                    {% if user.is_authenticated and user.username != profile.user.username %}
-                    <span class="small-p"><a href="{% url 'log:send_message' name=profile.user.username %}">Send Message</a> |</span>
-                    <span class="small-p"><a href="{% url 'log:report_user' name=profile.user.username %}" class="small-p">Report User</a></span>
+                    {% if user.username != profile.user.username %}
+                    <span class="small-p"><a href="{% url 'log:send_message' name=profile.user.username %}">Send Message</a></span>
+                        {% if user.is_authenticated %} 
+                        <span class="small-p"> | <a href="{% url 'log:report_user' name=profile.user.username %}" class="small-p">Report User</a></span>
+                        {% endif %}
                     {% endif %}
                     <!-- If logged in -->
                     {% if user.is_authenticated and user.username == profile.user.username %}
                     <span class="small-p"><a href="{% url 'log:edit_profile' name=profile.user.username %}" class="small-p">Edit profile </a></span>
-                    <span class="small-p">| <a href="{% url 'log:inbox' name=profile.user.username %}" class="small-p">Inbox </a></span>
+                    <span class="small-p">| <a href="{% url 'log:inbox' name=profile.user.username %}" class="small-p">Inbox({{message_notifications|length}})</a></span>
                     {% endif %}
                 </div>
             </div>

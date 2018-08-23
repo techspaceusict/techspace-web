@@ -20,7 +20,7 @@
                     {% if post.image %}
                    <div class="discussion-image-xs d-block d-sm-none" style="background-image: url('{{ post.image.url }}');background-size: cover;background-position: center;"></div><hr>
                     {% endif %}
-                  <p>{{ post.content }}</p>
+                  <p>{{ post.content|safe }}</p>
                   <br>
                   <div class="post-actions" style="position:absolute;bottom:1rem">
                     <p class="small-p" style="display: inline;">Upvotes ({{ post.upvotes }})</p> |

@@ -14,7 +14,7 @@
                 {% for comment in comments %}
                 <div class="col-xs-6 col-md-12 discussion-content">
                   <h5><a href="#" class="blog-post-profile">{{ comment.post.title }}</a> <span class="blog-date">by {{ comment.post.author }} on {{ comment.post.date }}</span></h5>
-                  <p>{{ comment.comment_text }}</p>
+                  <p>{{ comment.comment_text|safe }}</p>
                   <div class="post-actions" style="position:absolute;bottom:1rem">
                   <span class="blog-date">on {{ comment.comment_date }}</span>
                  </div>
