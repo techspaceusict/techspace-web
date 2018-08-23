@@ -110,8 +110,8 @@ def post_new(request):
 def post_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
 	post = get_object_or_404(BlogPost, slug=slug)
-	if blog.isblog == True:
-		return redirect('blog:blog-edit', slug=blog.slug)
+	if post.isblog == True:
+		return redirect('blog:blog-edit', slug=post.slug)
 	if request.user.username == post.author:
 		if request.method == "POST":
 			form = PostAddForm(request.POST, request.FILES ,instance=post)
@@ -222,10 +222,9 @@ def blog_edit(request, slug):
 	user = UserProfile.objects.get(user=request.user)
 	# if not user.email_activated:
 	# 	return redirect('send_activation_email')
-	if blog.isblog == False:
-		return redirect('blog:post-edit', slug=blog.slug)
-		
 	post = get_object_or_404(BlogPost, slug=slug)
+	if post.isblog == False:
+		return redirect('blog:post-edit', slug=post.slug)
 	if request.user.username == post.author:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
