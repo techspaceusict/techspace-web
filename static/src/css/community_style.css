@@ -390,6 +390,30 @@ nav {
   display: inline-block;
 }
 
+.profile-name {
+  margin-bottom: 0;
+}
+
+.profile-username {
+  color: grey;
+  font-size: 17px;
+}
+
+.profile-social-link {
+  font-size: 1.3rem;
+  margin-right: 5px;
+}
+
+.nav-tabs {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: -webkit-box;
+}
+
+.nav-tabs::-webkit-scrollbar {
+display: none;
+}
+
 .posts-container {
   padding: 0;
 }

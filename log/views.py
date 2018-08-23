@@ -221,7 +221,10 @@ def profile_view(request, username):
     u = User.objects.get(username=username)
 
 def dashboard(request, name=None):
-	profile = UserProfile.objects.get(user__username=name)
+	try:
+		profile = UserProfile.objects.get(user__username=name)
+	except:
+		raise Http404("User could not be found.")
 	blogs = BlogPost.objects.filter(author=name, isblog = True)
 	for blog in blogs:
 		blog.upvotes = len(Upvote.objects.filter( title = blog.title ))

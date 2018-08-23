@@ -18,14 +18,16 @@ class BlogAddForm(forms.ModelForm):
 
 		fields = ['title','description', 'image' , 'content', 'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
-					'description': forms.TextInput(attrs={'placeholder': 'Write a short description...', 'class': 'form-control' }),
-                    'image': forms.FileInput(attrs={'class':'form-control'}),
+					'image': forms.FileInput(attrs={'class':'form-control'}),
+					'description': forms.Textarea(attrs={'placeholder': 'Write a short summary.', 'class': 'form-control','rows':'4'}),
+                    
 		}
 
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		super(BlogAddForm, self).__init__(*args, **kwargs)
 		self.fields['image'].label = 'Preview Image'
-		self.fields['description'].label = 'efgh'
+		self.fields['description'].label = 'Description'
+		self.fields['content'].label = 'Your blog goes here:'
 
 class PostAddForm(forms.ModelForm):
 
@@ -36,8 +38,12 @@ class PostAddForm(forms.ModelForm):
 		model = BlogPost
 
 
-		fields = ['title','image' , 'content', 'tags']
+		fields = ['title', 'content', 'image' , 'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
 					#'content': forms.Textarea(attrs={'placeholder': 'Write your thoughts...', 'class': 'form-control' }),
 
 		}
+
+	def __init__(self, *args, **kwargs):
+		super(PostAddForm, self).__init__(*args, **kwargs)
+		self.fields['content'].label = ''
