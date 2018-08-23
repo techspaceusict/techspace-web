@@ -18,9 +18,14 @@ class BlogAddForm(forms.ModelForm):
 
 		fields = ['title','description', 'image' , 'content', 'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
-					'description': forms.TextInput(attrs={'placeholder': 'Write a short description...', 'class': 'form-control', 'label':'fghj' }),
-                    'image': forms.FileInput(attrs={'class':'form-control', 'label':'Preview Image'}),
+					'description': forms.TextInput(attrs={'placeholder': 'Write a short description...', 'class': 'form-control' }),
+                    'image': forms.FileInput(attrs={'class':'form-control'}),
 		}
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['image'].label = 'Preview Image'
+		self.fields['description'].label = 'efgh'
 
 class PostAddForm(forms.ModelForm):
 
