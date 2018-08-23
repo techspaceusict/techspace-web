@@ -684,12 +684,12 @@ E-Cell, USICT is organizing one of the most interesting and bated breath event, 
             <div class="hr"></div>
         </h4>
         <ul>
-          
+
           {% for blog in blogs %}
           <li>
               <h5>{{ blog.title }}</h5>
               <h6 class="blog-date">{{ blog.date }}</h6>
-              <p>{{ blog.content|truncatewords:30 }} <a href="{% url 'blog:blog-detail' blog.slug %}">  <small>more...</small></a> </p>
+              <p>{{ blog.content|truncatewords:30|safe }} <a href="{% url 'blog:blog-detail' blog.slug %}">  <small>more...</small></a> </p>
           </li>
           {% endfor %}
 
