@@ -9,13 +9,12 @@
 
 	{% if blog_detail %}
 
-
 <div class="blog_content center">
   <br>
  <div class="center">
    <div style="text-align: center;" >
   		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
-  		<h4 style="color: #f29260">By: {{ blog_detail.author }}</h4>
+  		<h4 style="color: #f29260">By: <a href="{% url 'log:dashboard' name=blog_detail.author %}">{{ blog_detail.author }}</a></h4>
   		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
   		<div class="underline"></div>
     </div>
@@ -27,13 +26,13 @@
 	</div>
 		{% endif %}
 
-		 {{ blog_detail.content|safe|urlize|linebreaks }}
+		 {{ blog_detail.content|safe|linebreaks }}
 
 
     {% if user.username == blog_detail.author %}
 
     		<div class="stack" style="text-align: center;">
-    			<form style="display: inline;" action="{% url 'blog:post-edit' blog_detail.slug %}" method="get" class="form-group">
+    			<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
     				<button class="btn btn-primary">Edit</button>
     			</form>
     			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
@@ -74,19 +73,18 @@
 				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
 		</div>
 {% if user.is_authenticated %}
-	{% if userprofile.email_activated %}
 		<div class="container">
-			<form class="form-horizontal form-group" action="" method="post" enctype="multipart/form-data" >
+			<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
         <div class="container">
 				{% csrf_token %}
         {% include '../global_components/form-template.html' %}
+				<div class="list-group mention_suggestions"></div>
           <div class="col-sm-offset-2">
             <button class="btn-wire-dark">Submit</button>
           </div>
 			  </div>
 			</form>
 		</div>
-	{% endif %}
 
 {% else %}
 <h3>What are your thoughts. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a></h3>
@@ -99,36 +97,36 @@
 <ul class="list-group comment-list">
 	{% for comment in comments reversed %}
 
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h5>{{ comment.comment_text|safe|linebreaks }}</h5><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:{{ comment.comment_author }}</strong>   {{ comment.comment_date }}</span></p>
-		<ul class="list-group">
-				{% for reply in comment.replies.all %}
-				<li class="list-group-item " style="text-align:left"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:{{ reply.comment_author }}</strong>   {{ reply.comment_date }}</span></p>
-					{% if user.is_authenticated %}
-					<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
-							<input type="hidden" value="{{ reply.id }}" name="id">
-							{% csrf_token %}
-							<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
-							<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }})</button> |
-					</form>
-					{% endif %}
+	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
+		<ul class="list-group comment-reply-list-{{ comment.id }}">
+				{% for reply in comment.reply_comments %}
+				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
+				{% if user.is_authenticated %}
+				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+						<input type="hidden" value="{{ reply.id }}" name="id">
+						{% csrf_token %}
+						<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
+						<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }})</button> |
+				</form>
+				{% endif %}
 				</li>
 				{% endfor %}
 		</ul>
 		{% if user.is_authenticated %}
-		{% if userprofile.email_activated %}
 		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
 				<input type="hidden" value="{{ comment.id }}" name="id">
 				{% csrf_token %}
 				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
 				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
 		</form>
-		<form class="form-horizontal" action="{% url 'blog:reply-comment' %}" method="post">
+		<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 			{% csrf_token %}
-			{{ form.comment_text }}
+			<input class="{{ comment.id }}" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
+			<div class="list-group mention_suggestions-{{ comment.id }}"></div>
+			<!-- {{ form.comment_text }} -->
 			<input type="hidden" value="{{ comment.id }}" name="id" />
 			<button type="submit" style="display: inline-block;">Reply</button>
 		</form>
-		{% endif %}
 		{% endif %}
 	</li>
 	{% endfor %}
@@ -162,96 +160,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript">
 
-//For Comments
-$(document).on('submit', '.comment-form', function(e) {
-	e.preventDefault();
-	e.stopPropagation();
-	var $form = $(this);
-	var url = window.location.href;
-	$.post(url, $form.serialize())
-		.done(function(data) {
-			addComment(data);
-			$form[0].reset();
-		});
-});
-
-function addComment(data){
-	var csrf = $("input[name='csrfmiddlewaretoken']").first().val();
-	var new_comment = '<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>' + data.text + '</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><ul class="list-group comment-reply-list-' + data.id + '"></ul><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+ csrf + '"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form><form class="form-horizontal comment-reply-form" id="' + data.id + '" action="/post/reply_comment" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+csrf+'"><input type="text" name="comment_text" placeholder="What are your thoughts..." required="" id="id_comment_text"><input type="hidden" value="' + data.id + '" name="id"><button type="submit" style="display: inline-block;">Reply</button></form></li>';
-
-	$(".comment-list").prepend(new_comment);
-}
-
-//For comment reply
-$(document).on('submit', '.comment-reply-form', function(e) {
-	e.preventDefault();
-	e.stopPropagation();
-	var $form = $(this);
-	var url = $form.attr("action");
-	$.post(url, $form.serialize())
-		.done(function(data) {
-			addCommentReply(data);
-			$form[0].reset();
-		});
-});
-
-function addCommentReply(data){
-	var csrf = $("input[name='csrfmiddlewaretoken']").first().val();
-	var new_reply = '<li class="list-group-item" style="text-align:left;"><h6>' + data.text + '</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" name="csrfmiddlewaretoken" value="' + csrf + '"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form></li>';
-	$(".comment-reply-list-"+data.parent_id).append(new_reply);
-}
-
-	// For Blog Upvotes
-  $(document).on('submit', '.upvote-form',function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      var $form = $(this);
-      var url = $form.attr( "action" );
-      var thisId = $form.attr( "id" );
-      $.post(url, $form.serialize())
-          .done(function(data) {
-              changeButton(data, thisId);
-          });
-  });
-
-    function changeButton(data, id){
-      if(data.state){
-        $("#btn-"+id).addClass("upvoted");
-      }
-      else {
-        $("#btn-"+id).removeClass("upvoted");
-      }
-      $("#state-"+id).val(data.state ? 1 : 0);
-      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
-    }
-
-		// For Comment Upvotes
-		$(document).on('submit', '.comment-upvote-form',function(e) {
-	      e.preventDefault();
-	      e.stopPropagation();
-	      var $form = $(this);
-	      var url = $form.attr( "action" );
-	      var thisId = $form.attr( "id" );
-	      $.post(url, $form.serialize())
-	          .done(function(data) {
-	              changeCommentUpvoteButton(data, thisId);
-	          });
-	  });
-
-	    function changeCommentUpvoteButton(data, id){
-	      if(data.state){
-	        $("#btn-comment-"+id).addClass("upvoted");
-	      }
-	      else {
-	        $("#btn-comment-"+id).removeClass("upvoted");
-	      }
-	      $("#state-comment-"+id).val(data.state ? 1 : 0);
-	      $("#btn-comment-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
-	    }
-
-
-</script>
+<script src="{% static 'js/blog/script.js' %}"></script>
 
 {% endblock %}
