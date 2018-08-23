@@ -102,7 +102,7 @@ nav {
 .navbar-nav .dropdown-menu {
     left: -50%;
     text-align: center;
-    padding: 5px; 
+    padding: 5px;
 }
 /*End Navbar CSS*/
 
@@ -277,7 +277,7 @@ nav {
 }
 
 .content-posts-main {
-  padding-left: 0; 
+  padding-left: 0;
 }
 
 @media screen and (min-width : 1500px) {
@@ -470,12 +470,12 @@ nav {
   color: #ccc;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  border-bottom: 1px dashed #ccc; 
+  border-bottom: 1px dashed #ccc;
   margin-bottom: 5px;
 }
 
 .grey-hint:hover {
-  text-decoration:  none; 
+  text-decoration:  none;
 }
 /*End profile*/
 
@@ -486,7 +486,7 @@ nav {
   margin-top: 6rem;
 }
 #id_confirm_password{
-    margin-top: 15px;    
+    margin-top: 15px;
 }
 .btn-wire-dark-simple {
   background-color: transparent;
@@ -612,4 +612,13 @@ nav {
 .blog_image{
 	width: 70%;
 	margin: 5em auto;
+}
+.errorlist{
+    color: #941212;
+    text-decoration:  none;
+    list-style:  none;
+    background: #e6ada2;
+    border-radius:  .6em;
+    padding: .7em;
+    margin:  .5em;
 }
