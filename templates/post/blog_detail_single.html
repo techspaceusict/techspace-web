@@ -37,7 +37,7 @@
     			</form>
     			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
     				{% csrf_token %}
-    				<button class="btn btn-danger">Delete</button>
+    				<button class="btn btn-danger"   onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
     			</form>
     		</div>
     	{% endif %}

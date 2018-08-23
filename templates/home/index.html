@@ -637,13 +637,13 @@
             <div class="hr"></div>
         </h4>
         <ul>
+            {% for event in events %}
             <li>
-                <h5>Freshers' Orientation</h5>
-                <h6 class="blog-date">16 Aug 2018</h6>
-                <p>Hola Freshers !<br>
-Welcome to the amazing journey of becoming an engineer. As you try your hand in the academics, you will also need extra circulars just like a gladiator needs his sword. To give you this upper edge, we at Techspace, the official technical society of U.S.I.C.T. are here provide you with your Excalibur.
-</p>
+                <h5>title</h5>
+                <h6 class="blog-date">event_date</h6>
+                <p>content| truncatewords:100<p>
             </li>
+            {% endfor %}
             <li>
                 <h5>Whiz Quiz</h5>
                 <h6 class="blog-date">28 Aug 2018</h6>

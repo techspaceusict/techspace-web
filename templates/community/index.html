@@ -100,7 +100,7 @@
                     {% endif %} |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
-                          <button class="post-actions-button small-p">Delete</button>
+                          <button class="post-actions-button small-p" class="confirm-delete" onclick="alert('sdsd')">Delete</button>
                         </form>
                       {% endif %}
                     {% if blog.tags.all %}
@@ -178,7 +178,7 @@
                     |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
-                          <button class="post-actions-button small-p">Delete</button>
+                          <button class="post-actions-button small-p"  class="confirm-delete" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
                         </form>
                       {% endif %}
                     {% if blog.tags.all %}
@@ -313,6 +313,13 @@
     }
 
 
+</script>
+
+<script>
+ $(document).on('click', '.confirm-delete', function(){
+   alert("sds");
+    return confirm('Are you sure you want to delete this?');
+})
 </script>
 
 {% include './components/smallfooter.html' %}
