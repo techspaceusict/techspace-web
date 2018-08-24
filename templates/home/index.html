@@ -637,21 +637,17 @@
             <div class="hr"></div>
         </h4>
         <ul>
-            {% for event in events %}
+              {% if events %}
+              {% for event in events reversed %}
             <li>
-                <h5>title</h5>
-                <h6 class="blog-date">event_date</h6>
-                <p>content| truncatewords:100<p>
+                <h5>{{event.title}}</h5>
+                <h6 class="blog-date">{{event.event_date}}</h6>
+                <p>{{event.content|truncatewords:100}}<a href="{% url 'event:detail' event.slug %}">(more...)</a><p>
             </li>
             {% endfor %}
-            <li>
-                <h5>Whiz Quiz</h5>
-                <h6 class="blog-date">28 Aug 2018</h6>
-                <p>
-E-Cell, USICT is organizing one of the most interesting and bated breath event, the Whiz Quiz. It is an amazing event to test your knowledge of the business world and win exciting prizes. The event will be organized on August 28, 2018.</p>
-            </li>
+            {% endif %}
         </ul>
-        <div class="text-right"><a href="#" class="btn-wire-dark">See all</a></div>
+        <div class="text-right"><a href="{% url 'event:events' %}" class="btn-wire-dark">See all</a></div>
         <br>
         <br>
         <h4 class="small-heading">Archives

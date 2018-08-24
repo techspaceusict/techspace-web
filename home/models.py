@@ -1,5 +1,7 @@
 from django.db import models
 
+from cloudinary.models import CloudinaryField
+
 # Create your models here.
 class Contact(models.Model):
 	name = models.CharField(max_length=255)
@@ -13,7 +15,7 @@ class Contact(models.Model):
 class Club(models.Model):
 	club_name = models.CharField(max_length=255)
 	captain = models.CharField(max_length=255, default='null')
-	club_image = models.ImageField(upload_to='logo')
+	club_image = CloudinaryField('image')
 
 	def __str__(self):
 		return self.club_name

@@ -7,17 +7,20 @@ from blog.models import BlogPost
 from log.models import UserProfile
 from django.contrib.auth.models import User
 
+from event.models import Events
+
 # Create your views here.
 
 def index(request):
 	blogs = BlogPost.objects.order_by('-date')[:5]
+	events = Events.objects.order_by('-date')[:2]
 		#clubs
 	club_objects = Club.objects.all()
 	app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']
 	clubs = zip(club_objects,app_urls)
 	#associations
 	# assocs = Association.objects.all()
-	return render(request, 'home/index.html', {'clubs':clubs, 'blogs':blogs })
+	return render(request, 'home/index.html', {'clubs':clubs, 'blogs':blogs, 'events':events })
 
 def achievements(request):
 	return render(request, 'home/achievements.html')

@@ -1,10 +1,20 @@
 {% extends './base.html' %}
+{% load staticfiles %}
 {% block content %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=235125890431388&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     
     <div class="container">
-        <div class="row">
+        <div class="row"  style="margin-top: 50px;">
             <div class="col-sm-10">
-                <div style="margin-top: 20px;">
+                <div>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur, dui ac porta vulputate, tellus ex tincidunt nisl, ornare commodo nunc nisl sit amet metus. Phasellus at neque at ante vulputate molestie. Mauris mi libero, luctus ut auctor euismod, mollis at sapien. Nunc molestie lectus id nisi venenatis, sit amet sagittis sem varius. Donec pulvinar justo gravida tortor mattis, sed porttitor diam tincidunt. Donec id augue libero. Phasellus ut blandit ante. Nunc facilisis iaculis felis in commodo. Proin lacinia, augue non vulputate consequat, dolor nunc pellentesque ipsum, et efficitur arcu arcu sed dui. Donec rhoncus consectetur fringilla. Maecenas a leo nibh. Aliquam vulputate eros vitae lorem imperdiet feugiat. Maecenas tempor id lacus vitae ultrices. Ut libero lorem, egestas eget odio eget, luctus convallis eros. Mauris tincidunt, turpis ultrices varius iaculis, eros nunc auctor ante, accumsan mollis magna arcu in massa. Integer non sollicitudin tellus, vel convallis urna.
                     Ut eget congue lectus, ac dignissim sapien. Maecenas egestas nulla eros, at tristique sem dapibus sodales. Nulla id volutpat ligula. Nam tempus blandit egestas. Sed semper, erat sed dapibus efficitur, massa felis fringilla ex, et lacinia quam dui in nibh. Vestibulum vitae tortor eget risus condimentum mollis. Mauris sollicitudin nunc eget mauris sollicitudin, eu bibendum risus elementum. Cras tortor lacus, iaculis at pellentesque in, lacinia sed arcu. Nullam nunc mi, cursus faucibus justo sed, dapibus feugiat lectus. Duis ut condimentum orci.
 
@@ -14,24 +24,26 @@
 
                     Aliquam non sapien in est consectetur efficitur. Quisque commodo blandit varius. Ut finibus tempor orci ut vehicula. Morbi sed quam risus. Maecenas eros felis, maximus facilisis porta at, tempus et erat. Curabitur porta massa sed porttitor rhoncus. Cras sagittis malesuada lectus vitae cursus. Maecenas suscipit a arcu vel semper. Curabitur ut ipsum tempus, vulputate orci dapibus, interdum libero. Curabitur mattis elit vel urna egestas aliquet. Ut a suscipit mauris, eget consectetur nunc. Suspendisse pulvinar, eros in ultrices tincidunt, purus libero commodo sapien, ac tristique purus ligula in est. In hac habitasse platea dictumst.
                 </div>
+                <div style="margin-top: 50px;">
+                  <h3>Announcements</h3>
+                  <div style="overflow: hidden; max-height: 500px; margin-top: 20px;">
+                    {% if latest_posts %}
+                    {% for post in latest_posts reversed %}
+                <h5>{{post.title}}</h5>
+                <p>{{post.content|truncatewords:100}}<a href="{% url 'latest:latest_posts_detail' post.slug %}">(more...)</a><p>
+        
+            {% endfor %}
+            {% endif %}
+                  </div>
+                </div>
             </div>
             <div class="col-sm-2">
-                <div class="card" style="width: 15rem;margin-top: 20px;">
-                    <img class="card-img-top" src="#" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 15rem;margin-top: 20px;">
-                    <img class="card-img-top" src="#" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+
+                    <div class="fb-group" data-href="https://www.facebook.com/groups/usictcodeschool/" data-width="280" data-show-social-context="true" data-show-metadata="false"></div>
+
+                        <a href="https://t.me/joinchat/HpmyTg7qoZUGo0Z-UojudA"><img src="{% static 'img/telegram.png' %}" style="max-width: 100%; max-width: auto;"></a>
+                        <p><small>Join our Telegram Group</small>  <i class="fa fa-hand-o-up"></i></p>
+
             </div>
         </div>
     </div>

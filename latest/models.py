@@ -4,6 +4,8 @@ from django.template.defaultfilters import slugify
 
 from datetime import datetime
 
+from cloudinary.models import CloudinaryField
+
 class Latestpost(models.Model) :
 
     title = models.CharField(max_length=255)
@@ -11,7 +13,7 @@ class Latestpost(models.Model) :
 
     date = models.DateField()
     time = models.TimeField()
-    image = models.ImageField(upload_to='latest_posts', default='blog/thumbnail-default.jpg')
+    image = CloudinaryField('image')
     content = models.TextField()
     slug = models.SlugField(db_index=True, unique=True, max_length=2024)
 	
