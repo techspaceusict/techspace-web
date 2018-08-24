@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 from django.contrib.messages import constants as messages
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -58,7 +62,8 @@ INSTALLED_APPS = [
     'community',
     'ckeditor',
     'ckeditor_uploader',
-    'latest'
+    'latest',
+    'cloudinary',   
 ]
 
 MIDDLEWARE = [
@@ -102,13 +107,23 @@ WSGI_APPLICATION = 'techspace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    } 
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'techspace',
+        'USER': 'root',
+        'PASSWORD': 'root1234'
     }
 }
 
+SILENCED_SYSTEM_CHECKS = ['mysql.E001']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -192,3 +207,12 @@ MESSAGE_TAGS = {
 }
 
 # DEFAULT_FROM_EMAIL = 'testing@example.com'
+
+cloudinary.config( 
+  cloud_name = "cloud_name", 
+  api_key = "api_key", 
+  api_secret = "api_secret",
+  secure = "True",
+)
+
+

@@ -100,7 +100,7 @@
                     {% endif %} |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
-                          <button class="post-actions-button small-p">Delete</button>
+                          <button class="post-actions-button small-p"  onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
                         </form>
                       {% endif %}
                     {% if blog.tags.all %}
@@ -178,7 +178,7 @@
                     |
                         <form action="{% url 'blog:blog-delete' blog.slug %}" method="post" >
                           {% csrf_token %}
-                          <button class="post-actions-button small-p">Delete</button>
+                          <button class="post-actions-button small-p" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
                         </form>
                       {% endif %}
                     {% if blog.tags.all %}
@@ -315,6 +315,7 @@
 
 
 </script>
+
 
 {% include './components/smallfooter.html' %}
 
