@@ -21,8 +21,8 @@
 			<div class="sticky">
 				<div class="row">
 				<div class="col col-xs-12">
-					<a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
-				</a>
+					<!-- <a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
+				</a> -->
 				<br>
 				<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">@{{ blog_detail.author }}</a></h4>
 				<p class="small-p">{{ blog_detail.date }}</p>
@@ -104,10 +104,11 @@
 	<!-- End Number of comments -->
 
 	<!--  Comment box-->
-	{% if user.is_authenticated %}
+	
 	<div class="row">
 		<div class="col-md-2 d-none d-sm-block"></div>
 		<div class="col col-xs-12 col-md-8">
+		{% if user.is_authenticated %}
 		<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
 			{% csrf_token %}
 
@@ -121,11 +122,12 @@
 			<div class="list-group mention_suggestions"></div>
         	<button class="btn btn-wire-dark blog-submit-comment">Submit Comment</button>
 		</form>
+		{% else %}
+		<h5><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a> to comment.</h5>
+		{% endif %}
 		</div>
 	</div>
-	{% else %}
-	<h5><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a> to comment.</h5>
-	{% endif %}
+	
 	<!-- End comment Box -->
 
 <!-- displaying all comments -->
@@ -175,6 +177,8 @@
 		</li>
 		{% endfor %}
 		</ul>
+		<br>
+		<br>
 	</div>
 
 <!--
