@@ -50,6 +50,8 @@
                     <a href="{{ profile.email }}" class="profile-social-link"><i class="fa fa-envelope"></i></a>
                     <a href="{{ profile.linkedIn }}" class="profile-social-link"><i class="fa fa-linkedin"></i></a>
                     <a href="{{ profile.github }}" class="profile-social-link"><i class="fa fa-github"></i></a>
+                    {% if user.is_authenticated and user.username == profile.user.username %}<a href="{% url 'log:edit_profile' name=profile.user.username %}" class="grey-hint small-p">Edit social links</a>{% endif %}
+
                 </div>
                 <div class="col-xs-4 col-md-3 text-center">
                     <div class="profile-img" style="background:url('{{ profile.profile_pic.url }}');background-size: cover;background-position: center;"></div>

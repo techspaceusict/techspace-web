@@ -12,11 +12,18 @@
 			});
 	});
 
+
 	function addComment(data){
 		var csrf = $("input[name='csrfmiddlewaretoken']").first().val();
-		var new_comment = '<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>' + data.text + '</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><ul class="list-group comment-reply-list-' + data.id + '"></ul><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+ csrf + '"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form><form class="form-horizontal comment-reply-form" id="' + data.id + '" action="/post/reply_comment" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+csrf+'"><input type="text" name="comment_text" placeholder="What are your thoughts..." required="" id="id_comment_text"><input type="hidden" value="' + data.id + '" name="id"><button type="submit" style="display: inline-block;">Reply</button></form></li>';
-
+		var new_comment = '<li class="list-group-item " id="comment-'+ data.id + '"style="background-color: #f7f7f7;text-align:left"><h6>' + data.text + '</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By:' + data.author + '</strong>   ' + data.date + '</span></p><ul class="list-group comment-reply-list-' + data.id + '"></ul><form class="form-horizontal comment-upvote-form" id="' + data.id + '" action="/post/togglecommentupvote" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+ csrf + '"><input type="hidden" value="' + data.id + '" name="id"><input type="hidden" id="state-comment-' + data.id + '" value="0" name="state"><button type="submit" id="btn-comment-' + data.id + '" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> (0)</button> |</form><form class="form-horizontal comment-reply-form" id="' + data.id + '" action="/post/reply_comment" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="'+csrf+'"><input type="text" name="comment_text" placeholder="What are your thoughts..." required="" id="id_comment_text"><input type="hidden" value="' + data.id + '" name="id"><button type="submit" style="display: inline-block;">Reply</button></form></li>';
+		var comment_id = '#comment-'+ data.id;
 		$(".comment-list").prepend(new_comment);
+
+		   // animate
+	   $('html, body').animate({
+	       scrollTop: $(comment_id).offset().top - 20
+	     }, 300);
+
 	}
 
 	//For comment reply
@@ -55,12 +62,13 @@
     function changeButton(data, id){
       if(data.state){
         $("#btn-"+id).addClass("upvoted");
+      	$("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+') Upvoted');
       }
       else {
         $("#btn-"+id).removeClass("upvoted");
+      	$("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+') Upvotes');
       }
       $("#state-"+id).val(data.state ? 1 : 0);
-      $("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+')');
     }
 
 		// For Comment Upvotes

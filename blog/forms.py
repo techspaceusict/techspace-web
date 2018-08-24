@@ -6,7 +6,7 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comments
 		fields = ['comment_text']
-		widgets = {'comment_text' : forms.TextInput(attrs={'placeholder': 'What are your thoughts...', 'autocomplete': 'off', 'oninput': 'get_suggestions(this.value)'})}
+		widgets = {'comment_text' : forms.Textarea(attrs={'placeholder': 'What are your thoughts...', 'autocomplete': 'off', 'oninput': 'get_suggestions(this.value)','class':'form-control','rows':'5'})}
 
 class BlogAddForm(forms.ModelForm):
 
@@ -16,7 +16,7 @@ class BlogAddForm(forms.ModelForm):
 	class Meta:
 		model = BlogPost
 
-		fields = ['title','description', 'image' , 'content', 'tags']
+		fields = ['title', 'content', 'description', 'image' ,  'tags']
 		widgets = { 'title': forms.TextInput(attrs={'placeholder': 'Keep it short and simple.', 'class': 'form-control'}),
 					'image': forms.FileInput(attrs={'class':'form-control'}),
 					'description': forms.Textarea(attrs={'placeholder': 'Write a short summary.', 'class': 'form-control','rows':'4'}),

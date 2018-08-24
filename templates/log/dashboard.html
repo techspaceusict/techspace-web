@@ -11,9 +11,10 @@
           <div class="d-none d-sm-block col-md-2"></div>
           <div class="col-xs-12 col-md-8 card">
           <!--    <img class="card-img-top d-block d-sm-none" src="{% static 'img/bg-about.jpg' %}" alt="Card image cap">-->
-              <div class="row">
+              
                 {% if blogs %}
                   {% for blog in blogs %}
+                  <div class="row blog-list-profile">
                   {% if blog.isblog %}
 
                 <div class="col-xs-6 col-md-8 blog-content-profile">
@@ -44,6 +45,7 @@
                     <h5>No blogs available. <a href="{% url 'blog:blog-add' %}">Post something new!!!</a></h5>
                     </div>
                     {% endif %}
+                    </div>
                     {% endfor %}
 
                   {% else %}
@@ -53,7 +55,7 @@
                     </div>
                   {% endif %}
 
-              </div>
+              
 
           </div>
 

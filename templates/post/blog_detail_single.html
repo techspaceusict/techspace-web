@@ -2,160 +2,203 @@
 
 {% block content %}
 
-<div style="position:absolute; width:100%; background-image:url('https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg'); width:100%; height:250px; background-size:cover; z-index:0;">
-<!--<img src="https://lh4.googleusercontent.com/j9Rz1sytr6GO_4mfb-p5kGwXBtD9mXB54M3nCF-B3twVHpnUXCBwdwovD6M4YyHYT2FVSEKUFbVr7baIPSgeO65Fn6cpNu-jAUCAvf2Dfc4VTWKWADMXNxU0Z_4p-Zwg_w3F1E__nR-Molg" style="width:100%; height:250px;">-->
+<div class="background-top-blog">
 </div>
-	<div class="container" style="margin-top:150px; background-color:#ffffff; z-index:1; position:relative;">
 
-	{% if blog_detail %}
 
-<div class="blog_content center">
-  <br>
- <div class="center">
-   <div style="text-align: center;" >
-  		<h1 style="font-size:30px;">{{ blog_detail.title }}</h1>
-  		<h4 style="color: #f29260">By: <a href="{% url 'log:dashboard' name=blog_detail.author %}">{{ blog_detail.author }}</a></h4>
-  		<h5 style="color:#3d3d29"> {{ blog_detail.date }} </h4>
-  		<div class="underline"></div>
-    </div>
-		{% if blog_detail.image.url is not None %}
-		<div class="container-fluid card">
-		<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
-		{% else %}
-		<h5>image not found</h5>
+
+{% if blog_detail %}
+<div class="container blog-page card">
+	<div class="row blog-page-header">
+	<div class="col-xs-12 col">
+		<h1 class="blog-page-title">{{ blog_detail.title }}</h1>
+		<div class="hr"></div>
+
 	</div>
-		{% endif %}
+	</div>
 
-		 {{ blog_detail.content|safe|urlize|linebreaks }}
-
-
-    {% if user.username == blog_detail.author %}
-
-    		<div class="stack" style="text-align: center;">
-    			<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
-    				<button class="btn btn-primary">Edit</button>
-    			</form>
-    			<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
-    				{% csrf_token %}
-    				<button class="btn btn-danger">Delete</button>
-    			</form>
-    		</div>
-    	{% endif %}
-
-
-		<!-- upvotes and comments -->
-
-<hr>
-
-	 	<div class="post-actions">
-				{% if user.is_authenticated %}
-					<!-- <form class="form-horizontal" action="{% url 'community:toggle-upvote'%}" method="post">
-							<input type="hidden" value="{{ blog_detail.title }}" name="title">
-							<input type="hidden" value="1" name="onDetailPage">
-							{% csrf_token %}
-							<input type="hidden" value="{{ blog_detail.state }}" name="state">
-									{% if blog_detail.state == 1 %}
-											<button type="submit" class="post-actions-button small-p upvoted"><i class="fa fa-thumbs-up"></i> Upvoted({{ blog_detail.upvotes }})</button> |
-									{% endif %}
-									{% if blog_detail.state == 0 %}
-											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
-									{% endif %}
-					</form> -->
-
+	
+	<div class="row blog-main">
+		<div class="col col-xs-12 col-sm-12 col-md-3 blog-page-aside">
+			<div class="sticky">
+				<div class="row">
+				<div class="col col-xs-12">
+					<a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
+				</a>
+				<br>
+				<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">@{{ blog_detail.author }}</a></h4>
+				<p class="small-p">{{ blog_detail.date }}</p>
+				</div>
+				</div>
+				<div class="row">
+					<div class="col col-xs-12 blog-page-description">
+						<p>{{ blog_detail.description }}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-xs-12 blog-page-tools-aside">
 					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.id }}" name="id">
 							{% csrf_token %}
 							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
-							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
+							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
+							<a href="#" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>	
 					</form>
-					<hr>
-				{% endif %}
-				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
-		</div>
-{% if user.is_authenticated %}
-		<div class="container">
-			<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
-        <div class="container">
-				{% csrf_token %}
-        {% include '../global_components/form-template.html' %}
-				<div class="list-group mention_suggestions"></div>
-          <div class="col-sm-offset-2">
-            <button class="btn-wire-dark">Submit</button>
-          </div>
-			  </div>
-			</form>
+					</div>
+				</div>
+				{% if user.username == blog_detail.author %}
+				<div class="row blog-page-tools">
+				<div class="col-xs-12 col">
+					<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+						<button class="btn btn-wire-dark">Edit Blogpost</button>
+					</form>
+					<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+						{% csrf_token %}
+						<button class="btn btn-wire-dark">Delete Blogpost</button>
+					</form>
+				</div>
+				</div>
+			    {% endif %}
+
+			</div>
 		</div>
 
-{% else %}
-<h3>What are your thoughts. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a></h3>
 
-{% endif %}
+		<div class="col-xs-12 col-sm-12 col-md-9 blog-page-content">
+			{% if blog_detail.image.url is not None %}
+			<div class="row text-center">
+			<div class="col-xs-12 col">
+				<img class="centre img-responsive blog-page-image" src="{{ blog_detail.image.url }}">
+			</div>
+			</div>	
+			{% endif %}
+
+			{{ blog_detail.content|safe|linebreaks }}
+		</div>
+	</div>
+
+
+    {% if user.username == blog_detail.author %}
+	<div class="row text-center blog-page-tools d-block d-sm-none">
+	<div class="col-xs-12 col">
+		<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+			<button class="btn btn-wire-dark">Edit Blogpost</button>
+		</form>
+		<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+			{% csrf_token %}
+			<button class="btn btn-wire-dark">Delete Blogpost</button>
+		</form>
+	</div>
+	</div>
+    {% endif %}
+
+
+	<!-- Number of comments -->
+	<hr>
+	<div class="row">
+		<div class="col-md-2 d-none d-sm-block"></div>
+		<div class="col col-xs-12 col-md-8">
+	 	<div class="post-actions">
+			<span style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</span>
+		</div>
+		</div>
+	</div>
+	<!-- End Number of comments -->
+
+	<!--  Comment box-->
+	{% if user.is_authenticated %}
+	<div class="row">
+		<div class="col-md-2 d-none d-sm-block"></div>
+		<div class="col col-xs-12 col-md-8">
+		<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
+			{% csrf_token %}
+
+   			{% for field in form %}
+			<div class="form-group">
+				{{ field }}
+			</div>
+
+			{% endfor %}
+
+			<div class="list-group mention_suggestions"></div>
+        	<button class="btn btn-wire-dark blog-submit-comment">Submit Comment</button>
+		</form>
+		</div>
+	</div>
+	{% else %}
+	<h5><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a> to comment.</h5>
+	{% endif %}
+	<!-- End comment Box -->
 
 <!-- displaying all comments -->
+	<div class="row">
+		<div class="col-md-2 d-none d-sm-block"></div>
+		<div class="col col-xs-12 col-md-8">
+		<ul class="list-group">
+		{% for comment in comments reversed %}
 
-<div class="container">
-<ul class="list-group comment-list">
-	{% for comment in comments reversed %}
-
-	<li class="list-group-item " style="background-color: #f7f7f7;text-align:left"><h6>{{ comment.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:20px;"> By: <a href="{% url 'log:dashboard' name=comment.comment_author %}"> {{ comment.comment_author }}</a></strong>   {{ comment.comment_date }}</span></p>
-		<ul class="list-group comment-reply-list-{{ comment.id }}">
-				{% for reply in comment.reply_comments %}
-				<li class="list-group-item " style="text-align:left;"><h6>{{ reply.comment_text|safe|linebreaks }}</h6><p> <span class="blog-date"><strong style="color:#000;font-size:15px;">  By:<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ reply.comment_author }}</a></strong>   {{ reply.comment_date }}</span></p>
-				{% if user.is_authenticated %}
-				<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
-						<input type="hidden" value="{{ reply.id }}" name="id">
-						{% csrf_token %}
-						<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
-						<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }})</button> |
-				</form>
-				{% endif %}
-				</li>
-				{% endfor %}
-		</ul>
-		{% if user.is_authenticated %}
-		<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
-				<input type="hidden" value="{{ comment.id }}" name="id">
+		<li class="list-group-item" style="background-color: #f7f7f7;">
+			{{ comment.comment_text|safe|linebreaks }}
+			<p>
+				<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{ comment.comment_author }}</a>
+				<br>
+				<span class="blog-date"> on {{ comment.comment_date }}</span>
+			</p>
+			<ul class="list-group comment-reply-list-{{ comment.id }}">
+					{% for reply in comment.reply_comments %}
+					<li class="list-group-item ">{{ reply.comment_text|safe|linebreaks }}<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{ reply.comment_author }}</a><span class="blog-date"><br>on {{ reply.comment_date }}</span>
+					{% if user.is_authenticated %}
+					<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+							<input type="hidden" value="{{ reply.id }}" name="id">
+							{% csrf_token %}
+							<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
+							<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> 
+					</form>
+					{% endif %}
+					</li>
+					{% endfor %}
+			</ul>
+			{% if user.is_authenticated %}
+			<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+					<input type="hidden" value="{{ comment.id }}" name="id">
+					{% csrf_token %}
+					<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
+					<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> 
+			</form>
+			<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 				{% csrf_token %}
-				<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
-				<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }})</button> |
-		</form>
-		<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
-			{% csrf_token %}
-			<input class="{{ comment.id }}" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
-			<div class="list-group mention_suggestions-{{ comment.id }}"></div>
-			<!-- {{ form.comment_text }} -->
-			<input type="hidden" value="{{ comment.id }}" name="id" />
-			<button type="submit" style="display: inline-block;">Reply</button>
-		</form>
-		{% endif %}
-	</li>
-	{% endfor %}
-
-</ul>
-</div>
+				<input class="{{ comment.id }} form-control" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
+				<div class="list-group mention_suggestions-{{ comment.id }}"></div>
+				<!-- {{ form.comment_text }} -->
+				<input type="hidden" value="{{ comment.id }}" name="id" />
+				<button type="submit" class="btn btn-wire-dark-simple" style="float:right;margin-top: 5px;">Add a reply</button>
+			</form>
+			{% endif %}
+		</li>
+		{% endfor %}
+		</ul>
+	</div>
 
 <!--
 
 <h4>No comments yet</h4> -->
 </div>
 
-
-
-
-
-
-
-
-
-
-
-	{% else %}
-		<h1>How come you came here if there is no blog!!! kindly tell <a href="mailto:prafful.usict.025164@ipu.ac.in?subject=feedback">me</a></h1>
-
-	{% endif %}
 </div>
 
 
+
+
+
+
+
+
+
+{% else %}
+	<h1>How come you came here if there is no blog!!! Kindly tell <a href="mailto:prafful.usict.025164@ipu.ac.in?subject=feedback">me</a></h1>
+
+{% endif %}
+</div>
 
 {% endblock %}
 
@@ -164,3 +207,4 @@
 <script src="{% static 'js/blog/script.js' %}"></script>
 
 {% endblock %}
+

@@ -168,7 +168,8 @@ CKEDITOR_CONFIGS = {
             ['Smiley', 'SpecialChar'], ['Source'], ['CodeSnippet'],
         ],
         'extraPlugins': 'codesnippet',
-        'width':'100%'
+        'width':'100%',
+        'height':'400px'
     },
 }
 
