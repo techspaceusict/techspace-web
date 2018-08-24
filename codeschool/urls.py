@@ -14,6 +14,6 @@ urlpatterns = [
 	url(r'^calendar/$', TemplateView.as_view(template_name='clubs/codeschool/calendar.html'), name='calendar'),
 	url(r'^connect/$', TemplateView.as_view(template_name='clubs/codeschool/connect.html'), name='connect'),
 	url(r'^achievements/acm-icpc$', TemplateView.as_view(template_name='clubs/codeschool/acm-icpc.html'), name='acm-icpc'),
-	url(r'^achievements/batch-hof$', TemplateView.as_view(template_name='clubs/codeschool/batche-hof.html'), name='batch-hof'),
+	url(r'^achievements/batch-hof$', TemplateView.as_view(template_name='clubs/codeschool/batch-hof.html'), name='batch-hof'),
 	url(r'^achievements/other-contests$', TemplateView.as_view(template_name='clubs/codeschool/other-contests.html'), name='other-contests'),
 ]

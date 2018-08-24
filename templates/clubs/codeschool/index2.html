@@ -32,8 +32,11 @@
                 <h5>{{post.title}}</h5>
                 <p>{{post.content|truncatewords:100}}<a href="{% url 'latest:latest_posts_detail' post.slug %}">(more...)</a><p>
         
-            {% endfor %}
-            {% endif %}
+                    {% endfor %}
+                    {% else %}
+                      <p>No new announcements</p>
+                    {% endif %}
+
                   </div>
                 </div>
             </div>
