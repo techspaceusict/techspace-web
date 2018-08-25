@@ -140,13 +140,17 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
+				profile = UserProfile.objects.get(user=user)
+				profile.ip_address = request.META.get('REMOTE_ADDR')
+				profile.user_agent = request.META.get('HTTP_USER_AGENT')
+				profile.save()
 
 				if 'next' in request.POST:
 					return redirect(request.POST.get('next'))
 				else:
 					return HttpResponseRedirect(reverse('community:index'))
 			else:
-				messages.warning(request, "Account is active.")
+				messages.warning(request, "Account is inactive.")
 				return HttpResponseRedirect(reverse("login"))
 		else:
 			print("someone tried to login with wrong credentials")

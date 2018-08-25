@@ -38,6 +38,8 @@ class UserProfile(models.Model):
 
 	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
 	user_badge_text = models.CharField(max_length=255, blank=True, null=True)
+	ip_address = models.CharField(blank=True, max_length=255)
+	user_agent = models.CharField(blank=True, max_length=1024)
 
 	def __str__(self):
 		return self.user.username
