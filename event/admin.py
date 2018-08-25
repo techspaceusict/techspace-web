@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Events
+from .models import AddEvent
 # Register your models here.
 
 
-admin.site.register(Events,prepopulated_fields = {"slug": ("title",),})
+admin.site.register(AddEvent, prepopulated_fields = {"slug": ("title",),})
