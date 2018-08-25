@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, Report, Message
 
 # from home.models import Info, Team
-from event.models import Events
+# from event.models import Event
 
 
 class UserForm(forms.ModelForm):
@@ -74,7 +74,7 @@ class MessageForm(forms.ModelForm):
 # class EventAddForm(forms.ModelForm):
 #
 # 	class Meta:
-# 		model = Events
+# 		model = Event
 # 		fields = ['title', 'date', 'time', 'image', 'venue', 'content']
 # 		widgets = { 'title': forms.TextInput(attrs={'placeholder':'Title', 'class': 'form-title'}),
 # 				'venue': forms.TextInput(attrs={'placeholder': 'Venue', 'class': 'form-control'}),

@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from blog.models import BlogPost
 from blog.views import BlogListView
-from event.models import Events
+from event.models import Event
 from event.views import EventView
 # from home.models import Info, Team
 
@@ -11,7 +11,7 @@ from event.views import EventView
 def index(request):
 	# info = Info.objects.filter(club=Info.droidclub).order_by('id').last()
 	# team = Team.objects.filter(club=Team.droidclub)
-	event = Events.objects.filter(club=Events.droidclub).order_by('-date').first()
+	event = Event.objects.filter(club=Event.droidclub).order_by('-date').first()
 	return render(request,'clubs/droidclub/index.html', {'event': event})
 
 
@@ -27,5 +27,5 @@ class EventListView(EventView):
 
 	def get_context_data(self,**kwargs):
 		context = super(EventListView,self).get_context_data(**kwargs)
-		context['club_events'] = Events.objects.filter(club=Events.droidclub)
+		context['club_events'] = Event.objects.filter(club=Event.droidclub)
 		return context
