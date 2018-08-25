@@ -15,7 +15,7 @@ from cloudinary.models import CloudinaryField
 
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	name = models.CharField(max_length=255, blank=True)
 	email = models.CharField(max_length=255, unique=True)
 	institution = models.CharField(max_length=255, blank=True)
@@ -32,16 +32,12 @@ class UserProfile(models.Model):
 	twitter = models.URLField(blank=True)
 	github = models.URLField(blank=True)
 	linkedIn = models.URLField(blank=True)
-	profile_pic = CloudinaryField('image', blank=True)
+	profile_pic = CloudinaryField('image', blank=True, default='https://res.cloudinary.com/vishal41/image/upload/v1535172707/nctymexu4qkarkzpz1zw.png')
 	club = models.ManyToManyField(Club, blank=True)
 	email_activated = models.BooleanField(default=False)
 
 	user_badge_icon = models.CharField(max_length=255, blank=True, null=True)
 	user_badge_text = models.CharField(max_length=255, blank=True, null=True)
-
-
-	def __init__(self, *args, **kwargs):
-		pass#self.profile_pic = 'https://res-console.cloudinary.com/dtffozvxo/thumbnails/v1/image/upload/v1535141418/ZGVmYXVsdC9EZWZhdWx0X2F2YXRhcg==/grid'
 
 	def __str__(self):
 		return self.user.username

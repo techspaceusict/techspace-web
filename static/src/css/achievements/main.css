@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  background-image: linear-gradient(to right, rgba(255, 204, 102, 0.7), rgba(255, 153, 102, 0.7)), url("../../img/techspace.png");
+  background-image: linear-gradient(to right, rgba(255, 204, 102, 0.7), rgba(255, 153, 102, 0.7)), url("https://res.cloudinary.com/vishal41/image/upload/v1535175478/techspace.png");
   background-size: cover;
   background-attachment: fixed;
   height: 95vh;
@@ -53,6 +53,16 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  :root {
+    font-size: 75%;
+  }
+
+  body {
+    margin: 1rem 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
   :root {
     font-size: 62.5%;
   }
@@ -230,6 +240,10 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  .achievement_images_img {
+    width: 40%;
+  }
+
   .achievement_images_img_1 {
     left: 0;
     top: 3rem;

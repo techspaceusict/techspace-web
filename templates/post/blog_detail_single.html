@@ -1,5 +1,5 @@
 {% extends '../community/base.html' %}
-{% load cloudinary %} 
+{% load cloudinary %}
 {% block content %}
 
 <div class="background-top-blog">
@@ -15,7 +15,7 @@
 	</div>
 	</div>
 
-	
+
 	<div class="row blog-main">
 		<div class="col col-xs-12 col-sm-12 col-md-3 blog-page-aside">
 			<div class="sticky">
@@ -40,7 +40,7 @@
 							{% csrf_token %}
 							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
 							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
-							<a href="#" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>	
+							<a href="#" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>
 					</form>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 			<div class="col-xs-12 col">
 				<img class="centre img-responsive blog-page-image" src="{{ blog_detail.image.url }}">
 			</div>
-			</div>	
+			</div>
 			{% endif %}
 
 			{{ blog_detail.content|safe|linebreaks }}
@@ -104,7 +104,7 @@
 	<!-- End Number of comments -->
 
 	<!--  Comment box-->
-	
+
 	<div class="row">
 		<div class="col-md-2 d-none d-sm-block"></div>
 		<div class="col col-xs-12 col-md-8">
@@ -127,14 +127,14 @@
 		{% endif %}
 		</div>
 	</div>
-	
+
 	<!-- End comment Box -->
 
 <!-- displaying all comments -->
 	<div class="row">
 		<div class="col-md-2 d-none d-sm-block"></div>
 		<div class="col col-xs-12 col-md-8">
-		<ul class="list-group">
+		<ul class="list-group  comment-list">
 		{% for comment in comments reversed %}
 
 		<li class="list-group-item" style="background-color: #f7f7f7;">
@@ -152,7 +152,7 @@
 							<input type="hidden" value="{{ reply.id }}" name="id">
 							{% csrf_token %}
 							<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
-							<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> 
+							<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
 					</form>
 					{% endif %}
 					</li>
@@ -163,7 +163,7 @@
 					<input type="hidden" value="{{ comment.id }}" name="id">
 					{% csrf_token %}
 					<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
-					<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> 
+					<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if comment.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
 			</form>
 			<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
 				{% csrf_token %}
@@ -209,4 +209,3 @@
 <script src="{% static 'js/blog/script.js' %}"></script>
 
 {% endblock %}
-

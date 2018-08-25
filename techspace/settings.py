@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'latest',
-    'cloudinary',   
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'techspace.wsgi.application'
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    } 
+    }
 }"""
 
 DATABASES = {
@@ -208,11 +208,9 @@ MESSAGE_TAGS = {
 
 # DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-cloudinary.config( 
-  cloud_name = "cloud_name", 
-  api_key = "api_key", 
+cloudinary.config(
+  cloud_name = "cloud_name",
+  api_key = "api_key",
   api_secret = "api_secret",
   secure = "True",
 )
-
-
