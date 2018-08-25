@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
-class AddEvent(models.Model):
+class Event(models.Model):
 	title = models.CharField(max_length=255)
 	author = models.CharField(max_length=255)
 	date = models.DateTimeField(auto_now_add=True)

@@ -7,13 +7,13 @@ from blog.models import BlogPost
 from log.models import UserProfile
 from django.contrib.auth.models import User
 
-from event.models import AddEvent
+from event.models import Event
 
 # Create your views here.
 
 def index(request):
 	blogs = BlogPost.objects.order_by('-date')[:5]
-	events = AddEvent.objects.order_by('-date')[:2]
+	events = Event.objects.order_by('-date')[:2]
 		#clubs
 	club_objects = Club.objects.all()
 	app_urls = ['codeschool:index','cogitans:index','droidclub:index','ecell:index','electrotech:index','oslc:index','renderedusict:index','turingai:index']

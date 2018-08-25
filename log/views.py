@@ -29,7 +29,7 @@ from django.views.generic.edit import DeleteView, UpdateView
 from .forms import UserForm, UserProfileForm, UserProfileEditForm, UserReportForm, MessageForm#, EventAddForm#, InfoAddForm, TeamAddForm
 # from home.models import Contact, Info, Team
 
-# from event.models import AddEvent
+# from event.models import Event
 from .models import UserProfile, Report, Message, Notification
 from blog.models import BlogPost, Comments, Upvote
 
