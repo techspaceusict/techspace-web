@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps'
+    'django.contrib.sites,
     'home',
     'codeschool',
     'cogitans',
@@ -65,6 +67,7 @@ INSTALLED_APPS = [
     'latest',
     'cloudinary',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
