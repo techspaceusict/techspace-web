@@ -75,13 +75,14 @@
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
                       </form> -->
-
+                      {% if user.is_authenticated %}
                       <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.id }}" name="id">
                           {% csrf_token %}
                           <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }}){%if blog_detail.state == 1%}Upvoted{% else %}Upvote{% endif %}</button> |
                       </form>
+                      {% endif %}
 
 
                       {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
@@ -155,13 +156,15 @@
                                   <button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog.upvotes }})</button> |
                               {% endif %}
                       </form> -->
-
+                      {% if user.is_authenticated %}
                       <form class="form-horizontal upvote-form" id="{{ blog.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
                           <input type="hidden" value="{{ blog.id }}" name="id">
                           {% csrf_token %}
                           <input type="hidden" id="state-{{blog.id}}" value="{{ blog.state }}" name="state">
                           <button type="submit" id="btn-{{ blog.id }}" class="post-actions-button small-p {%if blog.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
                       </form>
+                      {% endif %}
+
                       {% if blog.isblog %}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small-p">{% else %}
                         <a href="{% url 'blog:post-detail' blog.slug %}" class="small-p">
                         {% endif %}{{ blog.no_of_comments }} comments</a>
