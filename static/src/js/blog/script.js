@@ -57,7 +57,11 @@
       var thisId = $form.attr( "id" );
       $.post(url, $form.serialize())
           .done(function(data) {
-              changeButton(data, thisId);
+						if(data.user === "none"){
+							window.location = '/login/';
+						} else {
+							changeButton(data, thisId);
+						}
           });
   });
 

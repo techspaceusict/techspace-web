@@ -55,10 +55,11 @@ def contentForCommunity(request):
 
     return render(request, 'community/index.html', {'blogs':blogs, 'pinned_blogs':pinned_blogs, 'events':events , 'latest_posts' : latest_posts})
 
-@login_required
 def toggleUpvote(request) :
 
     if (request.method == "POST") :
+        if(not request.user.is_authenticated):
+            return JsonResponse({ 'user': 'none' });
 
         blog_id = request.POST['id']
         blog_state = int(request.POST['state'])
