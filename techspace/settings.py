@@ -35,6 +35,16 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lft7WkUAAAAAEf37JPg6O62HV3QXXz3qR1kYF0H'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+
+# To be used only if ssl certificate is active
+# Don't use while running local server
+
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = []
 
 

@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  background-image: linear-gradient(to right, rgba(255, 204, 102, 0.7), rgba(255, 153, 102, 0.7)), url("https://res.cloudinary.com/vishal41/image/upload/v1535175478/techspace.png");
+  background-image: linear-gradient(to right, rgba(255, 204, 102, 0.7), rgba(255, 153, 102, 0.7)), url("../../img/otechspace.png");
   background-size: cover;
   background-attachment: fixed;
   height: 95vh;
