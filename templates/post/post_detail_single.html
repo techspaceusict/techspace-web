@@ -61,13 +61,14 @@
 											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
 									{% endif %}
 					</form> -->
-
+					{% if user.is_authenticated %}
 					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.id }}" name="id">
 							{% csrf_token %}
 							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
 							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
 					</form>
+					{% endif %}
 					<hr>
 				{% endif %}
 				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>

@@ -35,6 +35,7 @@
 				</div>
 				<div class="row">
 					<div class="col col-xs-12 blog-page-tools-aside">
+					{% if user.is_authenticated %}
 					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
 							<input type="hidden" value="{{ blog_detail.id }}" name="id">
 							{% csrf_token %}
@@ -42,6 +43,7 @@
 							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
 							<a href="#" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>
 					</form>
+					{% endif %}
 					</div>
 				</div>
 				{% if user.username == blog_detail.author %}
