@@ -228,7 +228,7 @@ def blog_edit(request, slug):
 	if request.user.username == post.author:
 		if request.method == "POST":
 			form = BlogAddForm(request.POST, request.FILES ,instance=post)
-			print("okkkk")
+			# print("okkkk")
 			if form.is_valid():
 				print("valid form")
 				post = form.save(commit=False)
@@ -245,7 +245,7 @@ def blog_edit(request, slug):
 				for tag in form.cleaned_data['tags']:
 					t = Tag.objects.get(word=tag)
 					blog.tags.add(t)
-				print("done")
+				# print("done")
 				processBlog(blog, request)
 				return redirect('blog:blog-detail', slug=post.slug)
 
