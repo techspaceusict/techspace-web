@@ -106,7 +106,9 @@
         </li>
             <!-- <button class="btn-wire-dark">Sign in</button> or-->
         <li class="nav-item">
-            <a href="{% url 'log:dashboard' name=user.username %}" title="Profile @{{user.username}}" class=""><div class="nav-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div></a>
+            <a href="{% url 'log:dashboard' name=user.username %}" title="Profile @{{user.username}}" class="">
+              <div class="nav-user-img" style="background-image: url({% if userprofile.profile_pic %}{{ userprofile.profile_pic.url }}{% else %} {% static './img/default_user.png' %} {% endif %}); background-size: cover"></div>
+            </a>
         </li>
         <li class="nav-item">
             <a class="btn-wire-dark" href="{% url 'logout' %}" style="margin-top: 5px;display: inline-block;">Logout </a>

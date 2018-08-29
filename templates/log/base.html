@@ -54,7 +54,7 @@
 
                 </div>
                 <div class="col-xs-4 col-md-3 text-center">
-                    <div class="profile-img" style="background:url('{{ profile.profile_pic.url }}');background-size: cover;background-position: center;"></div>
+                    <div class="profile-img" style="background:url({% if userprofile.profile_pic %}{{ userprofile.profile_pic.url }}{% else %} {% static './img/default_user.png' %} {% endif %});background-size: cover;background-position: center;"></div>
                 </div>
             </div>
             <div class="row">

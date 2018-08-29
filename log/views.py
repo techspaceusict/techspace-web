@@ -22,6 +22,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
+from datetime import datetime
+
 
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
@@ -141,6 +143,7 @@ def user_login(request):
 			if user.is_active:
 				login(request, user)
 				profile = UserProfile.objects.get(user=user)
+				profile.last_login_time = datetime.now()
 				profile.ip_address = request.META.get('REMOTE_ADDR')
 				profile.user_agent = request.META.get('HTTP_USER_AGENT')
 				profile.save()
