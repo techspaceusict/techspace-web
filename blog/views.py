@@ -33,6 +33,10 @@ class BlogListView(ListView):
 # 	template_name = 'blog/blog_detail.html'
 # 	context_object_name = 'blog_detail'
 
+def post(request, post_id=id):
+	item = get_object_or_404(Post, id=post_id)
+	return render(request,'community/post.html', {'post':item})
+
 def postDetailView(request, slug):
 	# print("sulg = ", slug)
 
