@@ -19,8 +19,7 @@
 			</div>
 			{% if blog_detail.image.url is not None %}
 			<div class="container-fluid card">
-				<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}"> {% else %}
-				<h5>{{ blog_detail.title }}</h5>
+				<img class="centre img-responsive blog_image" src="{{ blog_detail.image.url }}">
 			</div>
 			{% endif %} {{ blog_detail.content|safe|urlize|linebreaks }} {% if user.username == blog_detail.author %}
 
@@ -28,7 +27,8 @@
 				<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
 					<button class="btn btn-primary">Edit</button>
 				</form>
-				<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+				<form style="display: inline; margin-left: 20px;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post"
+				 class="form-group">
 					{% csrf_token %}
 					<button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
 				</form>
@@ -54,14 +54,16 @@
 											<button type="submit" class="post-actions-button small-p"><i class="fa fa-thumbs-up"></i> Upvote ({{ blog_detail.upvotes }})</button> |
 									{% endif %}
 					</form> -->
-				<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+				<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}"
+				 method="post">
 					<input type="hidden" value="{{ blog_detail.id }}" name="id"> {% csrf_token %}
 					<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
 					<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i
 						 class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }})</button> |
 				</form>
 				<hr> {% endif %}
-				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</p>
+				<p style="margin-top:-20px;">{{ blog_detail.comments.all.count }}
+					comment{{blog_detail.comments.all.count|pluralize}}</p>
 			</div>
 			{% if user.is_authenticated %}
 			<div class="container" style="width: 80%;">
@@ -99,11 +101,13 @@
 							<li class="list-group-item ">{{ reply.comment_text|safe|linebreaks }}<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{
 									reply.comment_author }}</a><span class="blog-date"><br>on {{ reply.comment_date }}</span>
 								{% if user.is_authenticated %}
-								<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+								<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}"
+								 method="post">
 									<input type="hidden" value="{{ reply.id }}" name="id"> {% csrf_token %}
 									<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
 									<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i
-										 class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{%
+										 class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %}
+										Upvote{%
 										endif %}</button>
 								</form>
 								{% endif %}
@@ -111,18 +115,21 @@
 							{% endfor %}
 						</ul>
 						{% if user.is_authenticated %}
-						<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+						<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}"
+						 method="post">
 							<input type="hidden" value="{{ comment.id }}" name="id"> {% csrf_token %}
 							<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
 							<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i
-								 class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if comment.state == 1%} Upvoted{% else %} Upvote{% endif
+								 class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if comment.state == 1%} Upvoted{% else %} Upvote{%
+								endif
 								%}
 							</button>
 						</form>
-						<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
+						<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}"
+						 method="post">
 							{% csrf_token %}
-							<input class="{{ comment.id }} form-control" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required
-							 type="text" oninput="get_suggestions(this.value, this.className);" />
+							<input class="{{ comment.id }} form-control" id="input-{{ comment.id }}" name="comment_text" autocomplete="off"
+							 required type="text" oninput="get_suggestions(this.value, this.className);" />
 							<div class="list-group mention_suggestions-{{ comment.id }}"></div>
 							<!-- {{ form.comment_text }} -->
 							<input type="hidden" value="{{ comment.id }}" name="id" />
