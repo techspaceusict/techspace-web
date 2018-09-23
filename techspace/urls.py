@@ -13,7 +13,8 @@ from .forms import EmailValidationOnForgotPassword
 
 from techspace.sitemaps import PostSitemap, StaticViewSitemap
 from blog import views as blog_views
-from base import views as base_views
+from . import views as base_views
+
 sitemaps={
 	'posts':PostSitemap,
 	'static':StaticViewSitemap
