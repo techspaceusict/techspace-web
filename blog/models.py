@@ -69,9 +69,9 @@ class BlogPost(models.Model):
 
 	def __str__(self):
 		return self.title + ' - ' + self.author
-	
+
 	def get_absolute_url(self):
-		return reverse('post', args[]=[str(self.id)]
+		return reverse('post', args=[str(self.id)])
 
 class Comments(models.Model):
 	post = models.ForeignKey(BlogPost, related_name='comments', on_delete=models.CASCADE)

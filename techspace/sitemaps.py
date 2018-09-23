@@ -1,11 +1,15 @@
-from django.contrib.sitemaps import sitemap
+from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from blog.models import Post
+from blog.models import BlogPost
+
 class PostSitemap(Sitemap):
-  def items(self):
-    return Post.objects.all()
+    def items(self):
+        return BlogPost.objects.all()
+
+
 class StaticViewSitemap(Sitemap):
-   def items(self):
-    return ['about']
-  def location(self,item):
-    return reverse(item)
+    def items(self):
+        return ['about']
+
+    def location(self,item):
+        return reverse(item)
