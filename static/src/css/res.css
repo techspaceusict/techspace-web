@@ -1,0 +1,68 @@
+body{
+  font-family: sans-serif;
+}
+p{
+  letter-spacing: 1px;
+  color: #202327;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 1rem;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+h2{
+  font-weight: 800;
+
+}
+
+.block {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+@media (min-width: 768px){
+.block{
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+}
+.jumbotron{
+  background-color: #ad2b2b;
+  height: 17em;
+}
+#heading_jumb{
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  font-size: 3em;
+  margin-top: 1em;
+}
+#content-1{
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+#content-2{
+  background-color: #F6F0EE;
+  text-align: center;
+}
+#content-5{
+  text-align: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #F6F0EE;
+}
+li{
+    font-size: 17px;
+    font-weight: lighter;
+    line-height: 28px;
+    letter-spacing: 0.35px;
+}
+.card{
+  margin-top: 3rem;
+}
