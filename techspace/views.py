@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 
 
@@ -15,3 +15,6 @@ def handler500(request):
     
 def about(request):
     return render(request,'base/about.html')
+
+def alumni(request):
+	return render(request,'home/alumni.html')

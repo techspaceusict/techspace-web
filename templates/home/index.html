@@ -624,7 +624,7 @@
                         <td>Spokesperson</td>
                     </tr>
                 </table>
-                <h4><a href="#0" class="btn-wire-dark">Alumni</a></h4>
+                <h4><a href="{% url 'alumni'%}" class="btn-wire-dark">Alumni</a></h4>
             </div>
         </div>
     </div>
@@ -728,22 +728,32 @@
             <h2 class="small-section-heading">Partner Organisations</h2>
             <br>
             <div class="row">
-                <div class="col col-xs-6 col-md-6">
-                    <img class="logo-partner" src="{% static 'img/coding-ninjas.svg' %}">
+        <div class="col col-xs-4 col-md-4">
+                    <img class="img-fluid" src="{% static 'img/codestreet.png' %}">
+                    <p>Codestreet</p>
+                </div>
+                <div class="col col-xs-4 col-md-4">
+                    <br><br><br>
+                    <h2>Streethack</h2>
+                </div>
+        <div class="col col-xs-4 col-md-4">
+                    <br>
+            <img class="img-fluid" src="{% static 'img/coding-ninjas.svg' %}">
                     <p>Coding Ninjas</p>
                 </div>
-                <div class="col col-xs-6 col-md-6">
-                    <img class="logo-partner" src="{% static 'img/dsclogo.png' %}" height="100">
+                <div class="col col-xs-4 col-md-4">
+                    <img class="img-fluid" src="{% static 'img/dsclogo.png' %}" height="100">
                     <p>Google DSC, USICT</p>
 
                 </div>
-                <div class="col col-xs-6 col-md-6">
-                    <img class="logo-partner" src="{% static 'img/ieee-vector-logo.png' %}">
+                <div class="col col-xs-4 col-md-4">
+        <br>        <br><br><br>
+                    <img class="img-fluid" src="{% static 'img/ieee-vector-logo.png' %}">
                     <p>IEEE USICT</p>
 
                 </div>
-                <div class="col col-xs-6 col-md-6">
-                    <img class="logo-partner" src="{% static 'img/tandpcell.png' %}">
+                <div class="col col-xs-4 col-md-4">
+                    <img class="img-fluid" src="{% static 'img/tandpcell.png' %}">
                     <p>Training and placement Cell, USICT</p>
                 </div>
 

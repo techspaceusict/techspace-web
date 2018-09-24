@@ -24,7 +24,7 @@
 					<!-- <a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
 				</a> -->
 				<br>
-				<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">@{{ blog_detail.author }}</a></h4>
+				<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">{{ blog_detail.author }}</a></h4>
 				<p class="small-p">{{ blog_detail.date }}</p>
 				</div>
 				</div>
@@ -140,7 +140,7 @@
 		<li class="list-group-item" style="background-color: #f7f7f7;">
 			{{ comment.comment_text|safe|linebreaks }}
 			<p>
-				<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{ comment.comment_author }}</a>
+				<a href="{% url 'log:dashboard' name=comment.comment_author %}">{{ comment.comment_author }}</a>
 				<br>
 				<span class="blog-date"> on {{ comment.comment_date }}</span>
 			</p>
