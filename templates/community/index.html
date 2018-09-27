@@ -50,11 +50,11 @@
                     <h6 class="blog-date">{{ blog.date }} by <a href="{% url 'log:dashboard' name=blog.author %}">{{ blog.author }}</a></h6>
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.description|urlize|truncatewords:50|linebreaks }}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small">(more...)</a></p>
+                      <p>{{ blog.description|urlize|truncatewords:50|linebreaks }}<a href="{% url 'blog:blog-detail' blog.slug %}" class="small"><br>(Read full blog)</a></p>
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.content|safe|urlize|truncatewords:50|linebreaks }}<a href="{% url 'blog:post-detail' blog.slug %}" class="small-p">(more...)</a></p>
+                      <p>{{ blog.content|safe|urlize|truncatewords:50|linebreaks }}<a href="{% url 'blog:post-detail' blog.slug %}" class="small-p"><br>(Read full post)</a></p>
                     </div>
                     {% endif %}
                     {% if blog.image.url is not None %}
@@ -129,11 +129,11 @@
 
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.description|truncatewords:100|urlize }}<a href="{% url 'blog:blog-detail' blog.slug %}">  (more...)</a></p>
+                      <p>{{ blog.description|truncatewords:100|urlize }}<a href="{% url 'blog:blog-detail' blog.slug %}"><br>(Read full blog)</a></p>
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10">
-                      <p>{{ blog.content|safe|urlize|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}">  (more...)</a></p>
+                      <p>{{ blog.content|safe|urlize|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}"><br>(Read full post)</a></p>
                     </div>
                     {% endif %}
                     {% if blog.image.url is not None %}
