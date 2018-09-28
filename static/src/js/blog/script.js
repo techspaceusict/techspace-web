@@ -72,7 +72,7 @@
       }
       else {
         $("#btn-"+id).removeClass("upvoted");
-      	$("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+') Upvotes');
+      	$("#btn-"+id).html('<i class="fa fa-thumbs-up"></i> ('+data.upvotes+') Upvote');
       }
       $("#state-"+id).val(data.state ? 1 : 0);
     }

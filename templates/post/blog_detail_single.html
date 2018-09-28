@@ -157,7 +157,7 @@
 				{% endif %}
 				<ul class="list-group comment-reply-list-{{ comment.id }}">
 					{% for reply in comment.reply_comments %}
-					
+
 					<li class="list-group-item reply">{{ reply.comment_text|safe|linebreaks }}<a href="{% url 'log:dashboard' name=comment.comment_author %}"><span class="small-p">{{ reply.comment_author }}</span></a><span class="blog-date"> on {{ reply.comment_date }}</span>
 
 					{% if user.is_authenticated %}
@@ -165,18 +165,18 @@
 								<input type="hidden" value="{{ reply.id }}" name="id">
 								{% csrf_token %}
 								<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
-								<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
+								<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if reply.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
 						</form>
 					{% endif %}
-					
+
 					</li>
 
 					{% endfor %}
 				</ul>
 				<form class="form-horizontal comment-reply-form {% if not comment.reply_comments %} hidden
-				{% endif %}" id="{{ comment.id }}-reply" action="{% url 'blog:reply-comment' %}" method="post">	
+				{% endif %}" id="{{ comment.id }}-reply" action="{% url 'blog:reply-comment' %}" method="post">
 					{% csrf_token %}
-					
+
 
 					<div class="input-group mb-3">
 					<input class="{{ comment.id }} form-control reply-comment-box" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);"/>
@@ -197,7 +197,7 @@
 		</div>
 	</div>
 
-	
+
 	</div>
 </div>
 
