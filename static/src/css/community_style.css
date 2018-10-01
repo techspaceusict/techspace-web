@@ -35,11 +35,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 }
-/*
+
 @font-face {
     font-family: adamcg;
     src: url('blog/HKGrotesk-SemiBold.otf') format("opentype");
-} */
+} 
 
 /*Navbar CSS*/
 nav {
@@ -385,7 +385,7 @@ nav {
     letter-spacing: 0.05rem;
 }
 .blog-description{
-  text-align: justify;
+/*   text-align: justify; */
   color: rgba(0, 0, 0, 0.84);
   font-weight: 550;
 }
@@ -600,7 +600,7 @@ display: none;
 /*Events index page*/
 
 #event_card{
-    width: 20rem;
+/*     width: 20rem; */
     margin-top: 2rem;
 }
 #card_body{
