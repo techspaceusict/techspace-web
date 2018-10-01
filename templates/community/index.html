@@ -129,11 +129,19 @@
 
                     {% if blog.isblog %}
                     <div class="col-xs-10 col-md-10 blog-description-col">
+<<<<<<< HEAD
                       <p class="blog-description">{{ blog.description|truncatewords:100|urlize }}<a href="{% url 'blog:blog-detail' blog.slug %}"><span class="read-more small-p">(Read full post)</span></a></p>
                     </div>
                     {% else %}
                     <div class="col-xs-10 col-md-10 blog-description-col">
                       <p class="blog-description">{{ blog.content|safe|urlize|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}"><span class="read-more small-p">(Read full post)</span></a></p>
+=======
+                      <p class="blog-description">{{ blog.description|truncatewords:100|urlize }}<a href="{% url 'blog:blog-detail' blog.slug %}"><br><span class="read-more">(Read full post)</span></a></p>
+                    </div>
+                    {% else %}
+                    <div class="col-xs-10 col-md-10 blog-description-col">
+                      <p class="blog-description">{{ blog.content|safe|urlize|truncatewords:100 }}<a href="{% url 'blog:post-detail' blog.slug %}"><br><span class="read-more">(Read full post)</span></a></p>
+>>>>>>> e5803aec2e58302e3d86251ae67c1856fb1b8007
                     </div>
                     {% endif %}
                     {% if blog.image.url is not None %}
