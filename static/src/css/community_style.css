@@ -14,7 +14,7 @@ html, body {
 }
 
 a {
-  color: #0069da;
+  color: #0056b5;
 }
 /*End Resets*/
 
@@ -247,6 +247,10 @@ nav {
     border-radius:  .6em;
     padding: .7em;
     margin:  .5em;
+}
+
+.hidden {
+  display: none;
 }
 /*End Buttons and helpers*/
 
@@ -638,6 +642,8 @@ display: none;
 
 }
 
+
+
 .blog-page-tools .btn-wire-dark {
   margin-bottom: 10px;
   margin-top: 10px;
@@ -651,6 +657,11 @@ display: none;
   .blog-main {
     margin-top: 0px;
   }
+
+  .blog-page-title {
+  font-size: 2.5rem;
+  }
+
 }
 .blog-page-aside {
   text-align: center;
@@ -685,6 +696,12 @@ display: none;
   width: 100%;
 }
 
+.post-page-content {
+  word-wrap: break-word;
+  font-family: sans-serif;
+  width: 100%;
+}
+
 .blog-page-description {
   padding: 10px;
   color: grey;
@@ -710,6 +727,11 @@ display: none;
   max-width: 900px;
 }
 
+.post-page-image{
+  width: 70%;
+  max-width: 900px;
+}
+
 
 @media screen and (max-width : 768px)
 {
@@ -727,10 +749,34 @@ display: none;
   margin: auto;
 }
 
+.comment {
+  background-color: #f7f7f7;
+}
 .comment-box {
   margin-top: 8px;
   margin: auto;
   width: 80%;
+}
+
+.comment-reply-form {
+  margin-top: 5px;
+}
+
+.comment-list p {
+  margin-bottom: 0;
+}
+
+.reply {
+  background-color: #f3f1f1;
+}
+
+.reply-comment {
+  cursor: pointer;
+}
+
+.reply-comment-button {
+  cursor: pointer;
+  color: black;
 }
 
 .blog-submit-comment {
