@@ -43,7 +43,7 @@ class Event(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.slug = slugify(self.title)
-		super(Events, self).save(*args, **kwargs)
+		super(Event, self).save(*args, **kwargs)
 
 
 	def __str__(self):

@@ -24,6 +24,8 @@ urlpatterns = [
 	url(r'^sitemap.xml', sitemap, {'sitemaps':sitemaps}),
 	url(r'^posts/<int:id>', blog_views.post, name='post'),
 	url(r'^about/<int:id>', base_views.about, name='about'),
+    url(r'^alumni/', base_views.alumni, name='alumni'),
+
     url(r'^admin/', admin.site.urls),
     url(r'^codeschool/', include('codeschool.urls')),
     url(r'^cogitans/', include('cogitans.urls')),

@@ -6,6 +6,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
+  font-family: 'Muli', sans-serif;
+
   /*overflow-x: hidden;*/
 
   /*overflow-clip-box: hidden;  */
@@ -14,7 +16,7 @@ html, body {
 }
 
 a {
-  color: #0069da;
+  color: #0056b5;
 }
 /*End Resets*/
 
@@ -37,7 +39,7 @@ body::-webkit-scrollbar-thumb {
 @font-face {
     font-family: adamcg;
     src: url('blog/HKGrotesk-SemiBold.otf') format("opentype");
-}
+} 
 
 /*Navbar CSS*/
 nav {
@@ -248,6 +250,10 @@ nav {
     padding: .7em;
     margin:  .5em;
 }
+
+.hidden {
+  display: none;
+}
 /*End Buttons and helpers*/
 
 /*Feed CSS*/
@@ -373,8 +379,16 @@ nav {
 
 .blog-title {
     width: 75%;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.84);
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
 }
-
+.blog-description{
+/*   text-align: justify; */
+  color: rgba(0, 0, 0, 0.84);
+  font-weight: 550;
+}
 
 
 .pinned {
@@ -586,7 +600,7 @@ display: none;
 /*Events index page*/
 
 #event_card{
-    width: 20rem;
+/*     width: 20rem; */
     margin-top: 2rem;
 }
 #card_body{
@@ -638,6 +652,8 @@ display: none;
 
 }
 
+
+
 .blog-page-tools .btn-wire-dark {
   margin-bottom: 10px;
   margin-top: 10px;
@@ -651,6 +667,11 @@ display: none;
   .blog-main {
     margin-top: 0px;
   }
+
+  .blog-page-title {
+  font-size: 2.5rem;
+  }
+
 }
 .blog-page-aside {
   text-align: center;
@@ -685,6 +706,12 @@ display: none;
   width: 100%;
 }
 
+.post-page-content {
+  word-wrap: break-word;
+  font-family: sans-serif;
+  width: 100%;
+}
+
 .blog-page-description {
   padding: 10px;
   color: grey;
@@ -710,6 +737,11 @@ display: none;
   max-width: 900px;
 }
 
+.post-page-image{
+  width: 70%;
+  max-width: 900px;
+}
+
 
 @media screen and (max-width : 768px)
 {
@@ -727,10 +759,34 @@ display: none;
   margin: auto;
 }
 
+.comment {
+  background-color: #f7f7f7;
+}
 .comment-box {
   margin-top: 8px;
   margin: auto;
   width: 80%;
+}
+
+.comment-reply-form {
+  margin-top: 5px;
+}
+
+.comment-list p {
+  margin-bottom: 0;
+}
+
+.reply {
+  background-color: #f3f1f1;
+}
+
+.reply-comment {
+  cursor: pointer;
+}
+
+.reply-comment-button {
+  cursor: pointer;
+  color: black;
 }
 
 .blog-submit-comment {

@@ -15,186 +15,191 @@
 	</div>
 	</div>
 
-
 	<div class="row blog-main">
-		<div class="col col-xs-12 col-sm-12 col-md-3 blog-page-aside">
-			<div class="sticky">
-				<div class="row">
-				<div class="col col-xs-12">
-					<!-- <a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
-				</a> -->
-				<br>
-				<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">@{{ blog_detail.author }}</a></h4>
-				<p class="small-p">{{ blog_detail.date }}</p>
+	<div class="col col-xs-12 col-sm-12 col-md-3 blog-page-aside">
+		<div class="sticky">
+			<div class="row">
+			<div class="col col-xs-12">
+				<!-- <a href="#" title="Profile @{{user.username}}"><div class="aside-user-img" style="background-image: url({{ userprofile.profile_pic.url }}); background-size: cover"></div>
+			</a> -->
+			<br>
+			<h4><a href="{% url 'log:dashboard' name=blog_detail.author %}">{{ blog_detail.author }}</a></h4>
+			<p class="small-p">{{ blog_detail.date }}</p>
+			</div>
+			</div>
+			{% if blog_detail.description != ''%}
+			<div class="row">
+				<div class="col col-xs-12 blog-page-description">
+					<p>{{ blog_detail.description }}</p>
 				</div>
-				</div>
-				<div class="row">
-					<div class="col col-xs-12 blog-page-description">
-						<p>{{ blog_detail.description }}</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col col-xs-12 blog-page-tools-aside">
-					<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
-							<input type="hidden" value="{{ blog_detail.id }}" name="id">
-							{% csrf_token %}
-							<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
-							<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
-							<a href="#" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>
-					</form>
-					</div>
-				</div>
-				{% if user.username == blog_detail.author %}
-				<div class="row blog-page-tools">
-				<div class="col-xs-12 col">
-					<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
-						<button class="btn btn-wire-dark">Edit Blogpost</button>
-					</form>
-					<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+			</div>
+			{% endif %}
+			<div class="row">
+				<div class="col col-xs-12 blog-page-tools-aside">
+				<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+						<input type="hidden" value="{{ blog_detail.id }}" name="id">
 						{% csrf_token %}
-						<button class="btn btn-wire-dark">Delete Blogpost</button>
-					</form>
+						<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
+						<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
+						<a href="#post-actions" class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</a>
+				</form>
 				</div>
-				</div>
-			    {% endif %}
-
 			</div>
-		</div>
-
-
-		<div class="col-xs-12 col-sm-12 col-md-9 blog-page-content">
-			{% if blog_detail.image.url is not None %}
-			<div class="row text-center">
+			{% if user.username == blog_detail.author %}
+			<div class="row blog-page-tools">
 			<div class="col-xs-12 col">
-				<img class="centre img-responsive blog-page-image" src="{{ blog_detail.image.url }}">
-			</div>
-			</div>
-			{% endif %}
-
-			{{ blog_detail.content|safe|linebreaks }}
-		</div>
-	</div>
-
-
-    {% if user.username == blog_detail.author %}
-	<div class="row text-center blog-page-tools d-block d-sm-none">
-	<div class="col-xs-12 col">
-		<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
-			<button class="btn btn-wire-dark">Edit Blogpost</button>
-		</form>
-		<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
-			{% csrf_token %}
-			<button class="btn btn-wire-dark">Delete Blogpost</button>
-		</form>
-	</div>
-	</div>
-    {% endif %}
-
-
-	<!-- Number of comments -->
-	<hr>
-	<div class="row">
-		<div class="col-md-2 d-none d-sm-block"></div>
-		<div class="col col-xs-12 col-md-8">
-	 	<div class="post-actions">
-			<span style="margin-top:-20px;">{{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</span>
-		</div>
-		</div>
-	</div>
-	<!-- End Number of comments -->
-
-	<!--  Comment box-->
-
-	<div class="row">
-		<div class="col-md-2 d-none d-sm-block"></div>
-		<div class="col col-xs-12 col-md-8">
-		{% if user.is_authenticated %}
-		<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
-			{% csrf_token %}
-
-   			{% for field in form %}
-			<div class="form-group">
-				{{ field }}
-			</div>
-
-			{% endfor %}
-
-			<div class="list-group mention_suggestions"></div>
-        	<button class="btn btn-wire-dark blog-submit-comment">Submit Comment</button>
-		</form>
-		{% else %}
-		<h5><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a> to comment.</h5>
-		{% endif %}
-		</div>
-	</div>
-
-	<!-- End comment Box -->
-
-<!-- displaying all comments -->
-	<div class="row">
-		<div class="col-md-2 d-none d-sm-block"></div>
-		<div class="col col-xs-12 col-md-8">
-		<ul class="list-group  comment-list">
-		{% for comment in comments reversed %}
-
-		<li class="list-group-item" style="background-color: #f7f7f7;">
-			{{ comment.comment_text|safe|linebreaks }}
-			<p>
-				<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{ comment.comment_author }}</a>
-				<br>
-				<span class="blog-date"> on {{ comment.comment_date }}</span>
-			</p>
-			<ul class="list-group comment-reply-list-{{ comment.id }}">
-					{% for reply in comment.reply_comments %}
-					<li class="list-group-item ">{{ reply.comment_text|safe|linebreaks }}<a href="{% url 'log:dashboard' name=comment.comment_author %}">@{{ reply.comment_author }}</a><span class="blog-date"><br>on {{ reply.comment_date }}</span>
-					{% if user.is_authenticated %}
-					<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
-							<input type="hidden" value="{{ reply.id }}" name="id">
-							{% csrf_token %}
-							<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
-							<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
-					</form>
-					{% endif %}
-					</li>
-					{% endfor %}
-			</ul>
-			{% if user.is_authenticated %}
-			<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
-					<input type="hidden" value="{{ comment.id }}" name="id">
+				<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+					<button class="btn btn-wire-dark">Edit Blogpost</button>
+				</form>
+				<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
 					{% csrf_token %}
-					<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
-					<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if comment.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
-			</form>
-			<form class="form-horizontal comment-reply-form" id="{{ comment.id }}" action="{% url 'blog:reply-comment' %}" method="post">
-				{% csrf_token %}
-				<input class="{{ comment.id }} form-control" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);" />
-				<div class="list-group mention_suggestions-{{ comment.id }}"></div>
-				<!-- {{ form.comment_text }} -->
-				<input type="hidden" value="{{ comment.id }}" name="id" />
-				<button type="submit" class="btn btn-wire-dark-simple" style="float:right;margin-top: 5px;">Add a reply</button>
-			</form>
-			{% endif %}
-		</li>
-		{% endfor %}
-		</ul>
-		<br>
-		<br>
+					<button class="btn btn-wire-dark" onclick="return confirm('Are you sure you want to delete this?')">Delete Blogpost</button>
+				</form>
+			</div>
+			</div>
+		    {% endif %}
+
+		</div>
 	</div>
 
-<!--
 
-<h4>No comments yet</h4> -->
+	<div class="col-xs-12 col-sm-12 col-md-9 blog-page-content">
+		{% if blog_detail.image.url is not None %}
+		<div class="row text-center">
+		<div class="col-xs-12 col">
+			<img class="centre img-responsive blog-page-image" src="{{ blog_detail.image.url }}">
+		</div>
+		</div>
+		{% endif %}
+
+		{{ blog_detail.content|safe|linebreaks }}
+
+	    {% if user.username == blog_detail.author %}
+		<div class="row text-center blog-page-tools d-block d-sm-none">
+		<div class="col-xs-12 col">
+			<form style="display: inline;" action="{% url 'blog:blog-edit' blog_detail.slug %}" method="get" class="form-group">
+				<button class="btn btn-wire-dark">Edit Blogpost</button>
+			</form>
+			<form style="display: inline;" action="{% url 'blog:blog-delete' blog_detail.slug %}" method="post" class="form-group">
+				{% csrf_token %}
+				<button class="btn btn-wire-dark" onclick="return confirm('Are you sure you want to delete this?')">Delete Blogpost</button>
+			</form>
+		</div>
+		</div>
+	    {% endif %}
+
+
+		<!-- Number of comments -->
+		<hr>
+		<div class="row" id="post-actions">
+			<!-- <div class="col-md-2 d-none d-sm-block"></div> -->
+			<div class="col col-xs-12 col-md-12">
+		 	<div class="post-actions">
+				<form class="form-horizontal upvote-form" id="{{ blog_detail.id }}" action="{% url 'community:toggle-upvote'%}" method="post">
+						<input type="hidden" value="{{ blog_detail.id }}" name="id">
+						{% csrf_token %}
+						<input type="hidden" id="state-{{blog_detail.id}}" value="{{ blog_detail.state }}" name="state">
+						<button type="submit" id="btn-{{ blog_detail.id }}" class="post-actions-button small-p {%if blog_detail.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ blog_detail.upvotes }}){%if blog_detail.state == 1%} Upvoted{% else %} Upvote{% endif %}</button> |
+						<span class="small-p"> {{ blog_detail.comments.all.count }} comment{{blog_detail.comments.all.count|pluralize}}</span>
+				</form>
+			</div>
+			</div>
+		</div>
+		<!-- End Number of comments -->
+
+		<!--  Comment box-->
+
+		<div class="row">
+			<!-- <div class="col-md-2 d-none d-sm-block"></div> -->
+			<div class="col col-xs-12 col-md-12">
+			{% if user.is_authenticated %}
+			<form class="form-horizontal form-group comment-form" method="post" enctype="multipart/form-data" >
+				{% csrf_token %}
+	   			{% for field in form %}
+				<div class="form-group">
+					{{ field }}
+				</div>
+
+				{% endfor %}
+
+				<div class="list-group mention_suggestions"></div>
+	        	<button class="btn btn-wire-dark blog-submit-comment">Submit Comment</button>
+			</form>
+			{% else %}
+			<h5><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Sign up</a> to comment.</h5>
+			{% endif %}
+			</div>
+		</div>
+
+		<!-- End comment Box -->
+
+		<!-- displaying all comments -->
+		<div class="row">
+			<!-- <div class="col-md-2 d-none d-sm-block"></div> -->
+			<div class="col col-xs-12 col-md-12">
+			<ul class="list-group comment-list">
+			{% for comment in comments reversed %}
+
+			<li class="list-group-item comment">
+				{{ comment.comment_text|safe|linebreaks }}
+				<p>
+					<a href="{% url 'log:dashboard' name=comment.comment_author %}"><span class="small-p">{{ comment.comment_author }}</span></a>
+					<span class="blog-date"> on {{ comment.comment_date }}</span>
+				</p>
+				{% if user.is_authenticated %}
+				<form class="form-horizontal comment-upvote-form" id="{{ comment.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+						<input type="hidden" value="{{ comment.id }}" name="id">
+						{% csrf_token %}
+						<input type="hidden" id="state-comment-{{comment.id}}" value="{{ comment.state }}" name="state">
+						<button type="submit" id="btn-comment-{{ comment.id }}" class="post-actions-button small-p {%if comment.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ comment.upvotes_len }}){%if comment.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
+						| <span class="small-p reply-comment" onclick="$('#{{comment.id}}-reply').slideToggle('fast');">Reply</span>
+				</form>
+				{% endif %}
+				<ul class="list-group comment-reply-list-{{ comment.id }}">
+					{% for reply in comment.reply_comments %}
+
+					<li class="list-group-item reply">{{ reply.comment_text|safe|linebreaks }}<a href="{% url 'log:dashboard' name=comment.comment_author %}"><span class="small-p">{{ reply.comment_author }}</span></a><span class="blog-date"> on {{ reply.comment_date }}</span>
+
+					{% if user.is_authenticated %}
+						<form class="form-horizontal comment-upvote-form" id="{{ reply.id }}" action="{% url 'blog:toggle-comment-upvote'%}" method="post">
+								<input type="hidden" value="{{ reply.id }}" name="id">
+								{% csrf_token %}
+								<input type="hidden" id="state-comment-{{reply.id}}" value="{{ reply.state }}" name="state">
+								<button type="submit" id="btn-comment-{{ reply.id }}" class="post-actions-button small-p {%if reply.state == 1%}upvoted{%else%}{%endif%}"><i class="fa fa-thumbs-up"></i> ({{ reply.upvotes_len }}){%if reply.state == 1%} Upvoted{% else %} Upvote{% endif %}</button>
+						</form>
+					{% endif %}
+
+					</li>
+
+					{% endfor %}
+				</ul>
+				<form class="form-horizontal comment-reply-form {% if not comment.reply_comments %} hidden
+				{% endif %}" id="{{ comment.id }}-reply" action="{% url 'blog:reply-comment' %}" method="post">
+					{% csrf_token %}
+
+
+					<div class="input-group mb-3">
+					<input class="{{ comment.id }} form-control reply-comment-box" id="input-{{ comment.id }}" name="comment_text" autocomplete="off" required type="text" oninput="get_suggestions(this.value, this.className);"/>
+					  <div class="input-group-append">
+					    <button type="submit" class="input-group-text reply-comment-button">Add a reply</button>
+					  </div>
+					</div>
+					<div class="list-group mention_suggestions-{{ comment.id }}"></div>
+					<!-- {{ form.comment_text }} -->
+					<input type="hidden" value="{{ comment.id }}" name="id" />
+				</form>
+			</li>
+			{% endfor %}
+			</ul>
+			<br>
+			<br>
+			</div>
+		</div>
+	</div>
+
+
+	</div>
 </div>
-
-</div>
-
-
-
-
-
-
-
-
 
 {% else %}
 	<h1>How come you came here if there is no blog!!! Kindly tell <a href="mailto:prafful.usict.025164@ipu.ac.in?subject=feedback">me</a></h1>

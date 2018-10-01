@@ -25,13 +25,20 @@ def index(request):
 def achievements(request):
 	return render(request, 'home/achievements.html')
 
+
+def responsible_disclosure(request):
+	return render(request, 'home/responsible_disclosure.html')
+
+def hall_of_fame(request):
+	return render(request, 'home/hall_of_fame.html')
+
 #
 # def contactSubmit(request):
 # 	if request.method == 'POST':
 # 		name = request.POST['name']
 # 		email = request.POST['email']
 # 		content = request.POST['content']
-# 		app_name = request.POST['app_name']
+# 		app_name = request.POST['app_name']	
 #
 # 		Contact.objects.create(
 # 			name = name,

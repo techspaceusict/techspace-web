@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Responsible Disclosure</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/res.css' %}">
+</head>
+<body>
+
+    <!--  JUMBOTRON    -->
+
+    <div class="jumbotron">
+      <h1 id="heading_jumb"><strong>Responsible disclosure</strong></h1>
+    </div>
+
+    <!-- CONTENT -->
+
+    <div id="content">
+      <div id="content-1" class="block">
+        <div class="container">
+          <p>Even though our services are based around finding security bugs in web applications, we are not as naive as to think that our own applications are 100% flawless. We take security issues seriously and will respond swiftly to fix verifiable security issues. If you are the first to report a verifiable security issue, we'll thank you with a place at our <a href="{% url 'hall_of_fame' %}">hall of fame page</a>.
+          </p>
+          <p>
+            We encourage anyone to report security issues to <strong>punitm187@gmail.com</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div id="content-2" class="block" >
+        <div class="container">
+          <h2 >Who can participate in the program</h2>
+          <p>Anyone who doesn't work for techspace or partners of techspace who reports a unique security issue in scope and does not disclose it to a third party before we have patched and updated may be upon their approval added to the techspace Hall of Fame.</p>
+        </div>
+      </div>
+
+      <div id="content-3"  class="block">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <h2>How should reports be formatted?</h2>
+              <p>
+                  Name: %name <br>
+                  Twitter: %twitter <br>
+                  Bug type: %bugtype <br>
+                  Domain: %domain <br>
+                  URL: %url <br>
+                  PoC: %poc <br>
+              </p>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <h2>Which domains are in scope?</h2>
+            <p>
+              The domain techspace.club and any subdomain except for these:
+              <ul>
+                <li><a href="https://techspace.club/">techspace.club</a></li>
+              </ul>
+              If you can however prove that a bug under these domains have significant impact a bug on these domains may qualify anyway.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="content-4" class="block" >
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h2>What bugs are eligible?</h2>
+            <p>
+              Any typical web security bugs such as:
+              <ul>
+                <li>Cross-site Scripting</li>
+                <li>Open redirect</li>
+                <li>Cross-site request forgery</li>
+                <li>File inclusion</li>
+                <li>Authentication bypass</li>
+                <li>Server-side code execution</li>
+              </ul>
+            </p>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <h2>What bugs are NOT eligible?</h2>
+            <p>
+              Typical "no impact" bugs such as:
+              <ul>
+                <li>Missing Cookie flags on non-session cookies or 3rd party cookies</li>
+                <li>Logout CSRF</li>
+                <li>Social engineering</li>
+                <li>Denial of service</li>
+                <li>SSL BEAST/CRIME/etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="content-5" class="block" >
+        <div class="container">
+          <h2>Other guidelines</h2>
+          <p>So you're actually reading this? Good! First off, please don't perform research that could impact other users. Secondly, please keep the reports short and succinct. If we fail to understand the logics of your bug, we will tell you.</p>
+
+          <p>Techspace reserves the rights to discontinue the reward program without previous notice at any time.</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- THE TOP PART OF THE WEBPAGE -->
+<div class="container-fluid" style="background: linear-gradient(45deg, #cd517c 30%, #f75e0f 90%) !important;">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-xs-12 col-md-8 alumni-content text-center">
+         <a href="http://ipu.ac.in" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/GGSIU_logo.svg/220px-GGSIU_logo.svg.png" height="100px"><br></a>
+          <h1>Alumni Association, USICT</h1>
+
+            <h5>About the alumni association</h5>
+          <p>
+        
+            Section under construction
+          </p>
+          <div class="row">
+             <div class="col col-md-4 col-xs-4 text-center">
+                <img src="{% static 'img/team/dean_maam.jpg' %}" class="faculty-img">
+                <p>Dr. Arvinder Kaur <br> <em>Dean, USICT</em></p>
+            </div>
+            <div class="col col-md-4 col-xs-4 text-center">
+                <img src=" https://media.licdn.com/dms/image/C5603AQHJeJ2kgMN-qw/profile-displayphoto-shrink_800_800/0?e=1543449600&v=beta&t=W6qo9LoGagUXA8Hurf79_ZCCscQLN3mnLSHDB_2Ylec" class="faculty-img">
+                <p>Prof. Bharti Suri <br> <em>Chairperson, TPO</em></p>
+                <p></p>
+            </div>
+             <div class="col col-md-4 col-xs-4 text-center">
+                <img src="{% static 'img/team/rajiv.jpeg' %}" class="faculty-img">
+                <p>Rajiv Jha<br> <em>Alumni Association Lead</em></p>
+                <p></p>
+            </div>
+          </div>
+          <br>
+          <div class="row text-center">
+            <div class="col col-xs-12">
+                <h3>TECHSPACE COUNCIL 2017</h3>
+                <p>Section under construction</p>
+                <br>
+                <h3>TECHSPACE COUNCIL 2016</h3>
+                <p>Section under construction</p>
+                <br>
+                <h3>TECHSPACE COUNCIL 2015</h3>
+                <p>Section under construction</p>
+                <br>
+                <h3>TECHSPACE COUNCIL 2014</h3>
+                <p>Section under construction</p>
+                <br>
+            </div>
+
+          </div>
+         </div>
+    </div>
+</div>
+
+<!--  there we go FOOTER-->
+{% include './components/footer.html' %}
+
+{% endblock %}
