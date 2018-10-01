@@ -6,6 +6,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
+  font-family: 'Muli', sans-serif;
+
   /*overflow-x: hidden;*/
 
   /*overflow-clip-box: hidden;  */
@@ -33,11 +35,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 }
-
+/*
 @font-face {
     font-family: adamcg;
     src: url('blog/HKGrotesk-SemiBold.otf') format("opentype");
-}
+} */
 
 /*Navbar CSS*/
 nav {
@@ -377,8 +379,16 @@ nav {
 
 .blog-title {
     width: 75%;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.84);
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
 }
-
+.blog-description{
+  text-align: justify;
+  color: rgba(0, 0, 0, 0.84);
+  font-weight: 550;
+}
 
 
 .pinned {
