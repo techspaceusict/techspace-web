@@ -1,4 +1,4 @@
-# Contributing to Infox
+# Contributing to Techspace-web
 
 Go through the issue tracker. Take up any topic of interest and discuss your plan to work on that idea. Develop a basic prototype. Make a pull request.
 
