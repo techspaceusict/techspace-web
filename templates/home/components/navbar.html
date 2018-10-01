@@ -11,11 +11,18 @@
                 <a class="nav-link" href="{% url 'home:achievements' %}">Achievements</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link scrollTo" href="{% url 'home:index' %}#clubs">Clubs @Techspace</a>
+                <a class="nav-link {% if request.path == '/'%} scrollTo {% endif %}" href="{% url 'home:index' %}#clubs">Clubs @Techspace</a>
             </li>
+            {% if request.path != '/alumni/'%} 
             <li class="nav-item">
-                <a class="nav-link scrollTo" href="{% url 'home:index' %}#contact">Contact Us</a>
+                <a class="nav-link" href="{% url 'alumni' %}">Alumni</a>
             </li>
+            {% endif %}
+            {% if request.path != '/'%} 
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == '/'%} scrollTo {% endif %}" href="{% url 'home:index' %}#contact">Contact Us</a>
+            </li>
+            {% endif %}
 <!--             <li class="nav-item">
                 <a class="nav-link" href="#"></a>
             </li> -->
@@ -25,7 +32,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"><img src="{% static 'img/TS-1.jpg' %}" class="nav-logo"></a>
+        <a class="navbar-brand mx-auto" href="{% url 'home:index' %}"><img src="{% static 'img/TS-1.jpg' %}" class="nav-logo"></a>
     </div>
     <!-- <span class="navbar-brand w-100">Navbar 5</span> -->
     <div class="navbar-collapse collapse order-3 order-sm-2 w-100 dual-collapse d-none d-sm-block">

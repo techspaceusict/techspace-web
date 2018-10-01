@@ -838,3 +838,14 @@ input:focus, textarea:focus {
 }
 
 /*End Timeline CSS*/
+
+/*Alumni CSS*/
+.alumni-content {
+    background: #fff;
+    padding: 50px 50px;
+    margin: 30px 0px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border: 2px solid #526266;
+}
+/*End Alumni CSS*/
