@@ -384,12 +384,22 @@ nav {
     font-size: 1.2rem;
     letter-spacing: 0.05rem;
 }
+
+
+.blog-description-col {
+  padding: 0;
+}
+
 .blog-description{
 /*   text-align: justify; */
+  word-break: break-word;
   color: rgba(0, 0, 0, 0.84);
   font-weight: 550;
 }
 
+.read-more {
+  color: rgb(173,0,0);
+}
 
 .pinned {
   color: green;
