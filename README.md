@@ -77,7 +77,7 @@ Running techspace-web on your system:
       secure = "True",
    )
  ```
- Cheers !!! you are ready to go .
+ Cheers !!!! you are ready to go .
  For more details read https://cloudinary.com/documentation/django_integration#django_getting_started_guide
  
 
