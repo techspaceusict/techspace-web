@@ -47,3 +47,38 @@ Running techspace-web on your system:
     $ source env/bin/activate
     $ python manage.py runserver
     ```
+    
+    
+    
+# cloudinary configuration
+
+1. Install Cloudinary's module using pip
+```  pip install cloudinary ```
+
+2. Add "cloudinary" to the list of INSTALLED_APPS in settings.py.
+
+3. Include Cloudinary's Python classes in settings.py
+``` 
+   import cloudinary
+   import cloudinary.uploader
+   import cloudinary.api 
+   ```
+ 4. Initalize Cloudinary tags in your Django templates 
+ ``` {% load cloudinary %} ```
+ 
+ 5. Create account and setup api in cloudinary at https://cloudinary.com/
+ 
+ 6. Configure cloudinary api in settings.py
+ ```
+   cloudinary.config( 
+      cloud_name = "cloud_name",
+      api_key = "api_key",
+      api_secret = "api_secret",
+      secure = "True",
+   )
+ ```
+ Cheers !!!! you are ready to go .
+ For more details read https://cloudinary.com/documentation/django_integration#django_getting_started_guide
+ 
+
+
