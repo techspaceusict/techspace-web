@@ -18,3 +18,6 @@ def about(request):
 
 def alumni(request):
 	return render(request,'home/alumni.html')
+
+def coc(request):
+	return redirect("https://gist.github.com/nikit19/f5f388bed8abb928aa4da4817c2229ca")
