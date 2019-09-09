@@ -53,6 +53,7 @@ urlpatterns = [
     url(r'^ckeditor/upload/', uploader_views.upload, name='ckeditor_upload'),
 
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^code-of-conduct', views.coc),
 
     url(r'^', include('home.urls')),
 ]
