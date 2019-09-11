@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^codeschool/', include('codeschool.urls')),
     url(r'^cogitans/', include('cogitans.urls')),
     url(r'^droidclub/', include('droidclub.urls')),
+    url(r'^rooters/', include('rooters.urls')),    
     url(r'^ecell/', include('ecell.urls')),
     url(r'^electrotech/', include('electrotech.urls')),
     url(r'^oslc/', include('oslc.urls')),

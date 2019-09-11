@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'cogitans',
     'droidclub',
     'ecell',
+    'rooters',
     'electrotech',
     'oslc',
     'renderedusict',
