@@ -72,7 +72,7 @@
 		</div>
 		{% endif %}
 
-		{{ blog_detail.content|safe|linebreaks }}
+		{{ blog_detail.content|safe|linebreaks|urlize }}
 
 	    {% if user.username == blog_detail.author %}
 		<div class="row text-center blog-page-tools d-block d-sm-none">
