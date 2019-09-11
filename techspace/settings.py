@@ -29,7 +29,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'dzy79r+x1l28s9)lhd^3azs+*028nn#$7@l1yk4=^if(fjwbly'
-GOOGLE_RECAPTCHA_SECRET_KEY = '6Lft7WkUAAAAAEf37JPg6O62HV3QXXz3qR1kYF0H'
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LeoebUUAAAAANBNUD9iwa-2AtXsWm3tDg5KnRl6'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
