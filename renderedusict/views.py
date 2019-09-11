@@ -11,7 +11,7 @@ from event.views import EventView
 def index(request):
 	# info = Info.objects.filter(club=Info.renderedusict).order_by('id').last()
 	# team = Team.objects.filter(club=Team.renderedusict)
-	event = Events.objects.filter(club=Event.renderedusict).order_by('-date').first()
+	event = Event.objects.filter(club=Event.renderedusict).order_by('-date').first()
 	return render(request,'clubs/renderedusict/index.html', {'event': event})
 
 
