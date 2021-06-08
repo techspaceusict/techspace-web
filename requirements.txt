@@ -1,4 +1,4 @@
 Django==1.11.29
 django-ckeditor==5.6.1
-Pillow==6.2.2
+Pillow==8.2.0
 cloudinary==1.12.0
